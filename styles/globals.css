@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-dark text-white font-sans antialiased;
+  overflow-x: hidden;
+}
+
+/* Gradient animations */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animate {
+  animation: gradient-shift 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Smooth scrolling for lightbox */
+.lightbox-open body {
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.8);
+}
+
+/* Image hover effects */
+.image-wrapper {
+  @apply relative overflow-hidden rounded-lg;
+}
+
+.image-wrapper img {
+  @apply transition-transform duration-300;
+}
+
+.image-wrapper:hover img {
+  @apply scale-105;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif font-bold tracking-wide;
+}
+
+h1 {
+  @apply text-5xl md:text-7xl;
+}
+
+h2 {
+  @apply text-4xl md:text-5xl;
+}
+
+h3 {
+  @apply text-2xl md:text-3xl;
+}
+
+p {
+  @apply text-base md:text-lg leading-relaxed;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 bg-accent-gold text-dark font-semibold rounded-lg transition-all duration-300 hover:bg-white hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 border border-accent-gold text-accent-gold font-semibold rounded-lg transition-all duration-300 hover:bg-accent-gold hover:text-dark;
+}
+
+/* Link styles */
+a {
+  @apply transition-colors duration-300;
+}
+
+a:hover {
+  @apply text-accent-gold;
+}
+
+/* Form elements */
+input, textarea, select {
+  @apply bg-dark-secondary border border-dark-tertiary rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold transition-colors;
+}
+
+input::placeholder, textarea::placeholder {
+  @apply text-gray-600;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply bg-gradient-to-r from-dark-secondary via-dark-tertiary to-dark-secondary;
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
