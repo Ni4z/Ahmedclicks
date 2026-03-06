@@ -50,13 +50,13 @@ export default function AboutPage() {
             <h2 className="text-4xl font-serif font-bold mb-6">My Journey</h2>
             <div className="space-y-4 text-gray-400">
               <p>
-                What started as a hobby with my father's old film camera has transformed into a lifelong passion. For over 15 years, I've traveled to more than 80 countries, capturing the raw beauty of our planet.
+                What started as a hobby with my father&apos;s old film camera has transformed into a lifelong passion. For over 15 years, I&apos;ve traveled to more than 80 countries, capturing the raw beauty of our planet.
               </p>
               <p>
-                My approach to photography is deeply philosophical. I don't just take pictures; I tell stories. Every frame is carefully composed to evoke emotion and transport the viewer to that exact moment in time.
+                My approach to photography is deeply philosophical. I don&apos;t just take pictures; I tell stories. Every frame is carefully composed to evoke emotion and transport the viewer to that exact moment in time.
               </p>
               <p>
-                Whether I'm tracking through the African savanna, waiting for the northern lights, or exploring hidden corners of bustling cities, photography allows me to see the world with fresh eyes every single day.
+                Whether I&apos;m tracking through the African savanna, waiting for the northern lights, or exploring hidden corners of bustling cities, photography allows me to see the world with fresh eyes every single day.
               </p>
             </div>
           </motion.div>
@@ -117,7 +117,7 @@ export default function AboutPage() {
             Photography Philosophy
           </motion.h2>
           <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed mb-4">
-            Photography is the art of frozen time. It's about capturing not just what we see, but what we feel. Every great photograph tells a story—of adventure, beauty, struggle, or wonder.
+            Photography is the art of frozen time. It&apos;s about capturing not just what we see, but what we feel. Every great photograph tells a story—of adventure, beauty, struggle, or wonder.
           </motion.p>
           <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed">
             My mission is to create images that move people, that make them want to explore, that inspire them to see the world in a new light. In a world of digital noise, I strive to create images that matter, images that resonate, images that last.

@@ -23,7 +23,7 @@ export default function PhotographerBio() {
           >
             <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6">About Ahmed</h2>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              With over 15 years of experience in professional photography, I've dedicated my life to capturing the world's most breathtaking moments. From the vast savannas of Africa to the mysteries of the night sky, my work explores the beauty and wonder of our planet.
+              With over 15 years of experience in professional photography, I&apos;ve dedicated my life to capturing the world&apos;s most breathtaking moments. From the vast savannas of Africa to the mysteries of the night sky, my work explores the beauty and wonder of our planet.
             </p>
             <p className="text-gray-400 mb-6 leading-relaxed">
               My philosophy is simple: photography is about telling stories and evoking emotions. Every image should transport the viewer to that moment, making them feel what I felt when I pressed the shutter.

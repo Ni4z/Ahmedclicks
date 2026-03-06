@@ -1,25 +1,30 @@
-'use client';
-
 import { motion } from 'framer-motion';
 import PhotoDetail from '@/components/gallery/PhotoDetail';
 import { photos } from '@/data/portfolio';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-interface PhotoPageProps {
-  params: {
-    id: string;
-  };
+export async function generateStaticParams() {
+  return photos.map((photo) => ({
+    id: photo.id,
+  }));
 }
 
-export default function PhotoPage({ params }: PhotoPageProps) {
-  const photo = photos.find((p) => p.id === params.id);
+interface PhotoPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export default async function PhotoPage({ params }: PhotoPageProps) {
+  const { id } = await params;
+  const photo = photos.find((p) => p.id === id);
 
   if (!photo) {
     notFound();
   }
 
-  const currentIndex = photos.findIndex((p) => p.id === params.id);
+  const currentIndex = photos.findIndex((p) => p.id === id);
   const previousPhoto = currentIndex > 0 ? photos[currentIndex - 1] : null;
   const nextPhoto = currentIndex < photos.length - 1 ? photos[currentIndex + 1] : null;
 

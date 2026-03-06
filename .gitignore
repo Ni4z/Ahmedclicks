@@ -37,3 +37,7 @@ yarn-error.log*
 
 # OS
 Thumbs.db
+.vercel
+
+# Local Netlify folder
+.netlify

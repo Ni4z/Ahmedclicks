@@ -1,27 +1,16 @@
-'use client';
-
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { Photo } from '@/lib/types';
-import { useState } from 'react';
 
 interface PhotoDetailProps {
   photo: Photo;
-  onClose?: () => void;
 }
 
-export default function PhotoDetail({ photo, onClose }: PhotoDetailProps) {
-  const [imageLoaded, setImageLoaded] = useState(false);
+export default function PhotoDetail({ photo }: PhotoDetailProps) {
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12"
-    >
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
       {/* Image */}
-      <motion.div className="lg:col-span-2">
+      <div className="lg:col-span-2">
         <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-dark-secondary">
           <Image
             src={photo.image}
@@ -29,17 +18,12 @@ export default function PhotoDetail({ photo, onClose }: PhotoDetailProps) {
             fill
             priority
             className="object-cover"
-            onLoadingComplete={() => setImageLoaded(true)}
           />
         </div>
-      </motion.div>
+      </div>
 
       {/* Details */}
-      <motion.div
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.2 }}
-      >
+      <div>
         <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">{photo.title}</h1>
 
         <div className="mb-8">
@@ -51,12 +35,7 @@ export default function PhotoDetail({ photo, onClose }: PhotoDetailProps) {
 
         {/* EXIF Data */}
         {photo.camera && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="space-y-4 bg-dark-secondary p-6 rounded-lg"
-          >
+          <div className="space-y-4 bg-dark-secondary p-6 rounded-lg">
             <h3 className="text-lg font-semibold mb-4">Camera Settings</h3>
             <div className="space-y-2 text-sm">
               {photo.camera && (
@@ -96,16 +75,11 @@ export default function PhotoDetail({ photo, onClose }: PhotoDetailProps) {
                 </div>
               )}
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* Social Share */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="mt-8 pt-8 border-t border-dark-tertiary"
-        >
+        <div className="mt-8 pt-8 border-t border-dark-tertiary">
           <h3 className="text-sm font-semibold tracking-widest mb-4">SHARE</h3>
           <div className="flex gap-4">
             {[
@@ -122,8 +96,8 @@ export default function PhotoDetail({ photo, onClose }: PhotoDetailProps) {
               </a>
             ))}
           </div>
-        </motion.div>
-      </motion.div>
-    </motion.div>
+        </div>
+      </div>
+    </div>
   );
 }

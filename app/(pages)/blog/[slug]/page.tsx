@@ -1,20 +1,24 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { blogPosts } from '@/data/portfolio';
 import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+export async function generateStaticParams() {
+  return blogPosts.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = blogPosts.find((p) => p.slug === params.slug);
+interface BlogPostPageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
@@ -36,11 +40,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
       {/* Content */}
       <div className="max-w-3xl mx-auto px-6 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
-        >
+        <div className="mb-12">
           <Link href="/blog" className="text-accent-gold hover:underline mb-6 inline-block">
             ← Back to Blog
           </Link>
@@ -54,15 +54,10 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             <span>•</span>
             <span className="text-accent-gold">{post.category}</span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Article Content */}
-        <motion.article
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="prose prose-invert max-w-none"
-        >
+        <article className="prose prose-invert max-w-none">
           <div className="text-gray-300 leading-relaxed space-y-6">
             {post.content.split('\n\n').map((paragraph, i) => {
               if (paragraph.startsWith('##')) {
@@ -87,20 +82,15 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
               return <p key={i}>{paragraph}</p>;
             })}
           </div>
-        </motion.article>
+        </article>
 
         {/* Author */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-20 pt-12 border-t border-dark-tertiary"
-        >
+        <div className="mt-20 pt-12 border-t border-dark-tertiary">
           <h3 className="text-xl font-serif font-bold mb-2">By {post.author}</h3>
           <p className="text-gray-400">
             Professional photographer sharing insights, tips, and stories from the road.
           </p>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

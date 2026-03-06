@@ -57,7 +57,7 @@ export default function ContactPage() {
         className="py-20 px-6 text-center bg-dark-secondary"
       >
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">Get In Touch</h1>
-        <p className="text-gray-400 text-lg">Let's collaborate and create something amazing</p>
+        <p className="text-gray-400 text-lg">Let&apos;s collaborate and create something amazing</p>
       </motion.div>
 
       {/* Content */}
@@ -192,7 +192,7 @@ export default function ContactPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-accent-gold text-center"
                 >
-                  ✓ Message sent! I'll get back to you soon.
+                  ✓ Message sent! I&apos;ll get back to you soon.
                 </motion.p>
               )}
             </form>
