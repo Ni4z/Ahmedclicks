@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <>
       <HeroSlideshow />
       <FeaturedPhotos />
       <Categories />
       <PhotographerBio />
-    </main>
+    </>
   );
 }

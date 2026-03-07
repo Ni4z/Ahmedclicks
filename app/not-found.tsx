@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-dark flex items-center justify-center px-6">
@@ -7,9 +9,9 @@ export default function NotFound() {
         <p className="text-gray-400 mb-8 text-lg">
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
-        <a href="/" className="btn-primary inline-block">
+        <Link href="/" className="btn-primary inline-block">
           Return Home
-        </a>
+        </Link>
       </div>
     </div>
   );

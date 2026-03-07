@@ -1,11 +1,29 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Photo } from '@/lib/types';
 
 interface PhotoDetailProps {
   photo: Photo;
+  shareUrl?: string;
 }
 
-export default function PhotoDetail({ photo }: PhotoDetailProps) {
+export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
+  const encodedUrl = encodeURIComponent(shareUrl || '');
+  const encodedTitle = encodeURIComponent(photo.title);
+  const socialLinks = [
+    {
+      name: 'Twitter',
+      url: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+    },
+    {
+      name: 'Facebook',
+      url: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+    },
+    {
+      name: 'Email',
+      url: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+    },
+  ];
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
@@ -82,20 +100,24 @@ export default function PhotoDetail({ photo }: PhotoDetailProps) {
         <div className="mt-8 pt-8 border-t border-dark-tertiary">
           <h3 className="text-sm font-semibold tracking-widest mb-4">SHARE</h3>
           <div className="flex gap-4">
-            {[
-              { name: 'Twitter', url: '#' },
-              { name: 'Facebook', url: '#' },
-              { name: 'Pinterest', url: '#' },
-            ].map((social) => (
+            {socialLinks.map((social) => (
               <a
                 key={social.name}
                 href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm text-accent-gold hover:underline"
               >
                 {social.name}
               </a>
             ))}
           </div>
+        </div>
+
+        <div className="mt-8">
+          <Link href="/gallery" className="text-sm text-gray-400 hover:text-accent-gold">
+            ← Back to gallery
+          </Link>
         </div>
       </div>
     </div>

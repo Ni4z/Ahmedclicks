@@ -1,7 +1,9 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
+import Script from 'next/script';
 import '@/styles/globals.css';
 import Layout from '@/components/layout/Layout';
+import { absoluteUrl, siteConfig, withBasePath } from '@/lib/site';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -16,8 +18,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl),
   title: 'Ahmed - Professional Photography Portfolio',
-  description: 'Professional photographer specializing in wildlife, astrophotography, landscape, and travel photography.',
+  description: siteConfig.description,
   keywords: [
     'photography',
     'portfolio',
@@ -27,13 +30,15 @@ export const metadata: Metadata = {
     'travel',
     'professional',
   ],
-  viewport: 'width=device-width, initial-scale=1',
   authors: [{ name: 'Ahmed' }],
+  icons: {
+    icon: withBasePath('/favicon.svg'),
+  },
   openGraph: {
     type: 'website',
-    url: 'https://ahmedphotography.com',
+    url: absoluteUrl('/'),
     title: 'Ahmed - Professional Photography Portfolio',
-    description: 'Stunning photography showcasing the worlds beauty',
+    description: "Stunning photography showcasing the world's beauty.",
     images: [
       {
         url: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=630&fit=crop',
@@ -48,37 +53,42 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0a0a0a',
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const googleAnalyticsId = process.env.NEXT_PUBLIC_GA_ID;
+
   return (
     <html
       lang="en"
       className={`${playfair.variable} ${inter.variable} dark`}
       suppressHydrationWarning
     >
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="theme-color" content="#0a0a0a" />
-        <link rel="icon" href="/favicon.ico" />
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'YOUR-GA-ID');
-            `,
-          }}
-        />
-      </head>
       <body className="bg-dark text-white">
+        {googleAnalyticsId ? (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${googleAnalyticsId}');
+              `}
+            </Script>
+          </>
+        ) : null}
         <Layout>{children}</Layout>
       </body>
     </html>
