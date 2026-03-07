@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { siteConfig } from '@/lib/site';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,9 +15,14 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+
+    window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);
-    console.log('Form submitted:', formData);
   };
 
   const handleChange = (
@@ -78,8 +84,11 @@ export default function ContactPage() {
                 <h3 className="text-sm font-semibold tracking-widest text-accent-gold mb-2">
                   EMAIL
                 </h3>
-                <a href="mailto:hello@ahmedphotography.com" className="text-lg hover:text-accent-gold transition-colors">
-                  hello@ahmedphotography.com
+                <a
+                  href={`mailto:${siteConfig.contactEmail}`}
+                  className="text-lg hover:text-accent-gold transition-colors"
+                >
+                  {siteConfig.contactEmail}
                 </a>
               </div>
 
@@ -192,7 +201,7 @@ export default function ContactPage() {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-accent-gold text-center"
                 >
-                  ✓ Message sent! I&apos;ll get back to you soon.
+                  Your email app should open with your message pre-filled.
                 </motion.p>
               )}
             </form>

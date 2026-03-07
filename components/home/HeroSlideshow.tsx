@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { photos } from '@/data/portfolio';
@@ -78,9 +79,9 @@ export default function HeroSlideshow() {
           Professional Photographer | Wildlife · Astrophotography · Landscapes · Travel
         </p>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <button className="btn-primary">
+          <Link href="/gallery" className="btn-primary inline-block">
             Explore Gallery
-          </button>
+          </Link>
         </motion.div>
       </motion.div>
 
@@ -93,6 +94,7 @@ export default function HeroSlideshow() {
               setDirection(i > currentSlide ? 1 : -1);
               setCurrentSlide(i);
             }}
+            aria-label={`View featured photo ${i + 1}`}
             className={`w-2 h-2 rounded-full transition-all ${
               i === currentSlide
                 ? 'bg-accent-gold w-8'

@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { siteConfig } from '@/lib/site';
 
 const socialLinks = [
   { name: 'Instagram', href: 'https://instagram.com', icon: 'I' },
-  { name: 'Email', href: 'mailto:ahmed@example.com', icon: 'E' },
+  { name: 'Email', href: `mailto:${siteConfig.contactEmail}`, icon: 'E' },
   { name: 'LinkedIn', href: 'https://linkedin.com', icon: 'L' },
 ];
 
@@ -104,7 +105,9 @@ export default function Footer() {
           whileInView="visible"
           className="border-t border-dark-tertiary pt-8 flex flex-col md:flex-row justify-between items-center"
         >
-          <p className="text-gray-500 text-sm">© 2024 Ahmed Photography. All rights reserved.</p>
+          <p className="text-gray-500 text-sm">
+            © {new Date().getFullYear()} Ahmed Photography. All rights reserved.
+          </p>
           <div className="flex gap-6 mt-4 md:mt-0 text-sm text-gray-500">
             <Link href="/privacy" className="hover:text-accent-gold">
               Privacy
