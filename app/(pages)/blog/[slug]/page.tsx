@@ -83,12 +83,12 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: 'Article Not Found | Ahmed Photography',
+      title: 'Article Not Found | NiazClicks',
     };
   }
 
   return {
-    title: `${post.title} | Ahmed Photography`,
+    title: `${post.title} | NiazClicks`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
@@ -96,7 +96,7 @@ export async function generateMetadata({
       url: absoluteUrl(`/blog/${post.slug}/`),
       images: [
         {
-          url: post.image,
+          url: absoluteUrl(post.image),
           alt: post.title,
         },
       ],

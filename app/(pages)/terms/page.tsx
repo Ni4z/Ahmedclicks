@@ -17,7 +17,7 @@ export default function TermsPage() {
         <section className="space-y-3">
           <h2 className="text-2xl font-serif font-bold">Copyright</h2>
           <p className="text-gray-400">
-            Images and text remain the property of Ahmed Photography or their
+            Images and text remain the property of NiazClicks or their
             respective owners. Reuse, redistribution, or commercial use requires
             permission from the rights holder.
           </p>
@@ -27,7 +27,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-serif font-bold">External Links</h2>
           <p className="text-gray-400">
             This website may link to third-party services such as social networks or
-            email providers. Ahmed Photography is not responsible for the content or
+            email providers. NiazClicks is not responsible for the content or
             policies of those external services.
           </p>
         </section>

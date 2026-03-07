@@ -1,7 +1,7 @@
 {
-  "name": "ahmed-photography-portfolio",
+  "name": "niazclicks",
   "version": "1.0.0",
-  "description": "Modern photography portfolio website for Ahmed",
+  "description": "Photography portfolio website for NiazClicks",
   "private": true,
   "scripts": {
     "dev": "next dev",

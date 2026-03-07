@@ -19,7 +19,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
-  title: 'Ahmed - Professional Photography Portfolio',
+  title: 'NiazClicks',
   description: siteConfig.description,
   keywords: [
     'photography',
@@ -27,21 +27,24 @@ export const metadata: Metadata = {
     'wildlife',
     'astrophotography',
     'landscape',
-    'travel',
+    'roads',
+    'trees',
+    'humans',
     'professional',
   ],
-  authors: [{ name: 'Ahmed' }],
+  authors: [{ name: 'NiazClicks' }],
   icons: {
     icon: withBasePath('/favicon.svg'),
   },
   openGraph: {
     type: 'website',
     url: absoluteUrl('/'),
-    title: 'Ahmed - Professional Photography Portfolio',
-    description: "Stunning photography showcasing the world's beauty.",
+    title: 'NiazClicks',
+    description:
+      'A portfolio of wildlife, landscapes, roads, trees, portraits, and night-sky photography.',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&h=630&fit=crop',
+        url: absoluteUrl('/photos/wildlife/DSC03370.jpg'),
         width: 1200,
         height: 630,
       },
@@ -49,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@ahmedphotography',
+    creator: '@niazclicks',
   },
 };
 

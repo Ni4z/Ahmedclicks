@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { equipment } from '@/data/portfolio';
+import { withBasePath } from '@/lib/site';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,8 +33,8 @@ export default function AboutPage() {
         animate={{ opacity: 1, y: 0 }}
         className="py-20 px-6 text-center bg-dark-secondary"
       >
-        <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">About Ahmed</h1>
-        <p className="text-gray-400 text-lg">Professional Photographer Since 2008</p>
+        <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">About NiazClicks</h1>
+        <p className="text-gray-400 text-lg">A portfolio shaped by real folders, real files, and real photographs</p>
       </motion.div>
 
       {/* Content */}
@@ -50,13 +51,13 @@ export default function AboutPage() {
             <h2 className="text-4xl font-serif font-bold mb-6">My Journey</h2>
             <div className="space-y-4 text-gray-400">
               <p>
-                What started as a hobby with my father&apos;s old film camera has transformed into a lifelong passion. For over 15 years, I&apos;ve traveled to more than 80 countries, capturing the raw beauty of our planet.
+                NiazClicks is no longer a template portfolio filled with borrowed images. The site now runs on the local image folders in this repository, which means every gallery page is tied to your own files.
               </p>
               <p>
-                My approach to photography is deeply philosophical. I don&apos;t just take pictures; I tell stories. Every frame is carefully composed to evoke emotion and transport the viewer to that exact moment in time.
+                The archive is organized by the collections you&apos;re actively building: wildlife, astrophotography, landscape, roads, trees, and human subjects. That structure makes the site easier to maintain as the portfolio grows.
               </p>
               <p>
-                Whether I&apos;m tracking through the African savanna, waiting for the northern lights, or exploring hidden corners of bustling cities, photography allows me to see the world with fresh eyes every single day.
+                The goal of the redesign is simple: make the website feel like your work instead of demo content, and keep the publishing workflow lightweight enough that dropping new images into the repo can drive future updates.
               </p>
             </div>
           </motion.div>
@@ -64,8 +65,8 @@ export default function AboutPage() {
           {/* Image */}
           <motion.div variants={itemVariants} className="relative h-96 rounded-lg overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1559027615-cd2628902d4a?w=600&h=600&fit=crop"
-              alt="Ahmed working"
+              src={withBasePath('/photos/Humans/DSC01070-2.jpg')}
+              alt="NiazClicks portrait"
               fill
               className="object-cover"
             />
@@ -117,10 +118,10 @@ export default function AboutPage() {
             Photography Philosophy
           </motion.h2>
           <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed mb-4">
-            Photography is the art of frozen time. It&apos;s about capturing not just what we see, but what we feel. Every great photograph tells a story—of adventure, beauty, struggle, or wonder.
+            Photography here is treated as an archive of observation. The strongest frame is not always the loudest one; it is the one that stays precise, patient, and honest about what was actually in front of the lens.
           </motion.p>
           <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed">
-            My mission is to create images that move people, that make them want to explore, that inspire them to see the world in a new light. In a world of digital noise, I strive to create images that matter, images that resonate, images that last.
+            The site is built to stay close to that idea: fewer placeholders, fewer invented details, and more emphasis on the real image collections that make up NiazClicks.
           </motion.p>
         </motion.div>
       </div>
