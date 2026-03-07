@@ -4,7 +4,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-export default function PhotographerBio() {
+interface PhotographerBioProps {
+  profileImage: string;
+}
+
+export default function PhotographerBio({ profileImage }: PhotographerBioProps) {
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -21,12 +25,12 @@ export default function PhotographerBio() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6">About Ahmed</h2>
+            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6">About NiazClicks</h2>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              With over 15 years of experience in professional photography, I&apos;ve dedicated my life to capturing the world&apos;s most breathtaking moments. From the vast savannas of Africa to the mysteries of the night sky, my work explores the beauty and wonder of our planet.
+              NiazClicks is a personal photography archive built around real field work and local image collections. The site now pulls directly from the folders inside the project, so the published gallery stays tied to the actual files in the repository.
             </p>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              My philosophy is simple: photography is about telling stories and evoking emotions. Every image should transport the viewer to that moment, making them feel what I felt when I pressed the shutter.
+              Instead of stock placeholders and template copy, the portfolio is now organized around the categories you&apos;re actively building: wildlife, landscapes, roads, trees, people, and astrophotography.
             </p>
             <Link href="/about">
               <button className="btn-primary">Read Full Story</button>
@@ -42,8 +46,8 @@ export default function PhotographerBio() {
             className="relative h-96 rounded-lg overflow-hidden"
           >
             <Image
-              src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&h=600&fit=crop"
-              alt="Ahmed"
+              src={profileImage}
+              alt="NiazClicks"
               fill
               className="object-cover"
             />

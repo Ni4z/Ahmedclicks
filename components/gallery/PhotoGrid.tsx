@@ -14,7 +14,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
           <Link href={`/gallery/${photo.id}`} className="block">
             <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-dark-secondary">
               <Image
-                src={photo.image}
+                src={photo.thumbnail}
                 alt={photo.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"

@@ -3,18 +3,30 @@ const normalizedSiteUrl = (
 ).replace(/\/+$/, '');
 
 export const siteConfig = {
-  name: 'Ahmed Photography',
+  name: 'NiazClicks',
   description:
-    'Professional photographer specializing in wildlife, astrophotography, landscape, and travel photography.',
+    'Photography portfolio of NiazClicks featuring wildlife, landscapes, roads, trees, portraits, and astrophotography.',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   siteUrl: normalizedSiteUrl,
-  contactEmail:
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'hello@ahmedphotography.com',
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || '',
+  instagramUrl:
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/hmed_niaz',
 };
 
 export const withBasePath = (path: string): string => {
   if (!path) {
     return siteConfig.basePath || '/';
+  }
+
+  if (/^https?:\/\//.test(path)) {
+    return path;
+  }
+
+  if (
+    siteConfig.basePath &&
+    (path === siteConfig.basePath || path.startsWith(`${siteConfig.basePath}/`))
+  ) {
+    return path;
   }
 
   if (!path.startsWith('/')) {

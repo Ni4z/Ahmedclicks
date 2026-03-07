@@ -35,7 +35,7 @@ export default function BlogPage() {
         className="py-20 px-6 text-center bg-dark-secondary"
       >
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">Stories & Articles</h1>
-        <p className="text-gray-400 text-lg">Photography insights, tips, and travel stories</p>
+        <p className="text-gray-400 text-lg">Process notes, field observations, and practical photography articles</p>
       </motion.div>
 
       {/* Content */}
@@ -100,7 +100,7 @@ export default function BlogPage() {
         >
           <h3 className="text-2xl font-serif font-bold mb-4">Subscribe to My Newsletter</h3>
           <p className="text-gray-400 mb-6 max-w-md mx-auto">
-            Get photography tips, travel stories, and exclusive previews of new galleries
+            Get photography notes and updates when new work lands in the NiazClicks archive
           </p>
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input

@@ -1,7 +1,8 @@
 export interface Photo {
   id: string;
   title: string;
-  category: 'wildlife' | 'astrophotography' | 'landscape' | 'travel';
+  category: string;
+  categoryKey: string;
   image: string;
   thumbnail: string;
   description: string;
@@ -14,6 +15,14 @@ export interface Photo {
   focalLength?: string;
   featured: boolean;
   date: string;
+}
+
+export interface PhotoCategory {
+  key: string;
+  name: string;
+  description: string;
+  count: number;
+  coverImage: string;
 }
 
 export interface BlogPost {

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PhotoDetail from '@/components/gallery/PhotoDetail';
-import { photos } from '@/data/portfolio';
+import { getPhotos } from '@/lib/gallery';
 import { absoluteUrl } from '@/lib/site';
 
 type PhotoDetailPageProps = {
@@ -12,7 +12,7 @@ type PhotoDetailPageProps = {
 };
 
 export function generateStaticParams() {
-  return photos.map((photo) => ({
+  return getPhotos().map((photo) => ({
     id: photo.id,
   }));
 }
@@ -21,16 +21,17 @@ export async function generateMetadata({
   params,
 }: PhotoDetailPageProps): Promise<Metadata> {
   const { id } = await params;
+  const photos = getPhotos();
   const photo = photos.find((entry) => entry.id === id);
 
   if (!photo) {
     return {
-      title: 'Photo Not Found | Ahmed Photography',
+      title: 'Photo Not Found | NiazClicks',
     };
   }
 
   return {
-    title: `${photo.title} | Ahmed Photography`,
+    title: `${photo.title} | NiazClicks`,
     description: photo.description,
     openGraph: {
       title: photo.title,
@@ -38,7 +39,7 @@ export async function generateMetadata({
       url: absoluteUrl(`/gallery/${photo.id}/`),
       images: [
         {
-          url: photo.image,
+          url: absoluteUrl(photo.image),
           alt: photo.title,
         },
       ],
@@ -50,6 +51,7 @@ export default async function PhotoDetailPage({
   params,
 }: PhotoDetailPageProps) {
   const { id } = await params;
+  const photos = getPhotos();
   const photoIndex = photos.findIndex((entry) => entry.id === id);
 
   if (photoIndex === -1) {

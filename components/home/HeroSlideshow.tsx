@@ -4,20 +4,49 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { photos } from '@/data/portfolio';
+import { Photo } from '@/lib/types';
 
-export default function HeroSlideshow() {
+interface HeroSlideshowProps {
+  photos: Photo[];
+}
+
+export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
-  const featuredPhotos = photos.filter((p) => p.featured);
 
   useEffect(() => {
+    if (photos.length <= 1) {
+      return undefined;
+    }
+
     const interval = setInterval(() => {
       setDirection(1);
-      setCurrentSlide((prev) => (prev + 1) % featuredPhotos.length);
+      setCurrentSlide((prev) => (prev + 1) % photos.length);
     }, 5000);
+
     return () => clearInterval(interval);
-  }, [featuredPhotos.length]);
+  }, [photos.length]);
+
+  if (photos.length === 0) {
+    return (
+      <section className="relative w-full min-h-[70vh] bg-dark-secondary flex items-center justify-center px-6">
+        <div className="text-center max-w-3xl">
+          <p className="text-sm tracking-[0.4em] uppercase text-accent-gold mb-4">
+            NiazClicks
+          </p>
+          <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">
+            A living archive of photographs
+          </h1>
+          <p className="text-lg text-gray-300 mb-8">
+            Add images into `public/photos/*` and the website will publish them here.
+          </p>
+          <Link href="/gallery" className="btn-primary inline-block">
+            Explore Gallery
+          </Link>
+        </div>
+      </section>
+    );
+  }
 
   const slideVariants = {
     enter: (dir: number) => ({
@@ -53,8 +82,8 @@ export default function HeroSlideshow() {
           className="absolute inset-0"
         >
           <Image
-            src={featuredPhotos[currentSlide]?.image || ''}
-            alt={featuredPhotos[currentSlide]?.title || 'Featured Photo'}
+            src={photos[currentSlide]?.image || ''}
+            alt={photos[currentSlide]?.title || 'Featured Photo'}
             fill
             priority
             className="object-cover"
@@ -73,10 +102,10 @@ export default function HeroSlideshow() {
         className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
       >
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 tracking-wider">
-          AHMED
+          NiazClicks
         </h1>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">
-          Professional Photographer | Wildlife · Astrophotography · Landscapes · Travel
+          Wildlife, landscapes, roads, trees, portraits, and night skies collected in one portfolio.
         </p>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link href="/gallery" className="btn-primary inline-block">
@@ -87,7 +116,7 @@ export default function HeroSlideshow() {
 
       {/* Navigation Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-        {featuredPhotos.map((_, i) => (
+        {photos.map((_, i) => (
           <button
             key={i}
             onClick={() => {
