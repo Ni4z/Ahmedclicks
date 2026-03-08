@@ -27,7 +27,7 @@ export default function Home() {
       <FeaturedPhotos photos={featuredPhotos} />
       <Categories categories={categories} />
       <PhotographerBio
-        profileImage={profilePhoto?.image || withBasePath('/photos/Humans/DSC00975.jpg')}
+        profileImage={profilePhoto?.image || withBasePath('/photos/Me/Me.jpg')}
       />
     </>
   );
