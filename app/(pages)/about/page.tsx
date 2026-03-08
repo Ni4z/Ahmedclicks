@@ -65,7 +65,7 @@ export default function AboutPage() {
           {/* Image */}
           <motion.div variants={itemVariants} className="relative h-96 rounded-lg overflow-hidden">
             <Image
-              src={withBasePath('/photos/Humans/DSC01070-2.jpg')}
+              src={withBasePath('/photos/Me/Me.jpg')}
               alt="NiazClicks portrait"
               fill
               className="object-cover"
