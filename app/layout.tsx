@@ -28,6 +28,8 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     'photography',
+    'video',
+    'videography',
     'portfolio',
     'wildlife',
     'astrophotography',
@@ -46,7 +48,7 @@ export const metadata: Metadata = {
     url: absoluteUrl('/'),
     title: 'NiazPhotography',
     description:
-      'A portfolio of wildlife, landscapes, roads, trees, portraits, and night-sky photography.',
+      'A portfolio of wildlife, landscapes, roads, trees, portraits, night-sky photography, and video work.',
     images: [
       {
         url: absoluteUrl(withPhotoAssetPath('/photos/wildlife/DSC03370.jpg')),
