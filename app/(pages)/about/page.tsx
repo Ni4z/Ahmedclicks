@@ -65,15 +65,17 @@ export default function AboutPage() {
           {/* Image */}
           <motion.div
             variants={itemVariants}
-            className="rounded-lg bg-dark-secondary p-4 flex justify-center"
+            className="flex justify-center"
           >
-            <img
-              src={withBasePath('/photos/Me/Me.jpg')}
-              alt="NiazClicks portrait"
-              loading="lazy"
-              decoding="async"
-              className="block w-auto max-w-full h-auto max-h-[36rem] rounded-lg"
-            />
+            <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
+              <img
+                src={withBasePath('/photos/Me/Me.jpg')}
+                alt="NiazClicks portrait"
+                loading="lazy"
+                decoding="async"
+                className="block w-full h-full object-cover rounded-full"
+              />
+            </div>
           </motion.div>
         </motion.div>
 

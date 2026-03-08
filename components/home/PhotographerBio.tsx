@@ -43,15 +43,17 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="rounded-lg bg-dark-secondary p-4 flex justify-center"
+            className="flex justify-center"
           >
-            <img
-              src={profileImage}
-              alt="NiazClicks"
-              loading="lazy"
-              decoding="async"
-              className="block w-auto max-w-full h-auto max-h-[36rem] rounded-lg"
-            />
+            <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
+              <img
+                src={profileImage}
+                alt="NiazClicks"
+                loading="lazy"
+                decoding="async"
+                className="block w-full h-full object-cover rounded-full"
+              />
+            </div>
           </motion.div>
         </motion.div>
       </div>
