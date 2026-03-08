@@ -3,7 +3,7 @@ import 'server-only';
 import fs from 'node:fs';
 import path from 'node:path';
 import { Photo, PhotoCategory } from '@/lib/types';
-import { withBasePath } from '@/lib/site';
+import { withPhotoAssetPath } from '@/lib/site';
 
 const photosRoot = path.join(process.cwd(), 'public', 'photos');
 const supportedExtensions = new Set([
@@ -112,8 +112,11 @@ function createPhotoRecord(
     title: createPhotoTitle(category.name, fileName, index),
     category: category.name,
     categoryKey: category.key,
-    image: withBasePath(`/photos/${category.folder}/${fileName}`),
-    thumbnail: withBasePath(`/photos/${category.folder}/${fileName}`),
+    image: withPhotoAssetPath(`/photos/${category.folder}/${fileName}`),
+    thumbnail: withPhotoAssetPath(
+      `/photos/${category.folder}/${fileName}`,
+      'thumbnail'
+    ),
     description: `${category.description} File: ${fileName}.`,
     featured: index === 0,
     date: modifiedAt,
@@ -147,7 +150,7 @@ function getCategoryEntries(
         name: config?.name || humanizeCategory(entry.name),
         description:
           config?.description ||
-          `${humanizeCategory(entry.name)} collected in the NiazClicks archive.`,
+          `${humanizeCategory(entry.name)} collected in the NiazPhotography archive.`,
         order: config?.order ?? 99,
         files,
       };
@@ -181,7 +184,10 @@ export function getPhotoCategories(): PhotoCategory[] {
     name: category.name,
     description: category.description,
     count: category.files.length,
-    coverImage: withBasePath(`/photos/${category.folder}/${category.files[0]}`),
+    coverImage: withPhotoAssetPath(
+      `/photos/${category.folder}/${category.files[0]}`,
+      'thumbnail'
+    ),
   }));
 }
 

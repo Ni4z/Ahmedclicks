@@ -1,4 +1,4 @@
-import { withBasePath } from '@/lib/site';
+import { withPhotoAssetPath } from '@/lib/site';
 import { BlogPost, Equipment } from '@/lib/types';
 
 export const blogPosts: BlogPost[] = [
@@ -8,7 +8,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Capturing Wildlife in Low Light: Techniques and Settings',
     excerpt:
       'Learn how to photograph wildlife during dawn, dusk, and other challenging lighting conditions.',
-    content: `Wildlife photography often requires shooting in challenging lighting conditions. In this guide, NiazClicks shares a practical workflow for keeping subjects sharp when the light drops.
+    content: `Wildlife photography often requires shooting in challenging lighting conditions. In this guide, NiazPhotography shares a practical workflow for keeping subjects sharp when the light drops.
 
 ## Understanding Your Camera's Limits
 
@@ -28,10 +28,10 @@ Every camera behaves differently at higher ISO values. Spend time learning where
 - Review focus often instead of trusting a whole sequence blindly.
 
 Low-light wildlife photography is demanding, but it rewards patience and repetition.`,
-    author: 'NiazClicks',
+    author: 'NiazPhotography',
     date: '2024-07-15',
     category: 'Wildlife Photography',
-    image: withBasePath('/photos/wildlife/DSC03370.jpg'),
+    image: withPhotoAssetPath('/photos/wildlife/DSC03370.jpg'),
     readTime: 8,
   },
   {
@@ -67,10 +67,10 @@ Settings to test:
 - Keep a small light with you so setup stays controlled
 
 The best astrophotography sessions usually come from planning ahead and staying patient on location.`,
-    author: 'NiazClicks',
+    author: 'NiazPhotography',
     date: '2024-06-20',
     category: 'Astrophotography',
-    image: withBasePath('/photos/astrophotography/DSC05884-2.jpg'),
+    image: withPhotoAssetPath('/photos/astrophotography/DSC05884-2.jpg'),
     readTime: 10,
   },
   {
@@ -102,10 +102,10 @@ Look for foreground, middle ground, and background relationships before you pres
 Clean space can make a subject feel stronger, calmer, and more deliberate.
 
 The more often you simplify a frame before shooting, the stronger the final image becomes.`,
-    author: 'NiazClicks',
+    author: 'NiazPhotography',
     date: '2024-05-10',
     category: 'Landscape Photography',
-    image: withBasePath('/photos/landscape/DSC04689-3.jpg'),
+    image: withPhotoAssetPath('/photos/landscape/DSC04689-3.jpg'),
     readTime: 6,
   },
 ];
@@ -116,7 +116,7 @@ export const equipment: Equipment[] = [
     name: 'Sony Alpha Mirrorless Kit',
     type: 'camera',
     description:
-      'Primary camera setup used across the NiazClicks portfolio for travel, wildlife, and low-light work.',
+      'Primary camera setup used across the NiazPhotography portfolio for travel, wildlife, and low-light work.',
   },
   {
     id: '2',

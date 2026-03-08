@@ -3,7 +3,12 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import Script from 'next/script';
 import '@/styles/globals.css';
 import Layout from '@/components/layout/Layout';
-import { absoluteUrl, siteConfig, withBasePath } from '@/lib/site';
+import {
+  absoluteUrl,
+  siteConfig,
+  withBasePath,
+  withPhotoAssetPath,
+} from '@/lib/site';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -19,7 +24,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
-  title: 'NiazClicks',
+  title: 'NiazPhotography',
   description: siteConfig.description,
   keywords: [
     'photography',
@@ -32,19 +37,19 @@ export const metadata: Metadata = {
     'humans',
     'professional',
   ],
-  authors: [{ name: 'NiazClicks' }],
+  authors: [{ name: 'NiazPhotography' }],
   icons: {
     icon: withBasePath('/favicon.svg'),
   },
   openGraph: {
     type: 'website',
     url: absoluteUrl('/'),
-    title: 'NiazClicks',
+    title: 'NiazPhotography',
     description:
       'A portfolio of wildlife, landscapes, roads, trees, portraits, and night-sky photography.',
     images: [
       {
-        url: absoluteUrl('/photos/wildlife/DSC03370.jpg'),
+        url: absoluteUrl(withPhotoAssetPath('/photos/wildlife/DSC03370.jpg')),
         width: 1200,
         height: 630,
       },
@@ -52,7 +57,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@niazclicks',
+    creator: '@NiazPhotography',
   },
 };
 

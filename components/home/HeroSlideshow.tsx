@@ -12,6 +12,10 @@ interface HeroSlideshowProps {
 
 const maxHeroSlides = 10;
 
+function getInitialDisplayPhotos(photos: Photo[]): Photo[] {
+  return photos.slice(0, maxHeroSlides);
+}
+
 function shufflePhotos(photos: Photo[]): Photo[] {
   const shuffled = [...photos];
 
@@ -29,7 +33,9 @@ function shufflePhotos(photos: Photo[]): Photo[] {
 export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [displayPhotos, setDisplayPhotos] = useState(photos);
+  const [displayPhotos, setDisplayPhotos] = useState(() =>
+    getInitialDisplayPhotos(photos)
+  );
 
   useEffect(() => {
     if (photos.length <= 1) {
@@ -62,7 +68,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
       <section className="relative w-full min-h-[70vh] bg-dark-secondary flex items-center justify-center px-6">
         <div className="text-center max-w-3xl">
           <p className="text-sm tracking-[0.4em] uppercase text-accent-gold mb-4">
-            NiazClicks
+            NiazPhotography
           </p>
           <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">
             A living archive of photographs
@@ -132,7 +138,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
         className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
       >
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 tracking-wider">
-          NiazClicks
+          NiazPhotography
         </h1>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">
           Wildlife, landscapes, roads, trees, portraits, and night skies collected in one portfolio.

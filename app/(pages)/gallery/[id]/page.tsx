@@ -26,12 +26,12 @@ export async function generateMetadata({
 
   if (!photo) {
     return {
-      title: 'Photo Not Found | NiazClicks',
+      title: 'Photo Not Found | NiazPhotography',
     };
   }
 
   return {
-    title: `${photo.title} | NiazClicks`,
+    title: `${photo.title} | NiazPhotography`,
     description: photo.description,
     openGraph: {
       title: photo.title,

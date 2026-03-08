@@ -9,12 +9,12 @@ import {
   getPhotoCategories,
   getProfilePhoto,
 } from '@/lib/gallery';
-import { withBasePath } from '@/lib/site';
+import { withPhotoAssetPath } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Home | NiazClicks',
+  title: 'Home | NiazPhotography',
   description:
-    'Wildlife, landscapes, roads, trees, portraits, and night-sky photography by NiazClicks.',
+    'Wildlife, landscapes, roads, trees, portraits, and night-sky photography by NiazPhotography.',
 };
 
 export default function Home() {
@@ -29,7 +29,9 @@ export default function Home() {
       <FeaturedPhotos photos={featuredPhotos} />
       <Categories categories={categories} />
       <PhotographerBio
-        profileImage={profilePhoto?.image || withBasePath('/photos/Me/Me.jpg')}
+        profileImage={
+          profilePhoto?.image || withPhotoAssetPath('/photos/Me/Me.jpg')
+        }
       />
     </>
   );

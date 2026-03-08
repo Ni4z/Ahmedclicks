@@ -100,7 +100,7 @@ export default function BlogPage() {
         >
           <h3 className="text-2xl font-serif font-bold mb-4">Subscribe to My Newsletter</h3>
           <p className="text-gray-400 mb-6 max-w-md mx-auto">
-            Get photography notes and updates when new work lands in the NiazClicks archive
+            Get photography notes and updates when new work lands in the NiazPhotography archive
           </p>
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input

@@ -3,9 +3,9 @@ const normalizedSiteUrl = (
 ).replace(/\/+$/, '');
 
 export const siteConfig = {
-  name: 'NiazClicks',
+  name: 'NiazPhotography',
   description:
-    'Photography portfolio of NiazClicks featuring wildlife, landscapes, roads, trees, portraits, and astrophotography.',
+    'Photography portfolio of NiazPhotography featuring wildlife, landscapes, roads, trees, portraits, and astrophotography.',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   siteUrl: normalizedSiteUrl,
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || '',
@@ -40,6 +40,20 @@ export const withBasePath = (path: string): string => {
   }
 
   return siteConfig.basePath ? `${siteConfig.basePath}${path}` : path;
+};
+
+export const withPhotoAssetPath = (
+  path: string,
+  variant: 'image' | 'thumbnail' = 'image'
+): string => {
+  if (!path.startsWith('/photos/')) {
+    return withBasePath(path);
+  }
+
+  const assetRoot =
+    variant === 'thumbnail' ? '/photos-thumb/' : '/photos-web/';
+
+  return withBasePath(path.replace(/^\/photos\//, assetRoot));
 };
 
 export const absoluteUrl = (path: string): string =>
