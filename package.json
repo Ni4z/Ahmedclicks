@@ -1,13 +1,14 @@
 {
-  "name": "niazclicks",
+  "name": "niazphotography",
   "version": "1.0.0",
-  "description": "Photography portfolio website for NiazClicks",
+  "description": "Photography portfolio website for NiazPhotography",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "photos:web": "zsh scripts/generate-web-photos.sh"
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.0",

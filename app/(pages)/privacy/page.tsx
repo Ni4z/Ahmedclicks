@@ -11,14 +11,14 @@ export default function PrivacyPage() {
 
         <p className="text-gray-300">
           This portfolio is a static website. It does not run a database or collect
-          personal data directly unless you choose to contact NiazClicks through one
+          personal data directly unless you choose to contact NiazPhotography through one
           of the links on the site.
         </p>
 
         <section className="space-y-3">
           <h2 className="text-2xl font-serif font-bold">Information You Share</h2>
           <p className="text-gray-400">
-            If you contact NiazClicks by email, the information you include in that email
+            If you contact NiazPhotography by email, the information you include in that email
             is used only to respond to your inquiry or continue the conversation you
             started.
           </p>

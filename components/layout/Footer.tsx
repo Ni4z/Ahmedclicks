@@ -38,7 +38,7 @@ export default function Footer() {
         >
           {/* Brand */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-serif font-bold mb-4">NiazClicks</h3>
+            <h3 className="text-2xl font-serif font-bold mb-4">NiazPhotography</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               A local-photo portfolio documenting wildlife, landscapes, roads, trees, portraits, and the night sky.
             </p>
@@ -107,7 +107,7 @@ export default function Footer() {
           className="border-t border-dark-tertiary pt-8 flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} NiazClicks. All rights reserved.
+            © {new Date().getFullYear()} NiazPhotography. All rights reserved.
           </p>
           <div className="flex gap-6 mt-4 md:mt-0 text-sm text-gray-500">
             <Link href="/privacy" className="hover:text-accent-gold">

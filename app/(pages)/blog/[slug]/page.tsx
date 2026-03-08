@@ -83,12 +83,12 @@ export async function generateMetadata({
 
   if (!post) {
     return {
-      title: 'Article Not Found | NiazClicks',
+      title: 'Article Not Found | NiazPhotography',
     };
   }
 
   return {
-    title: `${post.title} | NiazClicks`,
+    title: `${post.title} | NiazPhotography`,
     description: post.excerpt,
     openGraph: {
       title: post.title,

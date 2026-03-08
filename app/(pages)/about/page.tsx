@@ -3,7 +3,7 @@
 
 import { motion } from 'framer-motion';
 import { equipment } from '@/data/portfolio';
-import { withBasePath } from '@/lib/site';
+import { withPhotoAssetPath } from '@/lib/site';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -33,7 +33,7 @@ export default function AboutPage() {
         animate={{ opacity: 1, y: 0 }}
         className="py-20 px-6 text-center bg-dark-secondary"
       >
-        <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">About NiazClicks</h1>
+        <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">About NiazPhotography</h1>
         <p className="text-gray-400 text-lg">A portfolio shaped by real folders, real files, and real photographs</p>
       </motion.div>
 
@@ -51,7 +51,7 @@ export default function AboutPage() {
             <h2 className="text-4xl font-serif font-bold mb-6">My Journey</h2>
             <div className="space-y-4 text-gray-400">
               <p>
-                NiazClicks is no longer a template portfolio filled with borrowed images. The site now runs on the local image folders in this repository, which means every gallery page is tied to your own files.
+                NiazPhotography is no longer a template portfolio filled with borrowed images. The site now runs on the local image folders in this repository, which means every gallery page is tied to your own files.
               </p>
               <p>
                 The archive is organized by the collections you&apos;re actively building: wildlife, astrophotography, landscape, roads, trees, and human subjects. That structure makes the site easier to maintain as the portfolio grows.
@@ -69,8 +69,8 @@ export default function AboutPage() {
           >
             <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
               <img
-                src={withBasePath('/photos/Me/Me.jpg')}
-                alt="NiazClicks portrait"
+                src={withPhotoAssetPath('/photos/Me/Me.jpg')}
+                alt="NiazPhotography portrait"
                 loading="lazy"
                 decoding="async"
                 className="block w-full h-full object-cover rounded-full"
@@ -127,7 +127,7 @@ export default function AboutPage() {
             Photography here is treated as an archive of observation. The strongest frame is not always the loudest one; it is the one that stays precise, patient, and honest about what was actually in front of the lens.
           </motion.p>
           <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed">
-            The site is built to stay close to that idea: fewer placeholders, fewer invented details, and more emphasis on the real image collections that make up NiazClicks.
+            The site is built to stay close to that idea: fewer placeholders, fewer invented details, and more emphasis on the real image collections that make up NiazPhotography.
           </motion.p>
         </motion.div>
       </div>

@@ -105,7 +105,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="text-lg hover:text-accent-gold transition-colors"
                 >
-                  @niazclicks
+                  @NiazPhotography
                 </a>
               </div>
 
@@ -212,7 +212,7 @@ export default function ContactPage() {
                 <h3 className="text-2xl font-serif font-bold mb-4">Reach Out on Instagram</h3>
                 <p className="text-gray-400 leading-8 mb-6">
                   Email contact is not configured yet for this site. Instagram is the fastest
-                  current way to get in touch with NiazClicks.
+                  current way to get in touch with NiazPhotography.
                 </p>
                 <motion.a
                   whileHover={{ scale: 1.03 }}
