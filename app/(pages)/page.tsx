@@ -5,6 +5,7 @@ import PhotographerBio from '@/components/home/PhotographerBio';
 import { Metadata } from 'next';
 import {
   getFeaturedPhotos,
+  getPhotos,
   getPhotoCategories,
   getProfilePhoto,
 } from '@/lib/gallery';
@@ -17,13 +18,14 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const heroPhotos = getPhotos();
   const featuredPhotos = getFeaturedPhotos(6);
   const categories = getPhotoCategories();
   const profilePhoto = getProfilePhoto();
 
   return (
     <>
-      <HeroSlideshow photos={featuredPhotos.slice(0, 4)} />
+      <HeroSlideshow photos={heroPhotos} />
       <FeaturedPhotos photos={featuredPhotos} />
       <Categories categories={categories} />
       <PhotographerBio

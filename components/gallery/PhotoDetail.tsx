@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { Photo } from '@/lib/types';
 
@@ -29,13 +29,11 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
       {/* Image */}
       <div className="lg:col-span-2">
-        <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-dark-secondary">
-          <Image
+        <div className="rounded-lg overflow-hidden bg-dark-secondary p-4">
+          <img
             src={photo.image}
             alt={photo.title}
-            fill
-            priority
-            className="object-cover"
+            className="block max-w-full max-h-[80vh] w-auto h-auto mx-auto"
           />
         </div>
       </div>

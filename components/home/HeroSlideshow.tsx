@@ -10,24 +10,54 @@ interface HeroSlideshowProps {
   photos: Photo[];
 }
 
+const maxHeroSlides = 10;
+
+function shufflePhotos(photos: Photo[]): Photo[] {
+  const shuffled = [...photos];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[swapIndex]] = [
+      shuffled[swapIndex],
+      shuffled[index],
+    ];
+  }
+
+  return shuffled;
+}
+
 export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [displayPhotos, setDisplayPhotos] = useState(photos);
 
   useEffect(() => {
     if (photos.length <= 1) {
+      setDisplayPhotos(photos);
+      setCurrentSlide(0);
+      setDirection(0);
+      return;
+    }
+
+    setDisplayPhotos(shufflePhotos(photos).slice(0, maxHeroSlides));
+    setCurrentSlide(0);
+    setDirection(0);
+  }, [photos]);
+
+  useEffect(() => {
+    if (displayPhotos.length <= 1) {
       return undefined;
     }
 
     const interval = setInterval(() => {
       setDirection(1);
-      setCurrentSlide((prev) => (prev + 1) % photos.length);
+      setCurrentSlide((prev) => (prev + 1) % displayPhotos.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [photos.length]);
+  }, [displayPhotos.length]);
 
-  if (photos.length === 0) {
+  if (displayPhotos.length === 0) {
     return (
       <section className="relative w-full min-h-[70vh] bg-dark-secondary flex items-center justify-center px-6">
         <div className="text-center max-w-3xl">
@@ -82,8 +112,8 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
           className="absolute inset-0"
         >
           <Image
-            src={photos[currentSlide]?.image || ''}
-            alt={photos[currentSlide]?.title || 'Featured Photo'}
+            src={displayPhotos[currentSlide]?.image || ''}
+            alt={displayPhotos[currentSlide]?.title || 'Featured Photo'}
             fill
             priority
             className="object-cover"
@@ -116,7 +146,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
 
       {/* Navigation Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-        {photos.map((_, i) => (
+        {displayPhotos.map((_, i) => (
           <button
             key={i}
             onClick={() => {
