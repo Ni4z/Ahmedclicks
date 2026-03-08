@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -43,13 +43,14 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="relative h-96 rounded-lg overflow-hidden"
+            className="rounded-lg bg-dark-secondary p-4 flex justify-center"
           >
-            <Image
+            <img
               src={profileImage}
               alt="NiazClicks"
-              fill
-              className="object-cover"
+              loading="lazy"
+              decoding="async"
+              className="block w-auto max-w-full h-auto max-h-[36rem] rounded-lg"
             />
           </motion.div>
         </motion.div>

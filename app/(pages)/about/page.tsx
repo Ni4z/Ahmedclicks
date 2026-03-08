@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { equipment } from '@/data/portfolio';
 import { withBasePath } from '@/lib/site';
@@ -63,12 +63,16 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Image */}
-          <motion.div variants={itemVariants} className="relative h-96 rounded-lg overflow-hidden">
-            <Image
+          <motion.div
+            variants={itemVariants}
+            className="rounded-lg bg-dark-secondary p-4 flex justify-center"
+          >
+            <img
               src={withBasePath('/photos/Me/Me.jpg')}
               alt="NiazClicks portrait"
-              fill
-              className="object-cover"
+              loading="lazy"
+              decoding="async"
+              className="block w-auto max-w-full h-auto max-h-[36rem] rounded-lg"
             />
           </motion.div>
         </motion.div>
