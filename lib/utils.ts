@@ -25,6 +25,7 @@ export const generateSitemap = (baseUrl: string): string => {
   const urls = [
     { loc: '/', priority: '1.0', changefreq: 'weekly' },
     { loc: '/gallery', priority: '0.9', changefreq: 'weekly' },
+    { loc: '/videos', priority: '0.8', changefreq: 'weekly' },
     { loc: '/about', priority: '0.7', changefreq: 'monthly' },
     { loc: '/blog', priority: '0.8', changefreq: 'weekly' },
     { loc: '/contact', priority: '0.7', changefreq: 'monthly' },

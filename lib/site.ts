@@ -5,7 +5,7 @@ const normalizedSiteUrl = (
 export const siteConfig = {
   name: 'NiazPhotography',
   description:
-    'Photography portfolio of NiazPhotography featuring wildlife, landscapes, roads, trees, portraits, and astrophotography.',
+    'Photography and video portfolio of NiazPhotography featuring wildlife, landscapes, roads, trees, portraits, astrophotography, and motion work.',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   siteUrl: normalizedSiteUrl,
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || '',

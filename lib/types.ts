@@ -25,6 +25,17 @@ export interface PhotoCategory {
   coverImage: string;
 }
 
+export interface Video {
+  id: string;
+  title: string;
+  src: string;
+  description: string;
+  fileName: string;
+  mimeType: string;
+  featured: boolean;
+  date: string;
+}
+
 export interface BlogPost {
   id: string;
   slug: string;
