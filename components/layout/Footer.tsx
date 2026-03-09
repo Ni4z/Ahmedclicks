@@ -9,9 +9,12 @@ const socialLinks = [
   ...(siteConfig.contactEmail
     ? [{ name: 'Email', href: `mailto:${siteConfig.contactEmail}`, icon: 'email' as const }]
     : []),
+  ...(siteConfig.linkedinUrl
+    ? [{ name: 'LinkedIn', href: siteConfig.linkedinUrl, icon: 'linkedin' as const }]
+    : []),
 ];
 
-function SocialIcon({ icon }: { icon: 'instagram' | 'email' }) {
+function SocialIcon({ icon }: { icon: 'instagram' | 'email' | 'linkedin' }) {
   if (icon === 'instagram') {
     return (
       <svg
@@ -27,6 +30,30 @@ function SocialIcon({ icon }: { icon: 'instagram' | 'email' }) {
         <rect x="3" y="3" width="18" height="18" rx="5" />
         <circle cx="12" cy="12" r="4.25" />
         <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
+
+  if (icon === 'linkedin') {
+    return (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="4" />
+        <circle cx="8" cy="8" r="1.15" fill="currentColor" stroke="none" />
+        <path d="M6.8 10.4h2.4v6.8H6.8z" fill="currentColor" stroke="none" />
+        <path
+          d="M11.4 10.4h2.3v1c.5-.76 1.34-1.22 2.45-1.22 1.93 0 3.08 1.28 3.08 3.72v3.26h-2.46v-2.98c0-1.03-.37-1.73-1.31-1.73-.71 0-1.13.48-1.31.94-.07.17-.1.41-.1.65v3.12H11.4z"
+          fill="currentColor"
+          stroke="none"
+        />
       </svg>
     );
   }
