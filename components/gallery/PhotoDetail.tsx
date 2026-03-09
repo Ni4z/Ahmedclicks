@@ -1,4 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { Photo } from '@/lib/types';
 
@@ -8,6 +11,7 @@ interface PhotoDetailProps {
 }
 
 export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
+  const [instagramFeedback, setInstagramFeedback] = useState<string | null>(null);
   const encodedUrl = encodeURIComponent(shareUrl || '');
   const encodedTitle = encodeURIComponent(photo.title);
   const socialLinks = [
@@ -24,6 +28,45 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
       url: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
     },
   ];
+
+  async function shareToInstagramStory() {
+    const currentUrl =
+      shareUrl || (typeof window !== 'undefined' ? window.location.href : '');
+
+    setInstagramFeedback(null);
+
+    try {
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        await navigator.share({
+          title: photo.title,
+          text: `${photo.title} • ${photo.category}`,
+          url: currentUrl,
+        });
+        setInstagramFeedback(
+          'Share sheet opened. Choose Instagram Stories if it is available on your device.'
+        );
+        return;
+      }
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        return;
+      }
+    }
+
+    try {
+      if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(currentUrl);
+        setInstagramFeedback(
+          'Link copied. Open Instagram and paste it into your story.'
+        );
+        return;
+      }
+    } catch {}
+
+    setInstagramFeedback(
+      'Instagram Story sharing is not directly available in this browser. Copy the page URL into Instagram manually.'
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
@@ -97,7 +140,7 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
         {/* Social Share */}
         <div className="mt-8 pt-8 border-t border-dark-tertiary">
           <h3 className="text-sm font-semibold tracking-widest mb-4">SHARE</h3>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {socialLinks.map((social) => (
               <a
                 key={social.name}
@@ -109,7 +152,17 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
                 {social.name}
               </a>
             ))}
+            <button
+              type="button"
+              onClick={shareToInstagramStory}
+              className="text-sm text-accent-gold hover:underline"
+            >
+              Instagram Story
+            </button>
           </div>
+          {instagramFeedback ? (
+            <p className="mt-3 text-xs text-gray-400">{instagramFeedback}</p>
+          ) : null}
         </div>
 
         <div className="mt-8">

@@ -3,7 +3,7 @@ import 'server-only';
 import fs from 'node:fs';
 import path from 'node:path';
 import { Photo, PhotoCategory } from '@/lib/types';
-import { withPhotoAssetPath } from '@/lib/site';
+import { withBasePath, withPhotoAssetPath } from '@/lib/site';
 
 const photosRoot = path.join(process.cwd(), 'public', 'photos');
 const supportedExtensions = new Set([
@@ -14,6 +14,8 @@ const supportedExtensions = new Set([
   '.avif',
 ]);
 const profileOnlyCategoryKeys = new Set(['me']);
+const webPhotosRoot = path.join(process.cwd(), 'public', 'photos-web');
+const thumbPhotosRoot = path.join(process.cwd(), 'public', 'photos-thumb');
 
 const categoryConfig: Record<
   string,
@@ -105,22 +107,36 @@ function createPhotoRecord(
   index: number
 ): Photo {
   const filePath = path.join(photosRoot, category.folder, fileName);
-  const modifiedAt = fs.statSync(filePath).mtime.toISOString().slice(0, 10);
+  const modifiedAt = fs.statSync(filePath).mtime.toISOString();
 
   return {
     id: `${category.key}-${String(index + 1).padStart(2, '0')}`,
     title: createPhotoTitle(category.name, fileName, index),
     category: category.name,
     categoryKey: category.key,
-    image: withPhotoAssetPath(`/photos/${category.folder}/${fileName}`),
-    thumbnail: withPhotoAssetPath(
-      `/photos/${category.folder}/${fileName}`,
-      'thumbnail'
-    ),
+    image: resolvePhotoAssetPath(category.folder, fileName),
+    thumbnail: resolvePhotoAssetPath(category.folder, fileName, 'thumbnail'),
     description: `${category.description} File: ${fileName}.`,
     featured: index === 0,
     date: modifiedAt,
   };
+}
+
+function resolvePhotoAssetPath(
+  folder: string,
+  fileName: string,
+  variant: 'image' | 'thumbnail' = 'image'
+): string {
+  const relativePath = `${folder}/${fileName}`;
+  const assetRoot = variant === 'thumbnail' ? thumbPhotosRoot : webPhotosRoot;
+  const assetPath = path.join(assetRoot, relativePath);
+  const originalPath = `/photos/${relativePath}`;
+
+  if (fs.existsSync(assetPath)) {
+    return withPhotoAssetPath(originalPath, variant);
+  }
+
+  return withBasePath(originalPath);
 }
 
 function getCategoryEntries(
@@ -184,8 +200,9 @@ export function getPhotoCategories(): PhotoCategory[] {
     name: category.name,
     description: category.description,
     count: category.files.length,
-    coverImage: withPhotoAssetPath(
-      `/photos/${category.folder}/${category.files[0]}`,
+    coverImage: resolvePhotoAssetPath(
+      category.folder,
+      category.files[0],
       'thumbnail'
     ),
   }));
@@ -194,6 +211,16 @@ export function getPhotoCategories(): PhotoCategory[] {
 export function getFeaturedPhotos(limit = 6): Photo[] {
   return getPhotos()
     .filter((photo) => photo.featured)
+    .slice(0, limit);
+}
+
+export function getRecentPhotos(limit = 6): Photo[] {
+  return getPhotos()
+    .slice()
+    .sort(
+      (first, second) =>
+        new Date(second.date).getTime() - new Date(first.date).getTime()
+    )
     .slice(0, limit);
 }
 
