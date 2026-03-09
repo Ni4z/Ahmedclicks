@@ -15,16 +15,16 @@ export default function FeaturedVideos({ videos }: FeaturedVideosProps) {
             Video Work
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl leading-relaxed">
-            A dedicated motion section for your portfolio. Drop MP4, WebM, MOV,
-            or M4V files into <span className="text-white">public/videos</span>{' '}
-            and they will appear here on the next build.
+            A dedicated motion section for your portfolio, designed to serve
+            larger video files from your external video archive instead of the
+            Git repository.
           </p>
         </div>
 
         <VideoGrid
           videos={videos}
           emptyTitle="Your video section is ready"
-          emptyDescription="Add your first videos to public/videos and this section will automatically start showing them. MP4 or WebM is recommended for the broadest browser support."
+          emptyDescription="Point the site at your published video archive with NEXT_PUBLIC_VIDEO_BASE_URL, or keep small local test files in public/videos during development."
         />
 
         <div className="text-center mt-16">

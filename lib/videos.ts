@@ -3,7 +3,8 @@ import 'server-only';
 import fs from 'node:fs';
 import path from 'node:path';
 import { Video } from '@/lib/types';
-import { withBasePath } from '@/lib/site';
+import { siteConfig, withBasePath } from '@/lib/site';
+import { videoEntries } from '@/data/videos';
 
 const videosRoot = path.join(process.cwd(), 'public', 'videos');
 const supportedVideoExtensions = new Map<string, string>([
@@ -59,7 +60,38 @@ function createVideoRecord(fileName: string, index: number): Video {
   };
 }
 
-export function getVideos(): Video[] {
+function createRemoteVideoRecord(
+  entry: (typeof videoEntries)[number],
+  index: number
+): Video {
+  const extension = path.extname(entry.fileName).toLowerCase();
+
+  return {
+    id: entry.id || createVideoId(entry.fileName) || `video-${index + 1}`,
+    title: entry.title || createVideoTitle(entry.fileName),
+    src: new URL(
+      encodeVideoFileName(entry.fileName),
+      `${siteConfig.videoBaseUrl}/`
+    ).toString(),
+    description:
+      entry.description ||
+      `Motion work published from the configured R2 video archive. File: ${entry.fileName}.`,
+    fileName: entry.fileName,
+    mimeType: supportedVideoExtensions.get(extension) || 'video/mp4',
+    featured: entry.featured ?? index < 2,
+    date: new Date().toISOString().slice(0, 10),
+  };
+}
+
+function getRemoteVideos(): Video[] {
+  if (!siteConfig.videoBaseUrl) {
+    return [];
+  }
+
+  return videoEntries.map((entry, index) => createRemoteVideoRecord(entry, index));
+}
+
+function getLocalVideos(): Video[] {
   if (!fs.existsSync(videosRoot)) {
     return [];
   }
@@ -79,6 +111,16 @@ export function getVideos(): Video[] {
       return first.localeCompare(second, undefined, { numeric: true });
     })
     .map((fileName, index) => createVideoRecord(fileName, index));
+}
+
+export function getVideos(): Video[] {
+  const remoteVideos = getRemoteVideos();
+
+  if (remoteVideos.length > 0) {
+    return remoteVideos;
+  }
+
+  return getLocalVideos();
 }
 
 export function getFeaturedVideos(limit = 2): Video[] {

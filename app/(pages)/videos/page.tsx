@@ -16,9 +16,9 @@ export default function VideosPage() {
       <div className="py-20 px-6 text-center bg-dark-secondary">
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">Videos</h1>
         <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
-          A video section wired directly to your local uploads folder. Add MP4,
-          WebM, MOV, or M4V files to <span className="text-white">public/videos</span>{' '}
-          and they will be published here on the next build.
+          A motion section that can be served from an external video archive,
+          which keeps large media files out of the Git repository while still
+          publishing them on the site.
         </p>
         <p className="mt-6 text-sm uppercase tracking-[0.35em] text-accent-gold">
           {videos.length} {videos.length === 1 ? 'video' : 'videos'} in archive
@@ -29,7 +29,7 @@ export default function VideosPage() {
         <VideoGrid
           videos={videos}
           emptyTitle="No videos published yet"
-          emptyDescription="The route is working and the upload folder is ready. Add files to public/videos, rebuild the site, and they will appear here automatically."
+          emptyDescription="Set NEXT_PUBLIC_VIDEO_BASE_URL to your published R2 video domain, or keep small local files in public/videos while testing locally."
         />
       </div>
     </div>
