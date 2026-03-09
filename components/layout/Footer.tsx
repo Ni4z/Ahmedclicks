@@ -5,11 +5,48 @@ import { motion } from 'framer-motion';
 import { siteConfig } from '@/lib/site';
 
 const socialLinks = [
-  { name: 'Instagram', href: siteConfig.instagramUrl, icon: 'I' },
+  { name: 'Instagram', href: siteConfig.instagramUrl, icon: 'instagram' as const },
   ...(siteConfig.contactEmail
-    ? [{ name: 'Email', href: `mailto:${siteConfig.contactEmail}`, icon: 'E' }]
+    ? [{ name: 'Email', href: `mailto:${siteConfig.contactEmail}`, icon: 'email' as const }]
     : []),
 ];
+
+function SocialIcon({ icon }: { icon: 'instagram' | 'email' }) {
+  if (icon === 'instagram') {
+    return (
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        className="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4.25" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 6h16v12H4z" />
+      <path d="m4 7 8 6 8-6" />
+    </svg>
+  );
+}
 
 export default function Footer() {
   const containerVariants = {
@@ -93,8 +130,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-dark-tertiary flex items-center justify-center hover:bg-accent-gold hover:text-dark transition-all"
+                  aria-label={link.name}
                 >
-                  {link.icon}
+                  <SocialIcon icon={link.icon} />
                 </a>
               ))}
             </div>
