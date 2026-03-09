@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Photo } from '@/lib/types';
 
@@ -68,15 +67,15 @@ export default function FeaturedPhotos({ photos }: FeaturedPhotosProps) {
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
                 <Link href={`/gallery/${photo.id}`}>
-                  <div className="relative w-full h-80 overflow-hidden rounded-lg group cursor-pointer">
-                    <Image
+                  <div className="relative overflow-hidden rounded-lg group cursor-pointer bg-dark-secondary border border-dark-tertiary">
+                    <img
                       src={photo.thumbnail}
                       alt={photo.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      loading="lazy"
+                      decoding="async"
+                      className="block w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
                     />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-end justify-end p-6">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-end justify-end p-6">
                       <h3 className="text-xl font-serif font-bold mb-2 text-right">
                         {photo.title}
                       </h3>
