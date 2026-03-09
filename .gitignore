@@ -41,3 +41,7 @@ Thumbs.db
 
 # Local Netlify folder
 .netlify
+
+# Local video staging for R2-backed media
+public/videos/*
+!public/videos/.gitkeep

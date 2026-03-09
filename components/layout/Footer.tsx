@@ -40,7 +40,7 @@ export default function Footer() {
           <motion.div variants={itemVariants}>
             <h3 className="text-2xl font-serif font-bold mb-4">NiazPhotography</h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              A local-photo portfolio documenting wildlife, landscapes, roads, trees, portraits, and the night sky.
+              A photography and video portfolio documenting wildlife, landscapes, roads, trees, portraits, and the night sky.
             </p>
           </motion.div>
 
@@ -50,6 +50,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { name: 'Gallery', href: '/gallery' },
+                { name: 'Videos', href: '/videos' },
                 { name: 'About', href: '/about' },
                 { name: 'Blog', href: '/blog' },
                 { name: 'Contact', href: '/contact' },
@@ -72,6 +73,7 @@ export default function Footer() {
                 'Wildlife Photography',
                 'Astrophotography',
                 'Roads & Travel Frames',
+                'Short Video Work',
               ].map((service) => (
                 <li key={service} className="text-gray-400 text-sm">
                   {service}
