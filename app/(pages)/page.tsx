@@ -20,7 +20,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const videos = getVideos();
-  const heroVideo = videos.find((video) => video.id === 'sequence-01') || videos[0];
+  const heroVideo =
+    videos.find((video) => video.id === 'bird') ||
+    videos.find((video) => video.id === 'sequence-01') ||
+    videos[0];
   const featuredPhotos = getFeaturedPhotos(6);
   const featuredVideos = getFeaturedVideos(2);
   const categories = getPhotoCategories();

@@ -23,4 +23,11 @@ export const videoEntries: VideoEntry[] = [
       'A second published clip from the R2-backed video archive for NiazPhotography.',
     featured: true,
   },
+  {
+    id: 'bird',
+    fileName: 'Bird.mp4',
+    title: 'Bird',
+    description:
+      'A lighter homepage-ready clip from the R2 video archive for faster loading.',
+  },
 ];
