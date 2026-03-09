@@ -9,9 +9,13 @@ export const siteConfig = {
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   siteUrl: normalizedSiteUrl,
   videoBaseUrl: (process.env.NEXT_PUBLIC_VIDEO_BASE_URL || '').replace(/\/+$/, ''),
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || '',
+  contactEmail:
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'niazphotography.com@gmail.com',
   instagramUrl:
     process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/hmed_niaz',
+  linkedinUrl:
+    process.env.NEXT_PUBLIC_LINKEDIN_URL ||
+    'https://www.linkedin.com/in/hmedniaz/',
 };
 
 export const withBasePath = (path: string): string => {
