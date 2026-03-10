@@ -11,7 +11,7 @@ export default function GalleryPage() {
       <div className="py-20 px-6 text-center bg-dark-secondary">
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">Gallery</h1>
         <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-          A live archive built from the photo folders inside this repository, organized by category.
+          A living archive of recent and collected frames, organized by category.
         </p>
       </div>
 
