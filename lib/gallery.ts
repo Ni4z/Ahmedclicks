@@ -217,6 +217,16 @@ export function getFeaturedPhotos(limit = 6): Photo[] {
     .slice(0, limit);
 }
 
+export function getRecentPhotos(limit = 6): Photo[] {
+  return getPhotos()
+    .slice()
+    .sort(
+      (first, second) =>
+        new Date(second.date).getTime() - new Date(first.date).getTime()
+    )
+    .slice(0, limit);
+}
+
 export function getProfilePhoto(): Photo | undefined {
   const photos = getCategoryEntries({ includeProfileOnly: true }).flatMap(
     (category) =>
