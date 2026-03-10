@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "photos:web": "zsh scripts/generate-web-photos.sh"
+    "photos:web": "zsh scripts/generate-web-photos.sh",
+    "photos:manifest": "node scripts/generate-photo-manifest.mjs"
   },
   "dependencies": {
     "@types/nodemailer": "^6.4.0",

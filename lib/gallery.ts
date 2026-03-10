@@ -1,21 +1,11 @@
 import 'server-only';
 
-import fs from 'node:fs';
 import path from 'node:path';
+import { photoManifest } from '@/data/photoManifest';
 import { Photo, PhotoCategory } from '@/lib/types';
-import { withBasePath, withPhotoAssetPath } from '@/lib/site';
+import { withPhotoAssetPath } from '@/lib/site';
 
-const photosRoot = path.join(process.cwd(), 'public', 'photos');
-const supportedExtensions = new Set([
-  '.jpg',
-  '.jpeg',
-  '.png',
-  '.webp',
-  '.avif',
-]);
 const profileOnlyCategoryKeys = new Set(['me']);
-const webPhotosRoot = path.join(process.cwd(), 'public', 'photos-web');
-const thumbPhotosRoot = path.join(process.cwd(), 'public', 'photos-thumb');
 
 const categoryConfig: Record<
   string,
@@ -64,11 +54,22 @@ type CategoryEntry = {
   name: string;
   description: string;
   order: number;
-  files: string[];
+  files: ManifestPhotoEntry[];
 };
 
 type GetCategoryEntriesOptions = {
   includeProfileOnly?: boolean;
+};
+
+type ManifestPhotoEntry = {
+  relativePath: string;
+  folder: string;
+  fileName: string;
+  key: string;
+  name: string;
+  description: string;
+  order: number;
+  date: string;
 };
 
 function normalizeCategoryKey(value: string): string {
@@ -79,10 +80,6 @@ function humanizeCategory(value: string): string {
   return value
     .replace(/[-_]+/g, ' ')
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
-
-function isImageFile(fileName: string): boolean {
-  return supportedExtensions.has(path.extname(fileName).toLowerCase());
 }
 
 function createPhotoTitle(
@@ -101,79 +98,86 @@ function createPhotoTitle(
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-function createPhotoRecord(
-  category: CategoryEntry,
-  fileName: string,
-  index: number
-): Photo {
-  const filePath = path.join(photosRoot, category.folder, fileName);
-  const modifiedAt = fs.statSync(filePath).mtime.toISOString();
+function createManifestPhotoEntry(relativePath: string, date: string): ManifestPhotoEntry {
+  const parsedPath = path.posix.parse(relativePath);
+  const folder = parsedPath.dir;
+  const key = normalizeCategoryKey(folder);
+  const config = categoryConfig[key];
 
   return {
-    id: `${category.key}-${String(index + 1).padStart(2, '0')}`,
-    title: createPhotoTitle(category.name, fileName, index),
-    category: category.name,
-    categoryKey: category.key,
-    image: resolvePhotoAssetPath(category.folder, fileName),
-    thumbnail: resolvePhotoAssetPath(category.folder, fileName, 'thumbnail'),
-    description: `${category.description} File: ${fileName}.`,
-    featured: index === 0,
-    date: modifiedAt,
+    relativePath,
+    folder,
+    fileName: parsedPath.base,
+    key,
+    name: config?.name || humanizeCategory(folder),
+    description:
+      config?.description ||
+      `${humanizeCategory(folder)} collected in the NiazPhotography archive.`,
+    order: config?.order ?? 99,
+    date,
   };
 }
 
-function resolvePhotoAssetPath(
-  folder: string,
-  fileName: string,
-  variant: 'image' | 'thumbnail' = 'image'
-): string {
-  const relativePath = `${folder}/${fileName}`;
-  const assetRoot = variant === 'thumbnail' ? thumbPhotosRoot : webPhotosRoot;
-  const assetPath = path.join(assetRoot, relativePath);
-  const originalPath = `/photos/${relativePath}`;
+const manifestEntries = photoManifest.map((entry) =>
+  createManifestPhotoEntry(entry.relativePath, entry.date)
+);
 
-  if (fs.existsSync(assetPath)) {
-    return withPhotoAssetPath(originalPath, variant);
-  }
-
-  return withBasePath(originalPath);
+function createPhotoRecord(
+  category: CategoryEntry,
+  file: ManifestPhotoEntry,
+  index: number
+): Photo {
+  return {
+    id: `${category.key}-${String(index + 1).padStart(2, '0')}`,
+    title: createPhotoTitle(category.name, file.fileName, index),
+    category: category.name,
+    categoryKey: category.key,
+    image: withPhotoAssetPath(`/photos/${category.folder}/${file.fileName}`),
+    thumbnail: withPhotoAssetPath(
+      `/photos/${category.folder}/${file.fileName}`,
+      'thumbnail'
+    ),
+    description: `${category.description} File: ${file.fileName}.`,
+    featured: index === 0,
+    date: file.date,
+  };
 }
 
 function getCategoryEntries(
   options: GetCategoryEntriesOptions = {}
 ): CategoryEntry[] {
   const { includeProfileOnly = false } = options;
+  const groupedEntries = new Map<string, CategoryEntry>();
 
-  if (!fs.existsSync(photosRoot)) {
-    return [];
+  for (const entry of manifestEntries) {
+    if (!includeProfileOnly && profileOnlyCategoryKeys.has(entry.key)) {
+      continue;
+    }
+
+    if (!groupedEntries.has(entry.key)) {
+      groupedEntries.set(entry.key, {
+        folder: entry.folder,
+        key: entry.key,
+        name: entry.name,
+        description: entry.description,
+        order: entry.order,
+        files: [],
+      });
+    }
+
+    groupedEntries.get(entry.key)?.files.push(entry);
   }
 
-  return fs
-    .readdirSync(photosRoot, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => {
-      const key = normalizeCategoryKey(entry.name);
-      const config = categoryConfig[key];
-      const folderPath = path.join(photosRoot, entry.name);
-      const files = fs
-        .readdirSync(folderPath)
-        .filter(isImageFile)
-        .sort((first, second) => first.localeCompare(second, undefined, { numeric: true }));
-
-      return {
-        folder: entry.name,
-        key,
-        name: config?.name || humanizeCategory(entry.name),
-        description:
-          config?.description ||
-          `${humanizeCategory(entry.name)} collected in the NiazPhotography archive.`,
-        order: config?.order ?? 99,
-        files,
-      };
-    })
-    .filter(
-      (entry) => includeProfileOnly || !profileOnlyCategoryKeys.has(entry.key)
-    )
+  return Array.from(groupedEntries.values())
+    .map((entry) => ({
+      ...entry,
+      files: entry.files.sort((first, second) =>
+        first.fileName.localeCompare(second.fileName, undefined, {
+          numeric: true,
+          sensitivity: 'base',
+        })
+      ),
+    }))
     .filter((entry) => entry.files.length > 0)
     .sort((first, second) => {
       if (first.order !== second.order) {
@@ -188,8 +192,8 @@ export function getPhotos(): Photo[] {
   const categories = getCategoryEntries();
 
   return categories.flatMap((category) =>
-    category.files.map((fileName, index) =>
-      createPhotoRecord(category, fileName, index)
+    category.files.map((file, index) =>
+      createPhotoRecord(category, file, index)
     )
   );
 }
@@ -200,9 +204,8 @@ export function getPhotoCategories(): PhotoCategory[] {
     name: category.name,
     description: category.description,
     count: category.files.length,
-    coverImage: resolvePhotoAssetPath(
-      category.folder,
-      category.files[0],
+    coverImage: withPhotoAssetPath(
+      `/photos/${category.folder}/${category.files[0].fileName}`,
       'thumbnail'
     ),
   }));
@@ -227,8 +230,8 @@ export function getRecentPhotos(limit = 6): Photo[] {
 export function getProfilePhoto(): Photo | undefined {
   const photos = getCategoryEntries({ includeProfileOnly: true }).flatMap(
     (category) =>
-      category.files.map((fileName, index) =>
-        createPhotoRecord(category, fileName, index)
+      category.files.map((file, index) =>
+        createPhotoRecord(category, file, index)
       )
   );
 
