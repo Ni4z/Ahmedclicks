@@ -47,7 +47,7 @@ export default function FeaturedPhotos({ photos }: FeaturedPhotosProps) {
             variants={itemVariants}
             className="text-gray-400 text-lg max-w-2xl"
           >
-            A rotating edit from the current NiazPhotography archive, pulled from the local photo folders in this portfolio.
+            A rotating edit from the current NiazPhotography archive, published from the image collection behind the site.
           </motion.p>
         </motion.div>
 

@@ -8,6 +8,7 @@ export const siteConfig = {
     'Photography and video portfolio of NiazPhotography featuring wildlife, landscapes, roads, trees, portraits, astrophotography, and motion work.',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   siteUrl: normalizedSiteUrl,
+  imageBaseUrl: (process.env.NEXT_PUBLIC_IMAGE_BASE_URL || '').replace(/\/+$/, ''),
   videoBaseUrl: (process.env.NEXT_PUBLIC_VIDEO_BASE_URL || '').replace(/\/+$/, ''),
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'niazphotography.com@gmail.com',
@@ -58,7 +59,13 @@ export const withPhotoAssetPath = (
   const assetRoot =
     variant === 'thumbnail' ? '/photos-thumb/' : '/photos-web/';
 
-  return withBasePath(path.replace(/^\/photos\//, assetRoot));
+  const assetPath = path.replace(/^\/photos\//, assetRoot);
+
+  if (siteConfig.imageBaseUrl) {
+    return `${siteConfig.imageBaseUrl}${assetPath}`;
+  }
+
+  return withBasePath(assetPath);
 };
 
 export const absoluteUrl = (path: string): string =>
