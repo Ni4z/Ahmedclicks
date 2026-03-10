@@ -56,7 +56,7 @@ const manifest = walkDirectory(photosRoot)
     const absolutePath = path.join(photosRoot, relativePath);
     return {
       relativePath,
-      date: fs.statSync(absolutePath).mtime.toISOString().slice(0, 10),
+      date: fs.statSync(absolutePath).mtime.toISOString(),
     };
   });
 

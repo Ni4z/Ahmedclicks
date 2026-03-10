@@ -5,9 +5,9 @@ import Categories from '@/components/home/Categories';
 import PhotographerBio from '@/components/home/PhotographerBio';
 import { Metadata } from 'next';
 import {
-  getFeaturedPhotos,
   getPhotoCategories,
   getProfilePhoto,
+  getRecentPhotos,
 } from '@/lib/gallery';
 import { getFeaturedVideos, getVideos } from '@/lib/videos';
 import { withPhotoAssetPath } from '@/lib/site';
@@ -24,7 +24,7 @@ export default function Home() {
     videos.find((video) => video.id === 'bird') ||
     videos.find((video) => video.id === 'sequence-01') ||
     videos[0];
-  const featuredPhotos = getFeaturedPhotos(6);
+  const featuredPhotos = getRecentPhotos(6);
   const featuredVideos = getFeaturedVideos(2);
   const categories = getPhotoCategories();
   const profilePhoto = getProfilePhoto();
