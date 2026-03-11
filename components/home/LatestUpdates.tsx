@@ -41,24 +41,24 @@ interface LatestUpdatesProps {
 
 export default function LatestUpdates({ items }: LatestUpdatesProps) {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-14 px-6">
+      <div className="max-w-[1680px] mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={containerVariants}
           viewport={{ once: true, margin: '-100px' }}
-          className="mb-16"
+          className="mb-8"
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl md:text-6xl font-serif font-bold mb-4"
+            className="text-4xl md:text-5xl font-serif font-bold mb-3"
           >
             Latest Updates
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-gray-400 text-lg max-w-3xl"
+            className="text-gray-400 text-sm md:text-base max-w-2xl"
           >
             The four newest stories and frames from the current
             NiazPhotography archive, each paired with a short note so the
@@ -72,48 +72,48 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
             whileInView="visible"
             variants={containerVariants}
             viewport={{ once: true, margin: '-100px' }}
-            className="grid grid-cols-1 xl:grid-cols-2 gap-8"
+            className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2"
           >
             {items.map((item) => (
-              <motion.div key={item.id} variants={itemVariants}>
+              <motion.div
+                key={item.id}
+                variants={itemVariants}
+                className="h-full w-full"
+              >
                 <Link
                   href={item.href}
-                  className="group block rounded-2xl border border-dark-tertiary bg-dark-secondary p-5 transition-colors hover:border-accent-gold"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold"
                 >
-                  <div className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] items-start">
-                    <div className="overflow-hidden rounded-xl border border-dark-tertiary bg-black/40">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="block w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
-                      />
+                  <div className="aspect-[4/3] overflow-hidden border-b border-dark-tertiary bg-black/40">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-4">
+                    <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-accent-gold mb-3">
+                      <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
+                      <span className="text-gray-600">/</span>
+                      <span>{item.category}</span>
                     </div>
 
-                    <div className="flex min-h-full flex-col">
-                      <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.35em] text-accent-gold mb-4">
-                        <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
-                        <span className="text-gray-600">/</span>
-                        <span>{item.category}</span>
-                      </div>
+                    <h3 className="text-xl md:text-2xl font-serif font-bold mb-2 leading-tight">
+                      {item.title}
+                    </h3>
 
-                      <h3 className="text-3xl font-serif font-bold mb-4 leading-tight">
-                        {item.title}
-                      </h3>
+                    <p className="mb-4 line-clamp-3 text-sm leading-6 text-gray-400">
+                      {item.summary}
+                    </p>
 
-                      <p className="text-gray-400 leading-7 mb-6">
-                        {item.summary}
-                      </p>
-
-                      <div className="mt-auto flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
-                        <span>{formatDate(item.date)}</span>
-                        <span>
-                          {item.type === 'post'
-                            ? `${item.readTime} min read`
-                            : 'View frame'}
-                        </span>
-                      </div>
+                    <div className="mt-auto flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-gray-500">
+                      <span>{formatDate(item.date)}</span>
+                      {item.type === 'post' && item.readTime ? (
+                        <span>{item.readTime} min read</span>
+                      ) : null}
                     </div>
                   </div>
                 </Link>
@@ -130,7 +130,7 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 flex flex-wrap gap-4"
+          className="mt-12 flex flex-wrap gap-4"
         >
           <Link href="/gallery" className="btn-secondary inline-block">
             View All Gallery
