@@ -32,8 +32,8 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             <p className="text-gray-400 mb-6 leading-relaxed">
               Instead of stock placeholders and template copy, the portfolio is now organized around the categories you&apos;re actively building: wildlife, landscapes, roads, trees, people, and astrophotography.
             </p>
-            <Link href="/about">
-              <button className="btn-primary">Read Full Story</button>
+            <Link href="/about" className="btn-primary inline-block">
+              Read Full Story
             </Link>
           </motion.div>
 
