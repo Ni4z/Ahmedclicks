@@ -41,24 +41,24 @@ interface LatestUpdatesProps {
 
 export default function LatestUpdates({ items }: LatestUpdatesProps) {
   return (
-    <section className="py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 px-6">
+      <div className="max-w-[1400px] mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={containerVariants}
           viewport={{ once: true, margin: '-100px' }}
-          className="mb-16"
+          className="mb-10"
         >
           <motion.h2
             variants={itemVariants}
-            className="text-5xl md:text-6xl font-serif font-bold mb-4"
+            className="text-4xl md:text-5xl font-serif font-bold mb-3"
           >
             Latest Updates
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-gray-400 text-lg max-w-3xl"
+            className="text-gray-400 text-base md:text-lg max-w-2xl"
           >
             The four newest stories and frames from the current
             NiazPhotography archive, each paired with a short note so the
@@ -72,13 +72,13 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
             whileInView="visible"
             variants={containerVariants}
             viewport={{ once: true, margin: '-100px' }}
-            className="columns-1 xl:columns-2 gap-8"
+            className="columns-1 md:columns-2 xl:columns-4 gap-6"
           >
             {items.map((item) => (
               <motion.div
                 key={item.id}
                 variants={itemVariants}
-                className="mb-8 inline-block w-full break-inside-avoid"
+                className="mb-6 inline-block w-full break-inside-avoid"
               >
                 <Link
                   href={item.href}
@@ -90,26 +90,26 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
-                      className="block w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="block w-full h-auto max-h-[19rem] transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                   </div>
 
-                  <div className="p-6">
-                    <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.35em] text-accent-gold mb-4">
+                  <div className="p-4 md:p-5">
+                    <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-accent-gold mb-3">
                       <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
                       <span className="text-gray-600">/</span>
                       <span>{item.category}</span>
                     </div>
 
-                    <h3 className="text-3xl font-serif font-bold mb-4 leading-tight">
+                    <h3 className="text-2xl md:text-[2rem] font-serif font-bold mb-3 leading-tight">
                       {item.title}
                     </h3>
 
-                    <p className="text-gray-400 leading-7 mb-6">
+                    <p className="text-gray-400 text-sm md:text-base leading-6 mb-4 max-h-[7.5rem] overflow-hidden">
                       {item.summary}
                     </p>
 
-                    <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
+                    <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-gray-500">
                       <span>{formatDate(item.date)}</span>
                       {item.type === 'post' && item.readTime ? (
                         <span>{item.readTime} min read</span>
@@ -130,7 +130,7 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 flex flex-wrap gap-4"
+          className="mt-12 flex flex-wrap gap-4"
         >
           <Link href="/gallery" className="btn-secondary inline-block">
             View All Gallery
