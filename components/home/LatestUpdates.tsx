@@ -72,48 +72,48 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
             whileInView="visible"
             variants={containerVariants}
             viewport={{ once: true, margin: '-100px' }}
-            className="grid grid-cols-1 xl:grid-cols-2 gap-8"
+            className="columns-1 xl:columns-2 gap-8"
           >
             {items.map((item) => (
-              <motion.div key={item.id} variants={itemVariants}>
+              <motion.div
+                key={item.id}
+                variants={itemVariants}
+                className="mb-8 inline-block w-full break-inside-avoid"
+              >
                 <Link
                   href={item.href}
-                  className="group block rounded-2xl border border-dark-tertiary bg-dark-secondary p-5 transition-colors hover:border-accent-gold"
+                  className="group block overflow-hidden rounded-2xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold"
                 >
-                  <div className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] items-start">
-                    <div className="overflow-hidden rounded-xl border border-dark-tertiary bg-black/40">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        loading="lazy"
-                        decoding="async"
-                        className="block w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
-                      />
+                  <div className="overflow-hidden border-b border-dark-tertiary bg-black/40">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="block w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                    />
+                  </div>
+
+                  <div className="p-6">
+                    <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.35em] text-accent-gold mb-4">
+                      <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
+                      <span className="text-gray-600">/</span>
+                      <span>{item.category}</span>
                     </div>
 
-                    <div className="flex min-h-full flex-col">
-                      <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.35em] text-accent-gold mb-4">
-                        <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
-                        <span className="text-gray-600">/</span>
-                        <span>{item.category}</span>
-                      </div>
+                    <h3 className="text-3xl font-serif font-bold mb-4 leading-tight">
+                      {item.title}
+                    </h3>
 
-                      <h3 className="text-3xl font-serif font-bold mb-4 leading-tight">
-                        {item.title}
-                      </h3>
+                    <p className="text-gray-400 leading-7 mb-6">
+                      {item.summary}
+                    </p>
 
-                      <p className="text-gray-400 leading-7 mb-6">
-                        {item.summary}
-                      </p>
-
-                      <div className="mt-auto flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
-                        <span>{formatDate(item.date)}</span>
-                        <span>
-                          {item.type === 'post'
-                            ? `${item.readTime} min read`
-                            : 'View frame'}
-                        </span>
-                      </div>
+                    <div className="flex flex-wrap items-center justify-between gap-4 text-sm text-gray-500">
+                      <span>{formatDate(item.date)}</span>
+                      {item.type === 'post' && item.readTime ? (
+                        <span>{item.readTime} min read</span>
+                      ) : null}
                     </div>
                   </div>
                 </Link>
