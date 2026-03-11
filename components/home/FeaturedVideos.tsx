@@ -28,8 +28,8 @@ export default function FeaturedVideos({ videos }: FeaturedVideosProps) {
         />
 
         <div className="text-center mt-16">
-          <Link href="/videos">
-            <button className="btn-secondary">Open Full Video Section</button>
+          <Link href="/videos" className="btn-secondary inline-block">
+            Open Full Video Section
           </Link>
         </div>
       </div>

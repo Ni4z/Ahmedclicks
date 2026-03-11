@@ -101,10 +101,8 @@ export default function FeaturedPhotos({ photos }: FeaturedPhotosProps) {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <Link href="/gallery">
-            <button className="btn-secondary">
-              View All Gallery
-            </button>
+          <Link href="/gallery" className="btn-secondary inline-block">
+            View All Gallery
           </Link>
         </motion.div>
       </div>
