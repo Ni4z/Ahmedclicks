@@ -6,6 +6,10 @@ import { Photo, PhotoCategory } from '@/lib/types';
 import { withPhotoAssetPath } from '@/lib/site';
 
 const profileOnlyCategoryKeys = new Set(['me']);
+const unpublishedPhotoPaths = new Set([
+  'wildlife/DSC04895-2.jpg',
+  'wildlife/DSC04912.jpg',
+]);
 
 const categoryConfig: Record<
   string,
@@ -118,9 +122,9 @@ function createManifestPhotoEntry(relativePath: string, date: string): ManifestP
   };
 }
 
-const manifestEntries = photoManifest.map((entry) =>
-  createManifestPhotoEntry(entry.relativePath, entry.date)
-);
+const manifestEntries = photoManifest
+  .filter((entry) => !unpublishedPhotoPaths.has(entry.relativePath))
+  .map((entry) => createManifestPhotoEntry(entry.relativePath, entry.date));
 
 function createPhotoRecord(
   category: CategoryEntry,
