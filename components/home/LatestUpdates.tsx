@@ -72,29 +72,29 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
             whileInView="visible"
             variants={containerVariants}
             viewport={{ once: true, margin: '-100px' }}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-start"
+            className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2"
           >
             {items.map((item) => (
               <motion.div
                 key={item.id}
                 variants={itemVariants}
-                className="w-full"
+                className="h-full w-full"
               >
                 <Link
                   href={item.href}
-                  className="group block overflow-hidden rounded-2xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold"
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold"
                 >
-                  <div className="overflow-hidden border-b border-dark-tertiary bg-black/40">
+                  <div className="aspect-[4/3] overflow-hidden border-b border-dark-tertiary bg-black/40">
                     <img
                       src={item.image}
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
-                      className="block w-full h-auto max-h-[14rem] transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                   </div>
 
-                  <div className="p-4">
+                  <div className="flex flex-1 flex-col p-4">
                     <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-accent-gold mb-3">
                       <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
                       <span className="text-gray-600">/</span>
@@ -105,11 +105,11 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
                       {item.title}
                     </h3>
 
-                    <p className="text-gray-400 text-sm leading-6 mb-4 line-clamp-3">
+                    <p className="mb-4 line-clamp-3 text-sm leading-6 text-gray-400">
                       {item.summary}
                     </p>
 
-                    <div className="flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-gray-500">
+                    <div className="mt-auto flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-gray-500">
                       <span>{formatDate(item.date)}</span>
                       {item.type === 'post' && item.readTime ? (
                         <span>{item.readTime} min read</span>
