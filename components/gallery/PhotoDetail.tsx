@@ -29,7 +29,7 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
     },
   ];
 
-  async function shareToInstagramStory() {
+  async function shareToInstagramMessage() {
     const currentUrl =
       shareUrl || (typeof window !== 'undefined' ? window.location.href : '');
 
@@ -43,7 +43,7 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
           url: currentUrl,
         });
         setInstagramFeedback(
-          'Share sheet opened. Choose Instagram Stories if it is available on your device.'
+          'Share sheet opened. Choose Instagram if it is available on your device.'
         );
         return;
       }
@@ -57,14 +57,14 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
       if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(currentUrl);
         setInstagramFeedback(
-          'Link copied. Open Instagram and paste it into your story.'
+          'Link copied. Open Instagram and share it in a message.'
         );
         return;
       }
     } catch {}
 
     setInstagramFeedback(
-      'Instagram Story sharing is not directly available in this browser. Copy the page URL into Instagram manually.'
+      'Instagram sharing is not directly available in this browser. Copy the page URL into Instagram manually.'
     );
   }
 
@@ -154,10 +154,10 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
             ))}
             <button
               type="button"
-              onClick={shareToInstagramStory}
+              onClick={shareToInstagramMessage}
               className="text-sm text-accent-gold hover:underline"
             >
-              Instagram Story
+              Instagram Message
             </button>
           </div>
           {instagramFeedback ? (
