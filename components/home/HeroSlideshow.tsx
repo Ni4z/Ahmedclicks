@@ -74,7 +74,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
             A living archive of photographs
           </h1>
           <p className="text-lg text-gray-300 mb-8">
-            Add images into `public/photos/*` and the website will publish them here.
+            Publish image assets to the connected Cloudflare R2 archive and the gallery will surface them here.
           </p>
           <Link href="/gallery" className="btn-primary inline-block">
             Explore Gallery
