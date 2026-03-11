@@ -1,5 +1,7 @@
 import HeroVideo from '@/components/home/HeroVideo';
-import FeaturedPhotos from '@/components/home/FeaturedPhotos';
+import LatestUpdates, {
+  LatestUpdateItem,
+} from '@/components/home/LatestUpdates';
 import FeaturedVideos from '@/components/home/FeaturedVideos';
 import Categories from '@/components/home/Categories';
 import PhotographerBio from '@/components/home/PhotographerBio';
@@ -11,6 +13,11 @@ import {
 } from '@/lib/gallery';
 import { getFeaturedVideos, getVideos } from '@/lib/videos';
 import { withPhotoAssetPath } from '@/lib/site';
+import { blogPosts } from '@/data/portfolio';
+
+function createPhotoSummary(description: string): string {
+  return description.replace(/\s*File:.*$/, '').trim();
+}
 
 export const metadata: Metadata = {
   title: 'Home | NiazPhotography',
@@ -24,7 +31,34 @@ export default function Home() {
     videos.find((video) => video.id === 'bird') ||
     videos.find((video) => video.id === 'sequence-01') ||
     videos[0];
-  const featuredPhotos = getRecentPhotos(6);
+  const latestUpdates: LatestUpdateItem[] = [
+    ...getRecentPhotos(4).map((photo) => ({
+      id: `photo-${photo.id}`,
+      type: 'photo' as const,
+      title: photo.title,
+      summary: createPhotoSummary(photo.description),
+      image: photo.thumbnail,
+      href: `/gallery/${photo.id}`,
+      date: photo.date,
+      category: photo.category,
+    })),
+    ...blogPosts.map((post) => ({
+      id: `post-${post.slug}`,
+      type: 'post' as const,
+      title: post.title,
+      summary: post.excerpt,
+      image: post.image,
+      href: `/blog/${post.slug}`,
+      date: post.date,
+      category: post.category,
+      readTime: post.readTime,
+    })),
+  ]
+    .sort(
+      (first, second) =>
+        new Date(second.date).getTime() - new Date(first.date).getTime()
+    )
+    .slice(0, 4);
   const featuredVideos = getFeaturedVideos(2);
   const categories = getPhotoCategories();
   const profilePhoto = getProfilePhoto();
@@ -32,7 +66,7 @@ export default function Home() {
   return (
     <>
       <HeroVideo video={heroVideo} />
-      <FeaturedPhotos photos={featuredPhotos} />
+      <LatestUpdates items={latestUpdates} />
       <FeaturedVideos videos={featuredVideos} />
       <Categories categories={categories} />
       <PhotographerBio
