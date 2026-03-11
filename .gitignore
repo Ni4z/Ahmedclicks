@@ -45,3 +45,8 @@ Thumbs.db
 # Local video staging for R2-backed media
 public/videos/*
 !public/videos/.gitkeep
+
+# Local photo staging for R2-backed media
+public/photos/
+public/photos-web/
+public/photos-thumb/
