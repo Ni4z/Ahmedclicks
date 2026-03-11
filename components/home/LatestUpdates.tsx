@@ -41,14 +41,14 @@ interface LatestUpdatesProps {
 
 export default function LatestUpdates({ items }: LatestUpdatesProps) {
   return (
-    <section className="py-16 px-6">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="py-14 px-6">
+      <div className="max-w-[1680px] mx-auto">
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={containerVariants}
           viewport={{ once: true, margin: '-100px' }}
-          className="mb-10"
+          className="mb-8"
         >
           <motion.h2
             variants={itemVariants}
@@ -58,7 +58,7 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-gray-400 text-base md:text-lg max-w-2xl"
+            className="text-gray-400 text-sm md:text-base max-w-2xl"
           >
             The four newest stories and frames from the current
             NiazPhotography archive, each paired with a short note so the
@@ -72,13 +72,13 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
             whileInView="visible"
             variants={containerVariants}
             viewport={{ once: true, margin: '-100px' }}
-            className="columns-1 md:columns-2 xl:columns-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-start"
           >
             {items.map((item) => (
               <motion.div
                 key={item.id}
                 variants={itemVariants}
-                className="mb-6 inline-block w-full break-inside-avoid"
+                className="w-full"
               >
                 <Link
                   href={item.href}
@@ -90,26 +90,26 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
-                      className="block w-full h-auto max-h-[19rem] transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="block w-full h-auto max-h-[14rem] transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                   </div>
 
-                  <div className="p-4 md:p-5">
+                  <div className="p-4">
                     <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-accent-gold mb-3">
                       <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
                       <span className="text-gray-600">/</span>
                       <span>{item.category}</span>
                     </div>
 
-                    <h3 className="text-2xl md:text-[2rem] font-serif font-bold mb-3 leading-tight">
+                    <h3 className="text-xl md:text-2xl font-serif font-bold mb-2 leading-tight">
                       {item.title}
                     </h3>
 
-                    <p className="text-gray-400 text-sm md:text-base leading-6 mb-4 max-h-[7.5rem] overflow-hidden">
+                    <p className="text-gray-400 text-sm leading-6 mb-4 line-clamp-3">
                       {item.summary}
                     </p>
 
-                    <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-gray-500">
+                    <div className="flex flex-wrap items-center justify-between gap-3 text-xs md:text-sm text-gray-500">
                       <span>{formatDate(item.date)}</span>
                       {item.type === 'post' && item.readTime ? (
                         <span>{item.readTime} min read</span>
