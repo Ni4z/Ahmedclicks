@@ -7,6 +7,8 @@ const imageExtensions = new Set([
   '.webp',
 ]);
 
+const videoExtensions = new Set(['.m4v', '.mov', '.mp4', '.webm']);
+
 const formatToExtension = {
   'image/avif': '.avif',
   'image/jpeg': '.jpg',
@@ -46,9 +48,24 @@ function replaceExtension(filePath, extension) {
   return `${normalizedPath.slice(0, lastDotIndex)}${extension}`;
 }
 
+function pathExtension(filePath) {
+  const normalizedPath = normalizePath(filePath);
+  const lastDotIndex = normalizedPath.lastIndexOf('.');
+  const lastSlashIndex = normalizedPath.lastIndexOf('/');
+
+  if (lastDotIndex <= lastSlashIndex) {
+    return '';
+  }
+
+  return normalizedPath.slice(lastDotIndex).toLowerCase();
+}
+
 function isSupportedImage(objectKey) {
-  const extension = objectKey.slice(objectKey.lastIndexOf('.')).toLowerCase();
-  return imageExtensions.has(extension);
+  return imageExtensions.has(pathExtension(objectKey));
+}
+
+function isSupportedVideo(objectKey) {
+  return videoExtensions.has(pathExtension(objectKey));
 }
 
 function shouldHandleImage(objectKey, sourcePrefix, thumbPrefix) {
@@ -72,6 +89,234 @@ function shouldHandleImage(objectKey, sourcePrefix, thumbPrefix) {
 function getThumbnailKey(objectKey, sourcePrefix, thumbPrefix, outputExtension) {
   const relativePath = stripPrefix(normalizePath(objectKey), sourcePrefix);
   return `${thumbPrefix}${replaceExtension(relativePath, outputExtension)}`;
+}
+
+function getRelativeStem(objectKey) {
+  const normalizedKey = normalizePath(objectKey);
+  const extension = pathExtension(normalizedKey);
+
+  return extension
+    ? normalizedKey.slice(0, normalizedKey.length - extension.length)
+    : normalizedKey;
+}
+
+function compareByDateDescending(first, second) {
+  const firstDate = Number.isNaN(new Date(first.date).getTime())
+    ? 0
+    : new Date(first.date).getTime();
+  const secondDate = Number.isNaN(new Date(second.date).getTime())
+    ? 0
+    : new Date(second.date).getTime();
+
+  if (firstDate !== secondDate) {
+    return secondDate - firstDate;
+  }
+
+  return first.relativePath.localeCompare(second.relativePath, undefined, {
+    numeric: true,
+    sensitivity: 'base',
+  });
+}
+
+function getManifestObjectKey(env) {
+  return normalizePath(env.MEDIA_MANIFEST_OBJECT_KEY || 'media-manifest.json');
+}
+
+function getManifestCacheControl(env) {
+  return `public, max-age=${env.MEDIA_MANIFEST_CACHE_MAX_AGE || 60}`;
+}
+
+function getMediaBucketName(env) {
+  return (env.MEDIA_BUCKET_NAME || '').trim();
+}
+
+function getVideoBucketName(env) {
+  return (env.VIDEO_BUCKET_NAME || '').trim();
+}
+
+function getObjectDate(object) {
+  if (object?.uploaded instanceof Date) {
+    return object.uploaded.toISOString();
+  }
+
+  if (typeof object?.uploaded?.toISOString === 'function') {
+    return object.uploaded.toISOString();
+  }
+
+  return new Date(0).toISOString();
+}
+
+async function listBucketObjects(bucket) {
+  const objects = [];
+  let cursor;
+
+  do {
+    const listing = await bucket.list({
+      cursor,
+      limit: 1000,
+    });
+
+    objects.push(
+      ...listing.objects.map((object) => ({
+        key: normalizePath(object.key),
+        lastModified: getObjectDate(object),
+      }))
+    );
+    cursor = listing.truncated ? listing.cursor : undefined;
+  } while (cursor);
+
+  return objects;
+}
+
+function buildPhotoAssets(objects, env) {
+  const configuredPhotoPrefix = env.THUMB_SOURCE_PREFIX;
+  const photoPrefix = normalizePrefix(configuredPhotoPrefix ?? 'photos-web');
+  const restrictPhotosToPrefix = configuredPhotoPrefix !== undefined;
+  const photoThumbPrefix = normalizePrefix(
+    env.THUMB_DEST_PREFIX || 'photos-thumb'
+  );
+  const thumbnailLookup = new Map();
+
+  for (const object of objects) {
+    if (
+      photoThumbPrefix &&
+      object.key.startsWith(photoThumbPrefix) &&
+      isSupportedImage(object.key)
+    ) {
+      thumbnailLookup.set(
+        getRelativeStem(stripPrefix(object.key, photoThumbPrefix)),
+        object.key
+      );
+    }
+  }
+
+  const photoCandidates = objects.filter(
+    (object) =>
+      isSupportedImage(object.key) &&
+      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
+      (!restrictPhotosToPrefix ||
+        !photoPrefix ||
+        object.key.startsWith(photoPrefix))
+  );
+
+  return {
+    photos: photoCandidates
+      .map((object) => {
+        const relativePath = stripPrefix(object.key, photoPrefix);
+        const thumbLookupKey = getRelativeStem(relativePath);
+
+        return {
+          objectKey: object.key,
+          relativePath,
+          thumbnailObjectKey: thumbnailLookup.get(thumbLookupKey) || null,
+          date: object.lastModified,
+        };
+      })
+      .sort(compareByDateDescending),
+    thumbnailKeys: new Set(thumbnailLookup.values()),
+  };
+}
+
+function buildVideoAssets(objects, excludedKeys, env) {
+  const videoPrefix =
+    env.VIDEO_SOURCE_PREFIX === undefined
+      ? ''
+      : normalizePrefix(env.VIDEO_SOURCE_PREFIX);
+
+  return objects
+    .filter((object) => isSupportedVideo(object.key))
+    .filter((object) => {
+      if (videoPrefix) {
+        return object.key.startsWith(videoPrefix);
+      }
+
+      return !excludedKeys.has(object.key);
+    })
+    .map((object) => ({
+      objectKey: object.key,
+      relativePath: stripPrefix(object.key, videoPrefix),
+      date: object.lastModified,
+    }))
+    .sort(compareByDateDescending);
+}
+
+async function publishMediaManifest(env) {
+  const imageObjects = await listBucketObjects(env.MEDIA_BUCKET);
+  const { photos, thumbnailKeys } = buildPhotoAssets(imageObjects, env);
+  const manifestObjectKey = getManifestObjectKey(env);
+  const mediaBucketName = getMediaBucketName(env);
+  const videoBucketName = getVideoBucketName(env);
+  const usesSeparateVideoBucket =
+    env.VIDEO_BUCKET && videoBucketName && videoBucketName !== mediaBucketName;
+  const excludedVideoKeys = new Set([
+    manifestObjectKey,
+    ...photos.map((photo) => photo.objectKey),
+    ...thumbnailKeys,
+  ]);
+  const videoObjects = usesSeparateVideoBucket
+    ? await listBucketObjects(env.VIDEO_BUCKET)
+    : imageObjects;
+  const videos = buildVideoAssets(
+    videoObjects,
+    usesSeparateVideoBucket ? new Set([manifestObjectKey]) : excludedVideoKeys,
+    env
+  );
+  const manifest = {
+    generatedAt: new Date().toISOString(),
+    source: 'r2',
+    photos,
+    videos,
+  };
+
+  await env.MEDIA_BUCKET.put(manifestObjectKey, JSON.stringify(manifest, null, 2), {
+    httpMetadata: {
+      cacheControl: getManifestCacheControl(env),
+      contentType: 'application/json; charset=utf-8',
+    },
+    customMetadata: {
+      generator: 'thumbnail-generator-worker',
+    },
+  });
+
+  return manifest;
+}
+
+async function triggerSiteDeploy(env) {
+  const repository = (env.GITHUB_REPOSITORY || '').trim();
+  const workflowFile = (env.GITHUB_WORKFLOW_FILE || 'deploy.yml').trim();
+  const deployRef = (env.GITHUB_DEPLOY_REF || 'main').trim();
+  const deployToken = env.GITHUB_DEPLOY_TOKEN;
+
+  if (!(repository && workflowFile && deployRef && deployToken)) {
+    return false;
+  }
+
+  const response = await fetch(
+    `https://api.github.com/repos/${repository}/actions/workflows/${encodeURIComponent(
+      workflowFile
+    )}/dispatches`,
+    {
+      method: 'POST',
+      headers: {
+        accept: 'application/vnd.github+json',
+        authorization: `Bearer ${deployToken}`,
+        'content-type': 'application/json',
+        'user-agent': 'niazphotography-thumbnail-generator',
+      },
+      body: JSON.stringify({
+        ref: deployRef,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const responseText = await response.text();
+    throw new Error(
+      `GitHub deploy trigger failed with ${response.status} ${response.statusText}: ${responseText}`
+    );
+  }
+
+  return true;
 }
 
 async function generateThumbnail(objectKey, env) {
@@ -174,6 +419,20 @@ function getObjectKey(payload) {
   return typeof candidate === 'string' ? normalizePath(candidate) : '';
 }
 
+function getBucketName(payload) {
+  const candidate =
+    payload?.bucket?.name ||
+    payload?.bucket?.bucketName ||
+    payload?.bucket?.id ||
+    payload?.bucket ||
+    payload?.bucketName ||
+    payload?.bucket_name ||
+    payload?.sourceBucket ||
+    '';
+
+  return typeof candidate === 'string' ? candidate.trim() : '';
+}
+
 function isDeleteEvent(eventType) {
   return /delete|remove/i.test(eventType);
 }
@@ -182,16 +441,55 @@ function isCreateEvent(eventType) {
   return /create|put|copy|complete/i.test(eventType);
 }
 
+function affectsPublishedMedia(objectKey, bucketName, env) {
+  if (!objectKey) {
+    return false;
+  }
+
+  const normalizedKey = normalizePath(objectKey);
+  const manifestObjectKey = getManifestObjectKey(env);
+  const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
+  const photoPrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
+  const videoPrefix =
+    env.VIDEO_SOURCE_PREFIX === undefined
+      ? ''
+      : normalizePrefix(env.VIDEO_SOURCE_PREFIX);
+  const videoBucketName = getVideoBucketName(env);
+
+  if (normalizedKey === manifestObjectKey) {
+    return false;
+  }
+
+  if (thumbPrefix && normalizedKey.startsWith(thumbPrefix)) {
+    return false;
+  }
+
+  if (bucketName && videoBucketName && bucketName === videoBucketName) {
+    return isSupportedVideo(normalizedKey) && (!videoPrefix || normalizedKey.startsWith(videoPrefix));
+  }
+
+  if (shouldHandleImage(normalizedKey, photoPrefix, thumbPrefix)) {
+    return true;
+  }
+
+  return isSupportedVideo(normalizedKey) && (!videoPrefix || normalizedKey.startsWith(videoPrefix));
+}
+
 export default {
   async queue(batch, env) {
+    const processedMessages = [];
+    let shouldRefreshManifest = false;
+    let shouldTriggerDeploy = false;
+
     for (const message of batch.messages) {
       const payload = message.body;
       const objectKey = getObjectKey(payload);
       const eventType = getEventType(payload);
+      const bucketName = getBucketName(payload);
 
       if (!objectKey) {
         console.warn('Skipping queue message without an object key.');
-        message.ack();
+        processedMessages.push(message);
         continue;
       }
 
@@ -212,13 +510,49 @@ export default {
           console.log(`Skipping unsupported event "${eventType}" for ${objectKey}`);
         }
 
-        message.ack();
+        if (affectsPublishedMedia(objectKey, bucketName, env)) {
+          shouldRefreshManifest = true;
+          shouldTriggerDeploy = true;
+        }
+
+        processedMessages.push(message);
       } catch (error) {
         const messageText =
           error instanceof Error ? error.message : String(error);
         console.error(`Thumbnail processing failed for ${objectKey}: ${messageText}`);
         message.retry({ delaySeconds: 30 });
       }
+    }
+
+    if (shouldRefreshManifest) {
+      try {
+        const manifest = await publishMediaManifest(env);
+        console.log(
+          `Published media manifest with ${manifest.photos.length} photos and ${manifest.videos.length} videos`
+        );
+
+        if (shouldTriggerDeploy) {
+          const deployTriggered = await triggerSiteDeploy(env);
+
+          if (deployTriggered) {
+            console.log('Triggered GitHub Pages deploy after manifest update');
+          }
+        }
+      } catch (error) {
+        const messageText =
+          error instanceof Error ? error.message : String(error);
+        console.error(`Media manifest publishing failed: ${messageText}`);
+
+        for (const message of processedMessages) {
+          message.retry({ delaySeconds: 60 });
+        }
+
+        return;
+      }
+    }
+
+    for (const message of processedMessages) {
+      message.ack();
     }
   },
 };
