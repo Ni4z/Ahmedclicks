@@ -27,12 +27,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   const videos = getVideos();
-  const heroVideo =
-    videos.find((video) => video.id === 'bird') ||
-    videos.find((video) => video.id === 'sequence-01') ||
-    videos[0];
+  const heroVideo = videos.find((video) => video.featured) || videos[0];
+  const recentPhotos = getRecentPhotos(4);
   const latestUpdates: LatestUpdateItem[] = [
-    ...getRecentPhotos(4).map((photo) => ({
+    ...recentPhotos.map((photo) => ({
       id: `photo-${photo.id}`,
       type: 'photo' as const,
       title: photo.title,
@@ -71,7 +69,9 @@ export default function Home() {
       <Categories categories={categories} />
       <PhotographerBio
         profileImage={
-          profilePhoto?.image || withPhotoAssetPath('/photos/Me/Me.jpg')
+          profilePhoto?.image ||
+          recentPhotos[0]?.image ||
+          withPhotoAssetPath('/photos/Me/Me.jpg')
         }
       />
     </>

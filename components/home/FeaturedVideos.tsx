@@ -24,7 +24,7 @@ export default function FeaturedVideos({ videos }: FeaturedVideosProps) {
         <VideoGrid
           videos={videos}
           emptyTitle="Your video section is ready"
-          emptyDescription="Point the site at your published video archive with NEXT_PUBLIC_VIDEO_BASE_URL, or keep small local test files in public/videos during development."
+          emptyDescription="Connect the site to your R2 archive and the media sync will populate this section automatically before development and build."
         />
 
         <div className="text-center mt-16">

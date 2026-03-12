@@ -29,7 +29,7 @@ export default function VideosPage() {
         <VideoGrid
           videos={videos}
           emptyTitle="No videos published yet"
-          emptyDescription="Set NEXT_PUBLIC_VIDEO_BASE_URL to your published R2 video domain, or keep small local files in public/videos while testing locally."
+          emptyDescription="Connect the site to your R2 archive and the media sync will populate this page automatically before development and build."
         />
       </div>
     </div>

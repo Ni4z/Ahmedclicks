@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from 'next/font/google';
 import Script from 'next/script';
 import '@/styles/globals.css';
 import Layout from '@/components/layout/Layout';
+import { getFeaturedPhotos } from '@/lib/gallery';
 import {
   absoluteUrl,
   siteConfig,
@@ -21,6 +22,10 @@ const inter = Inter({
   variable: '--font-sans',
   weight: ['300', '400', '500', '600', '700'],
 });
+
+const socialImage =
+  getFeaturedPhotos(1)[0]?.image ||
+  withPhotoAssetPath('/photos/wildlife/DSC03370.jpg');
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -51,7 +56,7 @@ export const metadata: Metadata = {
       'A portfolio of wildlife, landscapes, roads, trees, portraits, night-sky photography, and video work.',
     images: [
       {
-        url: absoluteUrl(withPhotoAssetPath('/photos/wildlife/DSC03370.jpg')),
+        url: absoluteUrl(socialImage),
         width: 1200,
         height: 630,
       },

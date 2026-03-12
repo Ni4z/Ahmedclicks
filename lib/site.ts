@@ -1,6 +1,9 @@
 const normalizedSiteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 ).replace(/\/+$/, '');
+const normalizedMediaBaseUrl = (
+  process.env.NEXT_PUBLIC_MEDIA_BASE_URL || ''
+).replace(/\/+$/, '');
 
 export const siteConfig = {
   name: 'NiazPhotography',
@@ -8,8 +11,13 @@ export const siteConfig = {
     'Photography and video portfolio of NiazPhotography featuring wildlife, landscapes, roads, trees, portraits, astrophotography, and motion work.',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   siteUrl: normalizedSiteUrl,
-  imageBaseUrl: (process.env.NEXT_PUBLIC_IMAGE_BASE_URL || '').replace(/\/+$/, ''),
-  videoBaseUrl: (process.env.NEXT_PUBLIC_VIDEO_BASE_URL || '').replace(/\/+$/, ''),
+  mediaBaseUrl: normalizedMediaBaseUrl,
+  imageBaseUrl: (
+    process.env.NEXT_PUBLIC_IMAGE_BASE_URL || normalizedMediaBaseUrl
+  ).replace(/\/+$/, ''),
+  videoBaseUrl: (
+    process.env.NEXT_PUBLIC_VIDEO_BASE_URL || normalizedMediaBaseUrl
+  ).replace(/\/+$/, ''),
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'niazphotography.com@gmail.com',
   instagramUrl:
