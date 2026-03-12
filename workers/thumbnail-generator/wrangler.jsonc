@@ -15,18 +15,30 @@
     {
       "binding": "MEDIA_BUCKET",
       "bucket_name": "niazphotography-images"
+    },
+    {
+      "binding": "VIDEO_BUCKET",
+      "bucket_name": "niazphotography-videos"
     }
   ],
   "images": {
     "binding": "IMAGES"
   },
   "vars": {
+    "MEDIA_BUCKET_NAME": "niazphotography-images",
+    "VIDEO_BUCKET_NAME": "niazphotography-videos",
     "THUMB_SOURCE_PREFIX": "photos-web",
     "THUMB_DEST_PREFIX": "photos-thumb",
     "THUMB_OUTPUT_FORMAT": "image/webp",
     "THUMB_MAX_WIDTH": "1200",
     "THUMB_MAX_HEIGHT": "1200",
     "THUMB_QUALITY": "82",
-    "THUMB_CACHE_MAX_AGE": "31536000"
+    "THUMB_CACHE_MAX_AGE": "31536000",
+    "VIDEO_SOURCE_PREFIX": "",
+    "MEDIA_MANIFEST_OBJECT_KEY": "media-manifest.json",
+    "MEDIA_MANIFEST_CACHE_MAX_AGE": "60",
+    "GITHUB_REPOSITORY": "Ni4z/Ahmedclicks",
+    "GITHUB_WORKFLOW_FILE": "deploy.yml",
+    "GITHUB_DEPLOY_REF": "main"
   }
 }

@@ -1,115 +1,140 @@
-# Thumbnail Generator Worker
+# Media Automation Worker
 
-This Worker consumes Cloudflare Queue messages created by R2 object event notifications and writes thumbnails back into the same bucket under `photos-thumb/`.
+This Worker now does three jobs from the same R2 event stream:
 
-## What it does
+- generates thumbnails for new photos in `photos-web/`
+- publishes a combined `media-manifest.json`
+- optionally triggers the GitHub Pages deploy workflow after media changes
 
-- Watches image uploads in your main photo area
-- Generates a resized thumbnail automatically
-- Writes the thumbnail to `photos-thumb/...`
-- Deletes the generated thumbnail when the original image is deleted
+That removes the site's dependency on the R2 S3 endpoint during `npm run build` and `npm run sync:media`.
 
-## Default behavior
+## Buckets
 
-- Source bucket: same bucket you already use for photos and videos
-- Source prefix: all image objects in the bucket, unless you set `THUMB_SOURCE_PREFIX`
-- Thumbnail prefix: `photos-thumb/`
-- Output format: `image/webp`
-- Thumbnail size: max `1200x1200`
+Default bindings in [`wrangler.jsonc`](./wrangler.jsonc):
 
-## 1. Edit Wrangler config
+- image bucket: `niazphotography-images`
+- video bucket: `niazphotography-videos`
 
-Open `workers/thumbnail-generator/wrangler.jsonc` and replace:
+The published manifest is written back into the image bucket at:
 
-- `bucket_name`
-- `queue`
+- `media-manifest.json`
+
+With your current public image domain, that becomes:
+
+- `https://images.niazphotography.com/media-manifest.json`
+
+## What happens after upload
+
+1. Upload a photo to `photos-web/...`
+2. Cloudflare sends an R2 event to the queue
+3. The Worker generates `photos-thumb/...`
+4. The Worker rebuilds `media-manifest.json`
+5. If GitHub deploy triggering is configured, the Worker dispatches the `deploy.yml` workflow on `main`
+6. GitHub Pages rebuilds using the latest manifest JSON
+
+Videos follow the same manifest + deploy path, but do not generate thumbnails.
+
+## 1. Check Wrangler config
+
+Open [`wrangler.jsonc`](./wrangler.jsonc) and confirm these values:
+
 - `name`
+- `queues.consumers[0].queue`
+- `r2_buckets`
+- `vars.MEDIA_BUCKET_NAME`
+- `vars.VIDEO_BUCKET_NAME`
+- `vars.GITHUB_REPOSITORY`
 
-Your config is now set for originals under `photos-web/` and generated thumbs under `photos-thumb/`.
-
-If you ever move originals outside `photos-web/`, change:
-
-```json
-"THUMB_SOURCE_PREFIX": "photos-web"
-```
-to:
+Important defaults:
 
 ```json
-"THUMB_SOURCE_PREFIX": ""
+"THUMB_SOURCE_PREFIX": "photos-web",
+"THUMB_DEST_PREFIX": "photos-thumb",
+"VIDEO_SOURCE_PREFIX": "",
+"MEDIA_MANIFEST_OBJECT_KEY": "media-manifest.json",
+"GITHUB_REPOSITORY": "Ni4z/Ahmedclicks",
+"GITHUB_WORKFLOW_FILE": "deploy.yml",
+"GITHUB_DEPLOY_REF": "main"
 ```
 
-## 2. Create the Queue
+If your videos live in a folder inside the video bucket, set:
 
-Fastest option:
+```json
+"VIDEO_SOURCE_PREFIX": "videos"
+```
+
+## 2. Add the GitHub token secret to the Worker
+
+The deploy trigger is optional, but it is what makes the static GitHub Pages site update automatically after upload.
+
+Create a GitHub personal access token that can trigger workflows on this repo, then store it as a Wrangler secret:
+
+```bash
+npx wrangler secret put GITHUB_DEPLOY_TOKEN -c workers/thumbnail-generator/wrangler.jsonc
+```
+
+Minimum practical permission:
+
+- repository actions write access on `Ni4z/Ahmedclicks`
+
+## 3. Create queue + notifications + deploy worker
+
+Fastest path:
 
 ```bash
 npm run thumbs:setup
 ```
 
-That script will try to:
+That script will:
 
 - create the queue
-- deploy the Worker
-- create the object-create notification
-- create the object-delete notification
+- deploy the worker
+- connect image bucket create/delete notifications
+- connect video bucket create/delete notifications
 
-If you want to do it manually instead, use the commands below.
+## 4. Verify the public manifest URL
 
-## 3. Manual Queue Create
+After the worker handles at least one media event, check:
 
-```bash
-npx wrangler queues create niaz-media-events
+```text
+https://images.niazphotography.com/media-manifest.json
 ```
 
-Use the same queue name you set in `wrangler.jsonc`.
+You should see JSON with:
 
-## 4. Manual Worker Deploy
+- `photos`
+- `videos`
+- `generatedAt`
+
+## 5. How the site consumes it
+
+[`scripts/sync-r2-media.mjs`](../../scripts/sync-r2-media.mjs) now fetches the published manifest from your public image domain during:
+
+- `npm run sync:media`
+- `npm run dev`
+- `npm run build`
+
+So the site no longer needs to list objects directly from the R2 S3 endpoint.
+
+## 6. Expected workflow
+
+After setup, your normal process is:
+
+1. Upload original photo to `photos-web/...`
+2. Wait for the queue worker to run
+3. Thumbnail and manifest update automatically
+4. GitHub Pages rebuild starts automatically if `GITHUB_DEPLOY_TOKEN` is configured
+5. The site updates with the new photo
+
+For local development:
 
 ```bash
-npx wrangler deploy -c workers/thumbnail-generator/wrangler.jsonc
+npm run sync:media
+npm run dev
 ```
 
-Note:
+## Notes
 
-- The Worker uses the Cloudflare Images binding to resize uploads.
-- Cloudflare documents Images bindings separately from R2, and each generated thumbnail counts as an image transformation.
-
-## 5. Manual R2 Event Notifications
-
-Create two notification rules on the same bucket:
-
-1. Object create events -> queue
-2. Object delete events -> queue
-
-Using Wrangler:
-
-```bash
-npx wrangler r2 bucket notification create niazphotography-images \
-  --event-type object-create \
-  --queue niaz-media-events
-```
-
-```bash
-npx wrangler r2 bucket notification create niazphotography-images \
-  --event-type object-delete \
-  --queue niaz-media-events
-```
-
-If you only want originals from a specific folder to trigger thumbnails, add a prefix filter in the Cloudflare dashboard or configure `THUMB_SOURCE_PREFIX`.
-
-## 5. Keep the site sync config aligned
-
-Your site sync script already expects thumbnails under `photos-thumb/`. Generated `.webp` thumbnails are now matched automatically against originals like:
-
-- `wildlife/fox.jpg` -> `photos-thumb/wildlife/fox.webp`
-- `photos-web/wildlife/fox.jpg` -> `photos-thumb/wildlife/fox.webp`
-
-## Workflow
-
-After this is deployed:
-
-1. Upload original photo to R2
-2. Cloudflare sends an event to the queue
-3. Worker generates thumbnail in `photos-thumb/...`
-4. Restart `npm run dev` or run `npm run sync:media`
-5. The new image appears in the site with its generated thumbnail
+- The worker ignores generated thumbnail events to avoid manifest loops.
+- The manifest is stored in the image bucket so one public URL can feed the site build.
+- If the GitHub token is not configured, thumbnails and the manifest still update automatically, but GitHub Pages will not rebuild by itself.
