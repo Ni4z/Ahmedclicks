@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
 import crypto from 'node:crypto';
+import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+
+loadLocalEnvFiles();
 
 const emptyPayloadHash = crypto.createHash('sha256').update('').digest('hex');
 
@@ -37,6 +40,48 @@ const videoPrefix =
     ? ''
     : normalizePrefix(process.env.R2_VIDEO_PREFIX);
 const manifestPath = path.join(process.cwd(), 'data', 'mediaManifest.ts');
+
+function loadLocalEnvFiles() {
+  for (const fileName of ['.env.local', '.env']) {
+    const filePath = path.join(process.cwd(), fileName);
+
+    if (!fsSync.existsSync(filePath)) {
+      continue;
+    }
+
+    const source = fsSync.readFileSync(filePath, 'utf8');
+
+    for (const rawLine of source.split(/\r?\n/)) {
+      const line = rawLine.trim();
+
+      if (!line || line.startsWith('#')) {
+        continue;
+      }
+
+      const separatorIndex = line.indexOf('=');
+
+      if (separatorIndex === -1) {
+        continue;
+      }
+
+      const key = line.slice(0, separatorIndex).trim();
+      let value = line.slice(separatorIndex + 1).trim();
+
+      if (!key || process.env[key] !== undefined) {
+        continue;
+      }
+
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+
+      process.env[key] = value;
+    }
+  }
+}
 
 function normalizePrefix(value) {
   const trimmedValue = value.trim().replace(/^\/+|\/+$/g, '');
