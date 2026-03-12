@@ -27,10 +27,10 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
           >
             <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6">About NiazPhotography</h2>
             <p className="text-gray-400 mb-4 leading-relaxed">
-              NiazPhotography is a personal photography archive built around real field work and local image collections. The site now pulls directly from the folders inside the project, so the published gallery stays tied to the actual files in the repository.
+              NiazPhotography is a personal photography archive built around real field work and published media. The site now syncs from a connected Cloudflare R2 archive before development and build, so the gallery stays tied to the files you actually upload.
             </p>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Instead of stock placeholders and template copy, the portfolio is now organized around the categories you&apos;re actively building: wildlife, landscapes, roads, trees, people, and astrophotography.
+              Instead of stock placeholders and template copy, the portfolio is organized around the real collections you&apos;re actively publishing, with photos and videos picked up automatically from the same bucket.
             </p>
             <Link href="/about" className="btn-primary inline-block">
               Read Full Story

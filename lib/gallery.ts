@@ -1,9 +1,13 @@
 import 'server-only';
 
 import path from 'node:path';
-import { photoManifest } from '@/data/photoManifest';
+import { mediaManifest } from '@/data/mediaManifest';
+import {
+  createStableAssetId,
+  type SyncedPhotoAsset,
+  withObjectStorageAssetPath,
+} from '@/lib/media-assets';
 import { Photo, PhotoCategory } from '@/lib/types';
-import { withPhotoAssetPath } from '@/lib/site';
 
 const profileOnlyCategoryKeys = new Set(['me']);
 const unpublishedPhotoPaths = new Set([
@@ -11,10 +15,28 @@ const unpublishedPhotoPaths = new Set([
   'wildlife/DSC04912.jpg',
 ]);
 
+const categoryAliases: Record<string, string> = {
+  astro: 'astrophotography',
+  landscapes: 'landscape',
+  'night-sky': 'astrophotography',
+  nightsky: 'astrophotography',
+  people: 'humans',
+  person: 'humans',
+  portrait: 'humans',
+  portraits: 'humans',
+  road: 'roads',
+  tree: 'trees',
+};
+
 const categoryConfig: Record<
   string,
   { name: string; description: string; order: number }
 > = {
+  archive: {
+    name: 'Archive',
+    description: 'Published photographs collected from the connected media archive.',
+    order: 98,
+  },
   wildlife: {
     name: 'Wildlife',
     description: 'Field encounters, animal movement, and close studies from the wild.',
@@ -53,7 +75,6 @@ const categoryConfig: Record<
 };
 
 type CategoryEntry = {
-  folder: string;
   key: string;
   name: string;
   description: string;
@@ -66,8 +87,9 @@ type GetCategoryEntriesOptions = {
 };
 
 type ManifestPhotoEntry = {
+  objectKey: string;
+  thumbnailObjectKey?: string | null;
   relativePath: string;
-  folder: string;
   fileName: string;
   key: string;
   name: string;
@@ -77,7 +99,12 @@ type ManifestPhotoEntry = {
 };
 
 function normalizeCategoryKey(value: string): string {
-  return value.trim().toLowerCase().replace(/\s+/g, '-');
+  return value.trim().toLowerCase().replace(/[\s_]+/g, '-');
+}
+
+function getCanonicalCategoryKey(value: string): string {
+  const normalizedValue = normalizeCategoryKey(value);
+  return categoryAliases[normalizedValue] || normalizedValue;
 }
 
 function humanizeCategory(value: string): string {
@@ -102,29 +129,69 @@ function createPhotoTitle(
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-function createManifestPhotoEntry(relativePath: string, date: string): ManifestPhotoEntry {
-  const parsedPath = path.posix.parse(relativePath);
-  const folder = parsedPath.dir;
-  const key = normalizeCategoryKey(folder);
+function resolveCategorySegment(relativePath: string): string {
+  const directorySegments = path.posix
+    .dirname(relativePath)
+    .split('/')
+    .filter((segment) => Boolean(segment) && segment !== '.');
+
+  for (const segment of directorySegments) {
+    const categoryKey = getCanonicalCategoryKey(segment);
+
+    if (categoryConfig[categoryKey] || profileOnlyCategoryKeys.has(categoryKey)) {
+      return segment;
+    }
+  }
+
+  return directorySegments[directorySegments.length - 1] || 'archive';
+}
+
+function getSortableTimestamp(value: string): number {
+  const timestamp = new Date(value).getTime();
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
+function createManifestPhotoEntry(entry: SyncedPhotoAsset): ManifestPhotoEntry {
+  const relativePath = entry.relativePath.replace(/^\/+/, '').replace(/\\/g, '/');
+  const categorySegment = resolveCategorySegment(relativePath);
+  const key = getCanonicalCategoryKey(categorySegment);
   const config = categoryConfig[key];
 
   return {
+    objectKey: entry.objectKey,
+    thumbnailObjectKey: entry.thumbnailObjectKey,
     relativePath,
-    folder,
-    fileName: parsedPath.base,
+    fileName: path.posix.basename(relativePath),
     key,
-    name: config?.name || humanizeCategory(folder),
+    name: config?.name || humanizeCategory(categorySegment),
     description:
       config?.description ||
-      `${humanizeCategory(folder)} collected in the NiazPhotography archive.`,
+      `${humanizeCategory(categorySegment)} collected in the NiazPhotography archive.`,
     order: config?.order ?? 99,
-    date,
+    date: entry.date,
   };
 }
 
-const manifestEntries = photoManifest
+const manifestEntries = mediaManifest.photos
   .filter((entry) => !unpublishedPhotoPaths.has(entry.relativePath))
-  .map((entry) => createManifestPhotoEntry(entry.relativePath, entry.date));
+  .map((entry) => createManifestPhotoEntry(entry));
+
+function comparePhotoEntries(
+  first: ManifestPhotoEntry,
+  second: ManifestPhotoEntry
+): number {
+  const firstDate = getSortableTimestamp(first.date);
+  const secondDate = getSortableTimestamp(second.date);
+
+  if (firstDate !== secondDate) {
+    return secondDate - firstDate;
+  }
+
+  return first.relativePath.localeCompare(second.relativePath, undefined, {
+    numeric: true,
+    sensitivity: 'base',
+  });
+}
 
 function createPhotoRecord(
   category: CategoryEntry,
@@ -132,16 +199,16 @@ function createPhotoRecord(
   index: number
 ): Photo {
   return {
-    id: `${category.key}-${String(index + 1).padStart(2, '0')}`,
+    id: createStableAssetId(file.relativePath, 'photo'),
     title: createPhotoTitle(category.name, file.fileName, index),
     category: category.name,
     categoryKey: category.key,
-    image: withPhotoAssetPath(`/photos/${category.folder}/${file.fileName}`),
-    thumbnail: withPhotoAssetPath(
-      `/photos/${category.folder}/${file.fileName}`,
-      'thumbnail'
+    image: withObjectStorageAssetPath(file.objectKey, 'image'),
+    thumbnail: withObjectStorageAssetPath(
+      file.thumbnailObjectKey || file.objectKey,
+      'image'
     ),
-    description: `${category.description} File: ${file.fileName}.`,
+    description: `${category.description} File: ${file.relativePath}.`,
     featured: index === 0,
     date: file.date,
   };
@@ -160,7 +227,6 @@ function getCategoryEntries(
 
     if (!groupedEntries.has(entry.key)) {
       groupedEntries.set(entry.key, {
-        folder: entry.folder,
         key: entry.key,
         name: entry.name,
         description: entry.description,
@@ -175,12 +241,7 @@ function getCategoryEntries(
   return Array.from(groupedEntries.values())
     .map((entry) => ({
       ...entry,
-      files: entry.files.sort((first, second) =>
-        first.fileName.localeCompare(second.fileName, undefined, {
-          numeric: true,
-          sensitivity: 'base',
-        })
-      ),
+      files: entry.files.sort(comparePhotoEntries),
     }))
     .filter((entry) => entry.files.length > 0)
     .sort((first, second) => {
@@ -208,9 +269,9 @@ export function getPhotoCategories(): PhotoCategory[] {
     name: category.name,
     description: category.description,
     count: category.files.length,
-    coverImage: withPhotoAssetPath(
-      `/photos/${category.folder}/${category.files[0].fileName}`,
-      'thumbnail'
+    coverImage: withObjectStorageAssetPath(
+      category.files[0].thumbnailObjectKey || category.files[0].objectKey,
+      'image'
     ),
   }));
 }
@@ -226,7 +287,7 @@ export function getRecentPhotos(limit = 6): Photo[] {
     .slice()
     .sort(
       (first, second) =>
-        new Date(second.date).getTime() - new Date(first.date).getTime()
+        getSortableTimestamp(second.date) - getSortableTimestamp(first.date)
     )
     .slice(0, limit);
 }

@@ -2,9 +2,14 @@ import 'server-only';
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { mediaManifest } from '@/data/mediaManifest';
+import {
+  createMediaTitle,
+  createStableAssetId,
+  withObjectStorageAssetPath,
+} from '@/lib/media-assets';
 import { Video } from '@/lib/types';
 import { siteConfig, withBasePath } from '@/lib/site';
-import { videoEntries } from '@/data/videos';
 
 const videosRoot = path.join(process.cwd(), 'public', 'videos');
 const supportedVideoExtensions = new Map<string, string>([
@@ -25,81 +30,92 @@ function encodeVideoFileName(fileName: string): string {
     .join('/');
 }
 
-function createVideoTitle(fileName: string): string {
-  const rawName = path.parse(fileName).name;
+function normalizeVideoDate(date: string): string {
+  const parsedDate = new Date(date);
 
-  return rawName
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+  if (Number.isNaN(parsedDate.getTime())) {
+    return new Date(0).toISOString().slice(0, 10);
+  }
+
+  return parsedDate.toISOString().slice(0, 10);
 }
 
-function createVideoId(fileName: string): string {
-  return path
-    .parse(fileName)
-    .name
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+function getSortableTimestamp(value: string): number {
+  const timestamp = new Date(value).getTime();
+  return Number.isNaN(timestamp) ? 0 : timestamp;
 }
 
-function createVideoRecord(fileName: string, index: number): Video {
+function compareVideoDates(first: { date: string }, second: { date: string }): number {
+  return getSortableTimestamp(second.date) - getSortableTimestamp(first.date);
+}
+
+function walkVideoDirectory(directory: string, relativePrefix = ''): string[] {
+  if (!fs.existsSync(directory)) {
+    return [];
+  }
+
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const relativePath = relativePrefix
+      ? `${relativePrefix}/${entry.name}`
+      : entry.name;
+    const fullPath = path.join(directory, entry.name);
+
+    if (entry.isDirectory()) {
+      return walkVideoDirectory(fullPath, relativePath);
+    }
+
+    return isVideoFile(entry.name) ? [relativePath] : [];
+  });
+}
+
+function createLocalVideoRecord(fileName: string, index: number): Video {
   const filePath = path.join(videosRoot, fileName);
   const extension = path.extname(fileName).toLowerCase();
-  const modifiedAt = fs.statSync(filePath).mtime.toISOString().slice(0, 10);
+  const modifiedAt = fs.statSync(filePath).mtime.toISOString();
 
   return {
-    id: createVideoId(fileName) || `video-${index + 1}`,
-    title: createVideoTitle(fileName),
+    id: createStableAssetId(fileName, 'video'),
+    title: createMediaTitle(fileName),
     src: withBasePath(`/videos/${encodeVideoFileName(fileName)}`),
-    description: `Motion work published from the local videos folder. File: ${fileName}.`,
+    description: `Motion work published from the local video archive. File: ${fileName}.`,
     fileName,
     mimeType: supportedVideoExtensions.get(extension) || 'video/mp4',
     featured: index < 2,
-    date: modifiedAt,
+    date: normalizeVideoDate(modifiedAt),
   };
 }
 
 function createRemoteVideoRecord(
-  entry: (typeof videoEntries)[number],
+  entry: (typeof mediaManifest.videos)[number],
   index: number
 ): Video {
-  const extension = path.extname(entry.fileName).toLowerCase();
+  const extension = path.extname(entry.relativePath).toLowerCase();
 
   return {
-    id: entry.id || createVideoId(entry.fileName) || `video-${index + 1}`,
-    title: entry.title || createVideoTitle(entry.fileName),
-    src: new URL(
-      encodeVideoFileName(entry.fileName),
-      `${siteConfig.videoBaseUrl}/`
-    ).toString(),
-    description:
-      entry.description ||
-      `Motion work published from the configured R2 video archive. File: ${entry.fileName}.`,
-    fileName: entry.fileName,
+    id: createStableAssetId(entry.relativePath, 'video'),
+    title: createMediaTitle(entry.relativePath),
+    src: withObjectStorageAssetPath(entry.objectKey, 'video'),
+    description: `Motion work published from the connected R2 archive. File: ${entry.relativePath}.`,
+    fileName: entry.relativePath,
     mimeType: supportedVideoExtensions.get(extension) || 'video/mp4',
-    featured: entry.featured ?? index < 2,
-    date: new Date().toISOString().slice(0, 10),
+    featured: index < 2,
+    date: normalizeVideoDate(entry.date),
   };
 }
 
 function getRemoteVideos(): Video[] {
-  if (!siteConfig.videoBaseUrl) {
+  if (!siteConfig.videoBaseUrl || mediaManifest.videos.length === 0) {
     return [];
   }
 
-  return videoEntries.map((entry, index) => createRemoteVideoRecord(entry, index));
+  return mediaManifest.videos
+    .slice()
+    .sort(compareVideoDates)
+    .map((entry, index) => createRemoteVideoRecord(entry, index));
 }
 
 function getLocalVideos(): Video[] {
-  if (!fs.existsSync(videosRoot)) {
-    return [];
-  }
-
-  return fs
-    .readdirSync(videosRoot, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && isVideoFile(entry.name))
-    .map((entry) => entry.name)
+  return walkVideoDirectory(videosRoot)
     .sort((first, second) => {
       const firstStat = fs.statSync(path.join(videosRoot, first));
       const secondStat = fs.statSync(path.join(videosRoot, second));
@@ -110,7 +126,7 @@ function getLocalVideos(): Video[] {
 
       return first.localeCompare(second, undefined, { numeric: true });
     })
-    .map((fileName, index) => createVideoRecord(fileName, index));
+    .map((fileName, index) => createLocalVideoRecord(fileName, index));
 }
 
 export function getVideos(): Video[] {
