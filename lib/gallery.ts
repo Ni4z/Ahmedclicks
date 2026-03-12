@@ -18,7 +18,7 @@ const unpublishedPhotoPaths = new Set([
 const categoryAliases: Record<string, string> = {
   astro: 'astrophotography',
   landscapes: 'landscape',
-  night-sky: 'astrophotography',
+  'night-sky': 'astrophotography',
   nightsky: 'astrophotography',
   people: 'humans',
   person: 'humans',
