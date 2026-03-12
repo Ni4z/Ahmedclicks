@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
 import crypto from 'node:crypto';
+import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+
+loadLocalEnvFiles();
 
 const emptyPayloadHash = crypto.createHash('sha256').update('').digest('hex');
 
@@ -37,10 +40,74 @@ const videoPrefix =
     ? ''
     : normalizePrefix(process.env.R2_VIDEO_PREFIX);
 const manifestPath = path.join(process.cwd(), 'data', 'mediaManifest.ts');
+const manifestObjectKey = normalizeRelativeKey(
+  process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
+);
+const publicImageBaseUrl = (
+  process.env.NEXT_PUBLIC_IMAGE_BASE_URL?.trim() ||
+  process.env.NEXT_PUBLIC_MEDIA_BASE_URL?.trim() ||
+  ''
+).replace(/\/+$/, '');
+const publishedManifestUrl = (
+  process.env.MEDIA_MANIFEST_URL?.trim() ||
+  process.env.NEXT_PUBLIC_MEDIA_MANIFEST_URL?.trim() ||
+  (publicImageBaseUrl
+    ? `${publicImageBaseUrl}/${encodeObjectKeyForUrl(manifestObjectKey)}`
+    : '')
+).trim();
+
+function loadLocalEnvFiles() {
+  for (const fileName of ['.env.local', '.env']) {
+    const filePath = path.join(process.cwd(), fileName);
+
+    if (!fsSync.existsSync(filePath)) {
+      continue;
+    }
+
+    const source = fsSync.readFileSync(filePath, 'utf8');
+
+    for (const rawLine of source.split(/\r?\n/)) {
+      const line = rawLine.trim();
+
+      if (!line || line.startsWith('#')) {
+        continue;
+      }
+
+      const separatorIndex = line.indexOf('=');
+
+      if (separatorIndex === -1) {
+        continue;
+      }
+
+      const key = line.slice(0, separatorIndex).trim();
+      let value = line.slice(separatorIndex + 1).trim();
+
+      if (!key || process.env[key] !== undefined) {
+        continue;
+      }
+
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+
+      process.env[key] = value;
+    }
+  }
+}
 
 function normalizePrefix(value) {
   const trimmedValue = value.trim().replace(/^\/+|\/+$/g, '');
   return trimmedValue ? `${trimmedValue}/` : '';
+}
+
+function encodeObjectKeyForUrl(objectKey) {
+  return normalizeRelativeKey(objectKey)
+    .split('/')
+    .map((segment) => encodeURIComponent(segment))
+    .join('/');
 }
 
 function encodeRfc3986(value) {
@@ -355,7 +422,73 @@ function renderManifest(manifest) {
   ].join('\n');
 }
 
+function isManifestEntry(entry) {
+  return (
+    entry &&
+    typeof entry === 'object' &&
+    typeof entry.objectKey === 'string' &&
+    typeof entry.relativePath === 'string' &&
+    typeof entry.date === 'string'
+  );
+}
+
+function validateManifest(manifest) {
+  if (!(manifest && typeof manifest === 'object')) {
+    throw new Error('Published media manifest response was not an object.');
+  }
+
+  if (!Array.isArray(manifest.photos) || !manifest.photos.every(isManifestEntry)) {
+    throw new Error('Published media manifest photos payload was invalid.');
+  }
+
+  if (!Array.isArray(manifest.videos) || !manifest.videos.every(isManifestEntry)) {
+    throw new Error('Published media manifest videos payload was invalid.');
+  }
+
+  return {
+    generatedAt:
+      typeof manifest.generatedAt === 'string'
+        ? manifest.generatedAt
+        : new Date().toISOString(),
+    source: 'r2',
+    photos: manifest.photos,
+    videos: manifest.videos,
+  };
+}
+
+async function fetchPublishedManifest() {
+  if (!publishedManifestUrl) {
+    return null;
+  }
+
+  const response = await fetch(publishedManifestUrl, {
+    headers: {
+      accept: 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Published media manifest request failed with ${response.status} ${response.statusText}`
+    );
+  }
+
+  return validateManifest(await response.json());
+}
+
 async function main() {
+  if (publishedManifestUrl) {
+    const manifest = await fetchPublishedManifest();
+
+    if (manifest) {
+      await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
+      console.log(
+        `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl}.`
+      );
+      return;
+    }
+  }
+
   const hasAnyR2Config = [
     bucketName,
     accountId,
@@ -398,6 +531,10 @@ async function main() {
   );
 }
 
+function hasExistingManifest() {
+  return fsSync.existsSync(manifestPath);
+}
+
 main().catch((error) => {
   const message = error instanceof Error ? error.message : String(error);
   const cause =
@@ -407,6 +544,14 @@ main().catch((error) => {
     error.cause instanceof Error
       ? ` Cause: ${error.cause.message}`
       : '';
+
+  if (hasExistingManifest()) {
+    console.warn(
+      `[sync:media] ${message}${cause} Falling back to the existing media manifest.`
+    );
+    process.exit(0);
+  }
+
   console.error(`[sync:media] ${message}${cause}`);
   process.exit(1);
 });
