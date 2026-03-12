@@ -4,6 +4,12 @@
   "description": "Photography portfolio website for NiazPhotography",
   "private": true,
   "scripts": {
+    "predev": "node scripts/sync-r2-media.mjs",
+    "prebuild": "node scripts/sync-r2-media.mjs",
+    "sync:media": "node scripts/sync-r2-media.mjs",
+    "thumbs:setup": "bash scripts/setup-thumbnail-worker.sh",
+    "thumbs:deploy": "npx wrangler deploy -c workers/thumbnail-generator/wrangler.jsonc",
+    "thumbs:dev": "npx wrangler dev -c workers/thumbnail-generator/wrangler.jsonc",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "niazphotography-thumbnail-generator",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-03-12",
+  "workers_dev": false,
+  "queues": {
+    "consumers": [
+      {
+        "queue": "niaz-media-events"
+      }
+    ]
+  },
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_BUCKET",
+      "bucket_name": "niazphotography-images"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
+  "vars": {
+    "THUMB_SOURCE_PREFIX": "photos-web",
+    "THUMB_DEST_PREFIX": "photos-thumb",
+    "THUMB_OUTPUT_FORMAT": "image/webp",
+    "THUMB_MAX_WIDTH": "1200",
+    "THUMB_MAX_HEIGHT": "1200",
+    "THUMB_QUALITY": "82",
+    "THUMB_CACHE_MAX_AGE": "31536000"
+  }
+}
