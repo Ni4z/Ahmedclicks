@@ -20,8 +20,17 @@ jobs:
     env:
       NEXT_PUBLIC_SITE_URL: https://niazphotography.com
       SITE_URL: https://niazphotography.com
+      NEXT_PUBLIC_MEDIA_BASE_URL: ${{ vars.NEXT_PUBLIC_MEDIA_BASE_URL }}
       NEXT_PUBLIC_IMAGE_BASE_URL: ${{ vars.NEXT_PUBLIC_IMAGE_BASE_URL }}
       NEXT_PUBLIC_VIDEO_BASE_URL: ${{ vars.NEXT_PUBLIC_VIDEO_BASE_URL }}
+      R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+      R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+      R2_ENDPOINT: ${{ vars.R2_ENDPOINT }}
+      R2_PHOTO_PREFIX: ${{ vars.R2_PHOTO_PREFIX }}
+      R2_PHOTO_THUMB_PREFIX: ${{ vars.R2_PHOTO_THUMB_PREFIX }}
+      R2_VIDEO_PREFIX: ${{ vars.R2_VIDEO_PREFIX }}
+      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
