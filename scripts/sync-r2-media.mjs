@@ -400,6 +400,13 @@ async function main() {
 
 main().catch((error) => {
   const message = error instanceof Error ? error.message : String(error);
-  console.error(`[sync:media] ${message}`);
+  const cause =
+    error &&
+    typeof error === 'object' &&
+    'cause' in error &&
+    error.cause instanceof Error
+      ? ` Cause: ${error.cause.message}`
+      : '';
+  console.error(`[sync:media] ${message}${cause}`);
   process.exit(1);
 });
