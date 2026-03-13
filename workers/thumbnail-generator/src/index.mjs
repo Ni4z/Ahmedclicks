@@ -79,10 +79,6 @@ function shouldHandleImage(objectKey, sourcePrefix, thumbPrefix) {
     return false;
   }
 
-  if (sourcePrefix && !normalizedKey.startsWith(sourcePrefix)) {
-    return false;
-  }
-
   return true;
 }
 
@@ -176,7 +172,6 @@ async function listBucketObjects(bucket) {
 function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
   const configuredPhotoPrefix = env.THUMB_SOURCE_PREFIX;
   const photoPrefix = normalizePrefix(configuredPhotoPrefix ?? 'photos-web');
-  const restrictPhotosToPrefix = configuredPhotoPrefix !== undefined;
   const photoThumbPrefix = normalizePrefix(
     env.THUMB_DEST_PREFIX || 'photos-thumb'
   );
@@ -198,10 +193,7 @@ function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
   const photoCandidates = objects.filter(
     (object) =>
       isSupportedImage(object.key) &&
-      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
-      (!restrictPhotosToPrefix ||
-        !photoPrefix ||
-        object.key.startsWith(photoPrefix))
+      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix))
   );
 
   return {
