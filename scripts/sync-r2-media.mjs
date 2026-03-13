@@ -653,6 +653,12 @@ main().catch((error) => {
     process.exit(0);
   }
 
+  if (hasExistingManifest()) {
+    console.error(
+      `[sync:media] Existing media manifest fallback is disabled${expectedPublishedGeneratedAt ? ` (expected generatedAt >= ${expectedPublishedGeneratedAt})` : ''}.`
+    );
+  }
+
   console.error(`[sync:media] ${message}`);
   process.exit(1);
 });
