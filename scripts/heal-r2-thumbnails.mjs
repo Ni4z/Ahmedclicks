@@ -56,6 +56,14 @@ const publishedManifestUrl = (
     ? `${publicImageBaseUrl}/${encodeObjectKeyForUrl(manifestObjectKey)}`
     : '')
 ).trim();
+const requestRetryCount = normalizePositiveInteger(
+  process.env.THUMBS_HEAL_REQUEST_RETRY_COUNT,
+  3
+);
+const requestRetryDelayMs = normalizePositiveInteger(
+  process.env.THUMBS_HEAL_REQUEST_RETRY_DELAY_MS,
+  1000
+);
 
 function loadLocalEnvFiles() {
   for (const fileName of ['.env.local', '.env']) {
@@ -111,6 +119,13 @@ function normalizeRelativeKey(objectKey) {
 function normalizeFormat(value) {
   const normalizedValue = value.trim().toLowerCase();
   return formatToExtension[normalizedValue] ? normalizedValue : 'image/webp';
+}
+
+function normalizePositiveInteger(value, fallback) {
+  const parsedValue = Number.parseInt(String(value || ''), 10);
+  return Number.isFinite(parsedValue) && parsedValue > 0
+    ? parsedValue
+    : fallback;
 }
 
 function encodeObjectKeyForUrl(objectKey) {
@@ -237,13 +252,65 @@ function formatErrorMessage(error) {
   return String(error);
 }
 
+function createError(message, options = {}) {
+  const error = options.cause
+    ? new Error(message, { cause: options.cause })
+    : new Error(message);
+
+  if (options.retryable !== undefined) {
+    error.retryable = options.retryable;
+  }
+
+  return error;
+}
+
+function isRetryableStatus(status) {
+  return status === 408 || status === 425 || status === 429 || status >= 500;
+}
+
+function isRetryableError(error) {
+  return Boolean(
+    error &&
+      typeof error === 'object' &&
+      'retryable' in error &&
+      error.retryable === true
+  );
+}
+
+function sleep(delayMs) {
+  return new Promise((resolve) => setTimeout(resolve, delayMs));
+}
+
+async function withRetries(runRequest, description) {
+  for (let attempt = 1; attempt <= requestRetryCount; attempt += 1) {
+    try {
+      return await runRequest();
+    } catch (error) {
+      if (!isRetryableError(error) || attempt >= requestRetryCount) {
+        throw error;
+      }
+
+      const delayMs = requestRetryDelayMs * attempt;
+      console.warn(
+        `[thumbs:heal] ${description} failed on attempt ${attempt}/${requestRetryCount}: ${formatErrorMessage(error)} Retrying in ${delayMs}ms.`
+      );
+      await sleep(delayMs);
+    }
+  }
+
+  throw createError(`${description} failed after ${requestRetryCount} attempts.`);
+}
+
 async function fetchWithContext(url, options, description) {
   try {
     return await fetch(url, options);
   } catch (error) {
-    throw new Error(
+    throw createError(
       `${description} request failed for ${url instanceof URL ? url.toString() : String(url)}.`,
-      { cause: error instanceof Error ? error : undefined }
+      {
+        cause: error instanceof Error ? error : undefined,
+        retryable: true,
+      }
     );
   }
 }
@@ -357,26 +424,30 @@ function createObjectUrl(objectKey) {
 
 async function requestSignedObject(objectKey, options = {}) {
   const { method = 'GET', body = null, contentType = '', cacheControl = '' } = options;
-  const requestUrl = createObjectUrl(objectKey);
-  const response = await fetchWithContext(requestUrl, {
-    method,
-    headers: signRequest(requestUrl, {
+
+  return withRetries(async () => {
+    const requestUrl = createObjectUrl(objectKey);
+    const response = await fetchWithContext(requestUrl, {
       method,
-      body,
-      contentType,
-      cacheControl,
-    }).headers,
-    ...(body ? { body } : {}),
-  }, `R2 ${method}`);
+      headers: signRequest(requestUrl, {
+        method,
+        body,
+        contentType,
+        cacheControl,
+      }).headers,
+      ...(body ? { body } : {}),
+    }, `R2 ${method}`);
 
-  if (!response.ok) {
-    const responseText = await response.text();
-    throw new Error(
-      `R2 ${method} ${objectKey} failed with ${response.status} ${response.statusText}: ${responseText}`
-    );
-  }
+    if (!response.ok) {
+      const responseText = await response.text();
+      throw createError(
+        `R2 ${method} ${objectKey} failed with ${response.status} ${response.statusText}: ${responseText}`,
+        { retryable: isRetryableStatus(response.status) }
+      );
+    }
 
-  return response;
+    return response;
+  }, `R2 ${method} ${objectKey}`);
 }
 
 async function listBucketObjects() {
@@ -392,17 +463,22 @@ async function listBucketObjects() {
       requestUrl.searchParams.set('continuation-token', continuationToken);
     }
 
-    const response = await fetchWithContext(requestUrl, {
-      headers: signRequest(requestUrl).headers,
-      method: 'GET',
-    }, 'R2 bucket listing');
+    const response = await withRetries(async () => {
+      const listingResponse = await fetchWithContext(requestUrl, {
+        headers: signRequest(requestUrl).headers,
+        method: 'GET',
+      }, 'R2 bucket listing');
 
-    if (!response.ok) {
-      const responseText = await response.text();
-      throw new Error(
-        `R2 object listing failed with ${response.status} ${response.statusText}: ${responseText}`
-      );
-    }
+      if (!listingResponse.ok) {
+        const responseText = await listingResponse.text();
+        throw createError(
+          `R2 object listing failed with ${listingResponse.status} ${listingResponse.statusText}: ${responseText}`,
+          { retryable: isRetryableStatus(listingResponse.status) }
+        );
+      }
+
+      return listingResponse;
+    }, 'R2 bucket listing');
 
     const payload = parseListBucketXml(await response.text());
     collectedItems.push(...payload.items);
@@ -416,38 +492,41 @@ async function listBucketObjects() {
 
 async function fetchPublishedManifest() {
   if (!publishedManifestUrl) {
-    throw new Error(
+    throw createError(
       'Published manifest URL is not configured. Set MEDIA_MANIFEST_URL, NEXT_PUBLIC_MEDIA_MANIFEST_URL, or NEXT_PUBLIC_IMAGE_BASE_URL.'
     );
   }
 
-  const requestUrl = new URL(publishedManifestUrl);
-  requestUrl.searchParams.set('_ts', Date.now().toString());
+  return withRetries(async () => {
+    const requestUrl = new URL(publishedManifestUrl);
+    requestUrl.searchParams.set('_ts', Date.now().toString());
 
-  const response = await fetchWithContext(requestUrl, {
-    cache: 'no-store',
-    headers: {
-      accept: 'application/json',
-    },
+    const response = await fetchWithContext(requestUrl, {
+      cache: 'no-store',
+      headers: {
+        accept: 'application/json',
+      },
+    }, 'Published manifest');
+
+    if (!response.ok) {
+      throw createError(
+        `Published media manifest request failed with ${response.status} ${response.statusText}.`,
+        { retryable: isRetryableStatus(response.status) }
+      );
+    }
+
+    const manifest = await response.json();
+
+    if (
+      !(manifest && typeof manifest === 'object') ||
+      !Array.isArray(manifest.photos) ||
+      !Array.isArray(manifest.videos)
+    ) {
+      throw createError('Published media manifest payload was invalid.');
+    }
+
+    return manifest;
   }, 'Published manifest');
-
-  if (!response.ok) {
-    throw new Error(
-      `Published media manifest request failed with ${response.status} ${response.statusText}.`
-    );
-  }
-
-  const manifest = await response.json();
-
-  if (
-    !(manifest && typeof manifest === 'object') ||
-    !Array.isArray(manifest.photos) ||
-    !Array.isArray(manifest.videos)
-  ) {
-    throw new Error('Published media manifest payload was invalid.');
-  }
-
-  return manifest;
 }
 
 async function publishManifest(manifest) {
@@ -523,6 +602,10 @@ function hasRequiredConfig() {
       secretAccessKey &&
       publishedManifestUrl
   );
+}
+
+function shouldFailOnError() {
+  return process.env.GITHUB_ACTIONS !== 'true' || process.env.THUMBS_HEAL_STRICT === '1';
 }
 
 async function main() {
@@ -602,6 +685,14 @@ async function main() {
 
 main().catch((error) => {
   const message = formatErrorMessage(error);
+
+  if (!shouldFailOnError()) {
+    console.warn(
+      `[thumbs:heal] ${message} Skipping automatic thumbnail healing for this build.`
+    );
+    process.exit(0);
+  }
+
   console.error(`[thumbs:heal] ${message}`);
   process.exit(1);
 });
