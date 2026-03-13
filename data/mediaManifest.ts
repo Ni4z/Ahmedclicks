@@ -1,9 +1,21 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-13T01:54:52.429Z",
+  "generatedAt": "2026-03-13T03:52:34.109Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Raven.jpg",
+      "relativePath": "wildlife/Raven.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Raven.webp",
+      "date": "2026-03-13T03:52:25.740Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Kite.jpg",
+      "relativePath": "wildlife/Kite.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Kite.webp",
+      "date": "2026-03-13T03:17:39.048Z"
+    },
     {
       "objectKey": "photos-web/Trees/DSC08391.jpg",
       "relativePath": "Trees/DSC08391.jpg",
