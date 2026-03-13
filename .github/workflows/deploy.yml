@@ -5,6 +5,11 @@ on:
     branches: [ main ]
   pull_request:
   workflow_dispatch:
+    inputs:
+      manifest_generated_at:
+        description: Manifest generatedAt published by the media worker
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -26,6 +31,9 @@ jobs:
       NEXT_PUBLIC_VIDEO_BASE_URL: ${{ vars.NEXT_PUBLIC_VIDEO_BASE_URL }}
       NEXT_PUBLIC_MEDIA_MANIFEST_URL: ${{ vars.NEXT_PUBLIC_MEDIA_MANIFEST_URL || vars.MEDIA_MANIFEST_URL || 'https://images.niazphotography.com/media-manifest.json' }}
       MEDIA_MANIFEST_URL: ${{ vars.MEDIA_MANIFEST_URL || vars.NEXT_PUBLIC_MEDIA_MANIFEST_URL || 'https://images.niazphotography.com/media-manifest.json' }}
+      MEDIA_MANIFEST_EXPECTED_GENERATED_AT: ${{ github.event.inputs.manifest_generated_at }}
+      MEDIA_MANIFEST_EXPECTED_WAIT_TIMEOUT_MS: '90000'
+      MEDIA_MANIFEST_EXPECTED_WAIT_POLL_MS: '1000'
       PUBLIC_IMAGE_BASE_URL: ${{ vars.PUBLIC_IMAGE_BASE_URL || vars.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://images.niazphotography.com' }}
       MEDIA_MANIFEST_OBJECT_KEY: ${{ vars.MEDIA_MANIFEST_OBJECT_KEY }}
       R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
