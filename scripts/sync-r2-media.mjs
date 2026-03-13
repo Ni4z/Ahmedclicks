@@ -636,6 +636,10 @@ function shouldAllowExistingManifestFallback() {
     return false;
   }
 
+  if (!expectedPublishedGeneratedAt) {
+    return true;
+  }
+
   return process.env.GITHUB_ACTIONS !== 'true';
 }
 
