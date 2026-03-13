@@ -100,6 +100,11 @@ function getRelativeStem(objectKey) {
     : normalizedKey;
 }
 
+function getPhotoRelativeStem(objectKey, env) {
+  const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
+  return getRelativeStem(stripPrefix(normalizePath(objectKey), sourcePrefix));
+}
+
 function compareByDateDescending(first, second) {
   const firstDate = Number.isNaN(new Date(first.date).getTime())
     ? 0
@@ -168,7 +173,7 @@ async function listBucketObjects(bucket) {
   return objects;
 }
 
-function buildPhotoAssets(objects, env) {
+function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
   const configuredPhotoPrefix = env.THUMB_SOURCE_PREFIX;
   const photoPrefix = normalizePrefix(configuredPhotoPrefix ?? 'photos-web');
   const restrictPhotosToPrefix = configuredPhotoPrefix !== undefined;
@@ -208,7 +213,9 @@ function buildPhotoAssets(objects, env) {
         return {
           objectKey: object.key,
           relativePath,
-          thumbnailObjectKey: thumbnailLookup.get(thumbLookupKey) || null,
+          thumbnailObjectKey: thumbnailOverrides.has(thumbLookupKey)
+            ? thumbnailOverrides.get(thumbLookupKey)
+            : thumbnailLookup.get(thumbLookupKey) || null,
           date: object.lastModified,
         };
       })
@@ -240,9 +247,14 @@ function buildVideoAssets(objects, excludedKeys, env) {
     .sort(compareByDateDescending);
 }
 
-async function publishMediaManifest(env) {
+async function publishMediaManifest(env, options = {}) {
+  const { thumbnailOverrides = new Map() } = options;
   const imageObjects = await listBucketObjects(env.MEDIA_BUCKET);
-  const { photos, thumbnailKeys } = buildPhotoAssets(imageObjects, env);
+  const { photos, thumbnailKeys } = buildPhotoAssets(
+    imageObjects,
+    env,
+    thumbnailOverrides
+  );
   const manifestObjectKey = getManifestObjectKey(env);
   const mediaBucketName = getMediaBucketName(env);
   const videoBucketName = getVideoBucketName(env);
@@ -480,6 +492,7 @@ export default {
     const processedMessages = [];
     let shouldRefreshManifest = false;
     let shouldTriggerDeploy = false;
+    const thumbnailOverrides = new Map();
 
     for (const message of batch.messages) {
       const payload = message.body;
@@ -499,12 +512,17 @@ export default {
 
           if (deletedThumbnailKey) {
             console.log(`Deleted thumbnail ${deletedThumbnailKey}`);
+            thumbnailOverrides.set(getPhotoRelativeStem(objectKey, env), null);
           }
         } else if (isCreateEvent(eventType) || !eventType) {
           const thumbnailKey = await generateThumbnail(objectKey, env);
 
           if (thumbnailKey) {
             console.log(`Generated thumbnail ${thumbnailKey}`);
+            thumbnailOverrides.set(
+              getPhotoRelativeStem(objectKey, env),
+              thumbnailKey
+            );
           }
         } else {
           console.log(`Skipping unsupported event "${eventType}" for ${objectKey}`);
@@ -526,7 +544,9 @@ export default {
 
     if (shouldRefreshManifest) {
       try {
-        const manifest = await publishMediaManifest(env);
+        const manifest = await publishMediaManifest(env, {
+          thumbnailOverrides,
+        });
         console.log(
           `Published media manifest with ${manifest.photos.length} photos and ${manifest.videos.length} videos`
         );

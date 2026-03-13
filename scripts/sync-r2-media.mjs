@@ -461,7 +461,11 @@ async function fetchPublishedManifest() {
     return null;
   }
 
-  const response = await fetch(publishedManifestUrl, {
+  const requestUrl = new URL(publishedManifestUrl);
+  requestUrl.searchParams.set('_ts', Date.now().toString());
+
+  const response = await fetch(requestUrl, {
+    cache: 'no-store',
     headers: {
       accept: 'application/json',
     },
@@ -483,7 +487,7 @@ async function main() {
     if (manifest) {
       await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
       console.log(
-        `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl}.`
+        `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl} (generated ${manifest.generatedAt}).`
       );
       return;
     }
