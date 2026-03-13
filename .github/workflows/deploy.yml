@@ -51,8 +51,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Heal missing thumbnails
+        run: npm run thumbs:heal
+
+      - name: Sync media manifest
+        run: npm run sync:media
+
       - name: Build
-        run: npm run build
+        run: npx next build
 
       - name: Preserve Next.js assets for Pages
         run: touch out/.nojekyll
