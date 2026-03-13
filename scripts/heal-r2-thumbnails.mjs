@@ -8,6 +8,14 @@ import sharp from 'sharp';
 loadLocalEnvFiles();
 
 const emptyPayloadHash = crypto.createHash('sha256').update('').digest('hex');
+const imageExtensions = new Set([
+  '.avif',
+  '.gif',
+  '.jpeg',
+  '.jpg',
+  '.png',
+  '.webp',
+]);
 const formatToExtension = {
   'image/avif': '.avif',
   'image/jpeg': '.jpg',
@@ -413,9 +421,121 @@ function replaceExtension(filePath, extension) {
   return `${normalizedPath.slice(0, extensionIndex)}${extension}`;
 }
 
+function pathExtension(filePath) {
+  const normalizedPath = normalizeRelativeKey(filePath);
+  const extensionIndex = normalizedPath.lastIndexOf('.');
+  const lastSlashIndex = normalizedPath.lastIndexOf('/');
+
+  if (extensionIndex <= lastSlashIndex) {
+    return '';
+  }
+
+  return normalizedPath.slice(extensionIndex).toLowerCase();
+}
+
+function isSupportedImage(objectKey) {
+  return imageExtensions.has(pathExtension(objectKey));
+}
+
+function getRelativeStem(objectKey) {
+  const normalizedKey = normalizeRelativeKey(objectKey);
+  const extension = pathExtension(normalizedKey);
+
+  return extension
+    ? normalizedKey.slice(0, normalizedKey.length - extension.length)
+    : normalizedKey;
+}
+
 function getThumbnailObjectKey(photoObjectKey) {
   const relativePath = stripPrefix(normalizeRelativeKey(photoObjectKey), photoPrefix);
   return `${photoThumbPrefix}${replaceExtension(relativePath, outputExtension)}`;
+}
+
+function getSortableTimestamp(value) {
+  const timestamp = new Date(value).getTime();
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
+function comparePhotoEntries(first, second) {
+  const firstDate = getSortableTimestamp(first.date);
+  const secondDate = getSortableTimestamp(second.date);
+
+  if (firstDate !== secondDate) {
+    return secondDate - firstDate;
+  }
+
+  return first.relativePath.localeCompare(second.relativePath, undefined, {
+    numeric: true,
+    sensitivity: 'base',
+  });
+}
+
+function buildFallbackManifestFromObjects(objects) {
+  const thumbnailLookup = new Map();
+
+  for (const object of objects) {
+    const objectKey = normalizeRelativeKey(object.key);
+
+    if (
+      photoThumbPrefix &&
+      objectKey.startsWith(photoThumbPrefix) &&
+      isSupportedImage(objectKey)
+    ) {
+      thumbnailLookup.set(
+        getRelativeStem(stripPrefix(objectKey, photoThumbPrefix)),
+        objectKey
+      );
+    }
+  }
+
+  const photos = objects
+    .map((object) => ({
+      key: normalizeRelativeKey(object.key),
+      lastModified: object.lastModified || new Date(0).toISOString(),
+    }))
+    .filter(
+      (object) =>
+        isSupportedImage(object.key) &&
+        !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
+        (!photoPrefix || object.key.startsWith(photoPrefix))
+    )
+    .map((object) => {
+      const relativePath = stripPrefix(object.key, photoPrefix);
+
+      return {
+        objectKey: object.key,
+        relativePath,
+        thumbnailObjectKey:
+          thumbnailLookup.get(getRelativeStem(relativePath)) || null,
+        date: object.lastModified,
+      };
+    })
+    .sort(comparePhotoEntries);
+
+  return {
+    generatedAt: new Date().toISOString(),
+    source: 'r2',
+    photos,
+    videos: [],
+  };
+}
+
+async function loadManifestForHealing(objects) {
+  try {
+    return {
+      manifest: await fetchPublishedManifest(),
+      usedPublishedManifest: true,
+    };
+  } catch (error) {
+    console.warn(
+      `[thumbs:heal] ${formatErrorMessage(error)} Falling back to direct R2 manifest reconstruction.`
+    );
+
+    return {
+      manifest: buildFallbackManifestFromObjects(objects),
+      usedPublishedManifest: false,
+    };
+  }
 }
 
 function createObjectUrl(objectKey) {
@@ -599,8 +719,7 @@ function hasRequiredConfig() {
     bucketName &&
       endpoint &&
       accessKeyId &&
-      secretAccessKey &&
-      publishedManifestUrl
+      secretAccessKey
   );
 }
 
@@ -623,10 +742,8 @@ async function main() {
     return;
   }
 
-  const [manifest, objects] = await Promise.all([
-    fetchPublishedManifest(),
-    listBucketObjects(),
-  ]);
+  const objects = await listBucketObjects();
+  const { manifest, usedPublishedManifest } = await loadManifestForHealing(objects);
   const existingKeys = new Set(objects.map((object) => normalizeRelativeKey(object.key)));
   const photosToHeal = manifest.photos.filter((photo) => {
     if (!(photo && typeof photo.objectKey === 'string' && typeof photo.relativePath === 'string')) {
@@ -677,7 +794,15 @@ async function main() {
   manifest.source = 'r2';
 
   await publishManifest(manifest);
-  await waitForManifestUpdate(healedEntries, manifest.generatedAt);
+
+  if (usedPublishedManifest) {
+    await waitForManifestUpdate(healedEntries, manifest.generatedAt);
+  } else {
+    console.log(
+      '[thumbs:heal] Skipped public manifest visibility wait because healing used direct R2 manifest reconstruction.'
+    );
+  }
+
   console.log(
     `[thumbs:heal] Published healed manifest with ${healedEntries.length} backfilled thumbnail${healedEntries.length === 1 ? '' : 's'}.`
   );

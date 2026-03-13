@@ -537,37 +537,66 @@ async function waitForPublishedManifest(expectedGeneratedAt) {
   );
 }
 
-async function main() {
-  if (publishedManifestUrl) {
-    const manifest = await waitForPublishedManifest(
-      expectedPublishedGeneratedAt
-    );
-
-    if (manifest) {
-      await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
-      console.log(
-        `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl} (generated ${manifest.generatedAt}${expectedPublishedGeneratedAt ? `, expected >= ${expectedPublishedGeneratedAt}` : ''}).`
-      );
-      return;
-    }
-  }
-
-  const hasAnyR2Config = [
+function hasAnyR2Config() {
+  return [
     bucketName,
     accountId,
     endpoint,
     accessKeyId,
     secretAccessKey,
   ].some(Boolean);
+}
 
-  if (!hasAnyR2Config) {
+function hasRequiredR2Config() {
+  return Boolean(bucketName && endpoint && accessKeyId && secretAccessKey);
+}
+
+function formatErrorWithCause(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  const cause =
+    error &&
+    typeof error === 'object' &&
+    'cause' in error &&
+    error.cause instanceof Error
+      ? ` Cause: ${error.cause.message}`
+      : '';
+
+  return `${message}${cause}`;
+}
+
+async function main() {
+  if (publishedManifestUrl) {
+    try {
+      const manifest = await waitForPublishedManifest(
+        expectedPublishedGeneratedAt
+      );
+
+      if (manifest) {
+        await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
+        console.log(
+          `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl} (generated ${manifest.generatedAt}${expectedPublishedGeneratedAt ? `, expected >= ${expectedPublishedGeneratedAt}` : ''}).`
+        );
+        return;
+      }
+    } catch (error) {
+      if (!hasRequiredR2Config()) {
+        throw error;
+      }
+
+      console.warn(
+        `[sync:media] ${formatErrorWithCause(error)} Falling back to direct R2 sync.`
+      );
+    }
+  }
+
+  if (!hasAnyR2Config()) {
     console.log(
       '[sync:media] No R2 credentials configured. Keeping the existing media manifest.'
     );
     return;
   }
 
-  if (!(bucketName && endpoint && accessKeyId && secretAccessKey)) {
+  if (!hasRequiredR2Config()) {
     throw new Error(
       'R2 sync requires R2_BUCKET_NAME, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, and either R2_ENDPOINT or R2_ACCOUNT_ID.'
     );
@@ -611,22 +640,15 @@ function shouldAllowExistingManifestFallback() {
 }
 
 main().catch((error) => {
-  const message = error instanceof Error ? error.message : String(error);
-  const cause =
-    error &&
-    typeof error === 'object' &&
-    'cause' in error &&
-    error.cause instanceof Error
-      ? ` Cause: ${error.cause.message}`
-      : '';
+  const message = formatErrorWithCause(error);
 
   if (hasExistingManifest() && shouldAllowExistingManifestFallback()) {
     console.warn(
-      `[sync:media] ${message}${cause} Falling back to the existing media manifest.`
+      `[sync:media] ${message} Falling back to the existing media manifest.`
     );
     process.exit(0);
   }
 
-  console.error(`[sync:media] ${message}${cause}`);
+  console.error(`[sync:media] ${message}`);
   process.exit(1);
 });
