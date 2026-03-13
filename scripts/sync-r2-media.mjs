@@ -598,6 +598,18 @@ function hasExistingManifest() {
   return fsSync.existsSync(manifestPath);
 }
 
+function shouldAllowExistingManifestFallback() {
+  if (process.env.SYNC_MEDIA_ALLOW_FALLBACK === '1') {
+    return true;
+  }
+
+  if (process.env.SYNC_MEDIA_ALLOW_FALLBACK === '0') {
+    return false;
+  }
+
+  return process.env.GITHUB_ACTIONS !== 'true';
+}
+
 main().catch((error) => {
   const message = error instanceof Error ? error.message : String(error);
   const cause =
@@ -608,7 +620,7 @@ main().catch((error) => {
       ? ` Cause: ${error.cause.message}`
       : '';
 
-  if (hasExistingManifest()) {
+  if (hasExistingManifest() && shouldAllowExistingManifestFallback()) {
     console.warn(
       `[sync:media] ${message}${cause} Falling back to the existing media manifest.`
     );
