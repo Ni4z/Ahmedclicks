@@ -398,7 +398,8 @@ async function waitForPublicManifestVisibility(env, expectedGeneratedAt) {
   );
 }
 
-async function triggerSiteDeploy(env) {
+async function triggerSiteDeploy(env, options = {}) {
+  const { expectedManifestGeneratedAt = '' } = options;
   const repository = (env.GITHUB_REPOSITORY || '').trim();
   const workflowFile = (env.GITHUB_WORKFLOW_FILE || 'deploy.yml').trim();
   const deployRef = (env.GITHUB_DEPLOY_REF || 'main').trim();
@@ -422,6 +423,13 @@ async function triggerSiteDeploy(env) {
       },
       body: JSON.stringify({
         ref: deployRef,
+        ...(expectedManifestGeneratedAt
+          ? {
+              inputs: {
+                manifest_generated_at: expectedManifestGeneratedAt,
+              },
+            }
+          : {}),
       }),
     }
   );
@@ -765,7 +773,9 @@ export default {
         }
 
         try {
-          const deployTriggered = await triggerSiteDeploy(env);
+          const deployTriggered = await triggerSiteDeploy(env, {
+            expectedManifestGeneratedAt: manifest.generatedAt,
+          });
 
           if (deployTriggered) {
             console.log('Triggered GitHub Pages deploy after manifest update');

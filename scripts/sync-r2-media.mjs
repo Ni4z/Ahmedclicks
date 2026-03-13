@@ -43,6 +43,14 @@ const manifestPath = path.join(process.cwd(), 'data', 'mediaManifest.ts');
 const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
 );
+const expectedPublishedGeneratedAt =
+  process.env.MEDIA_MANIFEST_EXPECTED_GENERATED_AT?.trim() || '';
+const expectedPublishedWaitTimeoutMs = Number(
+  process.env.MEDIA_MANIFEST_EXPECTED_WAIT_TIMEOUT_MS || 90000
+);
+const expectedPublishedWaitPollMs = Number(
+  process.env.MEDIA_MANIFEST_EXPECTED_WAIT_POLL_MS || 1000
+);
 const publicImageBaseUrl = (
   process.env.PUBLIC_IMAGE_BASE_URL?.trim() ||
   process.env.NEXT_PUBLIC_IMAGE_BASE_URL?.trim() ||
@@ -312,6 +320,11 @@ function compareByDateDescending(first, second) {
   });
 }
 
+function parseIsoTimestamp(value) {
+  const timestamp = new Date(value).getTime();
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
 async function listBucketObjects() {
   const collectedItems = [];
   let continuationToken = '';
@@ -481,14 +494,59 @@ async function fetchPublishedManifest() {
   return validateManifest(await response.json());
 }
 
+function isManifestFreshEnough(observedGeneratedAt, expectedGeneratedAt) {
+  if (!expectedGeneratedAt) {
+    return true;
+  }
+
+  return (
+    parseIsoTimestamp(observedGeneratedAt) >= parseIsoTimestamp(expectedGeneratedAt)
+  );
+}
+
+async function waitForPublishedManifest(expectedGeneratedAt) {
+  if (!expectedGeneratedAt) {
+    return fetchPublishedManifest();
+  }
+
+  const timeoutMs =
+    Number.isFinite(expectedPublishedWaitTimeoutMs) &&
+    expectedPublishedWaitTimeoutMs > 0
+      ? expectedPublishedWaitTimeoutMs
+      : 90000;
+  const pollMs =
+    Number.isFinite(expectedPublishedWaitPollMs) && expectedPublishedWaitPollMs > 0
+      ? expectedPublishedWaitPollMs
+      : 1000;
+  const deadline = Date.now() + timeoutMs;
+  let lastObservedGeneratedAt = '';
+
+  while (Date.now() <= deadline) {
+    const manifest = await fetchPublishedManifest();
+    lastObservedGeneratedAt = manifest.generatedAt;
+
+    if (isManifestFreshEnough(manifest.generatedAt, expectedGeneratedAt)) {
+      return manifest;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, pollMs));
+  }
+
+  throw new Error(
+    `Published media manifest did not reach generatedAt>=${expectedGeneratedAt} within ${timeoutMs}ms (last observed ${lastObservedGeneratedAt || 'missing'}).`
+  );
+}
+
 async function main() {
   if (publishedManifestUrl) {
-    const manifest = await fetchPublishedManifest();
+    const manifest = await waitForPublishedManifest(
+      expectedPublishedGeneratedAt
+    );
 
     if (manifest) {
       await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
       console.log(
-        `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl} (generated ${manifest.generatedAt}).`
+        `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl} (generated ${manifest.generatedAt}${expectedPublishedGeneratedAt ? `, expected >= ${expectedPublishedGeneratedAt}` : ''}).`
       );
       return;
     }
