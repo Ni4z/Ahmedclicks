@@ -1,9 +1,15 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-13T04:25:03.229Z",
+  "generatedAt": "2026-03-13T04:37:13.840Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Wings_of_Angel.jpg",
+      "relativePath": "wildlife/Wings_of_Angel.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Wings_of_Angel.webp",
+      "date": "2026-03-13T04:37:04.814Z"
+    },
     {
       "objectKey": "photos-web/Trees/Sunflower.jpg",
       "relativePath": "Trees/Sunflower.jpg",
