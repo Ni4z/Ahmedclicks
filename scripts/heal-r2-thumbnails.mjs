@@ -223,6 +223,31 @@ function hmac(key, value) {
   return crypto.createHmac('sha256', key).update(value, 'utf8').digest();
 }
 
+function formatErrorMessage(error) {
+  if (error instanceof Error) {
+    const parts = [error.message];
+
+    if (error.cause instanceof Error && error.cause.message) {
+      parts.push(`Cause: ${error.cause.message}`);
+    }
+
+    return parts.join(' ');
+  }
+
+  return String(error);
+}
+
+async function fetchWithContext(url, options, description) {
+  try {
+    return await fetch(url, options);
+  } catch (error) {
+    throw new Error(
+      `${description} request failed for ${url instanceof URL ? url.toString() : String(url)}.`,
+      { cause: error instanceof Error ? error : undefined }
+    );
+  }
+}
+
 function signRequest(url, options = {}) {
   const {
     method = 'GET',
@@ -333,7 +358,7 @@ function createObjectUrl(objectKey) {
 async function requestSignedObject(objectKey, options = {}) {
   const { method = 'GET', body = null, contentType = '', cacheControl = '' } = options;
   const requestUrl = createObjectUrl(objectKey);
-  const response = await fetch(requestUrl, {
+  const response = await fetchWithContext(requestUrl, {
     method,
     headers: signRequest(requestUrl, {
       method,
@@ -342,7 +367,7 @@ async function requestSignedObject(objectKey, options = {}) {
       cacheControl,
     }).headers,
     ...(body ? { body } : {}),
-  });
+  }, `R2 ${method}`);
 
   if (!response.ok) {
     const responseText = await response.text();
@@ -367,10 +392,10 @@ async function listBucketObjects() {
       requestUrl.searchParams.set('continuation-token', continuationToken);
     }
 
-    const response = await fetch(requestUrl, {
+    const response = await fetchWithContext(requestUrl, {
       headers: signRequest(requestUrl).headers,
       method: 'GET',
-    });
+    }, 'R2 bucket listing');
 
     if (!response.ok) {
       const responseText = await response.text();
@@ -399,12 +424,12 @@ async function fetchPublishedManifest() {
   const requestUrl = new URL(publishedManifestUrl);
   requestUrl.searchParams.set('_ts', Date.now().toString());
 
-  const response = await fetch(requestUrl, {
+  const response = await fetchWithContext(requestUrl, {
     cache: 'no-store',
     headers: {
       accept: 'application/json',
     },
-  });
+  }, 'Published manifest');
 
   if (!response.ok) {
     throw new Error(
@@ -576,7 +601,7 @@ async function main() {
 }
 
 main().catch((error) => {
-  const message = error instanceof Error ? error.message : String(error);
+  const message = formatErrorMessage(error);
   console.error(`[thumbs:heal] ${message}`);
   process.exit(1);
 });
