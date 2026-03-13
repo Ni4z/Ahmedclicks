@@ -1,9 +1,21 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-13T03:52:34.109Z",
+  "generatedAt": "2026-03-13T04:25:03.229Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Trees/Sunflower.jpg",
+      "relativePath": "Trees/Sunflower.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-03-13T04:24:54.569Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Sunrise.jpg",
+      "relativePath": "landscape/Sunrise.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Sunrise.webp",
+      "date": "2026-03-13T04:24:39.711Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Raven.jpg",
       "relativePath": "wildlife/Raven.jpg",
