@@ -153,6 +153,36 @@ function getPublicImageBaseUrl(env) {
   return (env.PUBLIC_IMAGE_BASE_URL || '').trim().replace(/\/+$/, '');
 }
 
+function getPublicManifestUrl(env) {
+  const configuredUrl = (env.PUBLIC_MEDIA_MANIFEST_URL || '').trim();
+
+  if (configuredUrl) {
+    return configuredUrl;
+  }
+
+  const publicImageBaseUrl = getPublicImageBaseUrl(env);
+
+  if (!publicImageBaseUrl) {
+    return '';
+  }
+
+  return `${publicImageBaseUrl}/${encodeObjectKey(getManifestObjectKey(env))}`;
+}
+
+function getManifestVisibilityTimeoutMs(env) {
+  const configuredValue = Number(env.PUBLIC_MANIFEST_WAIT_TIMEOUT_MS || 30000);
+  return Number.isFinite(configuredValue) && configuredValue > 0
+    ? configuredValue
+    : 30000;
+}
+
+function getManifestVisibilityPollMs(env) {
+  const configuredValue = Number(env.PUBLIC_MANIFEST_WAIT_POLL_MS || 1000);
+  return Number.isFinite(configuredValue) && configuredValue > 0
+    ? configuredValue
+    : 1000;
+}
+
 function getObjectDate(object) {
   if (object?.uploaded instanceof Date) {
     return object.uploaded.toISOString();
@@ -301,6 +331,71 @@ async function publishMediaManifest(env, options = {}) {
   });
 
   return manifest;
+}
+
+function isDeployTriggerConfigured(env) {
+  return Boolean(
+    (env.GITHUB_REPOSITORY || '').trim() &&
+      (env.GITHUB_WORKFLOW_FILE || 'deploy.yml').trim() &&
+      (env.GITHUB_DEPLOY_REF || 'main').trim() &&
+      env.GITHUB_DEPLOY_TOKEN
+  );
+}
+
+async function waitForPublicManifestVisibility(env, expectedGeneratedAt) {
+  const publicManifestUrl = getPublicManifestUrl(env);
+
+  if (!publicManifestUrl) {
+    console.warn(
+      'Skipping public manifest visibility wait because no public manifest URL is configured.'
+    );
+    return false;
+  }
+
+  const timeoutMs = getManifestVisibilityTimeoutMs(env);
+  const pollMs = getManifestVisibilityPollMs(env);
+  const deadline = Date.now() + timeoutMs;
+  let lastObservation = 'no successful response';
+
+  while (Date.now() <= deadline) {
+    const requestUrl = new URL(publicManifestUrl);
+    requestUrl.searchParams.set('_ts', Date.now().toString());
+
+    try {
+      const response = await fetch(requestUrl.toString(), {
+        cache: 'no-store',
+        headers: {
+          accept: 'application/json',
+          'cache-control': 'no-cache',
+        },
+      });
+
+      if (response.ok) {
+        const manifest = await response.json();
+        const observedGeneratedAt =
+          typeof manifest?.generatedAt === 'string' ? manifest.generatedAt : '';
+
+        if (observedGeneratedAt === expectedGeneratedAt) {
+          return true;
+        }
+
+        lastObservation = observedGeneratedAt
+          ? `generatedAt=${observedGeneratedAt}`
+          : 'manifest missing generatedAt';
+      } else {
+        lastObservation = `${response.status} ${response.statusText}`;
+      }
+    } catch (error) {
+      lastObservation =
+        error instanceof Error ? error.message : String(error);
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, pollMs));
+  }
+
+  throw new Error(
+    `Public manifest did not expose generatedAt=${expectedGeneratedAt} within ${timeoutMs}ms (last observed ${lastObservation}).`
+  );
 }
 
 async function triggerSiteDeploy(env) {
@@ -644,6 +739,31 @@ export default {
       }
 
       if (shouldTriggerDeploy) {
+        if (isDeployTriggerConfigured(env)) {
+          try {
+            const manifestVisible = await waitForPublicManifestVisibility(
+              env,
+              manifest.generatedAt
+            );
+
+            if (manifestVisible) {
+              console.log(
+                `Public manifest is visible with generatedAt=${manifest.generatedAt}`
+              );
+            }
+          } catch (error) {
+            const messageText =
+              error instanceof Error ? error.message : String(error);
+            console.error(`Public manifest propagation wait failed: ${messageText}`);
+
+            for (const message of processedMessages) {
+              message.retry({ delaySeconds: 30 });
+            }
+
+            return;
+          }
+        }
+
         try {
           const deployTriggered = await triggerSiteDeploy(env);
 
