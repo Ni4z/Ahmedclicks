@@ -44,6 +44,7 @@ const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
 );
 const publicImageBaseUrl = (
+  process.env.PUBLIC_IMAGE_BASE_URL?.trim() ||
   process.env.NEXT_PUBLIC_IMAGE_BASE_URL?.trim() ||
   process.env.NEXT_PUBLIC_MEDIA_BASE_URL?.trim() ||
   ''
