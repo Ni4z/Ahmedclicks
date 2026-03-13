@@ -16,6 +16,13 @@ const formatToExtension = {
   'image/webp': '.webp',
 };
 
+const formatToCfImageOutput = {
+  'image/avif': 'avif',
+  'image/jpeg': 'jpeg',
+  'image/png': 'png',
+  'image/webp': 'webp',
+};
+
 function normalizePrefix(value, fallback = '') {
   const normalizedValue = (value ?? fallback).trim().replace(/^\/+|\/+$/g, '');
   return normalizedValue ? `${normalizedValue}/` : '';
@@ -28,6 +35,13 @@ function normalizeFormat(value) {
 
 function normalizePath(value) {
   return value.replace(/^\/+/, '').replace(/\\/g, '/');
+}
+
+function encodeObjectKey(objectKey) {
+  return normalizePath(objectKey)
+    .split('/')
+    .map((segment) => encodeURIComponent(segment))
+    .join('/');
 }
 
 function stripPrefix(objectKey, prefix) {
@@ -76,10 +90,6 @@ function shouldHandleImage(objectKey, sourcePrefix, thumbPrefix) {
   }
 
   if (thumbPrefix && normalizedKey.startsWith(thumbPrefix)) {
-    return false;
-  }
-
-  if (sourcePrefix && !normalizedKey.startsWith(sourcePrefix)) {
     return false;
   }
 
@@ -139,6 +149,10 @@ function getVideoBucketName(env) {
   return (env.VIDEO_BUCKET_NAME || '').trim();
 }
 
+function getPublicImageBaseUrl(env) {
+  return (env.PUBLIC_IMAGE_BASE_URL || '').trim().replace(/\/+$/, '');
+}
+
 function getObjectDate(object) {
   if (object?.uploaded instanceof Date) {
     return object.uploaded.toISOString();
@@ -176,7 +190,6 @@ async function listBucketObjects(bucket) {
 function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
   const configuredPhotoPrefix = env.THUMB_SOURCE_PREFIX;
   const photoPrefix = normalizePrefix(configuredPhotoPrefix ?? 'photos-web');
-  const restrictPhotosToPrefix = configuredPhotoPrefix !== undefined;
   const photoThumbPrefix = normalizePrefix(
     env.THUMB_DEST_PREFIX || 'photos-thumb'
   );
@@ -198,10 +211,7 @@ function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
   const photoCandidates = objects.filter(
     (object) =>
       isSupportedImage(object.key) &&
-      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
-      (!restrictPhotosToPrefix ||
-        !photoPrefix ||
-        object.key.startsWith(photoPrefix))
+      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix))
   );
 
   return {
@@ -347,19 +357,72 @@ async function generateThumbnail(objectKey, env) {
     throw new Error(`Source object not found: ${objectKey}`);
   }
 
-  const transformedImage = env.IMAGES
-    .input(originalObject.body)
-    .transform({
-      fit: 'scale-down',
-      width: Number(env.THUMB_MAX_WIDTH || 1200),
-      height: Number(env.THUMB_MAX_HEIGHT || 1200),
-      metadata: 'none',
-    })
-    .output({
-      format: outputFormat,
-      quality: Number(env.THUMB_QUALITY || 82),
-    });
-  const response = await transformedImage.response();
+  const originalBytes = await originalObject.arrayBuffer();
+  const originalStream = new Response(originalBytes).body;
+
+  if (!originalStream) {
+    throw new Error(`Unable to create a readable stream for ${objectKey}`);
+  }
+
+  const transformOptions = {
+    fit: 'scale-down',
+    width: Number(env.THUMB_MAX_WIDTH || 1200),
+    height: Number(env.THUMB_MAX_HEIGHT || 1200),
+    metadata: 'none',
+  };
+  const outputOptions = {
+    format: outputFormat,
+    quality: Number(env.THUMB_QUALITY || 82),
+  };
+  let response;
+
+  try {
+    const transformedImage = await env.IMAGES
+      .input(originalStream)
+      .transform(transformOptions)
+      .output(outputOptions);
+    response = await transformedImage.response();
+  } catch (error) {
+    const publicImageBaseUrl = getPublicImageBaseUrl(env);
+
+    if (!publicImageBaseUrl) {
+      throw error;
+    }
+
+    const fallbackResponse = await fetch(
+      `${publicImageBaseUrl}/${encodeObjectKey(objectKey)}`,
+      {
+        cf: {
+          image: {
+            fit: transformOptions.fit,
+            width: transformOptions.width,
+            height: transformOptions.height,
+            metadata: transformOptions.metadata,
+            format: formatToCfImageOutput[outputFormat],
+            quality: outputOptions.quality,
+          },
+        },
+      }
+    );
+    const resizeStatus = fallbackResponse.headers.get('cf-resized');
+
+    if (!fallbackResponse.ok || !fallbackResponse.body || !resizeStatus) {
+      const fallbackResponseText = (await fallbackResponse.text())
+        .replace(/\s+/g, ' ')
+        .slice(0, 200);
+      const messageText =
+        error instanceof Error ? error.message : String(error);
+      const resizeDetail = resizeStatus
+        ? `cf-resized=${resizeStatus}`
+        : 'cf-resized header missing';
+
+      throw new Error(
+        `Images binding failed (${messageText}); public resize fallback failed with ${fallbackResponse.status} ${fallbackResponse.statusText} (${resizeDetail}): ${fallbackResponseText}`
+      );
+    }
+
+    response = fallbackResponse;
+  }
 
   if (!response.ok || !response.body) {
     throw new Error(
@@ -493,12 +556,15 @@ export default {
     let shouldRefreshManifest = false;
     let shouldTriggerDeploy = false;
     const thumbnailOverrides = new Map();
+    const photoSourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
+    const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
 
     for (const message of batch.messages) {
       const payload = message.body;
       const objectKey = getObjectKey(payload);
       const eventType = getEventType(payload);
       const bucketName = getBucketName(payload);
+      const publishedMediaChanged = affectsPublishedMedia(objectKey, bucketName, env);
 
       if (!objectKey) {
         console.warn('Skipping queue message without an object key.');
@@ -528,36 +594,43 @@ export default {
           console.log(`Skipping unsupported event "${eventType}" for ${objectKey}`);
         }
 
-        if (affectsPublishedMedia(objectKey, bucketName, env)) {
-          shouldRefreshManifest = true;
-          shouldTriggerDeploy = true;
-        }
-
         processedMessages.push(message);
       } catch (error) {
         const messageText =
           error instanceof Error ? error.message : String(error);
-        console.error(`Thumbnail processing failed for ${objectKey}: ${messageText}`);
-        message.retry({ delaySeconds: 30 });
+        const shouldPublishWithoutThumbnail =
+          publishedMediaChanged &&
+          shouldHandleImage(objectKey, photoSourcePrefix, thumbPrefix);
+
+        if (shouldPublishWithoutThumbnail) {
+          console.error(
+            `Thumbnail processing failed for ${objectKey}; continuing with manifest publish: ${messageText}`
+          );
+          thumbnailOverrides.set(getPhotoRelativeStem(objectKey, env), null);
+          processedMessages.push(message);
+        } else {
+          console.error(`Thumbnail processing failed for ${objectKey}: ${messageText}`);
+          message.retry({ delaySeconds: 30 });
+          continue;
+        }
+      }
+
+      if (publishedMediaChanged) {
+        shouldRefreshManifest = true;
+        shouldTriggerDeploy = true;
       }
     }
 
     if (shouldRefreshManifest) {
+      let manifest;
+
       try {
-        const manifest = await publishMediaManifest(env, {
+        manifest = await publishMediaManifest(env, {
           thumbnailOverrides,
         });
         console.log(
           `Published media manifest with ${manifest.photos.length} photos and ${manifest.videos.length} videos`
         );
-
-        if (shouldTriggerDeploy) {
-          const deployTriggered = await triggerSiteDeploy(env);
-
-          if (deployTriggered) {
-            console.log('Triggered GitHub Pages deploy after manifest update');
-          }
-        }
       } catch (error) {
         const messageText =
           error instanceof Error ? error.message : String(error);
@@ -568,6 +641,20 @@ export default {
         }
 
         return;
+      }
+
+      if (shouldTriggerDeploy) {
+        try {
+          const deployTriggered = await triggerSiteDeploy(env);
+
+          if (deployTriggered) {
+            console.log('Triggered GitHub Pages deploy after manifest update');
+          }
+        } catch (error) {
+          const messageText =
+            error instanceof Error ? error.message : String(error);
+          console.error(`GitHub deploy trigger failed: ${messageText}`);
+        }
       }
     }
 

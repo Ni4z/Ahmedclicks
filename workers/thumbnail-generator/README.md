@@ -123,8 +123,9 @@ After setup, your normal process is:
 1. Upload original photo to `photos-web/...`
 2. Wait for the queue worker to run
 3. Thumbnail and manifest update automatically
-4. GitHub Pages rebuild starts automatically if `GITHUB_DEPLOY_TOKEN` is configured
-5. The site updates with the new photo
+4. If Cloudflare misses a thumbnail, the GitHub Pages workflow backfills it automatically before the site build
+5. GitHub Pages rebuild starts automatically if `GITHUB_DEPLOY_TOKEN` is configured
+6. The site updates with the new photo
 
 For local development:
 
@@ -132,6 +133,32 @@ For local development:
 npm run sync:media
 npm run dev
 ```
+
+## 7. Manual thumbnail backfill
+
+If the Worker publishes a photo but Cloudflare fails to generate its thumbnail,
+use the local backfill script instead of re-uploading the original:
+
+```bash
+npm run thumbs:backfill -- Trees/mushroom.jpg
+```
+
+What it does:
+
+- downloads `photos-web/...` from R2
+- generates the resized thumbnail locally with `sharp`
+- uploads it to `photos-thumb/...`
+- patches `media-manifest.json` so the photo points at the new thumbnail
+- best-effort triggers `deploy.yml` using `GITHUB_DEPLOY_TOKEN` or `gh`
+
+Use `--no-deploy` if you only want to patch R2 + the manifest:
+
+```bash
+npm run thumbs:backfill -- Trees/mushroom.jpg --no-deploy
+```
+
+The deploy workflow also runs `npm run thumbs:heal` automatically, so this
+manual command is only for one-off repairs outside the normal Pages pipeline.
 
 ## Notes
 
