@@ -460,6 +460,15 @@ async function generateThumbnail(objectKey, env) {
     throw new Error(`Source object not found: ${objectKey}`);
   }
 
+  const maxInputBytes = Number(env.THUMB_MAX_INPUT_BYTES || 20_000_000);
+
+  if (originalObject.size > maxInputBytes) {
+    console.warn(
+      `Skipping in-worker thumbnail for ${objectKey} (${(originalObject.size / 1_000_000).toFixed(1)} MB exceeds ${(maxInputBytes / 1_000_000).toFixed(0)} MB limit). Will be backfilled by thumbs:heal in CI.`
+    );
+    return null;
+  }
+
   const originalBytes = await originalObject.arrayBuffer();
   const originalStream = new Response(originalBytes).body;
 
