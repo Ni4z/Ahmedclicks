@@ -12,6 +12,7 @@
     "thumbs:backfill": "node scripts/backfill-r2-thumbnail.mjs",
     "thumbs:heal": "node scripts/heal-r2-thumbnails.mjs",
     "thumbs:dev": "npx wrangler dev -c workers/thumbnail-generator/wrangler.jsonc",
+    "thumbs:test-deploy": "node scripts/test-deploy-trigger.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
