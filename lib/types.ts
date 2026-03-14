@@ -1,6 +1,7 @@
 export interface Photo {
   id: string;
   title: string;
+  caption?: string;
   category: string;
   categoryKey: string;
   image: string;

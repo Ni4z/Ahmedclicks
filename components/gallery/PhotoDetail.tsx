@@ -87,6 +87,9 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
 
         <div className="mb-8">
           <p className="text-gray-400 mb-4">{photo.description}</p>
+          {photo.caption && (
+            <p className="text-gray-300 italic mb-4">{photo.caption}</p>
+          )}
           {photo.location && (
             <p className="text-sm text-accent-gold mb-4">📍 {photo.location}</p>
           )}
