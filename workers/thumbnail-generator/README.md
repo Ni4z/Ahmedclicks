@@ -1,167 +1,188 @@
 # Media Automation Worker
 
-This Worker now does three jobs from the same R2 event stream:
+Handles three jobs from the R2 event stream:
 
 - generates thumbnails for new photos in `photos-web/`
-- publishes a combined `media-manifest.json`
-- optionally triggers the GitHub Pages deploy workflow after media changes
+- publishes `media-manifest.json` to the image bucket
+- dispatches the GitHub Pages `deploy.yml` workflow when `GITHUB_DEPLOY_TOKEN` is configured
 
-That removes the site's dependency on the R2 S3 endpoint during `npm run build` and `npm run sync:media`.
+## Current infrastructure (verified)
 
-## Buckets
+| Component | Value |
+|-----------|-------|
+| Image bucket | `niazphotography-images` |
+| Video bucket | `niazphotography-videos` |
+| Queue | `niaz-media-events` (2 producers, 1 consumer) |
+| Worker | `niazphotography-thumbnail-generator` |
+| Published manifest | `https://images.niazphotography.com/media-manifest.json` |
 
-Default bindings in [`wrangler.jsonc`](./wrangler.jsonc):
+## End-to-end flow
 
-- image bucket: `niazphotography-images`
-- video bucket: `niazphotography-videos`
+```
+Upload photo to R2            (photos-web/wildlife/Bird.jpg)
+       │
+       ▼
+R2 bucket notification ──────► niaz-media-events queue
+       │
+       ▼
+Worker: generateThumbnail()    (photos-thumb/wildlife/Bird.webp)
+       │
+       ▼
+Worker: publishMediaManifest() (media-manifest.json in image bucket)
+       │
+       ▼
+Worker: waitForPublicManifestVisibility()
+       │                       waits up to 30 s for CDN to serve new generatedAt
+       ▼
+Worker: triggerSiteDeploy()    (POST /repos/.../actions/workflows/deploy.yml/dispatches)
+       │
+       ▼
+GitHub Actions: deploy.yml
+  ├── thumbs:heal              backfills any thumbnails the worker missed
+  ├── sync:media               fetches published manifest → data/mediaManifest.ts
+  ├── next build               static export using latest manifest
+  └── deploy to GitHub Pages
+       │
+       ▼
+Live site shows the new photo
+```
 
-The published manifest is written back into the image bucket at:
+Supported image types: `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.avif`
 
-- `media-manifest.json`
+Videos follow the same manifest + deploy path but do not generate thumbnails.
 
-With your current public image domain, that becomes:
+## Secrets and tokens
 
-- `https://images.niazphotography.com/media-manifest.json`
+### 1. Worker secret: GITHUB_DEPLOY_TOKEN
 
-## What happens after upload
+This is what makes the site rebuild automatically after a photo upload.
 
-1. Upload a photo to `photos-web/...`
-2. Cloudflare sends an R2 event to the queue
-3. The Worker generates `photos-thumb/...`
-4. The Worker rebuilds `media-manifest.json`
-5. If GitHub deploy triggering is configured, the Worker dispatches the `deploy.yml` workflow on `main`
-6. GitHub Pages rebuilds using the latest manifest JSON
+```bash
+npx wrangler secret put GITHUB_DEPLOY_TOKEN -c workers/thumbnail-generator/wrangler.jsonc
+```
 
-Videos follow the same manifest + deploy path, but do not generate thumbnails.
+The token must be able to trigger workflow dispatches on `Ni4z/Ahmedclicks`:
 
-## 1. Check Wrangler config
+| Token type | Required permissions |
+|------------|---------------------|
+| Fine-grained PAT | Repository permission **Actions** → Read and write |
+| Classic PAT | Scopes: `repo` + `workflow` |
 
-Open [`wrangler.jsonc`](./wrangler.jsonc) and confirm these values:
+Test the token locally:
 
-- `name`
-- `queues.consumers[0].queue`
-- `r2_buckets`
-- `vars.MEDIA_BUCKET_NAME`
-- `vars.VIDEO_BUCKET_NAME`
-- `vars.GITHUB_REPOSITORY`
+```bash
+GITHUB_DEPLOY_TOKEN=ghp_... node scripts/test-deploy-trigger.mjs
+```
 
-Important defaults:
+If the token is missing or invalid, thumbnails and the manifest still update
+automatically in R2, but the live site will not rebuild until the next push to
+`main` or a manual `workflow_dispatch`.
 
-```json
+### 2. GitHub Actions secrets (for `thumbs:heal`)
+
+The `deploy.yml` workflow runs `npm run thumbs:heal` to backfill any thumbnails
+the worker missed (e.g. `thumbnailObjectKey: null` entries in the manifest).
+This step needs R2 write access.
+
+Go to **Settings → Secrets and variables → Actions → Secrets**:
+
+| Secret | Value |
+|--------|-------|
+| `R2_ACCESS_KEY_ID` | Your R2 API token key ID |
+| `R2_SECRET_ACCESS_KEY` | Your R2 API token secret |
+
+### 3. GitHub Actions variables (optional)
+
+These already have hardcoded fallbacks in `deploy.yml`, but you can override
+them under **Settings → Secrets and variables → Actions → Variables**:
+
+| Variable | Default |
+|----------|---------|
+| `R2_BUCKET_NAME` | `niazphotography-images` |
+| `R2_ACCOUNT_ID` | *(from R2 endpoint)* |
+| `R2_PHOTO_PREFIX` | `photos-web` |
+| `R2_PHOTO_THUMB_PREFIX` | `photos-thumb` |
+| `NEXT_PUBLIC_IMAGE_BASE_URL` | `https://images.niazphotography.com` |
+| `NEXT_PUBLIC_VIDEO_BASE_URL` | *(empty)* |
+| `MEDIA_MANIFEST_URL` | `https://images.niazphotography.com/media-manifest.json` |
+
+## Setup (first time)
+
+```bash
+npm run thumbs:setup
+```
+
+Creates the queue, deploys the worker, and connects R2 bucket notifications.
+
+## Wrangler config
+
+Key values in [`wrangler.jsonc`](./wrangler.jsonc):
+
+```jsonc
 "THUMB_SOURCE_PREFIX": "photos-web",
 "THUMB_DEST_PREFIX": "photos-thumb",
-"VIDEO_SOURCE_PREFIX": "",
 "MEDIA_MANIFEST_OBJECT_KEY": "media-manifest.json",
 "GITHUB_REPOSITORY": "Ni4z/Ahmedclicks",
 "GITHUB_WORKFLOW_FILE": "deploy.yml",
 "GITHUB_DEPLOY_REF": "main"
 ```
 
-If your videos live in a folder inside the video bucket, set:
-
-```json
-"VIDEO_SOURCE_PREFIX": "videos"
-```
-
-## 2. Add the GitHub token secret to the Worker
-
-The deploy trigger is optional, but it is what makes the static GitHub Pages site update automatically after upload.
-
-Create a GitHub personal access token that can trigger workflows on this repo, then store it as a Wrangler secret:
+## Verifying the manifest
 
 ```bash
-npx wrangler secret put GITHUB_DEPLOY_TOKEN -c workers/thumbnail-generator/wrangler.jsonc
+curl -s https://images.niazphotography.com/media-manifest.json | head -20
 ```
 
-Minimum practical permission:
+Should return JSON with `generatedAt`, `photos`, and `videos`.
 
-- repository actions write access on `Ni4z/Ahmedclicks`
+## Manual thumbnail backfill
 
-## 3. Create queue + notifications + deploy worker
-
-Fastest path:
-
-```bash
-npm run thumbs:setup
-```
-
-That script will:
-
-- create the queue
-- deploy the worker
-- connect image bucket create/delete notifications
-- connect video bucket create/delete notifications
-
-## 4. Verify the public manifest URL
-
-After the worker handles at least one media event, check:
-
-```text
-https://images.niazphotography.com/media-manifest.json
-```
-
-You should see JSON with:
-
-- `photos`
-- `videos`
-- `generatedAt`
-
-## 5. How the site consumes it
-
-[`scripts/sync-r2-media.mjs`](../../scripts/sync-r2-media.mjs) now fetches the published manifest from your public image domain during:
-
-- `npm run sync:media`
-- `npm run dev`
-- `npm run build`
-
-So the site no longer needs to list objects directly from the R2 S3 endpoint.
-
-## 6. Expected workflow
-
-After setup, your normal process is:
-
-1. Upload original photo to `photos-web/...`
-2. Wait for the queue worker to run
-3. Thumbnail and manifest update automatically
-4. If Cloudflare misses a thumbnail, the GitHub Pages workflow backfills it automatically before the site build
-5. GitHub Pages rebuild starts automatically if `GITHUB_DEPLOY_TOKEN` is configured
-6. The site updates with the new photo
-
-For local development:
-
-```bash
-npm run sync:media
-npm run dev
-```
-
-## 7. Manual thumbnail backfill
-
-If the Worker publishes a photo but Cloudflare fails to generate its thumbnail,
-use the local backfill script instead of re-uploading the original:
+If the worker misses a thumbnail, use the local backfill script:
 
 ```bash
 npm run thumbs:backfill -- Trees/mushroom.jpg
 ```
 
-What it does:
+This downloads the original from R2, generates the thumbnail locally with
+`sharp`, uploads it to `photos-thumb/`, patches the manifest, and optionally
+triggers a deploy.
 
-- downloads `photos-web/...` from R2
-- generates the resized thumbnail locally with `sharp`
-- uploads it to `photos-thumb/...`
-- patches `media-manifest.json` so the photo points at the new thumbnail
-- best-effort triggers `deploy.yml` using `GITHUB_DEPLOY_TOKEN` or `gh`
-
-Use `--no-deploy` if you only want to patch R2 + the manifest:
+Use `--no-deploy` to skip the deploy trigger:
 
 ```bash
 npm run thumbs:backfill -- Trees/mushroom.jpg --no-deploy
 ```
 
-The deploy workflow also runs `npm run thumbs:heal` automatically, so this
-manual command is only for one-off repairs outside the normal Pages pipeline.
+The `deploy.yml` workflow also runs `npm run thumbs:heal` automatically, so
+manual backfill is only needed for one-off repairs.
+
+## Troubleshooting
+
+**Photo uploaded but does not appear on the live site:**
+
+1. Check the manifest has the photo: `curl -s https://images.niazphotography.com/media-manifest.json | grep <filename>`
+2. Check the thumbnail exists: `curl -sI https://images.niazphotography.com/photos-thumb/<path>.webp`
+3. Test the deploy token: `GITHUB_DEPLOY_TOKEN=... node scripts/test-deploy-trigger.mjs`
+4. Check recent workflow runs: `https://github.com/Ni4z/Ahmedclicks/actions`
+5. Check Cloudflare worker logs: `npx wrangler tail -c workers/thumbnail-generator/wrangler.jsonc`
+
+**`thumbs:heal` fails in CI with "fetch failed":**
+
+R2 secrets are not configured in GitHub Actions. Add `R2_ACCESS_KEY_ID` and
+`R2_SECRET_ACCESS_KEY` as repository secrets. This step has `continue-on-error: true`
+so it does not block the build.
+
+**Some photos have `thumbnailObjectKey: null`:**
+
+The Cloudflare Images transform failed for that photo. The `thumbs:heal` step
+in the deploy workflow backfills these automatically (once R2 secrets are configured).
+For immediate fixes, use `npm run thumbs:backfill -- <relative-path>`.
 
 ## Notes
 
-- The worker ignores generated thumbnail events to avoid manifest loops.
-- The manifest is stored in the image bucket so one public URL can feed the site build.
-- If the GitHub token is not configured, thumbnails and the manifest still update automatically, but GitHub Pages will not rebuild by itself.
+- The worker ignores events in `photos-thumb/` to avoid infinite loops.
+- The manifest is stored in the image bucket so one public URL feeds the build.
+- `cf-cache-status: DYNAMIC` — the manifest is not edge-cached, so the
+  visibility check after publish should pass quickly.
+- If the deploy trigger fails, the error is logged but the queue messages are
+  still acknowledged. Check `wrangler tail` for `GitHub deploy trigger failed`.
