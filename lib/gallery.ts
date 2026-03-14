@@ -8,6 +8,7 @@ import {
   withObjectStorageAssetPath,
 } from '@/lib/media-assets';
 import { Photo, PhotoCategory } from '@/lib/types';
+import photoCaptions from '@/data/captions.json';
 
 const profileOnlyCategoryKeys = new Set(['me']);
 const unpublishedPhotoPaths = new Set([
@@ -193,14 +194,18 @@ function comparePhotoEntries(
   });
 }
 
+const captionMap = photoCaptions as Record<string, string>;
+
 function createPhotoRecord(
   category: CategoryEntry,
   file: ManifestPhotoEntry,
   index: number
 ): Photo {
+  const caption = captionMap[file.relativePath] || undefined;
   return {
     id: createStableAssetId(file.relativePath, 'photo'),
     title: createPhotoTitle(category.name, file.fileName, index),
+    caption,
     category: category.name,
     categoryKey: category.key,
     image: withObjectStorageAssetPath(file.objectKey, 'image'),

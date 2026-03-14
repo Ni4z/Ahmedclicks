@@ -31,6 +31,9 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               <div className="absolute bottom-0 left-0 right-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-lg font-semibold mb-1">{photo.title}</h3>
+                {photo.caption && (
+                  <p className="text-sm opacity-90 italic mb-1">{photo.caption}</p>
+                )}
                 {photo.location && (
                   <p className="text-sm opacity-90">📍 {photo.location}</p>
                 )}
