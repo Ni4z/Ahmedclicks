@@ -1,6 +1,5 @@
 {
-  "_README": "Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. Edit this file directly on GitHub.com for quick updates.",
-
+  "_README": "Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. New photo placeholders are added automatically in the external captions store and synced locally during media sync.",
   "wildlife/Wings_of_Angel.jpg": "",
   "wildlife/Raven.jpg": "",
   "wildlife/Kite.jpg": "",
@@ -42,14 +41,11 @@
   "wildlife/DSC05831.jpg": "",
   "wildlife/DSC05874.jpg": "",
   "wildlife/DSC08207.jpg": "",
-
   "astrophotography/DSC05884-2.jpg": "",
   "astrophotography/DSC05884-3.jpg": "",
-
   "landscape/DSC04689-3.jpg": "",
   "landscape/DSC04722-2.jpg": "",
   "landscape/Sunrise.jpg": "",
-
   "Trees/DSC04870-3.jpg": "",
   "Trees/Emerald Mist.jpg": "Morning fog drifts softly over layers of quiet forest.",
   "Trees/DSC08305.jpg": "",
@@ -61,10 +57,19 @@
   "Trees/DSC08854.jpg": "",
   "Trees/Sunflower.jpg": "",
   "Trees/mushroom.jpg": "",
-
   "Roads/DSC00951.jpg": "",
   "Roads/DSC03005.jpg": "",
-
   "Humans/DSC00975.jpg": "",
-  "Humans/DSC01070-2.jpg": ""
+  "Humans/DSC01070-2.jpg": "",
+  "Trees/Emerald Mist.jpg": "",
+  "wildlife/Hidden Monarch.jpg": "",
+  "wildlife/Dawn Flock.jpg": "",
+  "wildlife/Midnight_Grace.jpg": "",
+  "wildlife/Amber_Grace.jpg": "",
+  "wildlife/Forest_Ascend.jpg": "",
+  "Trees/Woodland_Flame.jpg": "",
+  "landscape/Mist_Spire.jpg": "",
+  "wildlife/Buzzard.jpg": "",
+  "wildlife/Food_Secured.jpg": "",
+  "Me/Me.jpg": ""
 }

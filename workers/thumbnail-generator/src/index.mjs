@@ -22,6 +22,8 @@ const formatToCfImageOutput = {
   'image/png': 'png',
   'image/webp': 'webp',
 };
+const captionsReadme =
+  'Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. New photo placeholders are added automatically in the external captions store.';
 
 function normalizePrefix(value, fallback = '') {
   const normalizedValue = (value ?? fallback).trim().replace(/^\/+|\/+$/g, '');
@@ -139,6 +141,14 @@ function getManifestObjectKey(env) {
 
 function getManifestCacheControl(env) {
   return `public, max-age=${env.MEDIA_MANIFEST_CACHE_MAX_AGE || 60}`;
+}
+
+function getCaptionsObjectKey(env) {
+  return normalizePath(env.CAPTIONS_OBJECT_KEY || 'captions.json');
+}
+
+function getCaptionsCacheControl(env) {
+  return `public, max-age=${env.CAPTIONS_CACHE_MAX_AGE || 60}`;
 }
 
 function getMediaBucketName(env) {
@@ -287,6 +297,83 @@ function buildVideoAssets(objects, excludedKeys, env) {
     .sort(compareByDateDescending);
 }
 
+function parseCaptionEntries(source) {
+  if (!(source && typeof source === 'object') || Array.isArray(source)) {
+    throw new Error('Caption file must contain a JSON object.');
+  }
+
+  const entries = [];
+
+  for (const [key, value] of Object.entries(source)) {
+    if (key.startsWith('_')) {
+      continue;
+    }
+
+    entries.push([
+      normalizePath(key),
+      typeof value === 'string' ? value : '',
+    ]);
+  }
+
+  return entries;
+}
+
+function renderCaptionMap(entries) {
+  const payload = {
+    _README: captionsReadme,
+  };
+
+  for (const [key, value] of entries) {
+    payload[key] = value;
+  }
+
+  return `${JSON.stringify(payload, null, 2)}\n`;
+}
+
+async function publishCaptionPlaceholders(env, photos) {
+  const captionsObjectKey = getCaptionsObjectKey(env);
+  const currentObject = await env.MEDIA_BUCKET.get(captionsObjectKey);
+  const currentSource = currentObject ? await currentObject.text() : '';
+  const existingEntries = currentSource
+    ? parseCaptionEntries(JSON.parse(currentSource))
+    : [];
+  const captionMap = new Map(existingEntries);
+  const synchronizedEntries = [...existingEntries];
+  let addedCount = 0;
+
+  for (const photo of photos) {
+    const relativePath = normalizePath(photo.relativePath);
+
+    if (captionMap.has(relativePath)) {
+      continue;
+    }
+
+    captionMap.set(relativePath, '');
+    synchronizedEntries.push([relativePath, '']);
+    addedCount += 1;
+  }
+
+  const nextSource = renderCaptionMap(synchronizedEntries);
+
+  if (nextSource !== currentSource) {
+    await env.MEDIA_BUCKET.put(captionsObjectKey, nextSource, {
+      httpMetadata: {
+        cacheControl: getCaptionsCacheControl(env),
+        contentType: 'application/json; charset=utf-8',
+      },
+      customMetadata: {
+        generator: 'thumbnail-generator-worker',
+      },
+    });
+  }
+
+  if (addedCount > 0) {
+    console.log(
+      `Published ${addedCount} new caption placeholder${addedCount === 1 ? '' : 's'} to ${captionsObjectKey}`
+    );
+  }
+}
+
 async function publishMediaManifest(env, options = {}) {
   const { thumbnailOverrides = new Map() } = options;
   const imageObjects = await listBucketObjects(env.MEDIA_BUCKET);
@@ -319,6 +406,8 @@ async function publishMediaManifest(env, options = {}) {
     photos,
     videos,
   };
+
+  await publishCaptionPlaceholders(env, photos);
 
   await env.MEDIA_BUCKET.put(manifestObjectKey, JSON.stringify(manifest, null, 2), {
     httpMetadata: {
@@ -635,6 +724,7 @@ function affectsPublishedMedia(objectKey, bucketName, env) {
 
   const normalizedKey = normalizePath(objectKey);
   const manifestObjectKey = getManifestObjectKey(env);
+  const captionsObjectKey = getCaptionsObjectKey(env);
   const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
   const photoPrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
   const videoPrefix =
@@ -644,6 +734,10 @@ function affectsPublishedMedia(objectKey, bucketName, env) {
   const videoBucketName = getVideoBucketName(env);
 
   if (normalizedKey === manifestObjectKey) {
+    return false;
+  }
+
+  if (normalizedKey === captionsObjectKey) {
     return false;
   }
 
