@@ -1,9 +1,15 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-14T23:10:51.439Z",
+  "generatedAt": "2026-03-15T01:15:50.837Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Roads/Emerald Passage.jpg",
+      "relativePath": "Roads/Emerald Passage.jpg",
+      "thumbnailObjectKey": "photos-thumb/Roads/Emerald Passage.webp",
+      "date": "2026-03-15T01:15:41.245Z"
+    },
     {
       "objectKey": "photos-web/Trees/Emerald Mist.jpg",
       "relativePath": "Trees/Emerald Mist.jpg",
