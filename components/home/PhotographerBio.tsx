@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
-  aboutPreviewLead,
+  aboutIntroLine,
   aboutPreviewParagraphs,
   aboutTitle,
 } from '@/data/about';
@@ -21,7 +21,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.3fr)_minmax(260px,0.7fr)] gap-10 xl:gap-16 items-start"
+          className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)] gap-10 xl:gap-16 items-center"
         >
           {/* Text */}
           <motion.div
@@ -34,9 +34,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
               {aboutTitle}
             </h2>
             <div className="max-w-3xl space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8">
-              <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
-                {aboutPreviewLead}
-              </p>
+              <p>{aboutIntroLine}</p>
               {aboutPreviewParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -52,9 +50,9 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="flex justify-center xl:justify-end"
+            className="flex justify-center"
           >
-            <div className="w-56 h-56 md:w-64 md:h-64 xl:w-72 xl:h-72 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
+            <div className="w-60 h-60 md:w-72 md:h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
               <img
                 src={profileImage}
                 alt="NiazPhotography"

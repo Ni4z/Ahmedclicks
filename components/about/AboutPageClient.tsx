@@ -4,8 +4,8 @@
 import { motion } from 'framer-motion';
 import {
   aboutHeroSubtitle,
+  aboutIntroLine,
   aboutPageParagraphs,
-  aboutPreviewLead,
   aboutTitle,
 } from '@/data/about';
 import { equipment } from '@/data/portfolio';
@@ -60,10 +60,8 @@ export default function AboutPageClient({
           className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.25fr)_minmax(260px,0.75fr)] gap-12 lg:gap-16 items-start mb-20"
         >
           <motion.div variants={itemVariants}>
-            <h2 className="text-4xl font-serif font-bold mb-6">
-              {aboutPreviewLead}
-            </h2>
             <div className="max-w-3xl space-y-5 text-base md:text-lg text-gray-400 leading-8">
+              <p>{aboutIntroLine}</p>
               {aboutPageParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
