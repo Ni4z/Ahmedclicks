@@ -150,6 +150,15 @@ curl -s https://images.niazphotography.com/captions.json | head -20
 Should return JSON with photo relative paths as keys and empty-string placeholders
 for new uploads.
 
+Update one caption and trigger a rebuild:
+
+```bash
+npm run caption:set -- "Trees/Emerald Mist.jpg" "Morning fog drifts softly over layers of quiet forest."
+```
+
+Add `--no-deploy` if you only want to update `captions.json` without triggering
+the site rebuild.
+
 ## Manual thumbnail backfill
 
 If the worker misses a thumbnail, use the local backfill script:
