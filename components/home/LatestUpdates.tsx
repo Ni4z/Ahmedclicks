@@ -70,19 +70,19 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
               <motion.div
                 key={item.id}
                 variants={itemVariants}
-                className="h-full min-w-0"
+                className="min-w-0"
               >
                 <Link
                   href={item.href}
                   className="group flex h-full flex-col overflow-hidden rounded-2xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold"
                 >
-                  <div className="aspect-[4/3] overflow-hidden border-b border-dark-tertiary bg-black/40">
+                  <div className="overflow-hidden border-b border-dark-tertiary bg-black/40">
                     <img
                       src={item.image}
                       alt={item.title}
                       loading="lazy"
                       decoding="async"
-                      className="block h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                      className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.02]"
                     />
                   </div>
 
