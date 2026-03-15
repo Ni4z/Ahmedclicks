@@ -3,6 +3,11 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import {
+  aboutPreviewLead,
+  aboutPreviewParagraphs,
+  aboutTitle,
+} from '@/data/about';
 
 interface PhotographerBioProps {
   profileImage: string;
@@ -16,7 +21,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.3fr)_minmax(260px,0.7fr)] gap-10 xl:gap-16 items-start"
         >
           {/* Text */}
           <motion.div
@@ -25,14 +30,18 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6">About NiazPhotography</h2>
-            <p className="text-gray-400 mb-4 leading-relaxed">
-              NiazPhotography is a personal photography archive built around real field work and published media. The site now syncs from a connected Cloudflare R2 archive before development and build, so the gallery stays tied to the files you actually upload.
-            </p>
-            <p className="text-gray-400 mb-6 leading-relaxed">
-              Instead of stock placeholders and template copy, the portfolio is organized around the real collections you&apos;re actively publishing, with photos and videos picked up automatically from the same bucket.
-            </p>
-            <Link href="/about" className="btn-primary inline-block">
+            <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
+              {aboutTitle}
+            </h2>
+            <div className="max-w-3xl space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8">
+              <p className="text-lg md:text-xl text-white font-medium leading-relaxed">
+                {aboutPreviewLead}
+              </p>
+              {aboutPreviewParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <Link href="/about" className="btn-primary inline-block mt-8">
               Read Full Story
             </Link>
           </motion.div>
@@ -43,9 +52,9 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="flex justify-center"
+            className="flex justify-center xl:justify-end"
           >
-            <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
+            <div className="w-56 h-56 md:w-64 md:h-64 xl:w-72 xl:h-72 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
               <img
                 src={profileImage}
                 alt="NiazPhotography"
