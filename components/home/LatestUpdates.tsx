@@ -64,17 +64,17 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
             whileInView="visible"
             variants={containerVariants}
             viewport={{ once: true, margin: '-100px' }}
-            className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4"
+            className="grid grid-cols-1 items-start gap-5 md:grid-cols-2 xl:grid-cols-4"
           >
             {items.map((item) => (
               <motion.div
                 key={item.id}
                 variants={itemVariants}
-                className="min-w-0"
+                className="min-w-0 self-start"
               >
                 <Link
                   href={item.href}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold"
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold"
                 >
                   <div className="overflow-hidden border-b border-dark-tertiary bg-black/40">
                     <img
@@ -86,7 +86,7 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
                     />
                   </div>
 
-                  <div className="flex flex-1 flex-col p-4 xl:p-3.5">
+                  <div className="flex flex-col p-4 xl:p-3.5">
                     <div className="mb-2.5 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.26em] text-accent-gold">
                       <span>{item.type === 'post' ? 'Story' : 'Photo'}</span>
                       <span className="text-gray-600">/</span>
@@ -103,7 +103,7 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
                       </p>
                     ) : null}
 
-                    <div className="mt-auto flex flex-wrap items-center justify-between gap-3 text-xs text-gray-500 xl:text-[0.78rem]">
+                    <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-gray-500 xl:text-[0.78rem]">
                       <span>{formatDate(item.date)}</span>
                       {item.type === 'post' && item.readTime ? (
                         <span>{item.readTime} min read</span>
