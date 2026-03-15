@@ -85,15 +85,16 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
       <div>
         <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4">{photo.title}</h1>
 
-        <div className="mb-8">
-          <p className="text-gray-400 mb-4">{photo.description}</p>
-          {photo.caption && (
-            <p className="text-gray-300 italic mb-4">{photo.caption}</p>
-          )}
-          {photo.location && (
-            <p className="text-sm text-accent-gold mb-4">📍 {photo.location}</p>
-          )}
-        </div>
+        {photo.caption || photo.location ? (
+          <div className="mb-8">
+            {photo.caption ? (
+              <p className="text-gray-300 italic mb-4">{photo.caption}</p>
+            ) : null}
+            {photo.location ? (
+              <p className="text-sm text-accent-gold mb-4">📍 {photo.location}</p>
+            ) : null}
+          </div>
+        ) : null}
 
         {/* EXIF Data */}
         {photo.camera && (

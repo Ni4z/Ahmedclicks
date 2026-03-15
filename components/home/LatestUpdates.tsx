@@ -56,14 +56,6 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
           >
             Latest Updates
           </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="max-w-2xl text-sm text-gray-400 md:text-base"
-          >
-            The four newest stories and frames from the current
-            NiazPhotography archive, each paired with a short note so the
-            homepage always reflects your latest work.
-          </motion.p>
         </motion.div>
 
         {items.length > 0 ? (
@@ -105,9 +97,11 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
                       {item.title}
                     </h3>
 
-                    <p className="mb-4 line-clamp-2 text-sm leading-6 text-gray-400 xl:text-[0.95rem] xl:leading-6">
-                      {item.summary}
-                    </p>
+                    {item.summary ? (
+                      <p className="mb-4 line-clamp-2 text-sm leading-6 text-gray-400 xl:text-[0.95rem] xl:leading-6">
+                        {item.summary}
+                      </p>
+                    ) : null}
 
                     <div className="mt-auto flex flex-wrap items-center justify-between gap-3 text-xs text-gray-500 xl:text-[0.78rem]">
                       <span>{formatDate(item.date)}</span>

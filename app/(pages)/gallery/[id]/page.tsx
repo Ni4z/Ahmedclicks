@@ -30,12 +30,16 @@ export async function generateMetadata({
     };
   }
 
+  const seoDescription =
+    photo.caption ||
+    `${photo.title} from the ${photo.category} collection at NiazPhotography.`;
+
   return {
     title: `${photo.title} | NiazPhotography`,
-    description: photo.description,
+    description: seoDescription,
     openGraph: {
       title: photo.title,
-      description: photo.description,
+      description: seoDescription,
       url: absoluteUrl(`/gallery/${photo.id}/`),
       images: [
         {
