@@ -5,8 +5,6 @@ export const aboutHeroSubtitle =
 
 export const aboutIntroLine = "Hi, I'm Niaz,";
 
-export const aboutPageIntroTitle = "Hi, I'm Niaz";
-
 export const aboutPreviewParagraphs = [
   'originally from Bangladesh, and currently living in Duisburg, Germany.',
   'Photography started as a hobby for me, but over time it has become something much more meaningful. It is a passion that I hope to grow into a profession. Through this portfolio I share moments I capture in everyday life, nature, and the quiet beauty that often goes unnoticed.',
