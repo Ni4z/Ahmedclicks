@@ -1,9 +1,15 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-15T01:15:50.837Z",
+  "generatedAt": "2026-03-15T10:45:37.795Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Twin Flight.jpg",
+      "relativePath": "wildlife/Twin Flight.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Twin Flight.webp",
+      "date": "2026-03-15T10:45:28.687Z"
+    },
     {
       "objectKey": "photos-web/Roads/Emerald Passage.jpg",
       "relativePath": "Roads/Emerald Passage.jpg",
