@@ -15,10 +15,6 @@ import { getFeaturedVideos, getVideos } from '@/lib/videos';
 import { withPhotoAssetPath } from '@/lib/site';
 import { blogPosts } from '@/data/portfolio';
 
-function createPhotoSummary(description: string): string {
-  return description.replace(/\s*File:.*$/, '').trim();
-}
-
 export const metadata: Metadata = {
   title: 'Home | NiazPhotography',
   description:
@@ -34,7 +30,7 @@ export default function Home() {
       id: `photo-${photo.id}`,
       type: 'photo' as const,
       title: photo.title,
-      summary: createPhotoSummary(photo.description),
+      summary: photo.caption || '',
       image: photo.thumbnail,
       href: `/gallery/${photo.id}`,
       date: photo.date,
