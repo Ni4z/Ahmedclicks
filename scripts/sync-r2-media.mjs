@@ -40,8 +40,14 @@ const videoPrefix =
     ? ''
     : normalizePrefix(process.env.R2_VIDEO_PREFIX);
 const manifestPath = path.join(process.cwd(), 'data', 'mediaManifest.ts');
+const captionsPath = path.join(process.cwd(), 'data', 'captions.json');
+const captionsReadme =
+  'Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. New photo placeholders are added automatically in the external captions store and synced locally during media sync.';
 const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
+);
+const captionsObjectKey = normalizeRelativeKey(
+  process.env.CAPTIONS_OBJECT_KEY?.trim() || 'captions.json'
 );
 const expectedPublishedGeneratedAt =
   process.env.MEDIA_MANIFEST_EXPECTED_GENERATED_AT?.trim() || '';
@@ -62,6 +68,13 @@ const publishedManifestUrl = (
   process.env.NEXT_PUBLIC_MEDIA_MANIFEST_URL?.trim() ||
   (publicImageBaseUrl
     ? `${publicImageBaseUrl}/${encodeObjectKeyForUrl(manifestObjectKey)}`
+    : '')
+).trim();
+const publishedCaptionsUrl = (
+  process.env.CAPTIONS_URL?.trim() ||
+  process.env.NEXT_PUBLIC_CAPTIONS_URL?.trim() ||
+  (publicImageBaseUrl
+    ? `${publicImageBaseUrl}/${encodeObjectKeyForUrl(captionsObjectKey)}`
     : '')
 ).trim();
 
@@ -360,6 +373,29 @@ async function listBucketObjects() {
   return collectedItems;
 }
 
+async function fetchSignedObjectText(objectKey) {
+  const requestUrl = new URL(
+    `${endpoint}/${bucketName}/${encodeObjectKeyForUrl(objectKey)}`
+  );
+  const response = await fetch(requestUrl, {
+    headers: signRequest(requestUrl).headers,
+    method: 'GET',
+  });
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    const responseText = await response.text();
+    throw new Error(
+      `R2 object fetch failed for ${objectKey} with ${response.status} ${response.statusText}: ${responseText}`
+    );
+  }
+
+  return response.text();
+}
+
 function buildPhotoAssets(objects) {
   const thumbnailLookup = new Map();
 
@@ -436,6 +472,129 @@ function renderManifest(manifest) {
   ].join('\n');
 }
 
+function parseCaptionMap(source) {
+  if (!(source && typeof source === 'object') || Array.isArray(source)) {
+    throw new Error('Caption file must contain a JSON object.');
+  }
+
+  const entries = [];
+
+  for (const [key, value] of Object.entries(source)) {
+    if (key.startsWith('_')) {
+      continue;
+    }
+
+    entries.push([
+      normalizeRelativeKey(key),
+      typeof value === 'string' ? value : '',
+    ]);
+  }
+
+  return entries;
+}
+
+function renderCaptionMap(entries) {
+  const payload = {
+    _README: captionsReadme,
+  };
+
+  for (const [key, value] of entries) {
+    payload[key] = value;
+  }
+
+  return `${JSON.stringify(payload, null, 2)}\n`;
+}
+
+async function loadCaptionEntries() {
+  const currentSource = fsSync.existsSync(captionsPath)
+    ? await fs.readFile(captionsPath, 'utf8')
+    : '';
+  const localEntries = currentSource
+    ? parseCaptionMap(JSON.parse(currentSource))
+    : [];
+  if (publishedCaptionsUrl) {
+    try {
+      const publishedEntries = await fetchPublishedCaptions();
+
+      if (publishedEntries) {
+        return {
+          currentSource,
+          entries: publishedEntries,
+          sourceLabel: publishedCaptionsUrl,
+        };
+      }
+    } catch (error) {
+      console.warn(
+        `[sync:media] ${formatErrorWithCause(error)} Falling back to direct R2/local captions sync.`
+      );
+    }
+  }
+
+  if (hasRequiredR2Config()) {
+    try {
+      const directEntries = await fetchDirectCaptionEntries();
+
+      if (directEntries) {
+        return {
+          currentSource,
+          entries: directEntries,
+          sourceLabel: `R2 ${captionsObjectKey}`,
+        };
+      }
+    } catch (error) {
+      console.warn(
+        `[sync:media] ${formatErrorWithCause(error)} Keeping the existing local captions.`
+      );
+    }
+  }
+
+  return {
+    currentSource,
+    entries: localEntries,
+    sourceLabel: 'local captions file',
+  };
+}
+
+async function syncCaptionPlaceholders(photos) {
+  const { currentSource, entries, sourceLabel } = await loadCaptionEntries();
+  const captionMap = new Map(entries);
+  const synchronizedEntries = [...entries];
+  const addedKeys = [];
+
+  for (const photo of photos) {
+    const relativePath = normalizeRelativeKey(photo.relativePath);
+
+    if (captionMap.has(relativePath)) {
+      continue;
+    }
+
+    captionMap.set(relativePath, '');
+    synchronizedEntries.push([relativePath, '']);
+    addedKeys.push(relativePath);
+  }
+
+  const nextSource = renderCaptionMap(synchronizedEntries);
+
+  if (nextSource !== currentSource) {
+    await fs.writeFile(captionsPath, nextSource, 'utf8');
+
+    if (sourceLabel !== 'local captions file') {
+      console.log(`[sync:media] Synced captions from ${sourceLabel}.`);
+    }
+  }
+
+  if (addedKeys.length > 0) {
+    console.log(
+      `[sync:media] Added ${addedKeys.length} new caption placeholder${addedKeys.length === 1 ? '' : 's'} in data/captions.json.`
+    );
+  }
+}
+
+async function writeSyncedMedia(manifest) {
+  await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
+  await syncCaptionPlaceholders(manifest.photos);
+}
+
 function isManifestEntry(entry) {
   return (
     entry &&
@@ -492,6 +651,39 @@ async function fetchPublishedManifest() {
   }
 
   return validateManifest(await response.json());
+}
+
+async function fetchPublishedCaptions() {
+  if (!publishedCaptionsUrl) {
+    return null;
+  }
+
+  const requestUrl = new URL(publishedCaptionsUrl);
+  requestUrl.searchParams.set('_ts', Date.now().toString());
+
+  const response = await fetch(requestUrl, {
+    cache: 'no-store',
+    headers: {
+      accept: 'application/json',
+    },
+  });
+
+  if (response.status === 404) {
+    return null;
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      `Published captions request failed with ${response.status} ${response.statusText}`
+    );
+  }
+
+  return parseCaptionMap(await response.json());
+}
+
+async function fetchDirectCaptionEntries() {
+  const source = await fetchSignedObjectText(captionsObjectKey);
+  return source ? parseCaptionMap(JSON.parse(source)) : null;
 }
 
 function isManifestFreshEnough(observedGeneratedAt, expectedGeneratedAt) {
@@ -572,7 +764,7 @@ async function main() {
       );
 
       if (manifest) {
-        await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
+        await writeSyncedMedia(manifest);
         console.log(
           `[sync:media] Synced ${manifest.photos.length} photos and ${manifest.videos.length} videos from ${publishedManifestUrl} (generated ${manifest.generatedAt}${expectedPublishedGeneratedAt ? `, expected >= ${expectedPublishedGeneratedAt}` : ''}).`
         );
@@ -616,7 +808,7 @@ async function main() {
     videos,
   };
 
-  await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
+  await writeSyncedMedia(manifest);
 
   console.log(
     `[sync:media] Synced ${photos.length} photos and ${videos.length} videos.`

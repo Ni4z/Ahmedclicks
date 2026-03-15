@@ -1,9 +1,69 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-13T04:37:13.840Z",
+  "generatedAt": "2026-03-14T23:10:51.439Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Trees/Emerald Mist.jpg",
+      "relativePath": "Trees/Emerald Mist.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Emerald Mist.webp",
+      "date": "2026-03-14T23:10:42.000Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Hidden Monarch.jpg",
+      "relativePath": "wildlife/Hidden Monarch.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Hidden Monarch.webp",
+      "date": "2026-03-14T18:38:03.720Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Dawn Flock.jpg",
+      "relativePath": "wildlife/Dawn Flock.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-03-14T15:14:04.858Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Midnight_Grace.jpg",
+      "relativePath": "wildlife/Midnight_Grace.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-03-14T05:00:21.996Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Amber_Grace.jpg",
+      "relativePath": "wildlife/Amber_Grace.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Amber_Grace.webp",
+      "date": "2026-03-14T04:41:23.954Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Forest_Ascend.jpg",
+      "relativePath": "wildlife/Forest_Ascend.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Forest_Ascend.webp",
+      "date": "2026-03-14T04:30:43.327Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Woodland_Flame.jpg",
+      "relativePath": "Trees/Woodland_Flame.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Woodland_Flame.webp",
+      "date": "2026-03-14T04:14:55.518Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Mist_Spire.jpg",
+      "relativePath": "landscape/Mist_Spire.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Mist_Spire.webp",
+      "date": "2026-03-14T04:08:24.306Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Buzzard.jpg",
+      "relativePath": "wildlife/Buzzard.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Buzzard.webp",
+      "date": "2026-03-14T03:40:05.359Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Food_Secured.jpg",
+      "relativePath": "wildlife/Food_Secured.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Food_Secured.webp",
+      "date": "2026-03-13T05:47:22.522Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Wings_of_Angel.jpg",
       "relativePath": "wildlife/Wings_of_Angel.jpg",

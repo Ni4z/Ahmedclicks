@@ -4,6 +4,7 @@ Handles three jobs from the R2 event stream:
 
 - generates thumbnails for new photos in `photos-web/`
 - publishes `media-manifest.json` to the image bucket
+- publishes `captions.json` placeholder keys for all published photos
 - dispatches the GitHub Pages `deploy.yml` workflow when `GITHUB_DEPLOY_TOKEN` is configured
 
 ## Current infrastructure (verified)
@@ -15,6 +16,7 @@ Handles three jobs from the R2 event stream:
 | Queue | `niaz-media-events` (2 producers, 1 consumer) |
 | Worker | `niazphotography-thumbnail-generator` |
 | Published manifest | `https://images.niazphotography.com/media-manifest.json` |
+| Published captions | `https://images.niazphotography.com/captions.json` |
 
 ## End-to-end flow
 
@@ -26,6 +28,9 @@ R2 bucket notification ──────► niaz-media-events queue
        │
        ▼
 Worker: generateThumbnail()    (photos-thumb/wildlife/Bird.webp)
+       │
+       ▼
+Worker: publishCaptionPlaceholders() (captions.json in image bucket)
        │
        ▼
 Worker: publishMediaManifest() (media-manifest.json in image bucket)
@@ -75,7 +80,7 @@ GITHUB_DEPLOY_TOKEN=ghp_... node scripts/test-deploy-trigger.mjs
 ```
 
 If the token is missing or invalid, thumbnails and the manifest still update
-automatically in R2, but the live site will not rebuild until the next push to
+automatically in R2, and captions placeholders still update, but the live site will not rebuild until the next push to
 `main` or a manual `workflow_dispatch`.
 
 ### 2. GitHub Actions secrets (for `thumbs:heal`)
@@ -122,6 +127,7 @@ Key values in [`wrangler.jsonc`](./wrangler.jsonc):
 "THUMB_SOURCE_PREFIX": "photos-web",
 "THUMB_DEST_PREFIX": "photos-thumb",
 "MEDIA_MANIFEST_OBJECT_KEY": "media-manifest.json",
+"CAPTIONS_OBJECT_KEY": "captions.json",
 "GITHUB_REPOSITORY": "Ni4z/Ahmedclicks",
 "GITHUB_WORKFLOW_FILE": "deploy.yml",
 "GITHUB_DEPLOY_REF": "main"
@@ -134,6 +140,15 @@ curl -s https://images.niazphotography.com/media-manifest.json | head -20
 ```
 
 Should return JSON with `generatedAt`, `photos`, and `videos`.
+
+Verify captions placeholders:
+
+```bash
+curl -s https://images.niazphotography.com/captions.json | head -20
+```
+
+Should return JSON with photo relative paths as keys and empty-string placeholders
+for new uploads.
 
 ## Manual thumbnail backfill
 
@@ -161,10 +176,11 @@ manual backfill is only needed for one-off repairs.
 **Photo uploaded but does not appear on the live site:**
 
 1. Check the manifest has the photo: `curl -s https://images.niazphotography.com/media-manifest.json | grep <filename>`
-2. Check the thumbnail exists: `curl -sI https://images.niazphotography.com/photos-thumb/<path>.webp`
-3. Test the deploy token: `GITHUB_DEPLOY_TOKEN=... node scripts/test-deploy-trigger.mjs`
-4. Check recent workflow runs: `https://github.com/Ni4z/Ahmedclicks/actions`
-5. Check Cloudflare worker logs: `npx wrangler tail -c workers/thumbnail-generator/wrangler.jsonc`
+2. Check captions placeholders exist: `curl -s https://images.niazphotography.com/captions.json | grep <filename>`
+3. Check the thumbnail exists: `curl -sI https://images.niazphotography.com/photos-thumb/<path>.webp`
+4. Test the deploy token: `GITHUB_DEPLOY_TOKEN=... node scripts/test-deploy-trigger.mjs`
+5. Check recent workflow runs: `https://github.com/Ni4z/Ahmedclicks/actions`
+6. Check Cloudflare worker logs: `npx wrangler tail -c workers/thumbnail-generator/wrangler.jsonc`
 
 **`thumbs:heal` fails in CI with "fetch failed":**
 
