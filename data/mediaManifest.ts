@@ -1,7 +1,7 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-15T10:45:37.795Z",
+  "generatedAt": "2026-03-16T03:01:24.607Z",
   "source": "r2",
   "photos": [
     {
@@ -444,6 +444,11 @@ export const mediaManifest: MediaManifest = {
     }
   ],
   "videos": [
+    {
+      "objectKey": "Quiet Perch.mp4",
+      "relativePath": "Quiet Perch.mp4",
+      "date": "2026-03-16T03:01:17.648Z"
+    },
     {
       "objectKey": "Bird.mp4",
       "relativePath": "Bird.mp4",
