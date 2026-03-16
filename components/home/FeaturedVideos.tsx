@@ -12,12 +12,12 @@ export default function FeaturedVideos({ videos }: FeaturedVideosProps) {
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <h2 className="text-5xl md:text-6xl font-serif font-bold mb-4">
-            Video Work
+            Moments in Motion
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl leading-relaxed">
-            A dedicated motion section for your portfolio, designed to serve
-            larger video files from your external video archive instead of the
-            Git repository.
+            A small collection of moving moments. These videos capture the
+            rhythm of nature, light, and wildlife beyond the still frame,
+            stored separately to preserve the performance of the portfolio.
           </p>
         </div>
 
