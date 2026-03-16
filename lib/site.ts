@@ -21,7 +21,7 @@ export const siteConfig = {
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'niazphotography.com@gmail.com',
   instagramUrl:
-    process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/hmed_niaz',
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL || 'https://instagram.com/niazph0t0graphy',
   linkedinUrl:
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
     'https://www.linkedin.com/in/hmedniaz/',
