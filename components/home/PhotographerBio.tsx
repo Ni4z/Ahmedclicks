@@ -14,8 +14,6 @@ interface PhotographerBioProps {
 }
 
 export default function PhotographerBio({ profileImage }: PhotographerBioProps) {
-  const previewParagraphs = aboutPreviewParagraphs.slice(0, 3);
-
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -37,7 +35,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             </h2>
             <div className="max-w-3xl space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8">
               <p>{aboutIntroLine}</p>
-              {previewParagraphs.map((paragraph) => (
+              {aboutPreviewParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
