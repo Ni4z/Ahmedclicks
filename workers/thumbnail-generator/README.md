@@ -4,7 +4,7 @@ Handles three jobs from the R2 event stream:
 
 - generates thumbnails for new photos in `photos-web/`
 - publishes `media-manifest.json` to the image bucket
-- publishes `captions.json` placeholder keys for all published photos
+- publishes `captions.json` placeholder keys for all published photos and videos
 - dispatches the GitHub Pages `deploy.yml` workflow when `GITHUB_DEPLOY_TOKEN` is configured
 
 ## Current infrastructure (verified)
@@ -147,13 +147,14 @@ Verify captions placeholders:
 curl -s https://images.niazphotography.com/captions.json | head -20
 ```
 
-Should return JSON with photo relative paths as keys and empty-string placeholders
+Should return JSON with photo and video relative paths as keys and empty-string placeholders
 for new uploads.
 
 Update one caption and trigger a rebuild:
 
 ```bash
 npm run caption:set -- "Trees/Emerald Mist.jpg" "Morning fog drifts softly over layers of quiet forest."
+npm run caption:set -- "Bird.mp4" "A quiet branch study with winter light."
 ```
 
 Add `--no-deploy` if you only want to update `captions.json` without triggering

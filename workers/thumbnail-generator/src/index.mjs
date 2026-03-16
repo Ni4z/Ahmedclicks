@@ -23,7 +23,7 @@ const formatToCfImageOutput = {
   'image/webp': 'webp',
 };
 const captionsReadme =
-  'Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. New photo placeholders are added automatically in the external captions store.';
+  'Add a caption for any photo or video by its relative path. Empty string or missing entry = no caption shown. New media placeholders are added automatically in the external captions store.';
 
 function normalizePrefix(value, fallback = '') {
   const normalizedValue = (value ?? fallback).trim().replace(/^\/+|\/+$/g, '');
@@ -330,7 +330,7 @@ function renderCaptionMap(entries) {
   return `${JSON.stringify(payload, null, 2)}\n`;
 }
 
-async function publishCaptionPlaceholders(env, photos) {
+async function publishCaptionPlaceholders(env, mediaEntries) {
   const captionsObjectKey = getCaptionsObjectKey(env);
   const currentObject = await env.MEDIA_BUCKET.get(captionsObjectKey);
   const currentSource = currentObject ? await currentObject.text() : '';
@@ -341,8 +341,8 @@ async function publishCaptionPlaceholders(env, photos) {
   const synchronizedEntries = [...existingEntries];
   let addedCount = 0;
 
-  for (const photo of photos) {
-    const relativePath = normalizePath(photo.relativePath);
+  for (const mediaEntry of mediaEntries) {
+    const relativePath = normalizePath(mediaEntry.relativePath);
 
     if (captionMap.has(relativePath)) {
       continue;
@@ -407,7 +407,7 @@ async function publishMediaManifest(env, options = {}) {
     videos,
   };
 
-  await publishCaptionPlaceholders(env, photos);
+  await publishCaptionPlaceholders(env, [...photos, ...videos]);
 
   await env.MEDIA_BUCKET.put(manifestObjectKey, JSON.stringify(manifest, null, 2), {
     httpMetadata: {

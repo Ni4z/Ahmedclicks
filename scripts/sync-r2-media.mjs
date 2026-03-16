@@ -42,7 +42,7 @@ const videoPrefix =
 const manifestPath = path.join(process.cwd(), 'data', 'mediaManifest.ts');
 const captionsPath = path.join(process.cwd(), 'data', 'captions.json');
 const captionsReadme =
-  'Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. New photo placeholders are added automatically in the external captions store and synced locally during media sync.';
+  'Add a caption for any photo or video by its relative path. Empty string or missing entry = no caption shown. New media placeholders are added automatically in the external captions store and synced locally during media sync.';
 const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
 );
@@ -555,14 +555,14 @@ async function loadCaptionEntries() {
   };
 }
 
-async function syncCaptionPlaceholders(photos) {
+async function syncCaptionPlaceholders(mediaEntries) {
   const { currentSource, entries, sourceLabel } = await loadCaptionEntries();
   const captionMap = new Map(entries);
   const synchronizedEntries = [...entries];
   const addedKeys = [];
 
-  for (const photo of photos) {
-    const relativePath = normalizeRelativeKey(photo.relativePath);
+  for (const mediaEntry of mediaEntries) {
+    const relativePath = normalizeRelativeKey(mediaEntry.relativePath);
 
     if (captionMap.has(relativePath)) {
       continue;
@@ -592,7 +592,7 @@ async function syncCaptionPlaceholders(photos) {
 
 async function writeSyncedMedia(manifest) {
   await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
-  await syncCaptionPlaceholders(manifest.photos);
+  await syncCaptionPlaceholders([...manifest.photos, ...manifest.videos]);
 }
 
 function isManifestEntry(entry) {

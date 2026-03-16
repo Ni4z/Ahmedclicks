@@ -30,6 +30,7 @@ export interface Video {
   id: string;
   title: string;
   src: string;
+  caption?: string;
   description: string;
   fileName: string;
   mimeType: string;
