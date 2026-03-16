@@ -14,6 +14,8 @@ interface PhotographerBioProps {
 }
 
 export default function PhotographerBio({ profileImage }: PhotographerBioProps) {
+  const previewParagraphs = aboutPreviewParagraphs.slice(0, 3);
+
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -35,13 +37,21 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             </h2>
             <div className="max-w-3xl space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8">
               <p>{aboutIntroLine}</p>
-              {aboutPreviewParagraphs.map((paragraph) => (
+              {previewParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
-            <Link href="/about" className="btn-primary inline-block mt-8">
-              Read Full Story
-            </Link>
+            <div className="mt-8 flex items-center gap-4">
+              <span
+                aria-hidden="true"
+                className="text-3xl leading-none tracking-[0.35em] text-accent-gold"
+              >
+                ...
+              </span>
+              <Link href="/about" className="btn-primary inline-block">
+                Read Full Story
+              </Link>
+            </div>
           </motion.div>
 
           {/* Image */}
