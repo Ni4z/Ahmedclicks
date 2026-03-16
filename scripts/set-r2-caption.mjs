@@ -9,7 +9,7 @@ import { spawnSync } from 'node:child_process';
 loadLocalEnvFiles();
 
 const captionsReadme =
-  'Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. New photo placeholders are added automatically in the external captions store.';
+  'Add a caption for any photo or video by its relative path. Empty string or missing entry = no caption shown. New media placeholders are added automatically in the external captions store.';
 
 const bucketName =
   process.env.MEDIA_BUCKET_NAME?.trim() ||
@@ -20,6 +20,11 @@ const sourcePrefix = normalizePrefix(
   process.env.THUMB_SOURCE_PREFIX?.trim() ||
     process.env.R2_PHOTO_PREFIX?.trim() ||
     'photos-web'
+);
+const videoSourcePrefix = normalizePrefix(
+  process.env.VIDEO_SOURCE_PREFIX?.trim() ||
+    process.env.R2_VIDEO_PREFIX?.trim() ||
+    ''
 );
 const publicImageBaseUrl = (
   process.env.PUBLIC_IMAGE_BASE_URL?.trim() ||
@@ -150,18 +155,25 @@ function resolveCaptionKey(input) {
   const normalizedInput = normalizeRelativeKey(input.trim());
 
   if (!normalizedInput) {
-    throw new Error('Provide a photo path like "Trees/Emerald Mist.jpg".');
+    throw new Error('Provide a media path like "Trees/Emerald Mist.jpg" or "Bird.mp4".');
   }
 
-  return sourcePrefix && normalizedInput.startsWith(sourcePrefix)
-    ? normalizedInput.slice(sourcePrefix.length)
-    : normalizedInput;
+  if (sourcePrefix && normalizedInput.startsWith(sourcePrefix)) {
+    return normalizedInput.slice(sourcePrefix.length);
+  }
+
+  if (videoSourcePrefix && normalizedInput.startsWith(videoSourcePrefix)) {
+    return normalizedInput.slice(videoSourcePrefix.length);
+  }
+
+  return normalizedInput;
 }
 
 function validateManifest(manifest) {
   if (
     !(manifest && typeof manifest === 'object') ||
-    !Array.isArray(manifest.photos)
+    !Array.isArray(manifest.photos) ||
+    !Array.isArray(manifest.videos)
   ) {
     throw new Error('Media manifest payload was invalid.');
   }
@@ -169,7 +181,7 @@ function validateManifest(manifest) {
   return manifest;
 }
 
-async function fetchPublishedPhotoPaths() {
+async function fetchPublishedMediaPaths() {
   if (!publishedManifestUrl) {
     return [];
   }
@@ -192,7 +204,7 @@ async function fetchPublishedPhotoPaths() {
 
   const manifest = validateManifest(await response.json());
 
-  return manifest.photos
+  return [...manifest.photos, ...manifest.videos]
     .map((entry) =>
       typeof entry?.relativePath === 'string'
         ? normalizeRelativeKey(entry.relativePath)
@@ -201,7 +213,7 @@ async function fetchPublishedPhotoPaths() {
     .filter(Boolean);
 }
 
-async function loadLocalPhotoPaths() {
+async function loadLocalMediaPaths() {
   if (!fsSync.existsSync(manifestPath)) {
     throw new Error(`Local manifest file is missing at ${manifestPath}.`);
   }
@@ -217,7 +229,7 @@ async function loadLocalPhotoPaths() {
 
   const manifest = validateManifest(JSON.parse(match[1]));
 
-  return manifest.photos
+  return [...manifest.photos, ...manifest.videos]
     .map((entry) =>
       typeof entry?.relativePath === 'string'
         ? normalizeRelativeKey(entry.relativePath)
@@ -226,9 +238,9 @@ async function loadLocalPhotoPaths() {
     .filter(Boolean);
 }
 
-async function loadKnownPhotoPaths() {
+async function loadKnownMediaPaths() {
   try {
-    const publishedPaths = await fetchPublishedPhotoPaths();
+    const publishedPaths = await fetchPublishedMediaPaths();
 
     if (publishedPaths.length > 0) {
       return publishedPaths;
@@ -240,7 +252,7 @@ async function loadKnownPhotoPaths() {
     );
   }
 
-  return loadLocalPhotoPaths();
+  return loadLocalMediaPaths();
 }
 
 function levenshteinDistance(first, second) {
@@ -281,11 +293,11 @@ function levenshteinDistance(first, second) {
   return previousRow[second.length];
 }
 
-function getSuggestedPaths(input, knownPhotoPaths) {
+function getSuggestedPaths(input, knownMediaPaths) {
   const normalizedInput = normalizeSearchKey(input);
   const inputFileName = basenameLowerCase(input);
 
-  return knownPhotoPaths
+  return knownMediaPaths
     .map((candidatePath) => {
       const normalizedCandidate = normalizeSearchKey(candidatePath);
       const candidateFileName = basenameLowerCase(candidatePath);
@@ -327,40 +339,41 @@ function getSuggestedPaths(input, knownPhotoPaths) {
 
 async function resolveExistingCaptionKey(input) {
   const candidateKey = resolveCaptionKey(input);
-  const knownPhotoPaths = await loadKnownPhotoPaths();
+  const knownMediaPaths = await loadKnownMediaPaths();
 
-  if (knownPhotoPaths.includes(candidateKey)) {
+  if (knownMediaPaths.includes(candidateKey)) {
     return candidateKey;
   }
 
-  const matchingCaseInsensitivePaths = knownPhotoPaths.filter(
+  const matchingCaseInsensitivePaths = knownMediaPaths.filter(
     (knownPath) => normalizeSearchKey(knownPath) === normalizeSearchKey(candidateKey)
   );
 
   if (matchingCaseInsensitivePaths.length === 1) {
     throw new Error(
-      `Photo path not found: ${candidateKey}. Did you mean "${matchingCaseInsensitivePaths[0]}"?`
+      `Media path not found: ${candidateKey}. Did you mean "${matchingCaseInsensitivePaths[0]}"?`
     );
   }
 
-  const suggestions = getSuggestedPaths(candidateKey, knownPhotoPaths);
+  const suggestions = getSuggestedPaths(candidateKey, knownMediaPaths);
   const suggestionText =
     suggestions.length > 0
       ? ` Closest matches: ${suggestions.map((value) => `"${value}"`).join(', ')}.`
       : '';
 
-  throw new Error(`Photo path not found: ${candidateKey}.${suggestionText}`);
+  throw new Error(`Media path not found: ${candidateKey}.${suggestionText}`);
 }
 
 function printUsage() {
   console.log(
     [
       'Usage:',
-      '  npm run caption:set -- <photo-relative-path> <caption> [--no-deploy]',
+      '  npm run caption:set -- <media-relative-path> <caption> [--no-deploy]',
       '',
       'Examples:',
       '  npm run caption:set -- "Trees/Emerald Mist.jpg" "Morning fog drifts softly over layers of quiet forest."',
       '  npm run caption:set -- "photos-web/wildlife/DSC05232.jpg" "Bullfinch at first light."',
+      '  npm run caption:set -- "Bird.mp4" "A quiet branch study with winter light."',
       '  npm run caption:set -- "wildlife/DSC05232.jpg" "" --no-deploy',
     ].join('\n')
   );
