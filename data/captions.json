@@ -1,5 +1,5 @@
 {
-  "_README": "Add a caption for any photo by its relative path. Empty string or missing entry = no caption shown. New photo placeholders are added automatically in the external captions store and synced locally during media sync.",
+  "_README": "Add a caption for any photo or video by its relative path. Empty string or missing entry = no caption shown. New media placeholders are added automatically in the external captions store and synced locally during media sync.",
   "Roads/Emerald Passage.jpg": "Morning light spills through a tunnel of green as a quiet walk unfolds beneath the forest canopy.",
   "Trees/Emerald Mist.jpg": "Morning fog drifts softly over layers of quiet forest.",
   "wildlife/Hidden Monarch.jpg": "",
@@ -72,5 +72,8 @@
   "Roads/DSC00951.jpg": "",
   "Me/Me.jpg": "",
   "landscape/DSC04689-3.jpg": "",
-  "wildlife/Twin Flight.jpg": "Two geese glide through the soft stillness of an early morning forest."
+  "wildlife/Twin Flight.jpg": "Two geese glide through the soft stillness of an early morning forest.",
+  "Bird.mp4": "",
+  "Sequence 02.mp4": "",
+  "Sequence 01 - (9x16) - (16x9).mp4": ""
 }

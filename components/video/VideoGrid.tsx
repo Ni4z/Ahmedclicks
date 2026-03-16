@@ -50,10 +50,9 @@ export default function VideoGrid({
             </div>
 
             <h3 className="text-3xl font-serif font-bold mb-3">{video.title}</h3>
-            <p className="text-gray-400 leading-relaxed mb-5">{video.description}</p>
-            <p className="text-sm text-gray-500">
-              File: <span className="text-gray-300">{video.fileName}</span>
-            </p>
+            {video.caption ? (
+              <p className="text-gray-300 italic leading-relaxed">{video.caption}</p>
+            ) : null}
           </div>
         </article>
       ))}
