@@ -3,6 +3,7 @@ import 'server-only';
 import fs from 'node:fs';
 import path from 'node:path';
 import { mediaManifest } from '@/data/mediaManifest';
+import mediaCaptions from '@/data/captions.json';
 import {
   createMediaTitle,
   createStableAssetId,
@@ -45,6 +46,12 @@ function getSortableTimestamp(value: string): number {
   return Number.isNaN(timestamp) ? 0 : timestamp;
 }
 
+const captionMap = mediaCaptions as Record<string, string>;
+
+function getVideoCaption(relativePath: string): string | undefined {
+  return captionMap[relativePath] || undefined;
+}
+
 function compareVideoDates(first: { date: string }, second: { date: string }): number {
   return getSortableTimestamp(second.date) - getSortableTimestamp(first.date);
 }
@@ -77,6 +84,7 @@ function createLocalVideoRecord(fileName: string, index: number): Video {
     id: createStableAssetId(fileName, 'video'),
     title: createMediaTitle(fileName),
     src: withBasePath(`/videos/${encodeVideoFileName(fileName)}`),
+    caption: getVideoCaption(fileName),
     description: `Motion work published from the local video archive. File: ${fileName}.`,
     fileName,
     mimeType: supportedVideoExtensions.get(extension) || 'video/mp4',
@@ -95,6 +103,7 @@ function createRemoteVideoRecord(
     id: createStableAssetId(entry.relativePath, 'video'),
     title: createMediaTitle(entry.relativePath),
     src: withObjectStorageAssetPath(entry.objectKey, 'video'),
+    caption: getVideoCaption(entry.relativePath),
     description: `Motion work published from the connected R2 archive. File: ${entry.relativePath}.`,
     fileName: entry.relativePath,
     mimeType: supportedVideoExtensions.get(extension) || 'video/mp4',
