@@ -98,7 +98,7 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
                     </h3>
 
                     {item.summary ? (
-                      <p className="mb-4 line-clamp-2 text-sm leading-6 text-gray-400 xl:text-[0.95rem] xl:leading-6">
+                      <p className="mb-4 text-sm leading-6 text-gray-400 xl:text-[0.95rem] xl:leading-6">
                         {item.summary}
                       </p>
                     ) : null}
