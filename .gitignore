@@ -47,6 +47,9 @@ public/videos/*
 !public/videos/.gitkeep
 
 # Local photo staging for R2-backed media
-public/photos/
+public/photos/*
+!public/photos/Metropolis/
+public/photos/Metropolis/*
+!public/photos/Metropolis/.gitkeep
 public/photos-web/
 public/photos-thumb/
