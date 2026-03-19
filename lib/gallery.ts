@@ -63,15 +63,20 @@ const categoryConfig: Record<
     description: 'Road scenes, geometry, and the visual rhythm of travel.',
     order: 5,
   },
+  metropolis: {
+    name: 'Metropolis',
+    description: 'Urban light, architecture, and city moments from the built environment.',
+    order: 6,
+  },
   trees: {
     name: 'Trees',
     description: 'Texture, silhouettes, and quiet observations from nature.',
-    order: 6,
+    order: 7,
   },
   humans: {
     name: 'Humans',
     description: 'Portraits, gestures, and the human side of the archive.',
-    order: 7,
+    order: 8,
   },
 };
 
