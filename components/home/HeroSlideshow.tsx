@@ -10,7 +10,7 @@ interface HeroSlideshowProps {
   photos: Photo[];
 }
 
-const maxHeroSlides = 10;
+const maxHeroSlides = 5;
 
 function getInitialDisplayPhotos(photos: Photo[]): Photo[] {
   return photos.slice(0, maxHeroSlides);

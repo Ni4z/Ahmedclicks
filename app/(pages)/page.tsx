@@ -1,4 +1,4 @@
-import HeroVideo from '@/components/home/HeroVideo';
+import HeroSlideshow from '@/components/home/HeroSlideshow';
 import LatestUpdates, {
   LatestUpdateItem,
 } from '@/components/home/LatestUpdates';
@@ -8,10 +8,11 @@ import PhotographerBio from '@/components/home/PhotographerBio';
 import { Metadata } from 'next';
 import {
   getPhotoCategories,
+  getPhotos,
   getProfilePhoto,
   getRecentPhotos,
 } from '@/lib/gallery';
-import { getFeaturedVideos, getVideos } from '@/lib/videos';
+import { getFeaturedVideos } from '@/lib/videos';
 import { withPhotoAssetPath } from '@/lib/site';
 import { blogPosts } from '@/data/portfolio';
 
@@ -22,8 +23,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const videos = getVideos();
-  const heroVideo = videos.find((video) => video.featured) || videos[0];
+  const heroPhotos = getPhotos();
   const recentPhotos = getRecentPhotos(4);
   const latestUpdates: LatestUpdateItem[] = [
     ...recentPhotos.map((photo) => ({
@@ -59,7 +59,7 @@ export default function Home() {
 
   return (
     <>
-      <HeroVideo video={heroVideo} />
+      <HeroSlideshow photos={heroPhotos} />
       <LatestUpdates items={latestUpdates} />
       <FeaturedVideos videos={featuredVideos} />
       <Categories categories={categories} />
