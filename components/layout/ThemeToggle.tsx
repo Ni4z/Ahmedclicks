@@ -69,10 +69,10 @@ export default function ThemeToggle() {
       className="inline-flex items-center gap-2 rounded-full border border-dark-tertiary bg-dark-secondary/85 px-3 py-2 text-foreground backdrop-blur-sm transition-colors hover:border-accent-gold"
     >
       <SunIcon active={theme === 'light'} />
-      <span className="relative h-5 w-10 rounded-full border border-dark-tertiary bg-dark">
+      <span className="relative h-5 w-11 rounded-full border border-dark-tertiary bg-dark">
         <span
-          className={`absolute top-0.5 h-4 w-4 rounded-full bg-accent-gold transition-transform duration-300 ${
-            theme === 'dark' ? 'translate-x-[2px]' : 'translate-x-[18px]'
+          className={`absolute top-0.5 h-4 w-4 rounded-full bg-accent-gold transition-[left] duration-300 ${
+            theme === 'dark' ? 'left-[2px]' : 'left-[22px]'
           }`}
         />
       </span>
