@@ -4,23 +4,29 @@ interface BrandMarkProps {
 
 export default function BrandMark({ compact = false }: BrandMarkProps) {
   return (
-    <span className="inline-flex flex-col leading-none">
+    <span className="inline-flex flex-col leading-none text-foreground">
       <span
-        className={`font-signature text-white drop-shadow-[0_2px_16px_rgba(255,255,255,0.08)] ${
-          compact ? 'text-[2.15rem]' : 'text-[2.4rem] md:text-[2.9rem]'
+        className={`font-signature tracking-[0.01em] ${
+          compact ? 'text-[1.95rem]' : 'text-[2.2rem] md:text-[2.65rem]'
         }`}
       >
         Niaz Photography
       </span>
       <span
-        className={`mt-1 flex items-center gap-3 pl-1 uppercase text-white/55 ${
+        className={`mt-1 flex items-center gap-3 pl-1 uppercase text-foreground/45 ${
           compact
-            ? 'text-[0.42rem] tracking-[0.42em]'
-            : 'text-[0.48rem] tracking-[0.48em] md:text-[0.56rem]'
+            ? 'text-[0.42rem] tracking-[0.46em]'
+            : 'text-[0.48rem] tracking-[0.52em] md:text-[0.56rem]'
         }`}
       >
-        <span className="h-px w-7 bg-gradient-to-r from-accent-gold/80 to-transparent md:w-10" />
-        Visual Journal
+        <span
+          className="h-px w-7 md:w-10"
+          style={{
+            background:
+              'linear-gradient(90deg, rgba(var(--color-fg), 0.34) 0%, rgba(var(--color-fg), 0) 100%)',
+          }}
+        />
+        Photography
       </span>
     </span>
   );

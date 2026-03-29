@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-bg: 10 10 10;
+  --color-surface: 24 24 24;
+  --color-border: 56 56 56;
+  --color-fg: 245 245 242;
+  --color-accent: 255 255 255;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+html[data-theme='light'] {
+  --color-bg: 243 243 239;
+  --color-surface: 255 255 252;
+  --color-border: 212 212 206;
+  --color-fg: 18 18 18;
+  --color-accent: 18 18 18;
+  color-scheme: light;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +34,11 @@ html {
 }
 
 body {
-  @apply bg-dark text-white font-sans antialiased;
+  @apply bg-dark text-foreground font-sans antialiased;
   overflow-x: hidden;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
 /* Gradient animations */
@@ -44,12 +68,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.5);
+  background: rgba(var(--color-fg), 0.24);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(212, 175, 55, 0.8);
+  background: rgba(var(--color-fg), 0.42);
 }
 
 /* Image hover effects */
@@ -88,11 +112,30 @@ p {
 
 /* Button styles */
 .btn-primary {
-  @apply px-6 py-3 bg-accent-gold text-dark font-semibold rounded-lg transition-all duration-300 hover:bg-white hover:shadow-lg;
+  @apply rounded-lg px-6 py-3 font-semibold transition-all duration-300;
+  background: rgb(var(--color-accent));
+  color: rgb(var(--color-bg));
+  border: 1px solid rgba(var(--color-accent), 0.96);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.16);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: rgb(var(--color-accent));
+  box-shadow: none;
 }
 
 .btn-secondary {
-  @apply px-6 py-3 border border-accent-gold text-accent-gold font-semibold rounded-lg transition-all duration-300 hover:bg-accent-gold hover:text-dark;
+  @apply rounded-lg px-6 py-3 font-semibold transition-all duration-300;
+  border: 1px solid rgba(var(--color-accent), 0.38);
+  color: rgb(var(--color-accent));
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  background: rgb(var(--color-accent));
+  color: rgb(var(--color-bg));
+  border-color: rgb(var(--color-accent));
 }
 
 /* Link styles */
@@ -100,17 +143,22 @@ a {
   @apply transition-colors duration-300;
 }
 
-a:hover {
-  @apply text-accent-gold;
+a:not(.btn-primary):not(.btn-secondary):hover {
+  color: rgb(var(--color-accent));
 }
 
 /* Form elements */
 input, textarea, select {
-  @apply bg-dark-secondary border border-dark-tertiary rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold transition-colors;
+  @apply bg-dark-secondary border border-dark-tertiary rounded-lg px-4 py-3 text-foreground placeholder-gray-500 focus:outline-none focus:border-accent-gold focus:ring-1 focus:ring-accent-gold transition-colors;
 }
 
 input::placeholder, textarea::placeholder {
   @apply text-gray-600;
+}
+
+::selection {
+  background: rgba(var(--color-accent), 0.18);
+  color: rgb(var(--color-fg));
 }
 
 /* Loading skeleton */
