@@ -21,7 +21,9 @@ export default function GalleryPage() {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.68)_0%,rgba(18,18,18,0.82)_55%,rgba(10,10,10,0.92)_100%)]" />
         </div>
         <div className="relative z-10">
-          <h1 className="mb-4 text-5xl font-serif font-bold md:text-7xl">Gallery</h1>
+          <h1 className="mb-4 text-5xl font-serif font-bold text-white md:text-7xl">
+            Gallery
+          </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-200/80">
             A curated collection of moments where light, nature, and life meet.
           </p>
