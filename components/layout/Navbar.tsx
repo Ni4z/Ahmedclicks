@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import BrandMark from '@/components/layout/BrandMark';
+import ThemeToggle from '@/components/layout/ThemeToggle';
 
 const navItems = [
   { name: 'Gallery', href: '/gallery' },
@@ -32,7 +33,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 z-50 w-full bg-dark/80 backdrop-blur-md border-b border-dark-tertiary">
+      <nav className="fixed top-0 z-50 w-full border-b border-dark-tertiary bg-dark/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
           <Link
@@ -46,40 +47,48 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <motion.span
-                  whileHover={{ color: '#d4af37' }}
-                  className="text-sm tracking-widest hover:text-accent-gold transition-colors"
-                >
-                  {item.name}
-                </motion.span>
-              </Link>
-            ))}
+          <div className="hidden md:flex items-center gap-6">
+            <div className="flex items-center gap-8">
+              {navItems.map((item) => (
+                <Link key={item.href} href={item.href}>
+                  <motion.span
+                    whileHover={{ y: -1 }}
+                    className="text-sm tracking-[0.22em] text-foreground/85 hover:text-accent-gold transition-colors"
+                  >
+                    {item.name}
+                  </motion.span>
+                </Link>
+              ))}
+            </div>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden flex flex-col gap-1 cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            aria-expanded={isOpen}
-          >
-            <span
-              className={`w-6 h-0.5 bg-white transition-all ${
-                isOpen ? 'rotate-45 translate-y-2' : ''
-              }`}
-            />
-            <span
-              className={`w-6 h-0.5 bg-white transition-all ${isOpen ? 'opacity-0' : ''}`}
-            />
-            <span
-              className={`w-6 h-0.5 bg-white transition-all ${
-                isOpen ? '-rotate-45 -translate-y-2' : ''
-              }`}
-            />
-          </button>
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              className="flex flex-col gap-1 cursor-pointer"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isOpen}
+            >
+              <span
+                className={`h-0.5 w-6 bg-foreground transition-all ${
+                  isOpen ? 'translate-y-2 rotate-45' : ''
+                }`}
+              />
+              <span
+                className={`h-0.5 w-6 bg-foreground transition-all ${
+                  isOpen ? 'opacity-0' : ''
+                }`}
+              />
+              <span
+                className={`h-0.5 w-6 bg-foreground transition-all ${
+                  isOpen ? '-translate-y-2 -rotate-45' : ''
+                }`}
+              />
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -98,7 +107,7 @@ export default function Navbar() {
               animate={isOpen ? 'open' : 'closed'}
             >
               <Link href={item.href} onClick={() => setIsOpen(false)}>
-                <div className="px-6 py-3 text-sm tracking-widest hover:text-accent-gold">
+                <div className="px-6 py-3 text-sm tracking-[0.22em] text-foreground/80 hover:text-accent-gold">
                   {item.name}
                 </div>
               </Link>
