@@ -16,6 +16,7 @@ const config: Config = {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         serif: ['Playfair Display', 'serif'],
+        signature: ['var(--font-signature)', 'cursive'],
       },
       animation: {
         fadeIn: 'fadeIn 0.5s ease-in-out',
