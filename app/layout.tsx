@@ -33,6 +33,23 @@ const socialImage =
   getFeaturedPhotos(1)[0]?.image ||
   withPhotoAssetPath('/photos/wildlife/DSC03370.jpg');
 
+const themeInitScript = `
+  (() => {
+    const storageKey = 'niaz-theme';
+
+    try {
+      const savedTheme = window.localStorage.getItem(storageKey);
+      const theme = savedTheme === 'light' || savedTheme === 'dark'
+        ? savedTheme
+        : 'dark';
+
+      document.documentElement.dataset.theme = theme;
+    } catch {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  })();
+`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: 'NiazPhotography',
@@ -90,10 +107,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} ${allura.variable} dark`}
+      data-theme="dark"
+      className={`${playfair.variable} ${inter.variable} ${allura.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-dark text-white">
+      <body className="bg-dark text-foreground">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         {googleAnalyticsId ? (
           <>
             <Script

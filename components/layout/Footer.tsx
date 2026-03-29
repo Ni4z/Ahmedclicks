@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { siteConfig } from '@/lib/site';
+import BrandMark from '@/components/layout/BrandMark';
 
 const socialLinks = [
   { name: 'Instagram', href: siteConfig.instagramUrl, icon: 'instagram' as const },
@@ -102,7 +103,9 @@ export default function Footer() {
         >
           {/* Brand */}
           <motion.div variants={itemVariants}>
-            <h3 className="text-2xl font-serif font-bold mb-4">NiazPhotography</h3>
+            <div className="mb-4">
+              <BrandMark />
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               A photography and video portfolio documenting wildlife, landscapes, roads, trees, portraits, and the night sky.
             </p>
