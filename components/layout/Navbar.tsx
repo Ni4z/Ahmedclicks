@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import BrandMark from '@/components/layout/BrandMark';
 
 const navItems = [
   { name: 'Gallery', href: '/gallery' },
@@ -34,8 +35,14 @@ export default function Navbar() {
       <nav className="fixed top-0 z-50 w-full bg-dark/80 backdrop-blur-md border-b border-dark-tertiary">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="text-2xl font-serif font-bold tracking-widest">
-            NiazPhotography
+          <Link
+            href="/"
+            aria-label="NiazPhotography home"
+            className="group shrink-0"
+          >
+            <span className="block transition-transform duration-300 group-hover:-translate-y-0.5">
+              <BrandMark compact />
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

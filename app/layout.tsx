@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, Inter } from 'next/font/google';
+import { Playfair_Display, Inter, Allura } from 'next/font/google';
 import Script from 'next/script';
 import '@/styles/globals.css';
 import Layout from '@/components/layout/Layout';
@@ -21,6 +21,12 @@ const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
   weight: ['300', '400', '500', '600', '700'],
+});
+
+const allura = Allura({
+  subsets: ['latin'],
+  variable: '--font-signature',
+  weight: ['400'],
 });
 
 const socialImage =
@@ -84,7 +90,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${playfair.variable} ${inter.variable} dark`}
+      className={`${playfair.variable} ${inter.variable} ${allura.variable} dark`}
       suppressHydrationWarning
     >
       <body className="bg-dark text-white">
