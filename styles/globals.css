@@ -161,6 +161,19 @@ input::placeholder, textarea::placeholder {
   color: rgb(var(--color-fg));
 }
 
+/* Legacy neutral text utilities mapped to theme-aware contrast values */
+.text-gray-400 {
+  color: rgb(var(--color-fg) / 0.68);
+}
+
+.text-gray-500 {
+  color: rgb(var(--color-fg) / 0.56);
+}
+
+.text-gray-600 {
+  color: rgb(var(--color-fg) / 0.44);
+}
+
 /* Loading skeleton */
 .skeleton {
   @apply bg-gradient-to-r from-dark-secondary via-dark-tertiary to-dark-secondary;
