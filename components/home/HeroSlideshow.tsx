@@ -137,7 +137,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
         transition={{ delay: 0.3 }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
       >
-        <h1 className="mb-4 font-signature text-[3.75rem] leading-[0.9] tracking-[0.01em] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] md:text-[5.5rem] lg:text-[6.75rem]">
+        <h1 className="mb-4 font-signature font-normal text-[3.75rem] leading-[0.9] tracking-[0.01em] text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] md:text-[5.5rem] lg:text-[6.75rem]">
           Niaz Photography
         </h1>
         <p className="mb-8 max-w-2xl text-lg text-white/90 md:text-xl">
