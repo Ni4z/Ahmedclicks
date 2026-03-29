@@ -137,10 +137,10 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
         transition={{ delay: 0.3 }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
       >
-        <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 tracking-wider">
+        <h1 className="mb-4 font-serif text-5xl font-bold tracking-tight text-white md:text-7xl">
           NiazPhotography
         </h1>
-        <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">
+        <p className="mb-8 max-w-2xl text-lg text-white/90 md:text-xl">
           Wildlife, landscapes, roads, trees, portraits, and night skies collected in one portfolio.
         </p>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
