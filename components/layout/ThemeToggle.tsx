@@ -66,18 +66,34 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="inline-flex items-center gap-2 rounded-full border border-dark-tertiary bg-dark-secondary/85 px-3 py-2 text-foreground backdrop-blur-sm transition-colors hover:border-accent-gold"
+      className="inline-flex h-12 items-center gap-2 rounded-full border border-dark-tertiary bg-dark-secondary/90 px-3 text-foreground shadow-[0_10px_28px_rgba(0,0,0,0.08)] backdrop-blur-sm transition-[border-color,background-color,box-shadow] duration-300 hover:border-foreground/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground/12 focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
     >
-      <SunIcon active={theme === 'light'} />
-      <span className="relative h-5 w-11 rounded-full border border-dark-tertiary bg-dark">
+      <span
+        className={`flex h-8 w-8 items-center justify-center rounded-full transition-[opacity,transform,color] duration-300 ${
+          theme === 'light'
+            ? 'scale-100 text-foreground'
+            : 'scale-[0.96] text-foreground/35'
+        }`}
+      >
+        <SunIcon active={theme === 'light'} />
+      </span>
+      <span className="relative h-8 w-14 shrink-0 rounded-full border border-dark-tertiary bg-dark/95 shadow-inner shadow-black/10">
         <span
-          className="absolute top-0.5 h-4 w-4 rounded-full bg-accent-gold transition-[left] duration-300"
+          className="absolute top-1 h-6 w-6 rounded-full bg-accent-gold shadow-[0_8px_18px_rgba(0,0,0,0.24)] transition-transform duration-300"
           style={{
-            left: theme === 'light' ? '2px' : 'calc(100% - 18px)',
+            transform: theme === 'light' ? 'translateX(2px)' : 'translateX(30px)',
           }}
         />
       </span>
-      <MoonIcon active={theme === 'dark'} />
+      <span
+        className={`flex h-8 w-8 items-center justify-center rounded-full transition-[opacity,transform,color] duration-300 ${
+          theme === 'dark'
+            ? 'scale-100 text-foreground'
+            : 'scale-[0.96] text-foreground/35'
+        }`}
+      >
+        <MoonIcon active={theme === 'dark'} />
+      </span>
     </button>
   );
 }
