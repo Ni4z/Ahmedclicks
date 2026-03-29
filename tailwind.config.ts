@@ -8,10 +8,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        dark: '#0a0a0a',
-        'dark-secondary': '#1a1a1a',
-        'dark-tertiary': '#2a2a2a',
-        'accent-gold': '#d4af37',
+        dark: 'rgb(var(--color-bg) / <alpha-value>)',
+        'dark-secondary': 'rgb(var(--color-surface) / <alpha-value>)',
+        'dark-tertiary': 'rgb(var(--color-border) / <alpha-value>)',
+        'accent-gold': 'rgb(var(--color-accent) / <alpha-value>)',
+        foreground: 'rgb(var(--color-fg) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

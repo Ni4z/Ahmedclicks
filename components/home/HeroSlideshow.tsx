@@ -67,7 +67,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
     return (
       <section className="relative w-full min-h-[70vh] bg-dark-secondary flex items-center justify-center px-6">
         <div className="text-center max-w-3xl">
-          <p className="text-sm tracking-[0.4em] uppercase text-accent-gold mb-4">
+          <p className="text-sm tracking-[0.4em] uppercase text-white/75 mb-4">
             NiazPhotography
           </p>
           <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">
@@ -162,7 +162,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
             aria-label={`View featured photo ${i + 1}`}
             className={`w-2 h-2 rounded-full transition-all ${
               i === currentSlide
-                ? 'bg-accent-gold w-8'
+                ? 'bg-white w-8'
                 : 'bg-white/50 hover:bg-white'
             }`}
           />
@@ -173,7 +173,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 right-8 text-accent-gold text-sm tracking-widest"
+        className="absolute bottom-8 right-8 text-sm tracking-widest text-white/75"
       >
         SCROLL
       </motion.div>
