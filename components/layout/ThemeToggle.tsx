@@ -71,9 +71,10 @@ export default function ThemeToggle() {
       <SunIcon active={theme === 'light'} />
       <span className="relative h-5 w-11 rounded-full border border-dark-tertiary bg-dark">
         <span
-          className={`absolute top-0.5 h-4 w-4 rounded-full bg-accent-gold transition-[left] duration-300 ${
-            theme === 'dark' ? 'left-[2px]' : 'left-[22px]'
-          }`}
+          className="absolute top-0.5 h-4 w-4 rounded-full bg-accent-gold transition-[left] duration-300"
+          style={{
+            left: theme === 'light' ? '2px' : 'calc(100% - 18px)',
+          }}
         />
       </span>
       <MoonIcon active={theme === 'dark'} />
