@@ -25,6 +25,7 @@ export const siteConfig = {
   linkedinUrl:
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
     'https://www.linkedin.com/in/hmedniaz/',
+  paypalSupportUrl: process.env.NEXT_PUBLIC_PAYPAL_SUPPORT_URL || '',
 };
 
 export const withBasePath = (path: string): string => {
