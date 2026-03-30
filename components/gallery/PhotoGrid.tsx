@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import PhotoSupportCard from '@/components/gallery/PhotoSupportCard';
 import { Photo } from '@/lib/types';
 
 interface PhotoGridProps {
@@ -40,6 +41,7 @@ export default function PhotoGrid({ photos }: PhotoGridProps) {
               </div>
             </div>
           </Link>
+          <PhotoSupportCard photoTitle={photo.title} compact />
         </div>
       ))}
     </div>
