@@ -2,7 +2,6 @@ import { siteConfig } from '@/lib/site';
 
 interface PhotoSupportCardProps {
   photoTitle: string;
-  compact?: boolean;
 }
 
 function CoffeeIcon() {
@@ -28,23 +27,17 @@ function CoffeeIcon() {
 
 export default function PhotoSupportCard({
   photoTitle,
-  compact = false,
 }: PhotoSupportCardProps) {
   const paypalSupportUrl = siteConfig.paypalSupportUrl;
   const unavailable = !paypalSupportUrl;
-  const buttonLabel = compact ? 'Buy me a €1 coffee' : 'Buy me a €1 coffee on PayPal';
-  const eyebrow = compact ? 'Support the next frame' : 'A small thank-you';
-  const copy = compact
-    ? 'If this photo stayed with you, a single euro helps fund the next quiet frame.'
-    : 'If this image stayed with you, a single euro helps cover future walks, editing time, and the next photograph shared here.';
+  const buttonLabel = 'Buy me a €1 coffee on PayPal';
+  const eyebrow = 'A small thank-you';
+  const copy =
+    'If this image stayed with you, a single euro helps cover future walks, editing time, and the next photograph shared here.';
   const statusLabel = unavailable ? 'Support link coming soon' : 'Secure one-euro thanks via PayPal';
 
   return (
-    <div
-      className={`rounded-2xl border border-dark-tertiary bg-dark-secondary/90 text-foreground shadow-[0_18px_38px_rgba(0,0,0,0.08)] ${
-        compact ? 'mt-3 p-4' : 'mt-6 p-6'
-      }`}
-    >
+    <div className="mt-6 rounded-2xl border border-dark-tertiary bg-dark-secondary/90 p-6 text-foreground shadow-[0_18px_38px_rgba(0,0,0,0.08)]">
       <div className="flex items-start gap-3">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-dark-tertiary bg-dark/65 text-foreground/82">
           <CoffeeIcon />
@@ -54,11 +47,11 @@ export default function PhotoSupportCard({
           <p className="text-[0.68rem] uppercase tracking-[0.34em] text-foreground/45">
             {eyebrow}
           </p>
-          <p className={`mt-2 text-foreground/78 ${compact ? 'text-sm leading-6' : 'text-base leading-7'}`}>
+          <p className="mt-2 text-base leading-7 text-foreground/78">
             {copy}
           </p>
 
-          <div className={`mt-4 flex flex-wrap items-center gap-3 ${compact ? '' : 'gap-y-4'}`}>
+          <div className="mt-4 flex flex-wrap items-center gap-3 gap-y-4">
             {unavailable ? (
               <span
                 aria-disabled="true"
@@ -83,7 +76,7 @@ export default function PhotoSupportCard({
             </span>
           </div>
 
-          {!compact && unavailable ? (
+          {unavailable ? (
             <p className="mt-3 text-sm text-foreground/52">
               The PayPal support button is being prepared and will be available soon.
             </p>
