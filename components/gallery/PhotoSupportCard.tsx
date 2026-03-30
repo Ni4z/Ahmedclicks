@@ -31,12 +31,13 @@ export default function PhotoSupportCard({
   compact = false,
 }: PhotoSupportCardProps) {
   const paypalSupportUrl = siteConfig.paypalSupportUrl;
-  const previewOnly = !paypalSupportUrl;
+  const unavailable = !paypalSupportUrl;
   const buttonLabel = compact ? 'Buy me a €1 coffee' : 'Buy me a €1 coffee on PayPal';
   const eyebrow = compact ? 'Support the next frame' : 'A small thank-you';
   const copy = compact
     ? 'If this photo stayed with you, a single euro helps fund the next quiet frame.'
     : 'If this image stayed with you, a single euro helps cover future walks, editing time, and the next photograph shared here.';
+  const statusLabel = unavailable ? 'Support link coming soon' : 'Secure one-euro thanks via PayPal';
 
   return (
     <div
@@ -58,7 +59,7 @@ export default function PhotoSupportCard({
           </p>
 
           <div className={`mt-4 flex flex-wrap items-center gap-3 ${compact ? '' : 'gap-y-4'}`}>
-            {previewOnly ? (
+            {unavailable ? (
               <span
                 aria-disabled="true"
                 className="inline-flex items-center justify-center rounded-full border border-dark-tertiary bg-dark/40 px-4 py-2 text-sm font-medium text-foreground/65"
@@ -78,14 +79,13 @@ export default function PhotoSupportCard({
             )}
 
             <span className="text-[0.66rem] uppercase tracking-[0.28em] text-foreground/40">
-              {previewOnly ? 'Preview only' : 'Via PayPal'}
+              {statusLabel}
             </span>
           </div>
 
-          {!compact && previewOnly ? (
+          {!compact && unavailable ? (
             <p className="mt-3 text-sm text-foreground/52">
-              Add <code className="rounded bg-dark/55 px-1.5 py-0.5 text-[0.82em]">NEXT_PUBLIC_PAYPAL_SUPPORT_URL</code>{' '}
-              to enable the live payment button.
+              The PayPal support button is being prepared and will be available soon.
             </p>
           ) : null}
         </div>
