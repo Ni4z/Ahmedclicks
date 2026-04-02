@@ -105,7 +105,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="text-lg hover:text-accent-gold transition-colors"
                 >
-                  @NiazPhotography
+                  @{siteConfig.instagramHandle}
                 </a>
               </div>
 
