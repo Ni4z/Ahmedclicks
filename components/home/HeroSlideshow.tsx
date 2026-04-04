@@ -118,7 +118,11 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
           className="absolute inset-0"
         >
           <Image
-            src={displayPhotos[currentSlide]?.image || ''}
+            src={
+              displayPhotos[currentSlide]?.thumbnail ||
+              displayPhotos[currentSlide]?.image ||
+              ''
+            }
             alt={displayPhotos[currentSlide]?.title || 'Featured Photo'}
             fill
             priority
