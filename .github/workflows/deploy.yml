@@ -38,14 +38,6 @@ jobs:
       PUBLIC_IMAGE_BASE_URL: ${{ vars.PUBLIC_IMAGE_BASE_URL || vars.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://images.niazphotography.com' }}
       MEDIA_MANIFEST_OBJECT_KEY: ${{ vars.MEDIA_MANIFEST_OBJECT_KEY || 'media-manifest.json' }}
       CAPTIONS_OBJECT_KEY: ${{ vars.CAPTIONS_OBJECT_KEY || 'captions.json' }}
-      R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME || 'niazphotography-images' }}
-      R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID || 'd349af336cd7db97b0179f82565063e' }}
-      R2_ENDPOINT: ${{ vars.R2_ENDPOINT || format('https://{0}.r2.cloudflarestorage.com', vars.R2_ACCOUNT_ID || 'd349af336cd7db97b0179f82565063e') }}
-      R2_PHOTO_PREFIX: ${{ vars.R2_PHOTO_PREFIX || 'photos-web' }}
-      R2_PHOTO_THUMB_PREFIX: ${{ vars.R2_PHOTO_THUMB_PREFIX || 'photos-thumb' }}
-      R2_VIDEO_PREFIX: ${{ vars.R2_VIDEO_PREFIX }}
-      R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-      R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -63,8 +55,18 @@ jobs:
         run: npm ci
 
       - name: Heal missing thumbnails
+        if: github.event_name != 'pull_request'
         continue-on-error: true
         run: npm run thumbs:heal
+        env:
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ vars.R2_ENDPOINT }}
+          R2_PHOTO_PREFIX: ${{ vars.R2_PHOTO_PREFIX }}
+          R2_PHOTO_THUMB_PREFIX: ${{ vars.R2_PHOTO_THUMB_PREFIX }}
+          R2_VIDEO_PREFIX: ${{ vars.R2_VIDEO_PREFIX }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
 
       - name: Sync media manifest
         run: npm run sync:media
