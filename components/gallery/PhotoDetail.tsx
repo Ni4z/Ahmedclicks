@@ -3,7 +3,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import PhotoSupportCard from '@/components/gallery/PhotoSupportCard';
 import { Photo } from '@/lib/types';
 
 interface PhotoDetailProps {
@@ -80,7 +79,6 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
             className="block max-w-full max-h-[80vh] w-auto h-auto mx-auto"
           />
         </div>
-        <PhotoSupportCard photoTitle={photo.title} />
       </div>
 
       {/* Details */}
