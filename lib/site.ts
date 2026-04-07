@@ -4,8 +4,6 @@ const normalizedSiteUrl = (
 const normalizedMediaBaseUrl = (
   process.env.NEXT_PUBLIC_MEDIA_BASE_URL || ''
 ).replace(/\/+$/, '');
-const defaultPaypalSupportUrl =
-  'https://www.paypal.com/paypalme/ahmedniaz10/1EUR';
 
 export const siteConfig = {
   name: 'NiazPhotography',
@@ -29,8 +27,6 @@ export const siteConfig = {
   linkedinUrl:
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
     'https://www.linkedin.com/in/hmedniaz/',
-  paypalSupportUrl:
-    process.env.NEXT_PUBLIC_PAYPAL_SUPPORT_URL || defaultPaypalSupportUrl,
 };
 
 export const withBasePath = (path: string): string => {
