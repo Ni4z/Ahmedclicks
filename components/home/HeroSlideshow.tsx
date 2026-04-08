@@ -6,17 +6,33 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Photo } from '@/lib/types';
 
+type HeroPhoto = Pick<Photo, 'title' | 'image' | 'date'>;
+
 interface HeroSlideshowProps {
-  photos: Photo[];
+  photos: HeroPhoto[];
 }
 
 const maxHeroSlides = 5;
+const recentHeroWindowDays = 10;
+const millisecondsPerDay = 24 * 60 * 60 * 1000;
 
-function getInitialDisplayPhotos(photos: Photo[]): Photo[] {
-  return photos.slice(0, maxHeroSlides);
+function getInitialDisplayPhotos(photos: HeroPhoto[]): HeroPhoto[] {
+  return getNewestFirstPhotos(photos).slice(0, maxHeroSlides);
 }
 
-function shufflePhotos(photos: Photo[]): Photo[] {
+function getSortableTimestamp(value: string): number {
+  const timestamp = new Date(value).getTime();
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
+function getNewestFirstPhotos(photos: HeroPhoto[]): HeroPhoto[] {
+  return [...photos].sort(
+    (first, second) =>
+      getSortableTimestamp(second.date) - getSortableTimestamp(first.date)
+  );
+}
+
+function shufflePhotos(photos: HeroPhoto[]): HeroPhoto[] {
   const shuffled = [...photos];
 
   for (let index = shuffled.length - 1; index > 0; index -= 1) {
@@ -30,6 +46,24 @@ function shufflePhotos(photos: Photo[]): Photo[] {
   return shuffled;
 }
 
+function getRecentDisplayPhotos(
+  photos: HeroPhoto[],
+  referenceTime = Date.now()
+): HeroPhoto[] {
+  const newestFirstPhotos = getNewestFirstPhotos(photos);
+  const cutoffTime =
+    referenceTime - recentHeroWindowDays * millisecondsPerDay;
+  const recentPhotos = newestFirstPhotos.filter(
+    (photo) => getSortableTimestamp(photo.date) >= cutoffTime
+  );
+
+  if (recentPhotos.length > 0) {
+    return shufflePhotos(recentPhotos).slice(0, maxHeroSlides);
+  }
+
+  return newestFirstPhotos.slice(0, maxHeroSlides);
+}
+
 export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -38,14 +72,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   );
 
   useEffect(() => {
-    if (photos.length <= 1) {
-      setDisplayPhotos(photos);
-      setCurrentSlide(0);
-      setDirection(0);
-      return;
-    }
-
-    setDisplayPhotos(shufflePhotos(photos).slice(0, maxHeroSlides));
+    setDisplayPhotos(getRecentDisplayPhotos(photos));
     setCurrentSlide(0);
     setDirection(0);
   }, [photos]);
