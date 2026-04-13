@@ -113,37 +113,37 @@ The more often you simplify a frame before shooting, the stronger the final imag
 export const equipment: Equipment[] = [
   {
     id: '1',
-    name: 'Sony Alpha Mirrorless Kit',
+    name: 'Sony Alpha 7C II',
     type: 'camera',
     description:
-      'Primary camera setup used across the NiazPhotography portfolio for travel, wildlife, and low-light work.',
+      'Primary full-frame camera body used across the portfolio for wildlife, travel, low-light, and everyday shooting.',
   },
   {
     id: '2',
-    name: 'Long Telephoto Zoom',
+    name: 'Sony 200-600mm f/5.6-6.3',
     type: 'lens',
     description:
-      'Used for wildlife frames where reach and subject separation matter most.',
+      'Main wildlife lens for distant subjects, tighter framing, and strong reach in the field.',
   },
   {
     id: '3',
-    name: 'Wide-Angle Lens',
+    name: 'Sigma 70-200mm f/2.8 DG DN Sports',
     type: 'lens',
     description:
-      'For landscapes, roads, and astrophotography scenes that need breadth and atmosphere.',
+      'Fast telephoto zoom used for portraits, compressed landscapes, and subjects that need speed and flexibility.',
   },
   {
     id: '4',
-    name: 'Travel Tripod',
-    type: 'accessory',
+    name: 'Sigma 28-70mm f/2.8',
+    type: 'lens',
     description:
-      'A stable support for night work, low-light landscapes, and long exposures.',
+      'Compact standard zoom for travel, everyday scenes, and general-purpose landscape work.',
   },
   {
     id: '5',
-    name: 'Editing Workflow',
-    type: 'accessory',
+    name: 'Sigma 14mm f/1.4 DG DN Art',
+    type: 'lens',
     description:
-      'Lightroom-based post-processing for selecting, grading, and preparing final images.',
+      'Ultra-wide prime for astrophotography, expansive skies, and dramatic foreground-to-background compositions.',
   },
 ];
