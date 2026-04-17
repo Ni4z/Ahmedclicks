@@ -41,8 +41,11 @@ const videoPrefix =
     : normalizePrefix(process.env.R2_VIDEO_PREFIX);
 const manifestPath = path.join(process.cwd(), 'data', 'mediaManifest.ts');
 const captionsPath = path.join(process.cwd(), 'data', 'captions.json');
+const photoMetadataPath = path.join(process.cwd(), 'data', 'photoMetadata.json');
 const captionsReadme =
   'Add a caption for any photo or video by its relative path. Empty string or missing entry = no caption shown. New media placeholders are added automatically in the external captions store and synced locally during media sync.';
+const photoMetadataReadme =
+  'Add photo organization metadata by relative path. Use tags, series, location, and year to keep the gallery browsable as it grows. New photo placeholders are added automatically during media sync.';
 const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
 );
@@ -505,6 +508,116 @@ function renderCaptionMap(entries) {
   return `${JSON.stringify(payload, null, 2)}\n`;
 }
 
+function normalizePhotoMetadataString(value) {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+
+  const normalizedValue = value.trim();
+  return normalizedValue || undefined;
+}
+
+function normalizePhotoMetadataTags(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const seenTags = new Set();
+  const tags = [];
+
+  for (const item of value) {
+    if (typeof item !== 'string') {
+      continue;
+    }
+
+    const normalizedTag = item.trim();
+
+    if (!normalizedTag) {
+      continue;
+    }
+
+    const normalizedKey = normalizedTag.toLowerCase();
+
+    if (seenTags.has(normalizedKey)) {
+      continue;
+    }
+
+    seenTags.add(normalizedKey);
+    tags.push(normalizedTag);
+  }
+
+  return tags;
+}
+
+function normalizePhotoMetadataEntry(value) {
+  if (!(value && typeof value === 'object') || Array.isArray(value)) {
+    return {};
+  }
+
+  const tags = normalizePhotoMetadataTags(value.tags);
+  const series = normalizePhotoMetadataString(value.series);
+  const location = normalizePhotoMetadataString(value.location);
+  const year =
+    typeof value.year === 'number' &&
+    Number.isInteger(value.year) &&
+    value.year >= 1000 &&
+    value.year <= 9999
+      ? value.year
+      : undefined;
+  const entry = {};
+
+  if (tags.length > 0) {
+    entry.tags = tags;
+  }
+
+  if (series) {
+    entry.series = series;
+  }
+
+  if (location) {
+    entry.location = location;
+  }
+
+  if (year) {
+    entry.year = year;
+  }
+
+  return entry;
+}
+
+function parsePhotoMetadataMap(source) {
+  if (!(source && typeof source === 'object') || Array.isArray(source)) {
+    throw new Error('Photo metadata file must contain a JSON object.');
+  }
+
+  const entries = [];
+
+  for (const [key, value] of Object.entries(source)) {
+    if (key.startsWith('_')) {
+      continue;
+    }
+
+    entries.push([
+      normalizeRelativeKey(key),
+      normalizePhotoMetadataEntry(value),
+    ]);
+  }
+
+  return entries;
+}
+
+function renderPhotoMetadataMap(entries) {
+  const payload = {
+    _README: photoMetadataReadme,
+  };
+
+  for (const [key, value] of entries) {
+    payload[key] = normalizePhotoMetadataEntry(value);
+  }
+
+  return `${JSON.stringify(payload, null, 2)}\n`;
+}
+
 async function loadCaptionEntries() {
   const currentSource = fsSync.existsSync(captionsPath)
     ? await fs.readFile(captionsPath, 'utf8')
@@ -590,9 +703,46 @@ async function syncCaptionPlaceholders(mediaEntries) {
   }
 }
 
+async function syncPhotoMetadataPlaceholders(photoEntries) {
+  const currentSource = fsSync.existsSync(photoMetadataPath)
+    ? await fs.readFile(photoMetadataPath, 'utf8')
+    : '';
+  const metadataEntries = currentSource
+    ? parsePhotoMetadataMap(JSON.parse(currentSource))
+    : [];
+  const metadataMap = new Map(metadataEntries);
+  const synchronizedEntries = [...metadataEntries];
+  const addedKeys = [];
+
+  for (const photoEntry of photoEntries) {
+    const relativePath = normalizeRelativeKey(photoEntry.relativePath);
+
+    if (metadataMap.has(relativePath)) {
+      continue;
+    }
+
+    metadataMap.set(relativePath, {});
+    synchronizedEntries.push([relativePath, {}]);
+    addedKeys.push(relativePath);
+  }
+
+  const nextSource = renderPhotoMetadataMap(synchronizedEntries);
+
+  if (nextSource !== currentSource) {
+    await fs.writeFile(photoMetadataPath, nextSource, 'utf8');
+  }
+
+  if (addedKeys.length > 0) {
+    console.log(
+      `[sync:media] Added ${addedKeys.length} new photo metadata placeholder${addedKeys.length === 1 ? '' : 's'} in data/photoMetadata.json.`
+    );
+  }
+}
+
 async function writeSyncedMedia(manifest) {
   await fs.writeFile(manifestPath, renderManifest(manifest), 'utf8');
   await syncCaptionPlaceholders([...manifest.photos, ...manifest.videos]);
+  await syncPhotoMetadataPlaceholders(manifest.photos);
 }
 
 function isManifestEntry(entry) {
