@@ -1,0 +1,252 @@
+{
+  "_README": "Add photo organization metadata by relative path. Use tags, series, location, and year to keep the gallery browsable as it grows. New photo placeholders are added automatically during media sync.",
+  "Roads/Emerald Passage.jpg": {
+    "tags": [
+      "forest",
+      "path",
+      "morning light"
+    ],
+    "series": "Emerald Canopy",
+    "location": "Woodland Trail",
+    "year": 2026
+  },
+  "Trees/Emerald Mist.jpg": {
+    "tags": [
+      "fog",
+      "forest",
+      "morning"
+    ],
+    "series": "Emerald Canopy",
+    "location": "Woodland Hills",
+    "year": 2026
+  },
+  "wildlife/Twin Flight.jpg": {
+    "tags": [
+      "geese",
+      "flight",
+      "forest"
+    ],
+    "series": "Morning Wings",
+    "location": "Forest Wetland",
+    "year": 2026
+  },
+  "wildlife/Hidden Monarch.jpg": {
+    "tags": [
+      "butterfly",
+      "macro",
+      "wildlife"
+    ],
+    "series": "Forest Small Worlds",
+    "location": "Garden Edge",
+    "year": 2026
+  },
+  "wildlife/Buzzard.jpg": {
+    "tags": [
+      "raptor",
+      "perch",
+      "bird"
+    ],
+    "series": "Birds of Prey",
+    "location": "Open Woodland",
+    "year": 2026
+  },
+  "wildlife/Raven.jpg": {
+    "tags": [
+      "raven",
+      "bird",
+      "shadow"
+    ],
+    "series": "Bird Study",
+    "location": "Tree Line",
+    "year": 2026
+  },
+  "wildlife/Kite.jpg": {
+    "tags": [
+      "kite",
+      "bird",
+      "glide"
+    ],
+    "series": "Bird Study",
+    "location": "Open Sky",
+    "year": 2026
+  },
+  "landscape/Mist_Spire.jpg": {
+    "tags": [
+      "mist",
+      "landscape",
+      "peak"
+    ],
+    "series": "Morning Terrain",
+    "location": "High Ridge",
+    "year": 2026
+  },
+  "landscape/Sunrise.jpg": {
+    "tags": [
+      "sunrise",
+      "light",
+      "horizon"
+    ],
+    "series": "Morning Terrain",
+    "location": "Open Horizon",
+    "year": 2026
+  },
+  "Trees/Woodland_Flame.jpg": {
+    "tags": [
+      "leaves",
+      "autumn",
+      "forest"
+    ],
+    "series": "Forest Color",
+    "location": "Woodland Path",
+    "year": 2026
+  },
+  "Trees/Sunflower.jpg": {
+    "tags": [
+      "flower",
+      "yellow",
+      "garden"
+    ],
+    "series": "Seasonal Study",
+    "location": "Garden Patch",
+    "year": 2026
+  },
+  "astrophotography/DSC05884-2.jpg": {
+    "tags": [
+      "night sky",
+      "stars",
+      "long exposure"
+    ],
+    "series": "After Dark",
+    "location": "Night Field",
+    "year": 2026
+  },
+  "astrophotography/DSC05884-3.jpg": {
+    "tags": [
+      "night sky",
+      "stars",
+      "astro"
+    ],
+    "series": "After Dark",
+    "location": "Night Field",
+    "year": 2026
+  },
+  "Humans/DSC01070-2.jpg": {
+    "tags": [
+      "portrait",
+      "light",
+      "person"
+    ],
+    "series": "Human Moments",
+    "location": "Outdoor Portraits",
+    "year": 2026
+  },
+  "wildlife/Robin on Perch.jpg": {
+    "tags": [
+      "robin",
+      "bird",
+      "perch"
+    ],
+    "series": "Morning Birds",
+    "location": "Muenster Wetland"
+  },
+  "wildlife/Robin.jpg": {},
+  "wildlife/Scanning Landscape.jpg": {},
+  "wildlife/Flinch.jpg": {},
+  "wildlife/Flinch Sunkissed.jpg": {},
+  "wildlife/Juvenile BlackBird.jpg": {},
+  "wildlife/BullFlinch Tilted.jpg": {},
+  "wildlife/Squirrel 2.jpg": {},
+  "wildlife/Squirrel 1.jpg": {},
+  "wildlife/Squirrel 3.jpg": {},
+  "landscape/Contrast in Forest.jpg": {},
+  "landscape/Lets Walk.jpg": {},
+  "Trees/New Growth.jpg": {},
+  "Trees/New Branches.jpg": {},
+  "Trees/New Leaves.jpg": {},
+  "Trees/Distinguished.jpg": {},
+  "wildlife/Confused Bull Flinch.jpg": {},
+  "wildlife/Wild Swan 4.jpg": {},
+  "wildlife/Wild Swan 5.jpg": {},
+  "wildlife/Wild Swan 2.jpg": {},
+  "wildlife/Wild Swan 3.jpg": {},
+  "wildlife/Wild Swan 1.jpg": {},
+  "wildlife/Blau Meise 1.jpg": {},
+  "wildlife/Portrait of Blau Meise.jpg": {},
+  "wildlife/Blau Meise 2.jpg": {},
+  "wildlife/Blau Meise 3.jpg": {},
+  "Metropolis/Standing High .jpg": {},
+  "wildlife/Isolated.jpg": {},
+  "Metropolis/Muenster.jpg": {},
+  "Roads/Blending in the Mist.JPEG": {},
+  "astrophotography/Pale Blue Dot.jpg": {},
+  "astrophotography/Beyond Stars.jpg": {},
+  "wildlife/White Angel.jpg": {},
+  "wildlife/Cormorant .jpg": {},
+  "wildlife/Eurasian Sparrowhawk.jpg": {},
+  "wildlife/Sparrow Hawk.jpg": {},
+  "wildlife/The Singer.jpg": {},
+  "wildlife/Soft Perch.jpg": {},
+  "wildlife/krestel.jpg": {},
+  "Metropolis/Burning Sky.jpg": {},
+  "wildlife/Silent Glide.jpg": {},
+  "wildlife/Marsh Walker.jpg": {},
+  "wildlife/Dawn Flock.jpg": {},
+  "wildlife/Midnight_Grace.jpg": {},
+  "wildlife/Amber_Grace.jpg": {},
+  "wildlife/Forest_Ascend.jpg": {},
+  "wildlife/Food_Secured.jpg": {},
+  "wildlife/Wings_of_Angel.jpg": {},
+  "Trees/DSC08391.jpg": {},
+  "Trees/mushroom.jpg": {},
+  "Trees/DSC04870-3.jpg": {},
+  "wildlife/Tufted Duck.jpg": {},
+  "wildlife/DSC01196.jpg": {},
+  "Humans/DSC00975.jpg": {},
+  "Trees/DSC08854.jpg": {},
+  "Trees/DSC08305.jpg": {},
+  "Trees/DSC08308-2.jpg": {},
+  "Trees/DSC08375.jpg": {},
+  "Trees/DSC08349.jpg": {},
+  "Trees/DSC08377.jpg": {},
+  "wildlife/DSC03943-2.jpg": {},
+  "wildlife/DSC05063.jpg": {},
+  "wildlife/DSC05266.jpg": {},
+  "wildlife/DSC05249.jpg": {},
+  "wildlife/DSC03370.jpg": {},
+  "wildlife/DSC05063-3.jpg": {},
+  "wildlife/DSC03854.jpg": {},
+  "wildlife/DSC05729.jpg": {},
+  "wildlife/DSC03457-2.jpg": {},
+  "wildlife/DSC05831.jpg": {},
+  "wildlife/DSC05784.jpg": {},
+  "wildlife/DSC05373.jpg": {},
+  "wildlife/DSC05165.jpg": {},
+  "wildlife/DSC04928-6.jpg": {},
+  "wildlife/DSC05021.jpg": {},
+  "wildlife/DSC05143.jpg": {},
+  "wildlife/DSC04214-2.jpg": {},
+  "wildlife/DSC05094-2.jpg": {},
+  "wildlife/DSC05230.jpg": {},
+  "wildlife/DSC03694.jpg": {},
+  "wildlife/DSC05033.jpg": {},
+  "wildlife/DSC03523.jpg": {},
+  "wildlife/DSC05232.jpg": {},
+  "wildlife/DSC05795.jpg": {},
+  "wildlife/DSC04973-2.jpg": {},
+  "wildlife/DSC05874.jpg": {},
+  "wildlife/DSC04968.jpg": {},
+  "wildlife/DSC08207.jpg": {},
+  "wildlife/DSC03397-2.jpg": {},
+  "wildlife/DSC03550.jpg": {},
+  "wildlife/DSC05119.jpg": {},
+  "wildlife/DSC05680.jpg": {},
+  "wildlife/DSC05091-2.jpg": {},
+  "wildlife/DSC05130.jpg": {},
+  "wildlife/DSC05324.jpg": {},
+  "wildlife/DSC05293.jpg": {},
+  "Roads/DSC03005.jpg": {},
+  "landscape/DSC04722-2.jpg": {},
+  "Roads/DSC00951.jpg": {},
+  "Me/Me.jpg": {},
+  "landscape/DSC04689-3.jpg": {}
+}

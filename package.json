@@ -8,6 +8,7 @@
     "prebuild": "node scripts/sync-r2-media.mjs",
     "sync:media": "node scripts/sync-r2-media.mjs",
     "caption:set": "node scripts/set-r2-caption.mjs",
+    "photo:meta:set": "node scripts/set-photo-metadata.mjs",
     "thumbs:setup": "bash scripts/setup-thumbnail-worker.sh",
     "thumbs:deploy": "npx wrangler deploy -c workers/thumbnail-generator/wrangler.jsonc",
     "thumbs:backfill": "node scripts/backfill-r2-thumbnail.mjs",
