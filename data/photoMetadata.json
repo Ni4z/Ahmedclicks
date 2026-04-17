@@ -140,7 +140,15 @@
     "location": "Outdoor Portraits",
     "year": 2026
   },
-  "wildlife/Robin on Perch.jpg": {},
+  "wildlife/Robin on Perch.jpg": {
+    "tags": [
+      "robin",
+      "bird",
+      "perch"
+    ],
+    "series": "Morning Birds",
+    "location": "Muenster Wetland"
+  },
   "wildlife/Robin.jpg": {},
   "wildlife/Scanning Landscape.jpg": {},
   "wildlife/Flinch.jpg": {},
