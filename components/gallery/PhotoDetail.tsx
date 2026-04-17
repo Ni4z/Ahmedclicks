@@ -10,6 +10,15 @@ interface PhotoDetailProps {
   shareUrl?: string;
 }
 
+function renderDetailPill(label: string, value: string | number) {
+  return (
+    <div className="rounded-full border border-dark-tertiary px-4 py-2 text-sm text-gray-300">
+      <span className="text-gray-500">{label}:</span>{' '}
+      <span className="text-white">{value}</span>
+    </div>
+  );
+}
+
 export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
   const [instagramFeedback, setInstagramFeedback] = useState<string | null>(null);
   const encodedUrl = encodeURIComponent(shareUrl || '');
@@ -95,6 +104,34 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
             ) : null}
           </div>
         ) : null}
+
+        <div className="mb-8 rounded-2xl border border-dark-tertiary bg-dark-secondary p-6">
+          <h3 className="mb-4 text-lg font-semibold">Photo Metadata</h3>
+          <div className="flex flex-wrap gap-3">
+            {renderDetailPill('Category', photo.category)}
+            {renderDetailPill('Year', photo.year)}
+            {photo.series ? renderDetailPill('Series', photo.series) : null}
+            {photo.location ? renderDetailPill('Location', photo.location) : null}
+          </div>
+
+          {photo.tags.length > 0 ? (
+            <div className="mt-5">
+              <p className="mb-3 text-xs tracking-[0.3em] text-gray-500 uppercase">
+                Tags
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {photo.tags.map((tag) => (
+                  <span
+                    key={`${photo.id}-${tag}`}
+                    className="rounded-full border border-dark-tertiary px-3 py-1 text-xs uppercase tracking-[0.24em] text-gray-300"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
 
         {/* EXIF Data */}
         {photo.camera && (

@@ -9,6 +9,7 @@ import {
 } from '@/lib/media-assets';
 import { Photo, PhotoCategory } from '@/lib/types';
 import photoCaptions from '@/data/captions.json';
+import photoMetadataSource from '@/data/photoMetadata.json';
 
 const profileOnlyCategoryKeys = new Set(['me']);
 const unpublishedPhotoPaths = new Set([
@@ -104,6 +105,13 @@ type ManifestPhotoEntry = {
   date: string;
 };
 
+type PhotoMetadataEntry = {
+  tags: string[];
+  series?: string;
+  location?: string;
+  year?: number;
+};
+
 function normalizeCategoryKey(value: string): string {
   return value.trim().toLowerCase().replace(/[\s_]+/g, '-');
 }
@@ -157,6 +165,85 @@ function getSortableTimestamp(value: string): number {
   return Number.isNaN(timestamp) ? 0 : timestamp;
 }
 
+function normalizeMetadataString(value: unknown): string | undefined {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+
+  const normalizedValue = value.trim();
+  return normalizedValue || undefined;
+}
+
+function normalizeMetadataTags(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  const seenTags = new Set<string>();
+  const tags: string[] = [];
+
+  for (const item of value) {
+    if (typeof item !== 'string') {
+      continue;
+    }
+
+    const normalizedTag = item.trim();
+
+    if (!normalizedTag) {
+      continue;
+    }
+
+    const normalizedKey = normalizedTag.toLowerCase();
+
+    if (seenTags.has(normalizedKey)) {
+      continue;
+    }
+
+    seenTags.add(normalizedKey);
+    tags.push(normalizedTag);
+  }
+
+  return tags;
+}
+
+function normalizePhotoMetadataEntry(value: unknown): PhotoMetadataEntry {
+  if (!(value && typeof value === 'object') || Array.isArray(value)) {
+    return {
+      tags: [],
+    };
+  }
+
+  const rawEntry = value as Record<string, unknown>;
+  const year =
+    typeof rawEntry.year === 'number' &&
+    Number.isInteger(rawEntry.year) &&
+    rawEntry.year >= 1000 &&
+    rawEntry.year <= 9999
+      ? rawEntry.year
+      : undefined;
+
+  return {
+    tags: normalizeMetadataTags(rawEntry.tags),
+    series: normalizeMetadataString(rawEntry.series),
+    location: normalizeMetadataString(rawEntry.location),
+    year,
+  };
+}
+
+function normalizeRelativePath(value: string): string {
+  return value.replace(/^\/+/, '').replace(/\\/g, '/');
+}
+
+function getPhotoYear(date: string): number {
+  const timestamp = getSortableTimestamp(date);
+
+  if (timestamp === 0) {
+    return new Date().getUTCFullYear();
+  }
+
+  return new Date(timestamp).getUTCFullYear();
+}
+
 function createManifestPhotoEntry(entry: SyncedPhotoAsset): ManifestPhotoEntry {
   const relativePath = entry.relativePath.replace(/^\/+/, '').replace(/\\/g, '/');
   const categorySegment = resolveCategorySegment(relativePath);
@@ -200,6 +287,14 @@ function comparePhotoEntries(
 }
 
 const captionMap = photoCaptions as Record<string, string>;
+const photoMetadataMap = new Map<string, PhotoMetadataEntry>(
+  Object.entries(photoMetadataSource as Record<string, unknown>)
+    .filter(([key]) => !key.startsWith('_'))
+    .map(([relativePath, value]) => [
+      normalizeRelativePath(relativePath),
+      normalizePhotoMetadataEntry(value),
+    ])
+);
 
 function createPhotoRecord(
   category: CategoryEntry,
@@ -207,12 +302,16 @@ function createPhotoRecord(
   index: number
 ): Photo {
   const caption = captionMap[file.relativePath] || undefined;
+  const metadata = photoMetadataMap.get(file.relativePath) || { tags: [] };
+
   return {
     id: createStableAssetId(file.relativePath, 'photo'),
     title: createPhotoTitle(category.name, file.fileName, index),
     caption,
     category: category.name,
     categoryKey: category.key,
+    tags: metadata.tags,
+    series: metadata.series,
     image: withObjectStorageAssetPath(file.objectKey, 'image'),
     thumbnail: withObjectStorageAssetPath(
       file.thumbnailObjectKey || file.objectKey,
@@ -220,6 +319,8 @@ function createPhotoRecord(
     ),
     description: `${category.description} File: ${file.relativePath}.`,
     featured: index === 0,
+    location: metadata.location,
+    year: metadata.year ?? getPhotoYear(file.date),
     date: file.date,
   };
 }

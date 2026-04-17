@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useState } from 'react';
 import CategoryFilter from '@/components/gallery/CategoryFilter';
 import GalleryPagination from '@/components/gallery/GalleryPagination';
 import PhotoGrid from '@/components/gallery/PhotoGrid';
@@ -12,31 +12,208 @@ interface GalleryBrowserProps {
 }
 
 const PHOTOS_PER_PAGE = 20;
+const ALL_CATEGORIES = 'All';
+const ALL_TAGS = 'All tags';
+const ALL_SERIES = 'All series';
+const ALL_LOCATIONS = 'All locations';
+const ALL_YEARS = 'All years';
+const DEFAULT_SORT = 'Newest';
+
+function hasActiveFilters({
+  activeCategory,
+  activeLocation,
+  activeSeries,
+  activeTag,
+  activeYear,
+  searchQuery,
+  sortOrder,
+}: {
+  activeCategory: string;
+  activeLocation: string;
+  activeSeries: string;
+  activeTag: string;
+  activeYear: string;
+  searchQuery: string;
+  sortOrder: string;
+}) {
+  return (
+    activeCategory !== ALL_CATEGORIES ||
+    activeTag !== ALL_TAGS ||
+    activeSeries !== ALL_SERIES ||
+    activeLocation !== ALL_LOCATIONS ||
+    activeYear !== ALL_YEARS ||
+    searchQuery.trim().length > 0 ||
+    sortOrder !== DEFAULT_SORT
+  );
+}
 
 export default function GalleryBrowser({
   photos,
   categories,
 }: GalleryBrowserProps) {
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState(ALL_CATEGORIES);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [activeTag, setActiveTag] = useState(ALL_TAGS);
+  const [activeSeries, setActiveSeries] = useState(ALL_SERIES);
+  const [activeLocation, setActiveLocation] = useState(ALL_LOCATIONS);
+  const [activeYear, setActiveYear] = useState(ALL_YEARS);
+  const [sortOrder, setSortOrder] = useState(DEFAULT_SORT);
+  const deferredSearchQuery = useDeferredValue(searchQuery.trim().toLowerCase());
 
   const filterOptions = useMemo(
-    () => ['All', ...categories.map((category) => category.name)],
-    [categories]
+    () => [
+      { name: ALL_CATEGORIES, count: photos.length },
+      ...categories.map((category) => ({
+        name: category.name,
+        count: category.count,
+      })),
+    ],
+    [categories, photos.length]
   );
 
-  const visiblePhotos = useMemo(() => {
-    if (activeCategory === 'All') {
-      return photos;
+  const facetOptions = useMemo(() => {
+    const tags = new Map<string, number>();
+    const series = new Map<string, number>();
+    const locations = new Map<string, number>();
+    const years = new Map<number, number>();
+
+    for (const photo of photos) {
+      years.set(photo.year, (years.get(photo.year) || 0) + 1);
+
+      if (photo.series) {
+        series.set(photo.series, (series.get(photo.series) || 0) + 1);
+      }
+
+      if (photo.location) {
+        locations.set(photo.location, (locations.get(photo.location) || 0) + 1);
+      }
+
+      for (const tag of photo.tags) {
+        tags.set(tag, (tags.get(tag) || 0) + 1);
+      }
     }
 
-    return photos.filter((photo) => photo.category === activeCategory);
-  }, [activeCategory, photos]);
+    const compareLabels = (
+      [firstLabel]: [string, number],
+      [secondLabel]: [string, number]
+    ) =>
+      firstLabel.localeCompare(secondLabel, undefined, {
+        sensitivity: 'base',
+      });
+
+    return {
+      locations: Array.from(locations.entries()).sort(compareLabels),
+      series: Array.from(series.entries()).sort(compareLabels),
+      tags: Array.from(tags.entries()).sort(compareLabels),
+      years: Array.from(years.entries()).sort(
+        ([firstYear], [secondYear]) => secondYear - firstYear
+      ),
+    };
+  }, [photos]);
+
+  const visiblePhotos = useMemo(() => {
+    const filteredPhotos = photos.filter((photo) => {
+      if (
+        activeCategory !== ALL_CATEGORIES &&
+        photo.category !== activeCategory
+      ) {
+        return false;
+      }
+
+      if (activeTag !== ALL_TAGS && !photo.tags.includes(activeTag)) {
+        return false;
+      }
+
+      if (activeSeries !== ALL_SERIES && photo.series !== activeSeries) {
+        return false;
+      }
+
+      if (
+        activeLocation !== ALL_LOCATIONS &&
+        photo.location !== activeLocation
+      ) {
+        return false;
+      }
+
+      if (activeYear !== ALL_YEARS && String(photo.year) !== activeYear) {
+        return false;
+      }
+
+      if (!deferredSearchQuery) {
+        return true;
+      }
+
+      const searchableContent = [
+        photo.title,
+        photo.caption,
+        photo.category,
+        photo.series,
+        photo.location,
+        String(photo.year),
+        photo.tags.join(' '),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+
+      return searchableContent.includes(deferredSearchQuery);
+    });
+
+    const sortedPhotos = filteredPhotos.slice();
+
+    sortedPhotos.sort((firstPhoto, secondPhoto) => {
+      switch (sortOrder) {
+        case 'Oldest':
+          return (
+            new Date(firstPhoto.date).getTime() -
+            new Date(secondPhoto.date).getTime()
+          );
+        case 'Title A-Z':
+          return firstPhoto.title.localeCompare(secondPhoto.title, undefined, {
+            sensitivity: 'base',
+          });
+        case 'Title Z-A':
+          return secondPhoto.title.localeCompare(firstPhoto.title, undefined, {
+            sensitivity: 'base',
+          });
+        case DEFAULT_SORT:
+        default:
+          return (
+            new Date(secondPhoto.date).getTime() -
+            new Date(firstPhoto.date).getTime()
+          );
+      }
+    });
+
+    return sortedPhotos;
+  }, [
+    activeCategory,
+    activeLocation,
+    activeSeries,
+    activeTag,
+    activeYear,
+    deferredSearchQuery,
+    photos,
+    sortOrder,
+  ]);
 
   const totalPages = Math.max(
     1,
     Math.ceil(visiblePhotos.length / PHOTOS_PER_PAGE)
   );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [
+    activeCategory,
+    activeLocation,
+    activeSeries,
+    activeTag,
+    activeYear,
+    deferredSearchQuery,
+    sortOrder,
+  ]);
 
   useEffect(() => {
     setCurrentPage((page) => Math.min(page, totalPages));
@@ -50,12 +227,34 @@ export default function GalleryBrowser({
   const visibleStart = visiblePhotos.length
     ? (currentPage - 1) * PHOTOS_PER_PAGE + 1
     : 0;
-  const visibleEnd = Math.min(currentPage * PHOTOS_PER_PAGE, visiblePhotos.length);
+  const visibleEnd = Math.min(
+    currentPage * PHOTOS_PER_PAGE,
+    visiblePhotos.length
+  );
 
   function handleCategoryChange(category: string) {
     setActiveCategory(category);
-    setCurrentPage(1);
   }
+
+  function clearFilters() {
+    setSearchQuery('');
+    setActiveCategory(ALL_CATEGORIES);
+    setActiveTag(ALL_TAGS);
+    setActiveSeries(ALL_SERIES);
+    setActiveLocation(ALL_LOCATIONS);
+    setActiveYear(ALL_YEARS);
+    setSortOrder(DEFAULT_SORT);
+  }
+
+  const filterSummary = [
+    activeCategory !== ALL_CATEGORIES ? activeCategory : null,
+    activeYear !== ALL_YEARS ? activeYear : null,
+    activeSeries !== ALL_SERIES ? activeSeries : null,
+    activeLocation !== ALL_LOCATIONS ? activeLocation : null,
+    activeTag !== ALL_TAGS ? `#${activeTag}` : null,
+  ]
+    .filter(Boolean)
+    .join(' • ');
 
   return (
     <>
@@ -65,20 +264,144 @@ export default function GalleryBrowser({
         onCategoryChange={handleCategoryChange}
       />
 
-      <div className="flex items-center justify-between gap-4 mb-8 text-sm text-gray-500">
+      <div className="mb-10 rounded-[1.75rem] border border-dark-tertiary bg-dark-secondary/70 p-6">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+          <label className="xl:col-span-2">
+            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+              Search
+            </span>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Title, tag, series, location..."
+              className="w-full"
+            />
+          </label>
+
+          <label>
+            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+              Sort
+            </span>
+            <select
+              value={sortOrder}
+              onChange={(event) => setSortOrder(event.target.value)}
+              className="w-full"
+            >
+              <option>{DEFAULT_SORT}</option>
+              <option>Oldest</option>
+              <option>Title A-Z</option>
+              <option>Title Z-A</option>
+            </select>
+          </label>
+
+          <label>
+            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+              Year
+            </span>
+            <select
+              value={activeYear}
+              onChange={(event) => setActiveYear(event.target.value)}
+              className="w-full"
+            >
+              <option>{ALL_YEARS}</option>
+              {facetOptions.years.map(([year, count]) => (
+                <option key={year} value={year}>
+                  {year} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+              Series
+            </span>
+            <select
+              value={activeSeries}
+              onChange={(event) => setActiveSeries(event.target.value)}
+              className="w-full"
+            >
+              <option>{ALL_SERIES}</option>
+              {facetOptions.series.map(([series, count]) => (
+                <option key={series} value={series}>
+                  {series} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+              Location
+            </span>
+            <select
+              value={activeLocation}
+              onChange={(event) => setActiveLocation(event.target.value)}
+              className="w-full"
+            >
+              <option>{ALL_LOCATIONS}</option>
+              {facetOptions.locations.map(([location, count]) => (
+                <option key={location} value={location}>
+                  {location} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <label className="lg:min-w-[18rem]">
+            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+              Tag
+            </span>
+            <select
+              value={activeTag}
+              onChange={(event) => setActiveTag(event.target.value)}
+              className="w-full"
+            >
+              <option>{ALL_TAGS}</option>
+              {facetOptions.tags.map(([tag, count]) => (
+                <option key={tag} value={tag}>
+                  {tag} ({count})
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {hasActiveFilters({
+            activeCategory,
+            activeLocation,
+            activeSeries,
+            activeTag,
+            activeYear,
+            searchQuery,
+            sortOrder,
+          }) ? (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="rounded-full border border-dark-tertiary px-5 py-3 text-xs uppercase tracking-[0.28em] text-gray-400 transition-colors hover:border-accent-gold hover:text-accent-gold"
+            >
+              Clear Filters
+            </button>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="mb-8 flex items-center justify-between gap-4 text-sm text-gray-500">
         <span>
           {visiblePhotos.length === 0
             ? '0 photos'
             : `Showing ${visibleStart}-${visibleEnd} of ${visiblePhotos.length} photos`}
         </span>
-        <span>
-          {activeCategory === 'All'
-            ? `${categories.length} active categories`
-            : activeCategory}
-        </span>
+        <span>{filterSummary || `${categories.length} active categories`}</span>
       </div>
 
-      <PhotoGrid photos={paginatedPhotos} />
+      <PhotoGrid
+        photos={paginatedPhotos}
+        emptyMessage="No photos match this combination of category, tag, series, location, year, and search filters."
+      />
 
       <GalleryPagination
         currentPage={currentPage}

@@ -4,10 +4,13 @@ export interface Photo {
   caption?: string;
   category: string;
   categoryKey: string;
+  tags: string[];
+  series?: string;
   image: string;
   thumbnail: string;
   description: string;
   location?: string;
+  year: number;
   camera?: string;
   lens?: string;
   iso?: number;

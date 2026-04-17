@@ -25,7 +25,7 @@ export default function GalleryPage() {
             Gallery
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-gray-200/80">
-            A curated collection of moments where light, nature, and life meet.
+            A living archive you can browse by category, tag, series, location, and year.
           </p>
         </div>
       </div>

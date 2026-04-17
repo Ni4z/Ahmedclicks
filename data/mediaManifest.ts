@@ -1,9 +1,261 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-03-16T03:01:24.607Z",
+  "generatedAt": "2026-04-13T20:05:35.129Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Robin on Perch.jpg",
+      "relativePath": "wildlife/Robin on Perch.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Robin on Perch.webp",
+      "date": "2026-04-13T18:06:20.560Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Robin.jpg",
+      "relativePath": "wildlife/Robin.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Robin.webp",
+      "date": "2026-04-13T18:06:20.380Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Scanning Landscape.jpg",
+      "relativePath": "wildlife/Scanning Landscape.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Scanning Landscape.webp",
+      "date": "2026-04-13T18:06:20.316Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Flinch.jpg",
+      "relativePath": "wildlife/Flinch.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Flinch.webp",
+      "date": "2026-04-13T18:05:48.624Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Flinch Sunkissed.jpg",
+      "relativePath": "wildlife/Flinch Sunkissed.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Flinch Sunkissed.webp",
+      "date": "2026-04-13T18:05:48.401Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Juvenile BlackBird.jpg",
+      "relativePath": "wildlife/Juvenile BlackBird.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Juvenile BlackBird.webp",
+      "date": "2026-04-13T18:05:10.142Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/BullFlinch Tilted.jpg",
+      "relativePath": "wildlife/BullFlinch Tilted.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/BullFlinch Tilted.webp",
+      "date": "2026-04-13T18:04:43.637Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Squirrel 2.jpg",
+      "relativePath": "wildlife/Squirrel 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Squirrel 2.webp",
+      "date": "2026-04-13T18:04:21.984Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Squirrel 1.jpg",
+      "relativePath": "wildlife/Squirrel 1.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Squirrel 1.webp",
+      "date": "2026-04-13T18:04:21.682Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Squirrel 3.jpg",
+      "relativePath": "wildlife/Squirrel 3.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Squirrel 3.webp",
+      "date": "2026-04-13T18:04:21.564Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Contrast in Forest.jpg",
+      "relativePath": "landscape/Contrast in Forest.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Contrast in Forest.webp",
+      "date": "2026-04-12T12:46:52.618Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Lets Walk.jpg",
+      "relativePath": "landscape/Lets Walk.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Lets Walk.webp",
+      "date": "2026-04-12T12:46:52.587Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/New Growth.jpg",
+      "relativePath": "Trees/New Growth.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/New Growth.webp",
+      "date": "2026-04-12T12:43:23.081Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/New Branches.jpg",
+      "relativePath": "Trees/New Branches.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/New Branches.webp",
+      "date": "2026-04-12T12:43:22.768Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/New Leaves.jpg",
+      "relativePath": "Trees/New Leaves.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/New Leaves.webp",
+      "date": "2026-04-12T12:43:22.579Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Distinguished.jpg",
+      "relativePath": "Trees/Distinguished.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Distinguished.webp",
+      "date": "2026-04-12T10:10:31.895Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Confused Bull Flinch.jpg",
+      "relativePath": "wildlife/Confused Bull Flinch.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Confused Bull Flinch.webp",
+      "date": "2026-04-10T15:22:45.543Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Wild Swan 4.jpg",
+      "relativePath": "wildlife/Wild Swan 4.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Wild Swan 4.webp",
+      "date": "2026-04-07T09:52:57.685Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Wild Swan 5.jpg",
+      "relativePath": "wildlife/Wild Swan 5.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Wild Swan 5.webp",
+      "date": "2026-04-07T09:52:57.654Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Wild Swan 2.jpg",
+      "relativePath": "wildlife/Wild Swan 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Wild Swan 2.webp",
+      "date": "2026-04-07T09:52:57.392Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Wild Swan 3.jpg",
+      "relativePath": "wildlife/Wild Swan 3.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Wild Swan 3.webp",
+      "date": "2026-04-07T09:52:56.891Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Wild Swan 1.jpg",
+      "relativePath": "wildlife/Wild Swan 1.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Wild Swan 1.webp",
+      "date": "2026-04-07T09:52:56.834Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Blau Meise 1.jpg",
+      "relativePath": "wildlife/Blau Meise 1.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Blau Meise 1.webp",
+      "date": "2026-04-07T03:04:53.010Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Portrait of Blau Meise.jpg",
+      "relativePath": "wildlife/Portrait of Blau Meise.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Portrait of Blau Meise.webp",
+      "date": "2026-04-07T03:04:52.839Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Blau Meise 2.jpg",
+      "relativePath": "wildlife/Blau Meise 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Blau Meise 2.webp",
+      "date": "2026-04-06T21:57:32.971Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Blau Meise 3.jpg",
+      "relativePath": "wildlife/Blau Meise 3.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Blau Meise 3.webp",
+      "date": "2026-04-06T21:57:32.956Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Standing High .jpg",
+      "relativePath": "Metropolis/Standing High .jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Standing High .webp",
+      "date": "2026-04-06T11:57:17.846Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Isolated.jpg",
+      "relativePath": "wildlife/Isolated.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Isolated.webp",
+      "date": "2026-04-03T23:33:59.710Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Muenster.jpg",
+      "relativePath": "Metropolis/Muenster.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Muenster.webp",
+      "date": "2026-03-29T11:58:27.468Z"
+    },
+    {
+      "objectKey": "photos-web/Roads/Blending in the Mist.JPEG",
+      "relativePath": "Roads/Blending in the Mist.JPEG",
+      "thumbnailObjectKey": "photos-thumb/Roads/Blending in the Mist.webp",
+      "date": "2026-03-27T23:08:52.952Z"
+    },
+    {
+      "objectKey": "photos-web/astrophotography/Pale Blue Dot.jpg",
+      "relativePath": "astrophotography/Pale Blue Dot.jpg",
+      "thumbnailObjectKey": "photos-thumb/astrophotography/Pale Blue Dot.webp",
+      "date": "2026-03-27T20:58:43.734Z"
+    },
+    {
+      "objectKey": "photos-web/astrophotography/Beyond Stars.jpg",
+      "relativePath": "astrophotography/Beyond Stars.jpg",
+      "thumbnailObjectKey": "photos-thumb/astrophotography/Beyond Stars.webp",
+      "date": "2026-03-27T20:36:16.047Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/White Angel.jpg",
+      "relativePath": "wildlife/White Angel.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/White Angel.webp",
+      "date": "2026-03-25T19:42:37.149Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Cormorant .jpg",
+      "relativePath": "wildlife/Cormorant .jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Cormorant .webp",
+      "date": "2026-03-25T19:42:36.941Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Eurasian Sparrowhawk.jpg",
+      "relativePath": "wildlife/Eurasian Sparrowhawk.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Eurasian Sparrowhawk.webp",
+      "date": "2026-03-25T19:42:36.937Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Sparrow Hawk.jpg",
+      "relativePath": "wildlife/Sparrow Hawk.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Sparrow Hawk.webp",
+      "date": "2026-03-25T19:39:50.898Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/The Singer.jpg",
+      "relativePath": "wildlife/The Singer.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/The Singer.webp",
+      "date": "2026-03-25T19:39:50.848Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Soft Perch.jpg",
+      "relativePath": "wildlife/Soft Perch.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Soft Perch.webp",
+      "date": "2026-03-21T23:55:00.685Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/krestel.jpg",
+      "relativePath": "wildlife/krestel.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/krestel.webp",
+      "date": "2026-03-21T15:32:10.287Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Burning Sky.jpg",
+      "relativePath": "Metropolis/Burning Sky.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Burning Sky.webp",
+      "date": "2026-03-19T05:17:16.523Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Silent Glide.jpg",
+      "relativePath": "wildlife/Silent Glide.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Silent Glide.webp",
+      "date": "2026-03-17T16:11:11.356Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Marsh Walker.jpg",
+      "relativePath": "wildlife/Marsh Walker.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Marsh Walker.webp",
+      "date": "2026-03-16T21:24:36.786Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Twin Flight.jpg",
       "relativePath": "wildlife/Twin Flight.jpg",
@@ -453,16 +705,6 @@ export const mediaManifest: MediaManifest = {
       "objectKey": "Bird.mp4",
       "relativePath": "Bird.mp4",
       "date": "2026-03-09T20:33:21.418Z"
-    },
-    {
-      "objectKey": "Sequence 02.mp4",
-      "relativePath": "Sequence 02.mp4",
-      "date": "2026-03-09T00:38:08.476Z"
-    },
-    {
-      "objectKey": "Sequence 01 - (9x16) - (16x9).mp4",
-      "relativePath": "Sequence 01 - (9x16) - (16x9).mp4",
-      "date": "2026-03-09T00:30:12.610Z"
     }
   ]
 };
