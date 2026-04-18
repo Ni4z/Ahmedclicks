@@ -1031,5 +1031,13 @@
     "shutterSpeed": "1/4000",
     "aperture": "f/6.3",
     "focalLength": "565mm"
+  },
+  "Roads/Breathing Fresh Air as the Mist Fades.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 4000,
+    "shutterSpeed": "1/500",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
   }
 }
