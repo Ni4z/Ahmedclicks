@@ -25,6 +25,264 @@ const formatToCfImageOutput = {
 const captionsReadme =
   'Add a caption for any photo or video by its relative path. Empty string or missing entry = no caption shown. New media placeholders are added automatically in the external captions store.';
 
+// ---------------------------------------------------------------------------
+// Minimal EXIF parser (works in Cloudflare Workers — no dependencies)
+// Extracts: Make, Model, LensModel, ExposureTime, FNumber, ISO, FocalLength
+// ---------------------------------------------------------------------------
+
+const EXIF_TAG_IDS = {
+  0x010F: 'make',
+  0x0110: 'model',
+  0x8769: 'exifIFDPointer',
+  0x829A: 'exposureTime',
+  0x829D: 'fNumber',
+  0x8827: 'isoSpeedRatings',
+  0x920A: 'focalLength',
+  0xA434: 'lensModel',
+};
+
+function parseJpegExif(buffer) {
+  try {
+    const view = new DataView(
+      buffer instanceof ArrayBuffer ? buffer : buffer.buffer
+    );
+
+    if (view.byteLength < 12 || view.getUint16(0) !== 0xFFD8) {
+      return null;
+    }
+
+    let offset = 2;
+    while (offset < view.byteLength - 4) {
+      const marker = view.getUint16(offset);
+      if ((marker & 0xFF00) !== 0xFF00) break;
+
+      if (marker === 0xFFE1) {
+        const segmentLength = view.getUint16(offset + 2);
+        if (
+          offset + 10 < view.byteLength &&
+          view.getUint32(offset + 4) === 0x45786966 &&
+          view.getUint16(offset + 8) === 0x0000
+        ) {
+          return parseTiffHeader(view, offset + 10);
+        }
+      }
+
+      offset += 2 + view.getUint16(offset + 2);
+    }
+  } catch {
+    // Malformed EXIF — return null
+  }
+  return null;
+}
+
+function parseTiffHeader(view, tiffStart) {
+  if (tiffStart + 8 > view.byteLength) return null;
+
+  const endianMarker = view.getUint16(tiffStart);
+  const littleEndian = endianMarker === 0x4949;
+  const ifd0Offset = view.getUint32(tiffStart + 4, littleEndian);
+  const tags = {};
+
+  readIFDEntries(view, tiffStart, ifd0Offset, littleEndian, tags);
+
+  if (typeof tags.exifIFDPointer === 'number') {
+    readIFDEntries(view, tiffStart, tags.exifIFDPointer, littleEndian, tags);
+  }
+
+  return tags;
+}
+
+function readIFDEntries(view, tiffStart, ifdOffset, littleEndian, tags) {
+  const abs = tiffStart + ifdOffset;
+  if (abs + 2 > view.byteLength) return;
+
+  const count = view.getUint16(abs, littleEndian);
+  for (let i = 0; i < count; i++) {
+    const entryOffset = abs + 2 + i * 12;
+    if (entryOffset + 12 > view.byteLength) break;
+
+    const tagId = view.getUint16(entryOffset, littleEndian);
+    const tagName = EXIF_TAG_IDS[tagId];
+    if (!tagName) continue;
+
+    const type = view.getUint16(entryOffset + 2, littleEndian);
+    const valueCount = view.getUint32(entryOffset + 4, littleEndian);
+    tags[tagName] = readExifTagValue(
+      view, tiffStart, entryOffset + 8, type, valueCount, littleEndian
+    );
+  }
+}
+
+function readExifTagValue(view, tiffStart, valueOffset, type, count, littleEndian) {
+  const typeSizes = { 1: 1, 2: 1, 3: 2, 4: 4, 5: 8 };
+  const size = (typeSizes[type] || 1) * count;
+  let dataOffset = size > 4
+    ? tiffStart + view.getUint32(valueOffset, littleEndian)
+    : valueOffset;
+
+  if (dataOffset < 0 || dataOffset + size > view.byteLength) return undefined;
+
+  switch (type) {
+    case 2: {
+      const bytes = [];
+      for (let i = 0; i < count - 1; i++) bytes.push(view.getUint8(dataOffset + i));
+      return String.fromCharCode(...bytes).trim();
+    }
+    case 3:
+      return view.getUint16(dataOffset, littleEndian);
+    case 4:
+      return view.getUint32(dataOffset, littleEndian);
+    case 5: {
+      const num = view.getUint32(dataOffset, littleEndian);
+      const den = view.getUint32(dataOffset + 4, littleEndian);
+      return den === 0 ? 0 : num / den;
+    }
+    default:
+      return view.getUint32(dataOffset, littleEndian);
+  }
+}
+
+function formatExifExposureTime(value) {
+  if (typeof value !== 'number' || value <= 0) return undefined;
+  if (value >= 1) return `${value}`;
+  const denom = Math.round(1 / value);
+  return `1/${denom}`;
+}
+
+function formatExifFNumber(value) {
+  if (typeof value !== 'number' || value <= 0) return undefined;
+  return `f/${value % 1 === 0 ? value.toFixed(0) : value.toFixed(1)}`;
+}
+
+function formatExifFocalLength(value) {
+  if (typeof value !== 'number' || value <= 0) return undefined;
+  return `${Math.round(value)}mm`;
+}
+
+function buildExifRecord(rawTags) {
+  if (!rawTags) return null;
+
+  const exif = {};
+  const model = typeof rawTags.model === 'string' ? rawTags.model.trim() : '';
+  const make = typeof rawTags.make === 'string' ? rawTags.make.trim() : '';
+
+  if (model) {
+    exif.camera = make && !model.toLowerCase().startsWith(make.toLowerCase())
+      ? `${make} ${model}`
+      : model;
+  }
+
+  if (typeof rawTags.lensModel === 'string' && rawTags.lensModel.trim()) {
+    exif.lens = rawTags.lensModel.trim();
+  }
+
+  const iso = typeof rawTags.isoSpeedRatings === 'number'
+    ? rawTags.isoSpeedRatings
+    : undefined;
+  if (iso && iso > 0) exif.iso = iso;
+
+  const shutterSpeed = formatExifExposureTime(rawTags.exposureTime);
+  if (shutterSpeed) exif.shutterSpeed = shutterSpeed;
+
+  const aperture = formatExifFNumber(rawTags.fNumber);
+  if (aperture) exif.aperture = aperture;
+
+  const focalLength = formatExifFocalLength(rawTags.focalLength);
+  if (focalLength) exif.focalLength = focalLength;
+
+  return Object.keys(exif).length > 0 ? exif : null;
+}
+
+// ---------------------------------------------------------------------------
+// EXIF data publishing to R2
+// ---------------------------------------------------------------------------
+
+function getExifObjectKey(env) {
+  return normalizePath(env.EXIF_OBJECT_KEY || 'photos-exif.json');
+}
+
+function getExifCacheControl(env) {
+  return `public, max-age=${env.EXIF_CACHE_MAX_AGE || 60}`;
+}
+
+async function publishExifData(env, objectKey, exifRecord) {
+  if (!exifRecord) return;
+
+  const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
+  const relativePath = stripPrefix(normalizePath(objectKey), sourcePrefix);
+  const exifObjectKey = getExifObjectKey(env);
+
+  // Load existing EXIF map from R2
+  const currentObject = await env.MEDIA_BUCKET.get(exifObjectKey);
+  const currentSource = currentObject ? await currentObject.text() : '';
+  let exifMap = {};
+
+  try {
+    exifMap = currentSource ? JSON.parse(currentSource) : {};
+  } catch {
+    exifMap = {};
+  }
+
+  // Merge new EXIF data
+  exifMap[relativePath] = exifRecord;
+
+  await env.MEDIA_BUCKET.put(
+    exifObjectKey,
+    JSON.stringify(exifMap, null, 2),
+    {
+      httpMetadata: {
+        cacheControl: getExifCacheControl(env),
+        contentType: 'application/json; charset=utf-8',
+      },
+      customMetadata: {
+        generator: 'thumbnail-generator-worker',
+      },
+    }
+  );
+
+  console.log(
+    `Published EXIF for ${relativePath}: ${Object.entries(exifRecord).map(([k, v]) => `${k}=${v}`).join(', ')}`
+  );
+}
+
+async function removeExifData(env, objectKey) {
+  const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
+  const relativePath = stripPrefix(normalizePath(objectKey), sourcePrefix);
+  const exifObjectKey = getExifObjectKey(env);
+
+  const currentObject = await env.MEDIA_BUCKET.get(exifObjectKey);
+  if (!currentObject) return;
+
+  const currentSource = await currentObject.text();
+  let exifMap = {};
+
+  try {
+    exifMap = currentSource ? JSON.parse(currentSource) : {};
+  } catch {
+    return;
+  }
+
+  if (!(relativePath in exifMap)) return;
+
+  delete exifMap[relativePath];
+
+  await env.MEDIA_BUCKET.put(
+    exifObjectKey,
+    JSON.stringify(exifMap, null, 2),
+    {
+      httpMetadata: {
+        cacheControl: getExifCacheControl(env),
+        contentType: 'application/json; charset=utf-8',
+      },
+      customMetadata: {
+        generator: 'thumbnail-generator-worker',
+      },
+    }
+  );
+
+  console.log(`Removed EXIF for ${relativePath}`);
+}
+
 function normalizePrefix(value, fallback = '') {
   const normalizedValue = (value ?? fallback).trim().replace(/^\/+|\/+$/g, '');
   return normalizedValue ? `${normalizedValue}/` : '';
@@ -540,7 +798,7 @@ async function generateThumbnail(objectKey, env) {
   const outputExtension = formatToExtension[outputFormat];
 
   if (!shouldHandleImage(objectKey, sourcePrefix, thumbPrefix)) {
-    return null;
+    return { thumbnailKey: null, exifRecord: null };
   }
 
   const originalObject = await env.MEDIA_BUCKET.get(objectKey);
@@ -555,10 +813,15 @@ async function generateThumbnail(objectKey, env) {
     console.warn(
       `Skipping in-worker thumbnail for ${objectKey} (${(originalObject.size / 1_000_000).toFixed(1)} MB exceeds ${(maxInputBytes / 1_000_000).toFixed(0)} MB limit). Will be backfilled by thumbs:heal in CI.`
     );
-    return null;
+    return { thumbnailKey: null, exifRecord: null };
   }
 
   const originalBytes = await originalObject.arrayBuffer();
+
+  // Extract EXIF from the original image bytes before any processing
+  const rawExifTags = parseJpegExif(originalBytes);
+  const exifRecord = buildExifRecord(rawExifTags);
+
   const originalStream = new Response(originalBytes).body;
 
   if (!originalStream) {
@@ -649,7 +912,7 @@ async function generateThumbnail(objectKey, env) {
     },
   });
 
-  return thumbnailKey;
+  return { thumbnailKey, exifRecord };
 }
 
 async function removeThumbnail(objectKey, env) {
@@ -725,6 +988,7 @@ function affectsPublishedMedia(objectKey, bucketName, env) {
   const normalizedKey = normalizePath(objectKey);
   const manifestObjectKey = getManifestObjectKey(env);
   const captionsObjectKey = getCaptionsObjectKey(env);
+  const exifObjectKey = getExifObjectKey(env);
   const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
   const photoPrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
   const videoPrefix =
@@ -738,6 +1002,10 @@ function affectsPublishedMedia(objectKey, bucketName, env) {
   }
 
   if (normalizedKey === captionsObjectKey) {
+    return false;
+  }
+
+  if (normalizedKey === exifObjectKey) {
     return false;
   }
 
@@ -786,8 +1054,15 @@ export default {
             console.log(`Deleted thumbnail ${deletedThumbnailKey}`);
             thumbnailOverrides.set(getPhotoRelativeStem(objectKey, env), null);
           }
+
+          // Remove EXIF data for deleted photos
+          try {
+            await removeExifData(env, objectKey);
+          } catch (exifError) {
+            console.warn(`EXIF cleanup failed for ${objectKey}: ${exifError instanceof Error ? exifError.message : String(exifError)}`);
+          }
         } else if (isCreateEvent(eventType) || !eventType) {
-          const thumbnailKey = await generateThumbnail(objectKey, env);
+          const { thumbnailKey, exifRecord } = await generateThumbnail(objectKey, env);
 
           if (thumbnailKey) {
             console.log(`Generated thumbnail ${thumbnailKey}`);
@@ -795,6 +1070,13 @@ export default {
               getPhotoRelativeStem(objectKey, env),
               thumbnailKey
             );
+          }
+
+          // Publish EXIF data to R2
+          try {
+            await publishExifData(env, objectKey, exifRecord);
+          } catch (exifError) {
+            console.warn(`EXIF publishing failed for ${objectKey}: ${exifError instanceof Error ? exifError.message : String(exifError)}`);
           }
         } else {
           console.log(`Skipping unsupported event "${eventType}" for ${objectKey}`);
