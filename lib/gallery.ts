@@ -110,6 +110,12 @@ type PhotoMetadataEntry = {
   series?: string;
   location?: string;
   year?: number;
+  camera?: string;
+  lens?: string;
+  iso?: number;
+  shutterSpeed?: string;
+  aperture?: string;
+  focalLength?: string;
 };
 
 function normalizeCategoryKey(value: string): string {
@@ -222,11 +228,24 @@ function normalizePhotoMetadataEntry(value: unknown): PhotoMetadataEntry {
       ? rawEntry.year
       : undefined;
 
+  const iso =
+    typeof rawEntry.iso === 'number' &&
+    Number.isFinite(rawEntry.iso) &&
+    rawEntry.iso > 0
+      ? rawEntry.iso
+      : undefined;
+
   return {
     tags: normalizeMetadataTags(rawEntry.tags),
     series: normalizeMetadataString(rawEntry.series),
     location: normalizeMetadataString(rawEntry.location),
     year,
+    camera: normalizeMetadataString(rawEntry.camera),
+    lens: normalizeMetadataString(rawEntry.lens),
+    iso,
+    shutterSpeed: normalizeMetadataString(rawEntry.shutterSpeed),
+    aperture: normalizeMetadataString(rawEntry.aperture),
+    focalLength: normalizeMetadataString(rawEntry.focalLength),
   };
 }
 
@@ -321,6 +340,12 @@ function createPhotoRecord(
     featured: index === 0,
     location: metadata.location,
     year: metadata.year ?? getPhotoYear(file.date),
+    camera: metadata.camera,
+    lens: metadata.lens,
+    iso: metadata.iso,
+    shutterSpeed: metadata.shutterSpeed,
+    aperture: metadata.aperture,
+    focalLength: metadata.focalLength,
     date: file.date,
   };
 }
