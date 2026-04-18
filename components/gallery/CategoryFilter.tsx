@@ -13,13 +13,13 @@ export default function CategoryFilter({
   onCategoryChange,
 }: CategoryFilterProps) {
   return (
-    <div className="flex flex-wrap gap-4 mb-12 justify-center">
+    <div className="mb-12 flex flex-wrap justify-start gap-3 sm:justify-center sm:gap-4">
       {categories.map((category) => (
         <button
           key={category.name}
           type="button"
           onClick={() => onCategoryChange(category.name)}
-          className={`px-6 py-2 rounded-full text-sm tracking-widest transition-all font-semibold ${
+          className={`rounded-full px-4 py-2 text-xs font-semibold tracking-[0.18em] transition-all sm:px-6 sm:text-sm sm:tracking-widest ${
             activeCategory === category.name
               ? 'bg-accent-gold text-dark'
               : 'bg-dark-secondary text-gray-400 hover:bg-dark-tertiary hover:text-white'
