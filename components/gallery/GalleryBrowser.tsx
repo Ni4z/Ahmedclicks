@@ -19,6 +19,50 @@ const ALL_LOCATIONS = 'All locations';
 const ALL_YEARS = 'All years';
 const ALL_FOCAL_LENGTHS = 'All focal lengths';
 const DEFAULT_SORT = 'Newest';
+const FOCAL_LENGTH_BUCKETS = [
+  { label: '14-50mm', min: 14, max: 50 },
+  { label: '51-100mm', min: 51, max: 100 },
+  { label: '101-150mm', min: 101, max: 150 },
+  { label: '151-200mm', min: 151, max: 200 },
+  { label: '201-250mm', min: 201, max: 250 },
+  { label: '251-300mm', min: 251, max: 300 },
+  { label: '301-350mm', min: 301, max: 350 },
+  { label: '351-400mm', min: 351, max: 400 },
+  { label: '401-450mm', min: 401, max: 450 },
+  { label: '451-500mm', min: 451, max: 500 },
+  { label: '501-550mm', min: 501, max: 550 },
+  { label: '551-600mm', min: 551, max: 600 },
+] as const;
+
+function extractFocalLengthValue(focalLength?: string) {
+  if (!focalLength) {
+    return null;
+  }
+
+  const match = focalLength.match(/\d+(?:\.\d+)?/);
+
+  if (!match) {
+    return null;
+  }
+
+  const numericValue = Number.parseFloat(match[0]);
+
+  return Number.isFinite(numericValue) ? numericValue : null;
+}
+
+function getFocalLengthBucketLabel(focalLength?: string) {
+  const numericValue = extractFocalLengthValue(focalLength);
+
+  if (numericValue === null) {
+    return null;
+  }
+
+  const bucket = FOCAL_LENGTH_BUCKETS.find(
+    ({ min, max }) => numericValue >= min && numericValue <= max
+  );
+
+  return bucket?.label ?? null;
+}
 
 function hasActiveFilters({
   activeCategory,
@@ -95,8 +139,13 @@ export default function GalleryBrowser({
         locations.set(photo.location, (locations.get(photo.location) || 0) + 1);
       }
 
-      if (photo.focalLength) {
-        focalLengths.set(photo.focalLength, (focalLengths.get(photo.focalLength) || 0) + 1);
+      const focalLengthBucket = getFocalLengthBucketLabel(photo.focalLength);
+
+      if (focalLengthBucket) {
+        focalLengths.set(
+          focalLengthBucket,
+          (focalLengths.get(focalLengthBucket) || 0) + 1
+        );
       }
 
       for (const tag of photo.tags) {
@@ -119,14 +168,10 @@ export default function GalleryBrowser({
       years: Array.from(years.entries()).sort(
         ([firstYear], [secondYear]) => secondYear - firstYear
       ),
-      focalLengths: Array.from(focalLengths.entries()).sort(
-        ([a], [b]) => {
-          const numA = parseInt(a, 10);
-          const numB = parseInt(b, 10);
-          if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
-          return a.localeCompare(b);
-        }
-      ),
+      focalLengths: FOCAL_LENGTH_BUCKETS.map(({ label }) => [
+        label,
+        focalLengths.get(label) || 0,
+      ] as [string, number]).filter(([, count]) => count > 0),
     };
   }, [photos]);
 
@@ -160,7 +205,7 @@ export default function GalleryBrowser({
 
       if (
         activeFocalLength !== ALL_FOCAL_LENGTHS &&
-        photo.focalLength !== activeFocalLength
+        getFocalLengthBucketLabel(photo.focalLength) !== activeFocalLength
       ) {
         return false;
       }
