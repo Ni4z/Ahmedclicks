@@ -71,6 +71,11 @@ jobs:
       - name: Sync media manifest
         run: npm run sync:media
 
+      - name: Extract EXIF metadata (fallback)
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        run: npm run photo:exif
+
       - name: Build
         run: npx next build
 

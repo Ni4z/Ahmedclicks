@@ -39,6 +39,8 @@
     "MEDIA_MANIFEST_CACHE_MAX_AGE": "60",
     "CAPTIONS_OBJECT_KEY": "captions.json",
     "CAPTIONS_CACHE_MAX_AGE": "60",
+    "EXIF_OBJECT_KEY": "photos-exif.json",
+    "EXIF_CACHE_MAX_AGE": "60",
     "PUBLIC_IMAGE_BASE_URL": "https://images.niazphotography.com",
     "GITHUB_REPOSITORY": "Ni4z/Ahmedclicks",
     "GITHUB_WORKFLOW_FILE": "deploy.yml",
