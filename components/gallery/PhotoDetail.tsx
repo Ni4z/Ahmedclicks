@@ -12,9 +12,9 @@ interface PhotoDetailProps {
 
 function renderDetailPill(label: string, value: string | number) {
   return (
-    <div className="rounded-full border border-dark-tertiary px-4 py-2 text-sm text-gray-300">
+    <div className="rounded-full border border-dark-tertiary px-4 py-2 text-sm text-foreground">
       <span className="text-gray-500">{label}:</span>{' '}
-      <span className="text-white">{value}</span>
+      <span className="text-foreground">{value}</span>
     </div>
   );
 }
@@ -97,7 +97,7 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
         {photo.caption || photo.location ? (
           <div className="mb-8">
             {photo.caption ? (
-              <p className="text-gray-300 italic mb-4">{photo.caption}</p>
+              <p className="mb-4 italic text-gray-400">{photo.caption}</p>
             ) : null}
             {photo.location ? (
               <p className="text-sm text-accent-gold mb-4">📍 {photo.location}</p>
@@ -123,7 +123,7 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
                 {photo.tags.map((tag) => (
                   <span
                     key={`${photo.id}-${tag}`}
-                    className="rounded-full border border-dark-tertiary px-3 py-1 text-xs uppercase tracking-[0.24em] text-gray-300"
+                    className="rounded-full border border-dark-tertiary px-3 py-1 text-xs uppercase tracking-[0.24em] text-gray-400"
                   >
                     {tag}
                   </span>
@@ -141,37 +141,37 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
               {photo.camera && (
                 <div>
                   <span className="text-gray-500">Camera:</span>
-                  <p className="text-white">{photo.camera}</p>
+                  <p className="text-foreground">{photo.camera}</p>
                 </div>
               )}
               {photo.lens && (
                 <div>
                   <span className="text-gray-500">Lens:</span>
-                  <p className="text-white">{photo.lens}</p>
+                  <p className="text-foreground">{photo.lens}</p>
                 </div>
               )}
               {photo.focalLength && (
                 <div>
                   <span className="text-gray-500">Focal Length:</span>
-                  <p className="text-white">{photo.focalLength}</p>
+                  <p className="text-foreground">{photo.focalLength}</p>
                 </div>
               )}
               {photo.aperture && (
                 <div>
                   <span className="text-gray-500">Aperture:</span>
-                  <p className="text-white">{photo.aperture}</p>
+                  <p className="text-foreground">{photo.aperture}</p>
                 </div>
               )}
               {photo.shutterSpeed && (
                 <div>
                   <span className="text-gray-500">Shutter Speed:</span>
-                  <p className="text-white">{photo.shutterSpeed}</p>
+                  <p className="text-foreground">{photo.shutterSpeed}</p>
                 </div>
               )}
               {photo.iso && (
                 <div>
                   <span className="text-gray-500">ISO:</span>
-                  <p className="text-white">{photo.iso}</p>
+                  <p className="text-foreground">{photo.iso}</p>
                 </div>
               )}
             </div>
