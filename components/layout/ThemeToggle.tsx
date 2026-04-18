@@ -6,17 +6,23 @@ const STORAGE_KEY = 'niaz-theme';
 
 type Theme = 'dark' | 'light';
 
+interface ThemeToggleProps {
+  compact?: boolean;
+}
+
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
   window.localStorage.setItem(STORAGE_KEY, theme);
 }
 
-function SunIcon({ active }: { active: boolean }) {
+function SunIcon({ active, compact }: { active: boolean; compact: boolean }) {
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className={`h-4 w-4 transition-opacity ${active ? 'opacity-100' : 'opacity-35'}`}
+      className={`${compact ? 'h-3.5 w-3.5' : 'h-4 w-4'} transition-opacity ${
+        active ? 'opacity-100' : 'opacity-35'
+      }`}
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -29,12 +35,14 @@ function SunIcon({ active }: { active: boolean }) {
   );
 }
 
-function MoonIcon({ active }: { active: boolean }) {
+function MoonIcon({ active, compact }: { active: boolean; compact: boolean }) {
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className={`h-4 w-4 transition-opacity ${active ? 'opacity-100' : 'opacity-35'}`}
+      className={`${compact ? 'h-3.5 w-3.5' : 'h-4 w-4'} transition-opacity ${
+        active ? 'opacity-100' : 'opacity-35'
+      }`}
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -46,7 +54,7 @@ function MoonIcon({ active }: { active: boolean }) {
   );
 }
 
-export default function ThemeToggle() {
+export default function ThemeToggle({ compact = false }: ThemeToggleProps) {
   const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
@@ -61,23 +69,38 @@ export default function ThemeToggle() {
     applyTheme(nextTheme);
   }
 
+  const thumbLeft =
+    theme === 'light'
+      ? '2px'
+      : compact
+        ? 'calc(100% - 16px)'
+        : 'calc(100% - 18px)';
+
   return (
     <button
       type="button"
       onClick={toggleTheme}
       aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="inline-flex items-center gap-2 rounded-full border border-dark-tertiary bg-dark-secondary/85 px-3 py-2 text-foreground backdrop-blur-sm transition-colors hover:border-accent-gold"
+      className={`inline-flex items-center rounded-full border border-dark-tertiary bg-dark-secondary/85 text-foreground backdrop-blur-sm transition-colors hover:border-accent-gold ${
+        compact ? 'gap-1.5 px-2.5 py-1.5' : 'gap-2 px-3 py-2'
+      }`}
     >
-      <SunIcon active={theme === 'light'} />
-      <span className="relative h-5 w-11 rounded-full border border-dark-tertiary bg-dark">
+      <SunIcon active={theme === 'light'} compact={compact} />
+      <span
+        className={`relative rounded-full border border-dark-tertiary bg-dark ${
+          compact ? 'h-[18px] w-10' : 'h-5 w-11'
+        }`}
+      >
         <span
-          className="absolute top-0.5 h-4 w-4 rounded-full bg-accent-gold transition-[left] duration-300"
+          className={`absolute top-0.5 rounded-full bg-accent-gold transition-[left] duration-300 ${
+            compact ? 'h-3.5 w-3.5' : 'h-4 w-4'
+          }`}
           style={{
-            left: theme === 'light' ? '2px' : 'calc(100% - 18px)',
+            left: thumbLeft,
           }}
         />
       </span>
-      <MoonIcon active={theme === 'dark'} />
+      <MoonIcon active={theme === 'dark'} compact={compact} />
     </button>
   );
 }
