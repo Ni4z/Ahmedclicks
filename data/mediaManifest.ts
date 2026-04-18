@@ -1,9 +1,15 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-04-13T20:05:35.129Z",
+  "generatedAt": "2026-04-18T10:22:16.134Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Roads/Breathing Fresh Air as the Mist Fades.jpg",
+      "relativePath": "Roads/Breathing Fresh Air as the Mist Fades.jpg",
+      "thumbnailObjectKey": "photos-thumb/Roads/Breathing Fresh Air as the Mist Fades.webp",
+      "date": "2026-04-18T10:22:06.362Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Robin on Perch.jpg",
       "relativePath": "wildlife/Robin on Perch.jpg",
