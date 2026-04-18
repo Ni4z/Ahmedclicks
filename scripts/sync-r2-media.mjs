@@ -564,6 +564,15 @@ function normalizePhotoMetadataEntry(value) {
     value.year <= 9999
       ? value.year
       : undefined;
+  const camera = normalizePhotoMetadataString(value.camera);
+  const lens = normalizePhotoMetadataString(value.lens);
+  const iso =
+    typeof value.iso === 'number' && Number.isFinite(value.iso) && value.iso > 0
+      ? value.iso
+      : undefined;
+  const shutterSpeed = normalizePhotoMetadataString(value.shutterSpeed);
+  const aperture = normalizePhotoMetadataString(value.aperture);
+  const focalLength = normalizePhotoMetadataString(value.focalLength);
   const entry = {};
 
   if (tags.length > 0) {
@@ -580,6 +589,30 @@ function normalizePhotoMetadataEntry(value) {
 
   if (year) {
     entry.year = year;
+  }
+
+  if (camera) {
+    entry.camera = camera;
+  }
+
+  if (lens) {
+    entry.lens = lens;
+  }
+
+  if (iso) {
+    entry.iso = iso;
+  }
+
+  if (shutterSpeed) {
+    entry.shutterSpeed = shutterSpeed;
+  }
+
+  if (aperture) {
+    entry.aperture = aperture;
+  }
+
+  if (focalLength) {
+    entry.focalLength = focalLength;
   }
 
   return entry;

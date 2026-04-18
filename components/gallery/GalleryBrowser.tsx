@@ -17,6 +17,7 @@ const ALL_TAGS = 'All tags';
 const ALL_SERIES = 'All series';
 const ALL_LOCATIONS = 'All locations';
 const ALL_YEARS = 'All years';
+const ALL_FOCAL_LENGTHS = 'All focal lengths';
 const DEFAULT_SORT = 'Newest';
 
 function hasActiveFilters({
@@ -25,6 +26,7 @@ function hasActiveFilters({
   activeSeries,
   activeTag,
   activeYear,
+  activeFocalLength,
   searchQuery,
   sortOrder,
 }: {
@@ -33,6 +35,7 @@ function hasActiveFilters({
   activeSeries: string;
   activeTag: string;
   activeYear: string;
+  activeFocalLength: string;
   searchQuery: string;
   sortOrder: string;
 }) {
@@ -42,6 +45,7 @@ function hasActiveFilters({
     activeSeries !== ALL_SERIES ||
     activeLocation !== ALL_LOCATIONS ||
     activeYear !== ALL_YEARS ||
+    activeFocalLength !== ALL_FOCAL_LENGTHS ||
     searchQuery.trim().length > 0 ||
     sortOrder !== DEFAULT_SORT
   );
@@ -58,6 +62,7 @@ export default function GalleryBrowser({
   const [activeSeries, setActiveSeries] = useState(ALL_SERIES);
   const [activeLocation, setActiveLocation] = useState(ALL_LOCATIONS);
   const [activeYear, setActiveYear] = useState(ALL_YEARS);
+  const [activeFocalLength, setActiveFocalLength] = useState(ALL_FOCAL_LENGTHS);
   const [sortOrder, setSortOrder] = useState(DEFAULT_SORT);
   const deferredSearchQuery = useDeferredValue(searchQuery.trim().toLowerCase());
 
@@ -77,6 +82,7 @@ export default function GalleryBrowser({
     const series = new Map<string, number>();
     const locations = new Map<string, number>();
     const years = new Map<number, number>();
+    const focalLengths = new Map<string, number>();
 
     for (const photo of photos) {
       years.set(photo.year, (years.get(photo.year) || 0) + 1);
@@ -87,6 +93,10 @@ export default function GalleryBrowser({
 
       if (photo.location) {
         locations.set(photo.location, (locations.get(photo.location) || 0) + 1);
+      }
+
+      if (photo.focalLength) {
+        focalLengths.set(photo.focalLength, (focalLengths.get(photo.focalLength) || 0) + 1);
       }
 
       for (const tag of photo.tags) {
@@ -108,6 +118,14 @@ export default function GalleryBrowser({
       tags: Array.from(tags.entries()).sort(compareLabels),
       years: Array.from(years.entries()).sort(
         ([firstYear], [secondYear]) => secondYear - firstYear
+      ),
+      focalLengths: Array.from(focalLengths.entries()).sort(
+        ([a], [b]) => {
+          const numA = parseInt(a, 10);
+          const numB = parseInt(b, 10);
+          if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+          return a.localeCompare(b);
+        }
       ),
     };
   }, [photos]);
@@ -137,6 +155,13 @@ export default function GalleryBrowser({
       }
 
       if (activeYear !== ALL_YEARS && String(photo.year) !== activeYear) {
+        return false;
+      }
+
+      if (
+        activeFocalLength !== ALL_FOCAL_LENGTHS &&
+        photo.focalLength !== activeFocalLength
+      ) {
         return false;
       }
 
@@ -189,6 +214,7 @@ export default function GalleryBrowser({
     return sortedPhotos;
   }, [
     activeCategory,
+    activeFocalLength,
     activeLocation,
     activeSeries,
     activeTag,
@@ -207,6 +233,7 @@ export default function GalleryBrowser({
     setCurrentPage(1);
   }, [
     activeCategory,
+    activeFocalLength,
     activeLocation,
     activeSeries,
     activeTag,
@@ -243,12 +270,14 @@ export default function GalleryBrowser({
     setActiveSeries(ALL_SERIES);
     setActiveLocation(ALL_LOCATIONS);
     setActiveYear(ALL_YEARS);
+    setActiveFocalLength(ALL_FOCAL_LENGTHS);
     setSortOrder(DEFAULT_SORT);
   }
 
   const filterSummary = [
     activeCategory !== ALL_CATEGORIES ? activeCategory : null,
     activeYear !== ALL_YEARS ? activeYear : null,
+    activeFocalLength !== ALL_FOCAL_LENGTHS ? activeFocalLength : null,
     activeSeries !== ALL_SERIES ? activeSeries : null,
     activeLocation !== ALL_LOCATIONS ? activeLocation : null,
     activeTag !== ALL_TAGS ? `#${activeTag}` : null,
@@ -351,26 +380,47 @@ export default function GalleryBrowser({
         </div>
 
         <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <label className="lg:min-w-[18rem]">
-            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Tag
-            </span>
-            <select
-              value={activeTag}
-              onChange={(event) => setActiveTag(event.target.value)}
-              className="w-full"
-            >
-              <option>{ALL_TAGS}</option>
-              {facetOptions.tags.map(([tag, count]) => (
-                <option key={tag} value={tag}>
-                  {tag} ({count})
-                </option>
-              ))}
-            </select>
-          </label>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
+            <label className="lg:min-w-[18rem]">
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+                Tag
+              </span>
+              <select
+                value={activeTag}
+                onChange={(event) => setActiveTag(event.target.value)}
+                className="w-full"
+              >
+                <option>{ALL_TAGS}</option>
+                {facetOptions.tags.map(([tag, count]) => (
+                  <option key={tag} value={tag}>
+                    {tag} ({count})
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="lg:min-w-[12rem]">
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
+                Focal Length
+              </span>
+              <select
+                value={activeFocalLength}
+                onChange={(event) => setActiveFocalLength(event.target.value)}
+                className="w-full"
+              >
+                <option>{ALL_FOCAL_LENGTHS}</option>
+                {facetOptions.focalLengths.map(([fl, count]) => (
+                  <option key={fl} value={fl}>
+                    {fl} ({count})
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
 
           {hasActiveFilters({
             activeCategory,
+            activeFocalLength,
             activeLocation,
             activeSeries,
             activeTag,
