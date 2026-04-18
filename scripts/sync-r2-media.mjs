@@ -80,6 +80,15 @@ const publishedCaptionsUrl = (
     ? `${publicImageBaseUrl}/${encodeObjectKeyForUrl(captionsObjectKey)}`
     : '')
 ).trim();
+const exifObjectKey = normalizeRelativeKey(
+  process.env.EXIF_OBJECT_KEY?.trim() || 'photos-exif.json'
+);
+const publishedExifUrl = (
+  process.env.EXIF_URL?.trim() ||
+  (publicImageBaseUrl
+    ? `${publicImageBaseUrl}/${encodeObjectKeyForUrl(exifObjectKey)}`
+    : '')
+).trim();
 
 function loadLocalEnvFiles() {
   for (const fileName of ['.env.local', '.env']) {
@@ -736,6 +745,42 @@ async function syncCaptionPlaceholders(mediaEntries) {
   }
 }
 
+async function fetchPublishedExifData() {
+  if (!publishedExifUrl) {
+    return null;
+  }
+
+  try {
+    const requestUrl = new URL(publishedExifUrl);
+    requestUrl.searchParams.set('_ts', Date.now().toString());
+
+    const response = await fetch(requestUrl, {
+      cache: 'no-store',
+      headers: { accept: 'application/json' },
+    });
+
+    if (!response.ok) {
+      console.warn(
+        `[sync:media] Failed to fetch published EXIF data (${response.status} ${response.statusText}).`
+      );
+      return null;
+    }
+
+    const data = await response.json();
+
+    if (!data || typeof data !== 'object' || Array.isArray(data)) {
+      return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.warn(
+      `[sync:media] Could not fetch published EXIF data: ${error instanceof Error ? error.message : String(error)}`
+    );
+    return null;
+  }
+}
+
 async function syncPhotoMetadataPlaceholders(photoEntries) {
   const currentSource = fsSync.existsSync(photoMetadataPath)
     ? await fs.readFile(photoMetadataPath, 'utf8')
@@ -747,15 +792,42 @@ async function syncPhotoMetadataPlaceholders(photoEntries) {
   const synchronizedEntries = [...metadataEntries];
   const addedKeys = [];
 
+  // Fetch worker-published EXIF data from R2/CDN
+  const publishedExif = await fetchPublishedExifData();
+  let exifMergedCount = 0;
+
   for (const photoEntry of photoEntries) {
     const relativePath = normalizeRelativeKey(photoEntry.relativePath);
 
     if (metadataMap.has(relativePath)) {
+      // Merge EXIF data into existing entry if it doesn't already have EXIF
+      if (publishedExif && publishedExif[relativePath]) {
+        const existing = metadataMap.get(relativePath);
+        const exif = publishedExif[relativePath];
+        let merged = false;
+
+        for (const field of ['camera', 'lens', 'iso', 'shutterSpeed', 'aperture', 'focalLength']) {
+          if (exif[field] !== undefined && existing[field] === undefined) {
+            existing[field] = exif[field];
+            merged = true;
+          }
+        }
+
+        if (merged) {
+          exifMergedCount++;
+        }
+      }
+
       continue;
     }
 
-    metadataMap.set(relativePath, {});
-    synchronizedEntries.push([relativePath, {}]);
+    // New photo — create placeholder, pre-fill with EXIF if available
+    const entry = publishedExif && publishedExif[relativePath]
+      ? { ...publishedExif[relativePath] }
+      : {};
+
+    metadataMap.set(relativePath, entry);
+    synchronizedEntries.push([relativePath, entry]);
     addedKeys.push(relativePath);
   }
 
@@ -768,6 +840,12 @@ async function syncPhotoMetadataPlaceholders(photoEntries) {
   if (addedKeys.length > 0) {
     console.log(
       `[sync:media] Added ${addedKeys.length} new photo metadata placeholder${addedKeys.length === 1 ? '' : 's'} in data/photoMetadata.json.`
+    );
+  }
+
+  if (exifMergedCount > 0) {
+    console.log(
+      `[sync:media] Merged EXIF data into ${exifMergedCount} existing photo metadata ${exifMergedCount === 1 ? 'entry' : 'entries'}.`
     );
   }
 }
