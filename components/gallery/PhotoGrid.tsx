@@ -87,6 +87,31 @@ export default function PhotoGrid({
                   ) : null}
                 </div>
               ) : null}
+
+              {(photo.focalLength || photo.aperture || photo.shutterSpeed || photo.iso) ? (
+                <div className="flex flex-wrap gap-2 border-t border-dark-tertiary pt-3">
+                  {photo.focalLength ? (
+                    <span className="rounded-full bg-dark px-3 py-1 text-[11px] tracking-[0.18em] text-gray-400">
+                      {photo.focalLength}
+                    </span>
+                  ) : null}
+                  {photo.aperture ? (
+                    <span className="rounded-full bg-dark px-3 py-1 text-[11px] tracking-[0.18em] text-gray-400">
+                      {photo.aperture}
+                    </span>
+                  ) : null}
+                  {photo.shutterSpeed ? (
+                    <span className="rounded-full bg-dark px-3 py-1 text-[11px] tracking-[0.18em] text-gray-400">
+                      {photo.shutterSpeed}
+                    </span>
+                  ) : null}
+                  {photo.iso ? (
+                    <span className="rounded-full bg-dark px-3 py-1 text-[11px] tracking-[0.18em] text-gray-400">
+                      ISO {photo.iso}
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
           </Link>
         </div>

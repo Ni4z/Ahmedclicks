@@ -134,7 +134,7 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
         </div>
 
         {/* EXIF Data */}
-        {photo.camera && (
+        {(photo.camera || photo.lens || photo.focalLength || photo.aperture || photo.shutterSpeed || photo.iso) && (
           <div className="space-y-4 bg-dark-secondary p-6 rounded-lg">
             <h3 className="text-lg font-semibold mb-4">Camera Settings</h3>
             <div className="space-y-2 text-sm">
