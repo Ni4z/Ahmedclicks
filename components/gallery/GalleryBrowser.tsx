@@ -36,6 +36,66 @@ const FOCAL_LENGTH_BUCKETS = [
   { label: '551-600mm', min: 551, max: 600 },
 ] as const;
 
+function normalizeSearchText(value: string | number | undefined | null) {
+  if (value === undefined || value === null) {
+    return '';
+  }
+
+  return String(value)
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9/.-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function tokenizeSearchText(value: string | number | undefined | null) {
+  return normalizeSearchText(value).split(' ').filter(Boolean);
+}
+
+function compactSearchToken(value: string) {
+  return value.replace(/[^a-z0-9]/g, '');
+}
+
+function levenshteinDistance(first: string, second: string) {
+  if (first === second) {
+    return 0;
+  }
+
+  if (first.length === 0) {
+    return second.length;
+  }
+
+  if (second.length === 0) {
+    return first.length;
+  }
+
+  const previousRow = Array.from(
+    { length: second.length + 1 },
+    (_, index) => index
+  );
+
+  for (let firstIndex = 0; firstIndex < first.length; firstIndex += 1) {
+    let previousDiagonal = previousRow[0];
+    previousRow[0] = firstIndex + 1;
+
+    for (let secondIndex = 0; secondIndex < second.length; secondIndex += 1) {
+      const temp = previousRow[secondIndex + 1];
+      const substitutionCost =
+        first[firstIndex] === second[secondIndex] ? 0 : 1;
+      previousRow[secondIndex + 1] = Math.min(
+        previousRow[secondIndex + 1] + 1,
+        previousRow[secondIndex] + 1,
+        previousDiagonal + substitutionCost
+      );
+      previousDiagonal = temp;
+    }
+  }
+
+  return previousRow[second.length];
+}
+
 function extractFocalLengthValue(focalLength?: string) {
   if (!focalLength) {
     return null;
@@ -64,6 +124,91 @@ function getFocalLengthBucketLabel(focalLength?: string) {
   );
 
   return bucket?.label ?? null;
+}
+
+function getPhotoSearchValues(photo: Photo) {
+  const focalLengthBucket = getFocalLengthBucketLabel(photo.focalLength);
+
+  return [
+    photo.title,
+    photo.caption,
+    photo.category,
+    photo.series,
+    photo.weather,
+    photo.location,
+    String(photo.year),
+    photo.camera,
+    photo.lens,
+    photo.focalLength,
+    focalLengthBucket || undefined,
+    photo.aperture,
+    photo.shutterSpeed,
+    photo.iso !== undefined ? `ISO ${photo.iso}` : undefined,
+    photo.iso !== undefined ? String(photo.iso) : undefined,
+    ...photo.tags,
+  ].filter(Boolean) as string[];
+}
+
+function queryTokenMatchesCandidateToken(
+  queryToken: string,
+  candidateToken: string
+) {
+  if (
+    candidateToken.includes(queryToken) ||
+    queryToken.includes(candidateToken)
+  ) {
+    return true;
+  }
+
+  const compactQuery = compactSearchToken(queryToken);
+  const compactCandidate = compactSearchToken(candidateToken);
+
+  if (!compactQuery || !compactCandidate) {
+    return false;
+  }
+
+  if (
+    compactCandidate.includes(compactQuery) ||
+    compactQuery.includes(compactCandidate)
+  ) {
+    return true;
+  }
+
+  if (Math.min(compactQuery.length, compactCandidate.length) < 4) {
+    return false;
+  }
+
+  const maxDistance =
+    compactQuery.length >= 8 && compactCandidate.length >= 8 ? 2 : 1;
+
+  return levenshteinDistance(compactQuery, compactCandidate) <= maxDistance;
+}
+
+function matchesSearchQuery(photo: Photo, query: string) {
+  const normalizedQuery = normalizeSearchText(query);
+
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  const searchValues = getPhotoSearchValues(photo);
+  const normalizedHaystack = searchValues
+    .map((value) => normalizeSearchText(value))
+    .filter(Boolean)
+    .join(' ');
+
+  if (normalizedHaystack.includes(normalizedQuery)) {
+    return true;
+  }
+
+  const queryTokens = tokenizeSearchText(normalizedQuery);
+  const candidateTokens = searchValues.flatMap((value) => tokenizeSearchText(value));
+
+  return queryTokens.every((queryToken) =>
+    candidateTokens.some((candidateToken) =>
+      queryTokenMatchesCandidateToken(queryToken, candidateToken)
+    )
+  );
 }
 
 function hasActiveFilters({
@@ -215,24 +360,7 @@ export default function GalleryBrowser({
         return false;
       }
 
-      if (!deferredSearchQuery) {
-        return true;
-      }
-
-      const searchableContent = [
-        photo.title,
-        photo.caption,
-        photo.category,
-        photo.weather,
-        photo.location,
-        String(photo.year),
-        photo.tags.join(' '),
-      ]
-        .filter(Boolean)
-        .join(' ')
-        .toLowerCase();
-
-      return searchableContent.includes(deferredSearchQuery);
+      return matchesSearchQuery(photo, deferredSearchQuery);
     });
 
     const sortedPhotos = filteredPhotos.slice();
@@ -353,7 +481,7 @@ export default function GalleryBrowser({
               type="search"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Title, tag, weather, location..."
+              placeholder="Title, series, tag, weather, location, camera..."
               className="w-full"
             />
           </label>

@@ -5,6 +5,7 @@ export interface Photo {
   category: string;
   categoryKey: string;
   tags: string[];
+  series?: string;
   weather?: string;
   image: string;
   thumbnail: string;

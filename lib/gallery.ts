@@ -115,6 +115,7 @@ const VALID_WEATHER_VALUES = new Set([
 
 type PhotoMetadataEntry = {
   tags: string[];
+  series?: string;
   weather?: string;
   location?: string;
   year?: number;
@@ -243,11 +244,13 @@ function normalizePhotoMetadataEntry(value: unknown): PhotoMetadataEntry {
       ? rawEntry.iso
       : undefined;
 
+  const series = normalizeMetadataString(rawEntry.series);
   const rawWeather = normalizeMetadataString(rawEntry.weather);
   const weather = rawWeather && VALID_WEATHER_VALUES.has(rawWeather) ? rawWeather : undefined;
 
   return {
     tags: normalizeMetadataTags(rawEntry.tags),
+    series,
     weather,
     location: normalizeMetadataString(rawEntry.location),
     year,
@@ -341,6 +344,7 @@ function createPhotoRecord(
     category: category.name,
     categoryKey: category.key,
     tags: metadata.tags,
+    series: metadata.series,
     weather: metadata.weather,
     image: withObjectStorageAssetPath(file.objectKey, 'image'),
     thumbnail: withObjectStorageAssetPath(
