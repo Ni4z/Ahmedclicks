@@ -45,7 +45,7 @@ const photoMetadataPath = path.join(process.cwd(), 'data', 'photoMetadata.json')
 const captionsReadme =
   'Add a caption for any photo or video by its relative path. Empty string or missing entry = no caption shown. New media placeholders are added automatically in the external captions store and synced locally during media sync.';
 const photoMetadataReadme =
-  'Add photo organization metadata by relative path. Use tags, weather, location, and year to keep the gallery browsable as it grows. Weather values: Summer, Spring, Autumn, Winter, Rain. New photo placeholders are added automatically during media sync.';
+  'Add photo organization metadata by relative path. Use tags, series, weather, location, and year to keep the gallery browsable as it grows. Weather values: Summer, Spring, Autumn, Winter, Rain. New photo placeholders are added automatically during media sync.';
 const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
 );
@@ -564,6 +564,7 @@ function normalizePhotoMetadataEntry(value) {
   }
 
   const tags = normalizePhotoMetadataTags(value.tags);
+  const series = normalizePhotoMetadataString(value.series);
   const weather = normalizePhotoMetadataString(value.weather);
   const location = normalizePhotoMetadataString(value.location);
   const year =
@@ -586,6 +587,10 @@ function normalizePhotoMetadataEntry(value) {
 
   if (tags.length > 0) {
     entry.tags = tags;
+  }
+
+  if (series) {
+    entry.series = series;
   }
 
   if (weather) {
