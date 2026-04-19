@@ -6,8 +6,9 @@
       "path",
       "morning light"
     ],
+    "weather": "Summer",
     "location": "Hiesfelder Wald, Oberhausen",
-    "year": 2026,
+    "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 3200,
@@ -19,10 +20,12 @@
     "tags": [
       "fog",
       "forest",
-      "morning"
+      "morning",
+      "trees"
     ],
+    "weather": "Summer",
     "location": "Üfter Mark, Schermbeck",
-    "year": 2026,
+    "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 250,
@@ -36,8 +39,9 @@
       "flight",
       "forest"
     ],
-    "location": "Forest Wetland",
-    "year": 2026,
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
@@ -47,12 +51,12 @@
   },
   "wildlife/Hidden Monarch.jpg": {
     "tags": [
-      "butterfly",
-      "macro",
-      "wildlife"
+      "Deer",
+      "Farmland"
     ],
-    "location": "Garden Edge",
-    "year": 2026,
+    "weather": "Summer",
+    "location": "Üfter Mark, Schermbeck",
+    "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
@@ -66,8 +70,9 @@
       "perch",
       "bird"
     ],
-    "location": "Open Woodland",
-    "year": 2026,
+    "location": "Angermund, Düsseldorf",
+    "weather": "Summer",
+    "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 16000,
@@ -81,8 +86,9 @@
       "bird",
       "shadow"
     ],
-    "location": "Tree Line",
-    "year": 2026,
+    "weather": "Summer",
+    "location": "Bislicher Insel, Xanten",
+    "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -96,23 +102,26 @@
       "bird",
       "glide"
     ],
-    "location": "Open Sky",
-    "year": 2026,
+    "location": "Bislicher Insel, Xanten",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
     "focalLength": "600mm"
-  },
+  },  
   "landscape/Mist_Spire.jpg": {
     "tags": [
       "mist",
       "landscape",
-      "peak"
+      "peak",
+      "Church"
     ],
-    "location": "High Ridge",
-    "year": 2026,
+    "location": "Angermund, Düsseldorf",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 125,
@@ -126,8 +135,9 @@
       "light",
       "horizon"
     ],
-    "location": "Open Horizon",
-    "year": 2026,
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 100,
@@ -141,8 +151,9 @@
       "autumn",
       "forest"
     ],
-    "location": "Woodland Path",
-    "year": 2026,
+    "location": "Bislicher Insel, Xanten",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -156,8 +167,9 @@
       "yellow",
       "garden"
     ],
-    "location": "Garden Patch",
-    "year": 2026,
+    "location": "Üfter Mark, Schermbeck",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 250,
@@ -169,9 +181,12 @@
     "tags": [
       "night sky",
       "stars",
-      "long exposure"
+      "long exposure",
+      "astro",
+      "moon"
     ],
-    "location": "Night Field",
+    "weather": "Winter",
+    "location": "Home",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
@@ -184,9 +199,11 @@
     "tags": [
       "night sky",
       "stars",
-      "astro"
+      "astro",
+      "moon"
     ],
-    "location": "Night Field",
+    "weather": "Winter",
+    "location": "Home",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
@@ -199,10 +216,12 @@
     "tags": [
       "portrait",
       "light",
-      "person"
+      "person",
+      "christmas"
     ],
-    "location": "Outdoor Portraits",
-    "year": 2026,
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -217,6 +236,7 @@
       "perch"
     ],
     "location": "Muenster Wetland",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
