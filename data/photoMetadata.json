@@ -1039,5 +1039,45 @@
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
     "focalLength": "600mm"
+  },
+  "Roads/Contrast in the forest.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 3200,
+    "shutterSpeed": "1/200",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "landscape/Contrast in the Field.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 200,
+    "shutterSpeed": "1/200",
+    "aperture": "f/5.6",
+    "focalLength": "200mm"
+  },
+  "Trees/Standing High.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 160,
+    "shutterSpeed": "1/350",
+    "aperture": "f/2.8",
+    "focalLength": "14mm"
+  },
+  "Trees/An end of an chapter.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 160,
+    "shutterSpeed": "1/350",
+    "aperture": "f/2.8",
+    "focalLength": "14mm"
+  },
+  "Roads/Lets Take a Walk.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 200,
+    "shutterSpeed": "1/500",
+    "aperture": "f/2.8",
+    "focalLength": "14mm"
   }
 }
