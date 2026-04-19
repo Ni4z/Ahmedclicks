@@ -1,5 +1,5 @@
 {
-  "_README": "Add photo organization metadata by relative path. Use tags, weather, location, and year to keep the gallery browsable as it grows. Weather values: Summer, Spring, Autumn, Winter, Rain. New photo placeholders are added automatically during media sync.",
+  "_README": "Add photo organization metadata by relative path. Use tags, series, weather, location, and year to keep the gallery browsable as it grows. Weather values: Summer, Spring, Autumn, Winter, Rain. New photo placeholders are added automatically during media sync.",
   "Roads/Emerald Passage.jpg": {
     "tags": [
       "forest",
@@ -1064,5 +1064,13 @@
     "shutterSpeed": "1/500",
     "aperture": "f/2.8",
     "focalLength": "14mm"
+  },
+  "wildlife/Veins of the wild.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 160,
+    "shutterSpeed": "1/200",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
   }
 }

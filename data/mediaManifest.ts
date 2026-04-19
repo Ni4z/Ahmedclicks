@@ -1,9 +1,15 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-04-19T10:47:58.440Z",
+  "generatedAt": "2026-04-19T19:53:35.414Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Veins of the wild.jpg",
+      "relativePath": "wildlife/Veins of the wild.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Veins of the wild.webp",
+      "date": "2026-04-19T19:53:25.040Z"
+    },
     {
       "objectKey": "photos-web/Roads/Contrast in the forest.jpg",
       "relativePath": "Roads/Contrast in the forest.jpg",
