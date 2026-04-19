@@ -7,7 +7,14 @@ import path from 'node:path';
 const manifestPath = path.join(process.cwd(), 'data', 'mediaManifest.ts');
 const photoMetadataPath = path.join(process.cwd(), 'data', 'photoMetadata.json');
 const photoMetadataReadme =
-  'Add photo organization metadata by relative path. Use tags, series, location, and year to keep the gallery browsable as it grows. New photo placeholders are added automatically during media sync.';
+  'Add photo organization metadata by relative path. Use tags, series, weather, location, and year to keep the gallery browsable as it grows. New photo placeholders are added automatically during media sync.';
+const validWeatherValues = new Set([
+  'Summer',
+  'Spring',
+  'Autumn',
+  'Winter',
+  'Rain',
+]);
 const sourcePrefix = normalizePrefix(
   process.env.THUMB_SOURCE_PREFIX?.trim() ||
     process.env.R2_PHOTO_PREFIX?.trim() ||
@@ -102,6 +109,9 @@ function normalizePhotoMetadataEntry(value) {
   const rawEntry = value;
   const tags = normalizeMetadataTags(rawEntry.tags);
   const series = normalizeMetadataString(rawEntry.series);
+  const rawWeather = normalizeMetadataString(rawEntry.weather);
+  const weather =
+    rawWeather && validWeatherValues.has(rawWeather) ? rawWeather : undefined;
   const location = normalizeMetadataString(rawEntry.location);
   const year = normalizeMetadataYear(rawEntry.year);
   const entry = {};
@@ -112,6 +122,10 @@ function normalizePhotoMetadataEntry(value) {
 
   if (series) {
     entry.series = series;
+  }
+
+  if (weather) {
+    entry.weather = weather;
   }
 
   if (location) {

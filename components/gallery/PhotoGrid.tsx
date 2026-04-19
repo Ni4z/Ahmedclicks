@@ -61,8 +61,9 @@ export default function PhotoGrid({
                 ) : null}
               </div>
 
-              {photo.location || photo.weather ? (
+              {photo.series || photo.location || photo.weather ? (
                 <div className="flex flex-wrap gap-2">
+                  {photo.series ? renderMetadataChip(`Series: ${photo.series}`) : null}
                   {photo.weather ? renderMetadataChip(photo.weather) : null}
                   {photo.location
                     ? renderMetadataChip(`Location: ${photo.location}`)
