@@ -235,8 +235,9 @@
       "bird",
       "perch"
     ],
-    "location": "Muenster Wetland",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -245,6 +246,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Robin.jpg": {
+    "tags": [
+      "robin",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -253,6 +262,15 @@
     "focalLength": "600mm"
   },
   "wildlife/Scanning Landscape.jpg": {
+    "tags": [
+      "Hawk",
+      "raptor",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 250,
@@ -261,6 +279,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Flinch.jpg": {
+    "tags": [
+      "flinch",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1000,
@@ -269,6 +295,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Flinch Sunkissed.jpg": {
+    "tags": [
+      "flinch",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 400,
@@ -277,6 +311,13 @@
     "focalLength": "600mm"
   },
   "wildlife/Juvenile BlackBird.jpg": {
+    "tags": [
+      "blackbird",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -285,6 +326,14 @@
     "focalLength": "600mm"
   },
   "wildlife/BullFlinch Tilted.jpg": {
+    "tags": [
+      "flinch",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
@@ -293,6 +342,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Squirrel 2.jpg": {
+    "tags": [
+      "squirrel",
+       "rodent",
+       "perch"
+     ],
+     "location": "Saarn-Mendener Ruhrauen, Mülheim",
+     "year": 2026,
+     "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
@@ -301,6 +358,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Squirrel 1.jpg": {
+    "tags": [
+      "squirrel",
+       "rodent",
+       "perch"
+     ],
+     "location": "Saarn-Mendener Ruhrauen, Mülheim",
+     "year": 2026,
+     "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 12800,
@@ -309,6 +374,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Squirrel 3.jpg": {
+    "tags": [
+      "squirrel",
+       "rodent",
+       "perch"
+     ],
+     "location": "Saarn-Mendener Ruhrauen, Mülheim",
+     "year": 2026,
+     "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 12800,
@@ -317,6 +390,14 @@
     "focalLength": "588mm"
   },
   "landscape/Contrast in Forest.jpg": {
+    "tags": [
+      "forest",
+      "castle",
+      "landscape"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -325,6 +406,14 @@
     "focalLength": "211mm"
   },
   "landscape/Lets Walk.jpg": {
+    "tags": [
+      "forest",
+      "path",
+      "landscape"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
@@ -333,6 +422,16 @@
     "focalLength": "14mm"
   },
   "Trees/New Growth.jpg": {
+    "tags": [
+      "forest",
+      "spring",
+      "growth",
+      "leaves",
+      "trees"
+    ],
+    "location": "Duisburg",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 2000,
@@ -341,6 +440,15 @@
     "focalLength": "14mm"
   },
   "Trees/New Branches.jpg": {
+    "tags": [
+      "forest",
+      "spring",
+      "branches",
+      "trees"
+    ],
+    "location": "Duisburg",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 2000,
@@ -349,6 +457,15 @@
     "focalLength": "14mm"
   },
   "Trees/New Leaves.jpg": {
+    "tags": [
+      "forest",
+      "spring",
+      "leaves",
+      "trees"
+    ],
+    "location": "Duisburg",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 1600,
@@ -357,6 +474,14 @@
     "focalLength": "14mm"
   },
   "Trees/Distinguished.jpg": {
+    "tags": [
+      "forest",
+      "spring",
+      "tree"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -365,6 +490,16 @@
     "focalLength": "202mm"
   },
   "wildlife/Confused Bull Flinch.jpg": {
+    "tags": [
+      "wildlife",
+      "bull",
+      "confused",
+      "flinch",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
@@ -373,6 +508,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Wild Swan 4.jpg": {
+    "tags": [
+      "swan",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
@@ -381,6 +524,14 @@
     "focalLength": "225mm"
   },
   "wildlife/Wild Swan 5.jpg": {
+    "tags": [
+      "swan",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -389,6 +540,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Wild Swan 2.jpg": {
+    "tags": [
+      "swan",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 5000,
@@ -397,6 +556,14 @@
     "focalLength": "200mm"
   },
   "wildlife/Wild Swan 3.jpg": {
+    "tags": [
+      "swan",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
@@ -405,6 +572,14 @@
     "focalLength": "205mm"
   },
   "wildlife/Wild Swan 1.jpg": {
+    "tags": [
+      "swan",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2000,
@@ -413,6 +588,14 @@
     "focalLength": "259mm"
   },
   "wildlife/Blau Meise 1.jpg": {
+    "tags": [
+      "blau meise",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -421,6 +604,15 @@
     "focalLength": "600mm"
   },
   "wildlife/Portrait of Blau Meise.jpg": {
+    "tags": [
+      "blau meise",
+      "bird",
+      "perch",
+      "portrait"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -429,6 +621,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Blau Meise 2.jpg": {
+    "tags": [
+      "blau meise",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -437,6 +637,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Blau Meise 3.jpg": {
+    "tags": [
+      "blau meise",
+      "bird",
+      "perch"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -445,6 +653,15 @@
     "focalLength": "582mm"
   },
   "Metropolis/Standing High .jpg": {
+    "tags": [
+      "city",
+      "architecture",
+      "high rise",
+      "castle"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 160,
@@ -453,6 +670,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Isolated.jpg": {
+    "tags": [
+      "isolated",
+      "hare",
+      "perch"
+    ],
+    "location": "Bislicher Insel, Xanten",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1000,
@@ -461,6 +686,14 @@
     "focalLength": "600mm"
   },
   "Metropolis/Muenster.jpg": {
+    "tags": [
+      "city",
+      "architecture",
+      "bicycle"
+    ],
+    "location": "Münster",
+    "year": 2025,
+    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 500,
@@ -468,8 +701,32 @@
     "aperture": "f/2.8",
     "focalLength": "183mm"
   },
-  "Roads/Blending in the Mist.JPEG": {},
+  "Roads/Blending in the Mist.JPEG": {
+    "tags": [
+      "road",
+      "mist",
+      "forest"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Summer",
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/1000",
+    "aperture": "f/6.3",
+    "focalLength": "200mm"
+  },
   "astrophotography/Pale Blue Dot.jpg": {
+      "tags": [
+        "night sky",
+        "stars",
+        "long exposure",
+        "astro"
+      ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 100,
@@ -478,6 +735,15 @@
     "focalLength": "14mm"
   },
   "astrophotography/Beyond Stars.jpg": {
+    "tags": [
+      "night sky",
+      "stars",
+      "long exposure",
+      "astro"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 100,
@@ -486,6 +752,14 @@
     "focalLength": "14mm"
   },
   "wildlife/White Angel.jpg": {
+    "tags": [
+      "wildlife",
+      "white angel",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
@@ -494,6 +768,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Cormorant .jpg": {
+    "tags": [
+      "wildlife",
+      "cormorant",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
@@ -502,6 +784,15 @@
     "focalLength": "600mm"
   },
   "wildlife/Eurasian Sparrowhawk.jpg": {
+    "tags": [
+      "wildlife",
+      "eurasian sparrowhawk",
+      "bird",
+      "raptor"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 320,
@@ -510,6 +801,15 @@
     "focalLength": "594mm"
   },
   "wildlife/Sparrow Hawk.jpg": {
+    "tags": [
+      "wildlife",
+      "sparrow hawk",
+      "bird",
+      "raptor"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
@@ -518,6 +818,14 @@
     "focalLength": "600mm"
   },
   "wildlife/The Singer.jpg": {
+    "tags": [
+      "wildlife",
+      "the singer",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 320,
@@ -526,6 +834,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Soft Perch.jpg": {
+    "tags": [
+      "wildlife",
+      "soft perch",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 640,
@@ -534,6 +850,14 @@
     "focalLength": "600mm"
   },
   "wildlife/krestel.jpg": {
+    "tags": [
+      "wildlife",
+      "krestel",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 100,
@@ -542,6 +866,15 @@
     "focalLength": "600mm"
   },
   "Metropolis/Burning Sky.jpg": {
+    "tags": [
+      "metropolis",
+      "burning sky",
+      "cityscape",
+      "sunset"
+    ],
+    "location": "Duisburg",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 250,
@@ -550,6 +883,14 @@
     "focalLength": "200mm"
   },
   "wildlife/Silent Glide.jpg": {
+    "tags": [
+      "wildlife",
+      "silent glide",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -558,6 +899,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Marsh Walker.jpg": {
+    "tags": [
+      "wildlife",
+      "marsh walker",
+      "bird"
+    ],
+    "location": "Duisburg",
+    "year": 2026,
+    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
@@ -566,6 +915,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Dawn Flock.jpg": {
+    "tags": [
+      "wildlife",
+      "dawn flock",
+      "birds"
+    ],
+    "location": "Dinslaken",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
@@ -574,6 +931,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Midnight_Grace.jpg": {
+    "tags": [
+      "wildlife",
+      "midnight grace",
+      "horse"
+    ],
+    "location": "Dinslaken",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -582,6 +947,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Amber_Grace.jpg": {
+    "tags": [
+      "wildlife",
+      "amber grace",
+      "horse"
+    ],
+    "location": "Dinslaken",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
@@ -590,6 +963,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Forest_Ascend.jpg": {
+    "tags": [
+      "wildlife",
+      "forest ascend",
+      "bird"
+    ],
+    "location": "Dinslaken",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
