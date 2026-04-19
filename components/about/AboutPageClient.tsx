@@ -68,7 +68,10 @@ export default function AboutPageClient({
             </div>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex justify-center">
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center lg:pt-16 xl:pt-20"
+          >
             <div className="w-56 h-56 md:w-64 md:h-64 xl:w-72 xl:h-72 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
               <img
                 src={profileImage}
