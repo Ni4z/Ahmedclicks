@@ -14,11 +14,13 @@ interface GalleryBrowserProps {
 const PHOTOS_PER_PAGE = 20;
 const ALL_CATEGORIES = 'All';
 const ALL_TAGS = 'All tags';
-const ALL_SERIES = 'All series';
+const ALL_WEATHER = 'All weather';
 const ALL_LOCATIONS = 'All locations';
 const ALL_YEARS = 'All years';
 const ALL_FOCAL_LENGTHS = 'All focal lengths';
 const DEFAULT_SORT = 'Newest';
+const WEATHER_OPTIONS = ['Summer', 'Spring', 'Autumn', 'Winter', 'Rain'] as const;
+
 const FOCAL_LENGTH_BUCKETS = [
   { label: '14-50mm', min: 14, max: 50 },
   { label: '51-100mm', min: 51, max: 100 },
@@ -67,7 +69,7 @@ function getFocalLengthBucketLabel(focalLength?: string) {
 function hasActiveFilters({
   activeCategory,
   activeLocation,
-  activeSeries,
+  activeWeather,
   activeTag,
   activeYear,
   activeFocalLength,
@@ -76,7 +78,7 @@ function hasActiveFilters({
 }: {
   activeCategory: string;
   activeLocation: string;
-  activeSeries: string;
+  activeWeather: string;
   activeTag: string;
   activeYear: string;
   activeFocalLength: string;
@@ -86,7 +88,7 @@ function hasActiveFilters({
   return (
     activeCategory !== ALL_CATEGORIES ||
     activeTag !== ALL_TAGS ||
-    activeSeries !== ALL_SERIES ||
+    activeWeather !== ALL_WEATHER ||
     activeLocation !== ALL_LOCATIONS ||
     activeYear !== ALL_YEARS ||
     activeFocalLength !== ALL_FOCAL_LENGTHS ||
@@ -103,7 +105,7 @@ export default function GalleryBrowser({
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTag, setActiveTag] = useState(ALL_TAGS);
-  const [activeSeries, setActiveSeries] = useState(ALL_SERIES);
+  const [activeWeather, setActiveWeather] = useState(ALL_WEATHER);
   const [activeLocation, setActiveLocation] = useState(ALL_LOCATIONS);
   const [activeYear, setActiveYear] = useState(ALL_YEARS);
   const [activeFocalLength, setActiveFocalLength] = useState(ALL_FOCAL_LENGTHS);
@@ -123,16 +125,16 @@ export default function GalleryBrowser({
 
   const facetOptions = useMemo(() => {
     const tags = new Map<string, number>();
-    const series = new Map<string, number>();
     const locations = new Map<string, number>();
     const years = new Map<number, number>();
     const focalLengths = new Map<string, number>();
+    const weatherCounts = new Map<string, number>();
 
     for (const photo of photos) {
       years.set(photo.year, (years.get(photo.year) || 0) + 1);
 
-      if (photo.series) {
-        series.set(photo.series, (series.get(photo.series) || 0) + 1);
+      if (photo.weather) {
+        weatherCounts.set(photo.weather, (weatherCounts.get(photo.weather) || 0) + 1);
       }
 
       if (photo.location) {
@@ -163,7 +165,6 @@ export default function GalleryBrowser({
 
     return {
       locations: Array.from(locations.entries()).sort(compareLabels),
-      series: Array.from(series.entries()).sort(compareLabels),
       tags: Array.from(tags.entries()).sort(compareLabels),
       years: Array.from(years.entries()).sort(
         ([firstYear], [secondYear]) => secondYear - firstYear
@@ -171,6 +172,10 @@ export default function GalleryBrowser({
       focalLengths: FOCAL_LENGTH_BUCKETS.map(({ label }) => [
         label,
         focalLengths.get(label) || 0,
+      ] as [string, number]).filter(([, count]) => count > 0),
+      weather: WEATHER_OPTIONS.map((w) => [
+        w,
+        weatherCounts.get(w) || 0,
       ] as [string, number]).filter(([, count]) => count > 0),
     };
   }, [photos]);
@@ -188,7 +193,7 @@ export default function GalleryBrowser({
         return false;
       }
 
-      if (activeSeries !== ALL_SERIES && photo.series !== activeSeries) {
+      if (activeWeather !== ALL_WEATHER && photo.weather !== activeWeather) {
         return false;
       }
 
@@ -218,7 +223,7 @@ export default function GalleryBrowser({
         photo.title,
         photo.caption,
         photo.category,
-        photo.series,
+        photo.weather,
         photo.location,
         String(photo.year),
         photo.tags.join(' '),
@@ -261,7 +266,7 @@ export default function GalleryBrowser({
     activeCategory,
     activeFocalLength,
     activeLocation,
-    activeSeries,
+    activeWeather,
     activeTag,
     activeYear,
     deferredSearchQuery,
@@ -280,7 +285,7 @@ export default function GalleryBrowser({
     activeCategory,
     activeFocalLength,
     activeLocation,
-    activeSeries,
+    activeWeather,
     activeTag,
     activeYear,
     deferredSearchQuery,
@@ -312,7 +317,7 @@ export default function GalleryBrowser({
     setSearchQuery('');
     setActiveCategory(ALL_CATEGORIES);
     setActiveTag(ALL_TAGS);
-    setActiveSeries(ALL_SERIES);
+    setActiveWeather(ALL_WEATHER);
     setActiveLocation(ALL_LOCATIONS);
     setActiveYear(ALL_YEARS);
     setActiveFocalLength(ALL_FOCAL_LENGTHS);
@@ -323,7 +328,7 @@ export default function GalleryBrowser({
     activeCategory !== ALL_CATEGORIES ? activeCategory : null,
     activeYear !== ALL_YEARS ? activeYear : null,
     activeFocalLength !== ALL_FOCAL_LENGTHS ? activeFocalLength : null,
-    activeSeries !== ALL_SERIES ? activeSeries : null,
+    activeWeather !== ALL_WEATHER ? activeWeather : null,
     activeLocation !== ALL_LOCATIONS ? activeLocation : null,
     activeTag !== ALL_TAGS ? `#${activeTag}` : null,
   ]
@@ -348,7 +353,7 @@ export default function GalleryBrowser({
               type="search"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Title, tag, series, location..."
+              placeholder="Title, tag, weather, location..."
               className="w-full"
             />
           </label>
@@ -389,17 +394,17 @@ export default function GalleryBrowser({
 
           <label>
             <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Series
+              Weather
             </span>
             <select
-              value={activeSeries}
-              onChange={(event) => setActiveSeries(event.target.value)}
+              value={activeWeather}
+              onChange={(event) => setActiveWeather(event.target.value)}
               className="w-full"
             >
-              <option>{ALL_SERIES}</option>
-              {facetOptions.series.map(([series, count]) => (
-                <option key={series} value={series}>
-                  {series} ({count})
+              <option>{ALL_WEATHER}</option>
+              {facetOptions.weather.map(([weather, count]) => (
+                <option key={weather} value={weather}>
+                  {weather} ({count})
                 </option>
               ))}
             </select>
@@ -467,7 +472,7 @@ export default function GalleryBrowser({
             activeCategory,
             activeFocalLength,
             activeLocation,
-            activeSeries,
+            activeWeather,
             activeTag,
             activeYear,
             searchQuery,
@@ -497,7 +502,7 @@ export default function GalleryBrowser({
 
       <PhotoGrid
         photos={paginatedPhotos}
-        emptyMessage="No photos match this combination of category, tag, series, location, year, and search filters."
+        emptyMessage="No photos match this combination of category, tag, weather, location, year, and search filters."
       />
 
       <GalleryPagination
