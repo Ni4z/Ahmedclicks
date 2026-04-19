@@ -92,7 +92,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
 
   if (displayPhotos.length === 0) {
     return (
-      <section className="relative w-full min-h-[70vh] bg-dark-secondary flex items-center justify-center px-6">
+      <section className="relative flex min-h-[70svh] w-full items-center justify-center bg-dark-secondary px-5 sm:px-6 md:min-h-[70vh]">
         <div className="text-center max-w-3xl">
           <p className="text-sm tracking-[0.4em] uppercase text-white/75 mb-4">
             NiazPhotography
@@ -129,7 +129,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative h-[100svh] w-full overflow-hidden md:h-screen">
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
           key={currentSlide}
@@ -162,9 +162,9 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="absolute inset-0 flex flex-col items-center justify-center text-center z-10"
+        className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 pb-20 pt-24 text-center sm:px-8 md:pb-0 md:pt-0"
       >
-        <p className="mb-8 max-w-2xl text-lg text-white/90 md:text-xl">
+        <p className="mb-8 max-w-2xl text-base text-white/90 sm:text-lg md:text-xl">
           Wildlife, landscapes, roads, trees, portraits, and night skies collected in one portfolio.
         </p>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -175,7 +175,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
       </motion.div>
 
       {/* Navigation Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+      <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 gap-3 sm:bottom-8">
         {displayPhotos.map((_, i) => (
           <button
             key={i}
@@ -197,7 +197,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-8 right-8 text-sm tracking-widest text-white/75"
+        className="absolute bottom-8 right-8 hidden text-sm tracking-widest text-white/75 md:block"
       >
         SCROLL
       </motion.div>

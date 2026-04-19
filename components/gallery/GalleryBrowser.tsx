@@ -338,7 +338,7 @@ export default function GalleryBrowser({
         onCategoryChange={handleCategoryChange}
       />
 
-      <div className="mb-10 rounded-[1.75rem] border border-dark-tertiary bg-dark-secondary/70 p-6">
+      <div className="mb-10 rounded-[1.75rem] border border-dark-tertiary bg-dark-secondary/70 p-4 sm:p-6">
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
           <label className="xl:col-span-2">
             <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
@@ -484,13 +484,15 @@ export default function GalleryBrowser({
         </div>
       </div>
 
-      <div className="mb-8 flex items-center justify-between gap-4 text-sm text-gray-500">
+      <div className="mb-8 flex flex-col gap-2 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <span>
           {visiblePhotos.length === 0
             ? '0 photos'
             : `Showing ${visibleStart}-${visibleEnd} of ${visiblePhotos.length} photos`}
         </span>
-        <span>{filterSummary || `${categories.length} active categories`}</span>
+        <span className="max-w-full text-left sm:text-right">
+          {filterSummary || `${categories.length} active categories`}
+        </span>
       </div>
 
       <PhotoGrid

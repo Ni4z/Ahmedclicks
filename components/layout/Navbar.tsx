@@ -34,7 +34,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="fixed top-0 z-50 w-full border-b border-dark-tertiary bg-dark/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
           {/* Logo */}
           <Link
             href="/"
@@ -64,10 +64,10 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-3">
-            <ThemeToggle />
+          <div className="flex items-center gap-2 md:hidden sm:gap-3">
+            <ThemeToggle compact />
             <button
-              className="flex flex-col gap-1 cursor-pointer"
+              className="flex cursor-pointer flex-col gap-1 rounded-md p-1"
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isOpen}
@@ -117,7 +117,7 @@ export default function Navbar() {
       </nav>
 
       {/* Spacer */}
-      <div className="h-16" />
+      <div className="h-14 sm:h-16" />
     </>
   );
 }
