@@ -1,9 +1,39 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-04-18T10:22:16.134Z",
+  "generatedAt": "2026-04-19T10:47:58.440Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Roads/Contrast in the forest.jpg",
+      "relativePath": "Roads/Contrast in the forest.jpg",
+      "thumbnailObjectKey": "photos-thumb/Roads/Contrast in the forest.webp",
+      "date": "2026-04-19T10:47:47.891Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Contrast in the Field.jpg",
+      "relativePath": "landscape/Contrast in the Field.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Contrast in the Field.webp",
+      "date": "2026-04-18T18:29:03.551Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Standing High.jpg",
+      "relativePath": "Trees/Standing High.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Standing High.webp",
+      "date": "2026-04-18T17:22:15.066Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/An end of an chapter.jpg",
+      "relativePath": "Trees/An end of an chapter.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/An end of an chapter.webp",
+      "date": "2026-04-18T17:22:14.365Z"
+    },
+    {
+      "objectKey": "photos-web/Roads/Lets Take a Walk.jpg",
+      "relativePath": "Roads/Lets Take a Walk.jpg",
+      "thumbnailObjectKey": "photos-thumb/Roads/Lets Take a Walk.webp",
+      "date": "2026-04-18T17:04:03.181Z"
+    },
     {
       "objectKey": "photos-web/Roads/Breathing Fresh Air as the Mist Fades.jpg",
       "relativePath": "Roads/Breathing Fresh Air as the Mist Fades.jpg",
