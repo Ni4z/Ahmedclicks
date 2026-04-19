@@ -1,12 +1,11 @@
 {
-  "_README": "Add photo organization metadata by relative path. Use tags, series, location, and year to keep the gallery browsable as it grows. New photo placeholders are added automatically during media sync.",
+  "_README": "Add photo organization metadata by relative path. Use tags, weather, location, and year to keep the gallery browsable as it grows. Weather values: Summer, Spring, Autumn, Winter, Rain. New photo placeholders are added automatically during media sync.",
   "Roads/Emerald Passage.jpg": {
     "tags": [
       "forest",
       "path",
       "morning light"
     ],
-    "series": "Emerald Canopy",
     "location": "Woodland Trail",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -22,7 +21,6 @@
       "forest",
       "morning"
     ],
-    "series": "Emerald Canopy",
     "location": "Woodland Hills",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -38,7 +36,6 @@
       "flight",
       "forest"
     ],
-    "series": "Morning Wings",
     "location": "Forest Wetland",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -54,7 +51,6 @@
       "macro",
       "wildlife"
     ],
-    "series": "Forest Small Worlds",
     "location": "Garden Edge",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -70,7 +66,6 @@
       "perch",
       "bird"
     ],
-    "series": "Birds of Prey",
     "location": "Open Woodland",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -86,7 +81,6 @@
       "bird",
       "shadow"
     ],
-    "series": "Bird Study",
     "location": "Tree Line",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -102,7 +96,6 @@
       "bird",
       "glide"
     ],
-    "series": "Bird Study",
     "location": "Open Sky",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -118,7 +111,6 @@
       "landscape",
       "peak"
     ],
-    "series": "Morning Terrain",
     "location": "High Ridge",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -134,7 +126,6 @@
       "light",
       "horizon"
     ],
-    "series": "Morning Terrain",
     "location": "Open Horizon",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -150,7 +141,6 @@
       "autumn",
       "forest"
     ],
-    "series": "Forest Color",
     "location": "Woodland Path",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -166,7 +156,6 @@
       "yellow",
       "garden"
     ],
-    "series": "Seasonal Study",
     "location": "Garden Patch",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -182,7 +171,6 @@
       "stars",
       "long exposure"
     ],
-    "series": "After Dark",
     "location": "Night Field",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -198,7 +186,6 @@
       "stars",
       "astro"
     ],
-    "series": "After Dark",
     "location": "Night Field",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -214,7 +201,6 @@
       "light",
       "person"
     ],
-    "series": "Human Moments",
     "location": "Outdoor Portraits",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -230,7 +216,6 @@
       "bird",
       "perch"
     ],
-    "series": "Morning Birds",
     "location": "Muenster Wetland",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
