@@ -3,7 +3,7 @@
   "Roads/Emerald Passage.jpg": {
     "tags": [
       "forest",
-      "morning",
+      "morning"
     ],
     "weather": "Summer",
     "location": "Hiesfelder Wald, Oberhausen",
@@ -87,7 +87,7 @@
   "wildlife/Raven.jpg": {
     "tags": [
       "raven",
-      "bird",
+      "bird"
     ],
     "weather": "Summer",
     "location": "Bislicher Insel, Xanten",
@@ -1118,7 +1118,7 @@
   },
   "Trees/DSC08854.jpg": {
     "tags": [
-      "forest",   
+      "forest"
     ],
     "location": "Hiesfelder Wald, Oberhausen",
     "year": 2025,

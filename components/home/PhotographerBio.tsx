@@ -21,7 +21,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)] gap-10 xl:gap-16 items-center"
+          className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.15fr)_minmax(360px,0.85fr)] gap-10 xl:gap-16 items-center"
         >
           {/* Text */}
           <motion.div
@@ -29,7 +29,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="xl:ml-auto xl:max-w-3xl"
+            className="xl:justify-self-end xl:max-w-[40rem]"
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               {aboutTitle}
