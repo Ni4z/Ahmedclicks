@@ -34,7 +34,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               {aboutTitle}
             </h2>
-            <div className="space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8">
+            <div className="space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8 xl:text-justify">
               <p>{aboutIntroLine}</p>
               {aboutPreviewParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
