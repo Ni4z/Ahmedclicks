@@ -3,8 +3,7 @@
   "Roads/Emerald Passage.jpg": {
     "tags": [
       "forest",
-      "path",
-      "morning light"
+      "morning",
     ],
     "weather": "Summer",
     "location": "Hiesfelder Wald, Oberhausen",
@@ -39,7 +38,8 @@
     "tags": [
       "geese",
       "flight",
-      "forest"
+      "forest",
+      "duck"
     ],
     "location": "Duisburg",
     "year": 2025,
@@ -71,7 +71,6 @@
   "wildlife/Buzzard.jpg": {
     "tags": [
       "raptor",
-      "perch",
       "bird"
     ],
     "location": "Angermund, Düsseldorf",
@@ -89,7 +88,6 @@
     "tags": [
       "raven",
       "bird",
-      "shadow"
     ],
     "weather": "Summer",
     "location": "Bislicher Insel, Xanten",
@@ -105,8 +103,8 @@
   "wildlife/Kite.jpg": {
     "tags": [
       "kite",
-      "bird",
-      "glide"
+      "raptor",
+      "bird"
     ],
     "location": "Bislicher Insel, Xanten",
     "year": 2025,
@@ -124,6 +122,7 @@
       "mist",
       "landscape",
       "peak",
+      "fog",
       "Church"
     ],
     "location": "Angermund, Düsseldorf",
@@ -174,7 +173,6 @@
   "Trees/Sunflower.jpg": {
     "tags": [
       "flower",
-      "yellow",
       "garden"
     ],
     "location": "Üfter Mark, Schermbeck",
@@ -365,8 +363,7 @@
   "wildlife/Squirrel 2.jpg": {
     "tags": [
       "squirrel",
-      "rodent",
-      "perch"
+      "rodent"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -382,8 +379,7 @@
   "wildlife/Squirrel 1.jpg": {
     "tags": [
       "squirrel",
-      "rodent",
-      "perch"
+      "rodent"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -399,8 +395,7 @@
   "wildlife/Squirrel 3.jpg": {
     "tags": [
       "squirrel",
-      "rodent",
-      "perch"
+      "rodent"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -450,9 +445,6 @@
   "Trees/New Growth.jpg": {
     "tags": [
       "forest",
-      "spring",
-      "growth",
-      "leaves",
       "trees"
     ],
     "location": "Duisburg",
@@ -469,8 +461,6 @@
   "Trees/New Branches.jpg": {
     "tags": [
       "forest",
-      "spring",
-      "branches",
       "trees"
     ],
     "location": "Duisburg",
@@ -488,7 +478,6 @@
     "tags": [
       "forest",
       "spring",
-      "leaves",
       "trees"
     ],
     "location": "Duisburg",
@@ -520,10 +509,7 @@
     "country": "Germany"
   },
   "wildlife/Confused Bull Flinch.jpg": {
-    "tags": [
-      "wildlife",
-      "bull",
-      "confused",
+    "tags": [      
       "flinch",
       "bird"
     ],
@@ -541,8 +527,7 @@
   "wildlife/Wild Swan 4.jpg": {
     "tags": [
       "swan",
-      "bird",
-      "perch"
+      "duck"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -558,8 +543,7 @@
   "wildlife/Wild Swan 5.jpg": {
     "tags": [
       "swan",
-      "bird",
-      "perch"
+      "duck"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -575,8 +559,7 @@
   "wildlife/Wild Swan 2.jpg": {
     "tags": [
       "swan",
-      "bird",
-      "perch"
+      "duck"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -592,8 +575,7 @@
   "wildlife/Wild Swan 3.jpg": {
     "tags": [
       "swan",
-      "bird",
-      "perch"
+      "duck"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -609,8 +591,7 @@
   "wildlife/Wild Swan 1.jpg": {
     "tags": [
       "swan",
-      "bird",
-      "perch"
+      "duck"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -626,8 +607,7 @@
   "wildlife/Blau Meise 1.jpg": {
     "tags": [
       "blau meise",
-      "bird",
-      "perch"
+      "bird"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -643,9 +623,7 @@
   "wildlife/Portrait of Blau Meise.jpg": {
     "tags": [
       "blau meise",
-      "bird",
-      "perch",
-      "portrait"
+      "bird"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -661,8 +639,7 @@
   "wildlife/Blau Meise 2.jpg": {
     "tags": [
       "blau meise",
-      "bird",
-      "perch"
+      "bird"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -678,8 +655,7 @@
   "wildlife/Blau Meise 3.jpg": {
     "tags": [
       "blau meise",
-      "bird",
-      "perch"
+      "bird"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
@@ -696,7 +672,7 @@
     "tags": [
       "city",
       "architecture",
-      "high rise",
+      "peak",
       "castle"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
@@ -712,9 +688,9 @@
   },
   "wildlife/Isolated.jpg": {
     "tags": [
-      "isolated",
       "hare",
-      "perch"
+      "rabbit",
+      "farmland"
     ],
     "location": "Bislicher Insel, Xanten",
     "year": 2025,
@@ -833,8 +809,6 @@
   },
   "wildlife/Eurasian Sparrowhawk.jpg": {
     "tags": [
-      "wildlife",
-      "eurasian sparrowhawk",
       "bird",
       "raptor"
     ],
@@ -851,8 +825,6 @@
   },
   "wildlife/Sparrow Hawk.jpg": {
     "tags": [
-      "wildlife",
-      "sparrow hawk",
       "bird",
       "raptor"
     ],
@@ -869,8 +841,6 @@
   },
   "wildlife/The Singer.jpg": {
     "tags": [
-      "wildlife",
-      "the singer",
       "bird"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
@@ -886,8 +856,6 @@
   },
   "wildlife/Soft Perch.jpg": {
     "tags": [
-      "wildlife",
-      "soft perch",
       "bird"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
@@ -903,7 +871,6 @@
   },
   "wildlife/krestel.jpg": {
     "tags": [
-      "wildlife",
       "krestel",
       "bird"
     ],
@@ -920,9 +887,8 @@
   },
   "Metropolis/Burning Sky.jpg": {
     "tags": [
-      "metropolis",
-      "burning sky",
-      "cityscape",
+      "city",
+      "sky",
       "sunset"
     ],
     "location": "Duisburg",
@@ -938,8 +904,6 @@
   },
   "wildlife/Silent Glide.jpg": {
     "tags": [
-      "wildlife",
-      "silent glide",
       "bird"
     ],
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
@@ -955,8 +919,6 @@
   },
   "wildlife/Marsh Walker.jpg": {
     "tags": [
-      "wildlife",
-      "marsh walker",
       "bird"
     ],
     "location": "Duisburg",
@@ -972,8 +934,6 @@
   },
   "wildlife/Dawn Flock.jpg": {
     "tags": [
-      "wildlife",
-      "dawn flock",
       "birds"
     ],
     "location": "Dinslaken",
@@ -989,8 +949,6 @@
   },
   "wildlife/Midnight_Grace.jpg": {
     "tags": [
-      "wildlife",
-      "midnight grace",
       "horse"
     ],
     "location": "Dinslaken",
@@ -1006,8 +964,6 @@
   },
   "wildlife/Amber_Grace.jpg": {
     "tags": [
-      "wildlife",
-      "amber grace",
       "horse"
     ],
     "location": "Dinslaken",
@@ -1023,8 +979,6 @@
   },
   "wildlife/Forest_Ascend.jpg": {
     "tags": [
-      "wildlife",
-      "forest ascend",
       "bird"
     ],
     "location": "Dinslaken",
@@ -1039,6 +993,13 @@
     "country": "Germany"
   },
   "wildlife/Food_Secured.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "location": "Bislicher Insel, Xanten",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1048,6 +1009,12 @@
     "country": "Germany"
   },
   "wildlife/Wings_of_Angel.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 640,
@@ -1057,6 +1024,12 @@
     "country": "Germany"
   },
   "Trees/DSC08391.jpg": {
+    "tags": [
+      "forest"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
@@ -1066,6 +1039,12 @@
     "country": "Germany"
   },
   "Trees/mushroom.jpg": {
+    "tags": [
+      "forest"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 5000,
@@ -1075,6 +1054,12 @@
     "country": "Germany"
   },
   "Trees/DSC04870-3.jpg": {
+    "tags": [
+      "forest"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 200,
@@ -1084,6 +1069,13 @@
     "country": "Germany"
   },
   "wildlife/Tufted Duck.jpg": {
+    "tags": [
+      "duck",
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 400,
@@ -1093,6 +1085,12 @@
     "country": "Germany"
   },
   "wildlife/DSC01196.jpg": {
+    "tags": [
+      "deer"
+    ],
+    "location": "Damwildgehege, Krefeld",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 3200,
@@ -1102,6 +1100,14 @@
     "country": "Germany"
   },
   "Humans/DSC00975.jpg": {
+    "tags": [
+      "people",
+      "portrait",
+      "christmas"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 1000,
@@ -1111,6 +1117,12 @@
     "country": "Germany"
   },
   "Trees/DSC08854.jpg": {
+    "tags": [
+      "forest",   
+    ],
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2025,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 125,
@@ -1120,6 +1132,12 @@
     "country": "Germany"
   },
   "Trees/DSC08305.jpg": {
+    "tags": [
+      "forest"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -1129,6 +1147,12 @@
     "country": "Germany"
   },
   "Trees/DSC08308-2.jpg": {
+    "tags": [
+      "forest"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -1138,6 +1162,12 @@
     "country": "Germany"
   },
   "Trees/DSC08375.jpg": {
+    "tags": [
+      "forest"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 200,
@@ -1147,6 +1177,12 @@
     "country": "Germany"
   },
   "Trees/DSC08349.jpg": {
+    "tags": [
+      "forest"
+    ],    
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 1000,
@@ -1156,6 +1192,12 @@
     "country": "Germany"
   },
   "Trees/DSC08377.jpg": {
+    "tags": [
+      "forest"
+    ],
+    "location": "Duisburg",
+    "year": 2025,
+    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 200,
@@ -1165,6 +1207,12 @@
     "country": "Germany"
   },
   "wildlife/DSC03943-2.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Germany",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
@@ -1174,6 +1222,12 @@
     "country": "Germany"
   },
   "wildlife/DSC05063.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1183,6 +1237,12 @@
     "country": "Germany"
   },
   "wildlife/DSC05266.jpg": {
+    "tags": [
+      "squirrel"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2000,
@@ -1192,6 +1252,12 @@
     "country": "Germany"
   },
   "wildlife/DSC05249.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
@@ -1201,6 +1267,13 @@
     "country": "Germany"
   },
   "wildlife/DSC03370.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 12800,
@@ -1210,6 +1283,12 @@
     "country": "Germany"
   },
   "wildlife/DSC05063-3.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1219,6 +1298,12 @@
     "country": "Germany"
   },
   "wildlife/DSC03854.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Duisburg",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
@@ -1228,6 +1313,13 @@
     "country": "Germany"
   },
   "wildlife/DSC05729.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 400,
@@ -1237,6 +1329,12 @@
     "country": "Germany"
   },
   "wildlife/DSC03457-2.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -1246,6 +1344,12 @@
     "country": "Germany"
   },
   "wildlife/DSC05831.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
@@ -1255,6 +1359,12 @@
     "country": "Germany"
   },
   "wildlife/DSC05784.jpg": {
+    "tags": [
+      "squirrel"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 5000,
@@ -1264,6 +1374,13 @@
     "country": "Germany"
   },
   "wildlife/DSC05373.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1273,6 +1390,12 @@
     "country": "Germany"
   },
   "wildlife/DSC05165.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1282,6 +1405,12 @@
     "country": "Germany"
   },
   "wildlife/DSC04928-6.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
+    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1000,
