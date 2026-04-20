@@ -112,7 +112,6 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
             {renderDetailPill('Year', photo.year)}
             {photo.weather ? renderDetailPill('Weather', photo.weather) : null}
             {photo.country ? renderDetailPill('Country', photo.country) : null}
-            {photo.location ? renderDetailPill('Location', photo.location) : null}
           </div>
 
           {photo.tags.length > 0 ? (
