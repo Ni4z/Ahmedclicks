@@ -117,6 +117,7 @@ type PhotoMetadataEntry = {
   tags: string[];
   series?: string;
   weather?: string;
+  country?: string;
   location?: string;
   year?: number;
   camera?: string;
@@ -247,11 +248,13 @@ function normalizePhotoMetadataEntry(value: unknown): PhotoMetadataEntry {
   const series = normalizeMetadataString(rawEntry.series);
   const rawWeather = normalizeMetadataString(rawEntry.weather);
   const weather = rawWeather && VALID_WEATHER_VALUES.has(rawWeather) ? rawWeather : undefined;
+  const country = normalizeMetadataString(rawEntry.country);
 
   return {
     tags: normalizeMetadataTags(rawEntry.tags),
     series,
     weather,
+    country,
     location: normalizeMetadataString(rawEntry.location),
     year,
     camera: normalizeMetadataString(rawEntry.camera),
@@ -346,6 +349,7 @@ function createPhotoRecord(
     tags: metadata.tags,
     series: metadata.series,
     weather: metadata.weather,
+    country: metadata.country,
     image: withObjectStorageAssetPath(file.objectKey, 'image'),
     thumbnail: withObjectStorageAssetPath(
       file.thumbnailObjectKey || file.objectKey,

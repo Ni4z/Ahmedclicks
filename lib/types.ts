@@ -7,6 +7,7 @@ export interface Photo {
   tags: string[];
   series?: string;
   weather?: string;
+  country?: string;
   image: string;
   thumbnail: string;
   description: string;

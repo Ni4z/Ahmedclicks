@@ -110,8 +110,8 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
           <div className="flex flex-wrap gap-3">
             {renderDetailPill('Category', photo.category)}
             {renderDetailPill('Year', photo.year)}
-            {photo.series ? renderDetailPill('Series', photo.series) : null}
             {photo.weather ? renderDetailPill('Weather', photo.weather) : null}
+            {photo.country ? renderDetailPill('Country', photo.country) : null}
             {photo.location ? renderDetailPill('Location', photo.location) : null}
           </div>
 
