@@ -55,16 +55,18 @@ export default function PhotoGrid({
             </div>
             <div className="space-y-3 p-5">
               <div className="space-y-1">
-                <h3 className="text-lg font-semibold text-white">{photo.title}</h3>
+                <h3 className="text-lg font-semibold text-foreground">{photo.title}</h3>
                 {photo.caption ? (
                   <p className="text-sm italic text-gray-400">{photo.caption}</p>
                 ) : null}
               </div>
 
-              {photo.series || photo.location || photo.weather ? (
+              {photo.location || photo.weather || photo.country ? (
                 <div className="flex flex-wrap gap-2">
-                  {photo.series ? renderMetadataChip(`Series: ${photo.series}`) : null}
                   {photo.weather ? renderMetadataChip(photo.weather) : null}
+                  {photo.country
+                    ? renderMetadataChip(photo.country)
+                    : null}
                   {photo.location
                     ? renderMetadataChip(`Location: ${photo.location}`)
                     : null}

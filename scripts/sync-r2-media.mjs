@@ -566,6 +566,7 @@ function normalizePhotoMetadataEntry(value) {
   const tags = normalizePhotoMetadataTags(value.tags);
   const series = normalizePhotoMetadataString(value.series);
   const weather = normalizePhotoMetadataString(value.weather);
+  const country = normalizePhotoMetadataString(value.country);
   const location = normalizePhotoMetadataString(value.location);
   const year =
     typeof value.year === 'number' &&
@@ -595,6 +596,10 @@ function normalizePhotoMetadataEntry(value) {
 
   if (weather) {
     entry.weather = weather;
+  }
+
+  if (country) {
+    entry.country = country;
   }
 
   if (location) {
