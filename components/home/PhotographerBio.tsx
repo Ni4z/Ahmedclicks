@@ -29,11 +29,12 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
+            className="xl:ml-auto xl:max-w-3xl"
           >
             <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">
               {aboutTitle}
             </h2>
-            <div className="max-w-3xl space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8">
+            <div className="space-y-4 text-sm md:text-base text-gray-400 leading-7 md:leading-8">
               <p>{aboutIntroLine}</p>
               {aboutPreviewParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
