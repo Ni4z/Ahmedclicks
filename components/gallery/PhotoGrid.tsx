@@ -73,24 +73,6 @@ export default function PhotoGrid({
                 </div>
               ) : null}
 
-              {photo.tags.length > 0 ? (
-                <div className="flex flex-wrap gap-2">
-                  {photo.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={`${photo.id}-${tag}`}
-                      className="rounded-full bg-dark px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-gray-400"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {photo.tags.length > 3 ? (
-                    <span className="rounded-full bg-dark px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-gray-500">
-                      +{photo.tags.length - 3} more
-                    </span>
-                  ) : null}
-                </div>
-              ) : null}
-
               {(photo.focalLength || photo.aperture || photo.shutterSpeed || photo.iso) ? (
                 <div className="flex flex-wrap gap-2 border-t border-dark-tertiary pt-3">
                   {photo.focalLength ? (
