@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { siteConfig } from '@/lib/site';
@@ -120,6 +121,23 @@ export default function ContactPage() {
                   <li>Portrait Sessions</li>
                   <li>Print Sales & Licensing</li>
                 </ul>
+              </div>
+
+              <div className="rounded-2xl border border-dark-tertiary bg-dark-secondary p-6">
+                <h3 className="text-xl font-serif font-bold mb-3">
+                  Prints & Licensing
+                </h3>
+                <p className="text-gray-400 leading-7 mb-4">
+                  Looking for a fine art print, editorial use, or a licensing
+                  conversation for a project? There is now a dedicated page
+                  with the enquiry process and what to include.
+                </p>
+                <Link
+                  href="/prints"
+                  className="text-sm tracking-[0.22em] uppercase text-accent-gold hover:underline"
+                >
+                  Open prints & licensing
+                </Link>
               </div>
             </div>
           </motion.div>

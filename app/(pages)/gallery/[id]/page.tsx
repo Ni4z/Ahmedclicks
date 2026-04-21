@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import PhotoDetail from '@/components/gallery/PhotoDetail';
-import { getPhotos } from '@/lib/gallery';
+import RelatedPhotos from '@/components/gallery/RelatedPhotos';
+import { getPhotos, getRelatedPhotos } from '@/lib/gallery';
 import { absoluteUrl } from '@/lib/site';
 
 type PhotoDetailPageProps = {
@@ -63,6 +64,7 @@ export default async function PhotoDetailPage({
   }
 
   const photo = photos[photoIndex];
+  const relatedPhotos = getRelatedPhotos(photo, photos, 3);
   const previousPhoto =
     photoIndex > 0 ? photos[photoIndex - 1] : photos[photos.length - 1];
   const nextPhoto =
@@ -75,6 +77,7 @@ export default async function PhotoDetailPage({
           photo={photo}
           shareUrl={absoluteUrl(`/gallery/${photo.id}/`)}
         />
+        <RelatedPhotos photos={relatedPhotos} />
 
         <div className="border-t border-dark-tertiary pt-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <Link
