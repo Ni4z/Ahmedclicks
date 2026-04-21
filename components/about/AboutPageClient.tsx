@@ -60,7 +60,7 @@ export default function AboutPageClient({
           className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.25fr)_minmax(260px,0.75fr)] gap-12 lg:gap-16 items-start mb-20"
         >
           <motion.div variants={itemVariants}>
-            <div className="max-w-3xl space-y-5 text-base md:text-lg text-gray-400 leading-8">
+            <div className="max-w-3xl space-y-5 text-base md:text-lg text-gray-400 leading-8 lg:text-justify">
               <p>{aboutIntroLine}</p>
               {aboutPageParagraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
@@ -138,14 +138,14 @@ export default function AboutPageClient({
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-gray-400 leading-relaxed mb-4"
+            className="text-gray-400 leading-relaxed mb-4 lg:text-justify"
           >
             Photography here is treated as an archive of observation. The
             strongest frame is not always the loudest one; it is the one that
             stays precise, patient, and honest about what was actually in front
             of the lens.
           </motion.p>
-          <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed">
+          <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed lg:text-justify">
             The site is built to stay close to that idea: fewer placeholders,
             fewer invented details, and more emphasis on the real image and
             video collections that make up NiazPhotography.
