@@ -369,6 +369,70 @@ function createPhotoRecord(
   };
 }
 
+function countSharedTags(firstTags: string[], secondTags: string[]): number {
+  const secondTagSet = new Set(secondTags.map((tag) => tag.toLowerCase()));
+
+  return firstTags.reduce((count, tag) => {
+    return count + (secondTagSet.has(tag.toLowerCase()) ? 1 : 0);
+  }, 0);
+}
+
+function scoreRelatedPhoto(targetPhoto: Photo, candidatePhoto: Photo): number {
+  let score = 0;
+
+  if (
+    targetPhoto.series &&
+    candidatePhoto.series &&
+    targetPhoto.series === candidatePhoto.series
+  ) {
+    score += 30;
+  }
+
+  if (targetPhoto.categoryKey === candidatePhoto.categoryKey) {
+    score += 18;
+  }
+
+  if (
+    targetPhoto.location &&
+    candidatePhoto.location &&
+    targetPhoto.location === candidatePhoto.location
+  ) {
+    score += 12;
+  }
+
+  if (
+    targetPhoto.weather &&
+    candidatePhoto.weather &&
+    targetPhoto.weather === candidatePhoto.weather
+  ) {
+    score += 6;
+  }
+
+  if (
+    targetPhoto.country &&
+    candidatePhoto.country &&
+    targetPhoto.country === candidatePhoto.country
+  ) {
+    score += 4;
+  }
+
+  if (targetPhoto.year === candidatePhoto.year) {
+    score += 2;
+  }
+
+  if (
+    targetPhoto.lens &&
+    candidatePhoto.lens &&
+    targetPhoto.lens === candidatePhoto.lens
+  ) {
+    score += 2;
+  }
+
+  score += countSharedTags(targetPhoto.tags, candidatePhoto.tags) * 5;
+
+  return score;
+}
+
 function getCategoryEntries(
   options: GetCategoryEntriesOptions = {}
 ): CategoryEntry[] {
@@ -461,4 +525,58 @@ export function getProfilePhoto(): Photo | undefined {
     photos.find((photo) => photo.categoryKey === 'wildlife') ||
     photos[0]
   );
+}
+
+export function getRelatedPhotos(
+  targetPhoto: Photo,
+  photos: Photo[] = getPhotos(),
+  limit = 3
+): Photo[] {
+  const rankedPhotos = photos
+    .filter((photo) => photo.id !== targetPhoto.id)
+    .map((photo) => ({
+      photo,
+      score: scoreRelatedPhoto(targetPhoto, photo),
+    }))
+    .sort((first, second) => {
+      if (first.score !== second.score) {
+        return second.score - first.score;
+      }
+
+      const dateComparison =
+        getSortableTimestamp(second.photo.date) -
+        getSortableTimestamp(first.photo.date);
+
+      if (dateComparison !== 0) {
+        return dateComparison;
+      }
+
+      return first.photo.title.localeCompare(second.photo.title);
+    });
+
+  const selectedPhotos = rankedPhotos
+    .filter(({ score }) => score > 0)
+    .slice(0, limit)
+    .map(({ photo }) => photo);
+
+  if (selectedPhotos.length >= limit) {
+    return selectedPhotos;
+  }
+
+  const selectedIds = new Set(selectedPhotos.map((photo) => photo.id));
+
+  for (const { photo } of rankedPhotos) {
+    if (selectedIds.has(photo.id)) {
+      continue;
+    }
+
+    selectedPhotos.push(photo);
+    selectedIds.add(photo.id);
+
+    if (selectedPhotos.length === limit) {
+      break;
+    }
+  }
+
+  return selectedPhotos;
 }
