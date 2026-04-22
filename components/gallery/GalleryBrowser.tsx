@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useDeferredValue, useEffect, useMemo, useState } from 'react';
 import CategoryFilter from '@/components/gallery/CategoryFilter';
 import GalleryPagination from '@/components/gallery/GalleryPagination';
@@ -468,6 +469,21 @@ export default function GalleryBrowser({
     setActiveCategory(category);
   }
 
+  function scrollToGalleryResults() {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    document
+      .getElementById('gallery-results')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function handleCategoryLandingSelect(category: string) {
+    handleCategoryChange(category);
+    requestAnimationFrame(scrollToGalleryResults);
+  }
+
   function clearFilters() {
     setSearchQuery('');
     setActiveCategory(ALL_CATEGORIES);
@@ -494,6 +510,89 @@ export default function GalleryBrowser({
 
   return (
     <>
+      <section className="mb-14">
+        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-3xl">
+            <p className="mb-2 text-xs uppercase tracking-[0.32em] text-accent-gold">
+              Browse by Category
+            </p>
+            <h2 className="text-3xl font-serif font-bold md:text-4xl">
+              Start With a Collection Mood
+            </h2>
+            <p className="mt-3 text-base leading-7 text-gray-400 lg:text-justify">
+              Each category acts like an entry point into the archive, with its
+              own visual rhythm, subject matter, and atmosphere. Choose a lane
+              first, then refine with the filters below.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              clearFilters();
+              requestAnimationFrame(scrollToGalleryResults);
+            }}
+            className="inline-flex items-center justify-center rounded-full border border-dark-tertiary px-5 py-3 text-xs uppercase tracking-[0.28em] text-gray-400 transition-colors hover:border-accent-gold hover:text-accent-gold"
+          >
+            View Whole Archive
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {categories.map((category) => {
+            const isActive = activeCategory === category.name;
+
+            return (
+              <button
+                key={category.key}
+                type="button"
+                onClick={() => handleCategoryLandingSelect(category.name)}
+                className={`group overflow-hidden rounded-[1.75rem] border bg-dark-secondary text-left transition-colors ${
+                  isActive
+                    ? 'border-accent-gold'
+                    : 'border-dark-tertiary hover:border-accent-gold/60'
+                }`}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={category.coverImage}
+                    alt={`${category.name} category cover`}
+                    fill
+                    sizes="(min-width: 1280px) 24vw, (min-width: 768px) 45vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/5" />
+                  <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-3">
+                    <span className="rounded-full bg-black/45 px-3 py-1 text-[11px] uppercase tracking-[0.28em] text-white/80 backdrop-blur-sm">
+                      {category.count} {category.count === 1 ? 'photo' : 'photos'}
+                    </span>
+                    {isActive ? (
+                      <span className="rounded-full border border-accent-gold/60 bg-black/45 px-3 py-1 text-[11px] uppercase tracking-[0.28em] text-accent-gold backdrop-blur-sm">
+                        Viewing
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <h3 className="text-2xl font-serif font-bold text-white">
+                      {category.name}
+                    </h3>
+                  </div>
+                </div>
+                <div className="space-y-4 p-5">
+                  <p className="text-sm leading-7 text-gray-400">
+                    {category.description}
+                  </p>
+                  <span className="inline-flex items-center text-xs uppercase tracking-[0.26em] text-accent-gold">
+                    Explore {category.name}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      <div id="gallery-results">
       <CategoryFilter
         categories={filterOptions}
         activeCategory={activeCategory}
@@ -689,6 +788,7 @@ export default function GalleryBrowser({
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
+      </div>
     </>
   );
 }

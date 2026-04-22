@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from 'next/image';
 import Link from 'next/link';
 import { Photo } from '@/lib/types';
 
@@ -46,13 +46,15 @@ export default function RelatedPhotos({ photos }: RelatedPhotosProps) {
             className="group overflow-hidden rounded-3xl border border-dark-tertiary bg-dark-secondary transition-colors hover:border-accent-gold/60"
           >
             <div className="overflow-hidden bg-black/40">
-              <img
-                src={photo.thumbnail}
-                alt={photo.title}
-                loading="lazy"
-                decoding="async"
-                className="block h-auto w-full transition-transform duration-300 group-hover:scale-[1.02]"
-              />
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <Image
+                  src={photo.thumbnail}
+                  alt={photo.title}
+                  fill
+                  sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+              </div>
             </div>
 
             <div className="space-y-4 p-5">

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Photo } from '@/lib/types';
@@ -68,13 +69,15 @@ export default function FeaturedPhotos({ photos }: FeaturedPhotosProps) {
               >
                 <Link href={`/gallery/${photo.id}`}>
                   <div className="relative overflow-hidden rounded-lg group cursor-pointer bg-dark-secondary border border-dark-tertiary">
-                    <img
-                      src={photo.thumbnail}
-                      alt={photo.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="block w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
-                    />
+                    <div className="relative aspect-[4/5] overflow-hidden">
+                      <Image
+                        src={photo.thumbnail}
+                        alt={photo.title}
+                        fill
+                        sizes="(min-width: 1024px) 30vw, (min-width: 768px) 45vw, 100vw"
+                        className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                      />
+                    </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-end justify-end p-6">
                       <h3 className="text-xl font-serif font-bold mb-2 text-right">
                         {photo.title}
