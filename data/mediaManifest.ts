@@ -1,9 +1,27 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-04-19T19:53:35.414Z",
+  "generatedAt": "2026-04-23T22:52:06.981Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Ambient .jpg",
+      "relativePath": "wildlife/Ambient .jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Ambient .webp",
+      "date": "2026-04-23T22:51:55.143Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Patterns in the Green.jpg",
+      "relativePath": "wildlife/Patterns in the Green.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Patterns in the Green.webp",
+      "date": "2026-04-23T22:51:55.073Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Great crested grebe.jpg",
+      "relativePath": "wildlife/Great crested grebe.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Great crested grebe.webp",
+      "date": "2026-04-20T16:26:28.686Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Veins of the wild.jpg",
       "relativePath": "wildlife/Veins of the wild.jpg",
