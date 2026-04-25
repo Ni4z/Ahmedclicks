@@ -6,6 +6,7 @@
       "morning"
     ],
     "weather": "Summer",
+    "country": "Germany",
     "location": "Hiesfelder Wald, Oberhausen",
     "year": 2025,
     "camera": "SONY ILCE-7CM2",
@@ -13,8 +14,7 @@
     "iso": 3200,
     "shutterSpeed": "1/800",
     "aperture": "f/3.2",
-    "focalLength": "193mm",
-    "country": "Germany"
+    "focalLength": "193mm"
   },
   "Trees/Emerald Mist.jpg": {
     "tags": [
@@ -24,6 +24,7 @@
       "trees"
     ],
     "weather": "Summer",
+    "country": "Germany",
     "location": "Üfter Mark, Schermbeck",
     "year": 2025,
     "camera": "SONY ILCE-7CM2",
@@ -31,8 +32,7 @@
     "iso": 250,
     "shutterSpeed": "1/320",
     "aperture": "f/5.6",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "wildlife/Twin Flight.jpg": {
     "tags": [
@@ -41,16 +41,16 @@
       "forest",
       "duck"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Hidden Monarch.jpg": {
     "tags": [
@@ -58,6 +58,7 @@
       "Farmland"
     ],
     "weather": "Summer",
+    "country": "Germany",
     "location": "Üfter Mark, Schermbeck",
     "year": 2025,
     "camera": "SONY ILCE-7CM2",
@@ -65,24 +66,23 @@
     "iso": 200,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Buzzard.jpg": {
     "tags": [
       "raptor",
       "bird"
     ],
-    "location": "Angermund, Düsseldorf",
     "weather": "Summer",
+    "country": "Germany",
+    "location": "Angermund, Düsseldorf",
     "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 16000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Raven.jpg": {
     "tags": [
@@ -90,6 +90,7 @@
       "bird"
     ],
     "weather": "Summer",
+    "country": "Germany",
     "location": "Bislicher Insel, Xanten",
     "year": 2025,
     "camera": "SONY ILCE-7CM2",
@@ -97,8 +98,7 @@
     "iso": 500,
     "shutterSpeed": "1/2000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Kite.jpg": {
     "tags": [
@@ -106,16 +106,16 @@
       "raptor",
       "bird"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Bislicher Insel, Xanten",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "landscape/Mist_Spire.jpg": {
     "tags": [
@@ -125,16 +125,16 @@
       "fog",
       "Church"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Angermund, Düsseldorf",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 125,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "landscape/Sunrise.jpg": {
     "tags": [
@@ -142,16 +142,16 @@
       "light",
       "horizon"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 100,
     "shutterSpeed": "1/500",
     "aperture": "f/13.0",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "Trees/Woodland_Flame.jpg": {
     "tags": [
@@ -159,32 +159,32 @@
       "autumn",
       "forest"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Bislicher Insel, Xanten",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/2000",
     "aperture": "f/5.6",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "Trees/Sunflower.jpg": {
     "tags": [
       "flower",
       "garden"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Üfter Mark, Schermbeck",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 250,
     "shutterSpeed": "1/320",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "astrophotography/DSC05884-2.jpg": {
     "tags": [
@@ -195,6 +195,7 @@
       "moon"
     ],
     "weather": "Winter",
+    "country": "Germany",
     "location": "Home",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -202,8 +203,7 @@
     "iso": 1250,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "astrophotography/DSC05884-3.jpg": {
     "tags": [
@@ -213,6 +213,7 @@
       "moon"
     ],
     "weather": "Winter",
+    "country": "Germany",
     "location": "Home",
     "year": 2026,
     "camera": "SONY ILCE-7CM2",
@@ -220,8 +221,7 @@
     "iso": 1250,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "Humans/DSC01070-2.jpg": {
     "tags": [
@@ -230,16 +230,16 @@
       "person",
       "christmas"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
     "shutterSpeed": "1/30",
     "aperture": "f/2.8",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "wildlife/Robin on Perch.jpg": {
     "tags": [
@@ -247,16 +247,16 @@
       "bird",
       "perch"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Robin.jpg": {
     "tags": [
@@ -264,16 +264,16 @@
       "bird",
       "perch"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Scanning Landscape.jpg": {
     "tags": [
@@ -282,16 +282,16 @@
       "bird",
       "perch"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 250,
     "shutterSpeed": "1/1500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Flinch.jpg": {
     "tags": [
@@ -299,16 +299,16 @@
       "bird",
       "perch"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1000,
     "shutterSpeed": "1/350",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Flinch Sunkissed.jpg": {
     "tags": [
@@ -316,32 +316,32 @@
       "bird",
       "perch"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 400,
     "shutterSpeed": "1/350",
     "aperture": "f/6.7",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Juvenile BlackBird.jpg": {
     "tags": [
       "blackbird",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/BullFlinch Tilted.jpg": {
     "tags": [
@@ -349,64 +349,64 @@
       "bird",
       "perch"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Squirrel 2.jpg": {
     "tags": [
       "squirrel",
       "rodent"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
     "shutterSpeed": "1/250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Squirrel 1.jpg": {
     "tags": [
       "squirrel",
       "rodent"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 12800,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Squirrel 3.jpg": {
     "tags": [
       "squirrel",
       "rodent"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 12800,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "588mm",
-    "country": "Germany"
+    "focalLength": "588mm"
   },
   "landscape/Contrast in Forest.jpg": {
     "tags": [
@@ -414,16 +414,16 @@
       "castle",
       "landscape"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "211mm",
-    "country": "Germany"
+    "focalLength": "211mm"
   },
   "landscape/Lets Walk.jpg": {
     "tags": [
@@ -431,48 +431,48 @@
       "path",
       "landscape"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
     "shutterSpeed": "1/350",
     "aperture": "f/6.7",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "Trees/New Growth.jpg": {
     "tags": [
       "forest",
       "trees"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 2000,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "Trees/New Branches.jpg": {
     "tags": [
       "forest",
       "trees"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 2000,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "Trees/New Leaves.jpg": {
     "tags": [
@@ -480,16 +480,16 @@
       "spring",
       "trees"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 1600,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "Trees/Distinguished.jpg": {
     "tags": [
@@ -497,176 +497,176 @@
       "spring",
       "tree"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "202mm",
-    "country": "Germany"
+    "focalLength": "202mm"
   },
   "wildlife/Confused Bull Flinch.jpg": {
-    "tags": [      
+    "tags": [
       "flinch",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Wild Swan 4.jpg": {
     "tags": [
       "swan",
       "duck"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
     "shutterSpeed": "1/500",
     "aperture": "f/9.5",
-    "focalLength": "225mm",
-    "country": "Germany"
+    "focalLength": "225mm"
   },
   "wildlife/Wild Swan 5.jpg": {
     "tags": [
       "swan",
       "duck"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/500",
     "aperture": "f/9.5",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Wild Swan 2.jpg": {
     "tags": [
       "swan",
       "duck"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 5000,
     "shutterSpeed": "1/3000",
     "aperture": "f/5.6",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "wildlife/Wild Swan 3.jpg": {
     "tags": [
       "swan",
       "duck"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
     "shutterSpeed": "1/1500",
     "aperture": "f/5.6",
-    "focalLength": "205mm",
-    "country": "Germany"
+    "focalLength": "205mm"
   },
   "wildlife/Wild Swan 1.jpg": {
     "tags": [
       "swan",
       "duck"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2000,
     "shutterSpeed": "1/1500",
     "aperture": "f/5.6",
-    "focalLength": "259mm",
-    "country": "Germany"
+    "focalLength": "259mm"
   },
   "wildlife/Blau Meise 1.jpg": {
     "tags": [
       "blau meise",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Portrait of Blau Meise.jpg": {
     "tags": [
       "blau meise",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Blau Meise 2.jpg": {
     "tags": [
       "blau meise",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Blau Meise 3.jpg": {
     "tags": [
       "blau meise",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "582mm",
-    "country": "Germany"
+    "focalLength": "582mm"
   },
   "Metropolis/Standing High .jpg": {
     "tags": [
@@ -675,16 +675,16 @@
       "peak",
       "castle"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 160,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Isolated.jpg": {
     "tags": [
@@ -692,16 +692,16 @@
       "rabbit",
       "farmland"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Bislicher Insel, Xanten",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "Metropolis/Muenster.jpg": {
     "tags": [
@@ -709,16 +709,16 @@
       "architecture",
       "bicycle"
     ],
+    "weather": "Autumn",
+    "country": "Germany",
     "location": "Münster",
     "year": 2025,
-    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 500,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "183mm",
-    "country": "Germany"
+    "focalLength": "183mm"
   },
   "Roads/Blending in the Mist.JPEG": {
     "tags": [
@@ -726,16 +726,16 @@
       "mist",
       "forest"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "astrophotography/Pale Blue Dot.jpg": {
     "tags": [
@@ -744,16 +744,16 @@
       "long exposure",
       "astro"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 100,
     "shutterSpeed": "15",
     "aperture": "f/1.4",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "astrophotography/Beyond Stars.jpg": {
     "tags": [
@@ -762,16 +762,16 @@
       "long exposure",
       "astro"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 100,
     "shutterSpeed": "3",
     "aperture": "f/1.4",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "wildlife/White Angel.jpg": {
     "tags": [
@@ -779,16 +779,16 @@
       "white angel",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Cormorant .jpg": {
     "tags": [
@@ -796,94 +796,94 @@
       "cormorant",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Eurasian Sparrowhawk.jpg": {
     "tags": [
       "bird",
       "raptor"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 320,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "594mm",
-    "country": "Germany"
+    "focalLength": "594mm"
   },
   "wildlife/Sparrow Hawk.jpg": {
     "tags": [
       "bird",
       "raptor"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
     "shutterSpeed": "1/1500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/The Singer.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 320,
     "shutterSpeed": "1/2000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Soft Perch.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 640,
     "shutterSpeed": "1/350",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/krestel.jpg": {
     "tags": [
       "krestel",
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 100,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "Metropolis/Burning Sky.jpg": {
     "tags": [
@@ -891,213 +891,213 @@
       "sky",
       "sunset"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "wildlife/Silent Glide.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Marsh Walker.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Spring",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2026,
-    "weather": "Spring",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Dawn Flock.jpg": {
     "tags": [
       "birds"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Dinslaken",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Midnight_Grace.jpg": {
     "tags": [
       "horse"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Dinslaken",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Amber_Grace.jpg": {
     "tags": [
       "horse"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Dinslaken",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Forest_Ascend.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Dinslaken",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Food_Secured.jpg": {
     "tags": [
       "bird",
       "duck"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Bislicher Insel, Xanten",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/3200",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/Wings_of_Angel.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 640,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "Trees/DSC08391.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Autumn",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
     "shutterSpeed": "1/160",
     "aperture": "f/2.8",
-    "focalLength": "70mm",
-    "country": "Germany"
+    "focalLength": "70mm"
   },
   "Trees/mushroom.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Summer",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Summer",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 5000,
     "shutterSpeed": "1/80",
     "aperture": "f/2.8",
-    "focalLength": "70mm",
-    "country": "Germany"
+    "focalLength": "70mm"
   },
   "Trees/DSC04870-3.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 200,
     "shutterSpeed": "1/1000",
     "aperture": "f/2.8",
-    "focalLength": "103mm",
-    "country": "Germany"
+    "focalLength": "103mm"
   },
   "wildlife/Tufted Duck.jpg": {
     "tags": [
       "duck",
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 400,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "588mm",
-    "country": "Germany"
+    "focalLength": "588mm"
   },
   "wildlife/DSC01196.jpg": {
     "tags": [
       "deer"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Damwildgehege, Krefeld",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 3200,
     "shutterSpeed": "1/1250",
     "aperture": "f/2.8",
-    "focalLength": "191mm",
-    "country": "Germany"
+    "focalLength": "191mm"
   },
   "Humans/DSC00975.jpg": {
     "tags": [
@@ -1105,624 +1105,648 @@
       "portrait",
       "christmas"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 1000,
     "shutterSpeed": "1/50",
     "aperture": "f/2.8",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "Trees/DSC08854.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Hiesfelder Wald, Oberhausen",
     "year": 2025,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 125,
     "shutterSpeed": "1/800",
     "aperture": "f/2.8",
-    "focalLength": "28mm",
-    "country": "Germany"
+    "focalLength": "28mm"
   },
   "Trees/DSC08305.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Autumn",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/320",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "Trees/DSC08308-2.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Autumn",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
     "shutterSpeed": "1/320",
     "aperture": "f/5.6",
-    "focalLength": "234mm",
-    "country": "Germany"
+    "focalLength": "234mm"
   },
   "Trees/DSC08375.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Autumn",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 200,
     "shutterSpeed": "1/160",
     "aperture": "f/2.8",
-    "focalLength": "29mm",
-    "country": "Germany"
+    "focalLength": "29mm"
   },
   "Trees/DSC08349.jpg": {
     "tags": [
       "forest"
-    ],    
+    ],
+    "weather": "Autumn",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 1000,
     "shutterSpeed": "1/500",
     "aperture": "f/2.8",
-    "focalLength": "70mm",
-    "country": "Germany"
+    "focalLength": "70mm"
   },
   "Trees/DSC08377.jpg": {
     "tags": [
       "forest"
     ],
+    "weather": "Autumn",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2025,
-    "weather": "Autumn",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 200,
     "shutterSpeed": "1/160",
     "aperture": "f/2.8",
-    "focalLength": "29mm",
-    "country": "Germany"
+    "focalLength": "29mm"
   },
   "wildlife/DSC03943-2.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Germany",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 6400,
     "shutterSpeed": "1/2500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05063.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "594mm",
-    "country": "Germany"
+    "focalLength": "594mm"
   },
   "wildlife/DSC05266.jpg": {
     "tags": [
       "squirrel"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2000,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05249.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "582mm",
-    "country": "Germany"
+    "focalLength": "582mm"
   },
   "wildlife/DSC03370.jpg": {
     "tags": [
       "bird",
       "duck"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 12800,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "wildlife/DSC05063-3.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "594mm",
-    "country": "Germany"
+    "focalLength": "594mm"
   },
   "wildlife/DSC03854.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Duisburg",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
     "shutterSpeed": "1/2500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05729.jpg": {
     "tags": [
       "bird",
       "duck"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 400,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "588mm",
-    "country": "Germany"
+    "focalLength": "588mm"
   },
   "wildlife/DSC03457-2.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05831.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05784.jpg": {
     "tags": [
       "squirrel"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 5000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05373.jpg": {
     "tags": [
       "bird",
       "duck"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05165.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "500mm",
-    "country": "Germany"
+    "focalLength": "500mm"
   },
   "wildlife/DSC04928-6.jpg": {
     "tags": [
       "bird"
     ],
+    "weather": "Winter",
+    "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
     "year": 2026,
-    "weather": "Winter",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1000,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05021.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05143.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "518mm",
-    "country": "Germany"
+    "focalLength": "518mm"
   },
   "wildlife/DSC04214-2.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05094-2.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/5.6",
-    "focalLength": "284mm",
-    "country": "Germany"
+    "focalLength": "284mm"
   },
   "wildlife/DSC05230.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC03694.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "524mm",
-    "country": "Germany"
+    "focalLength": "524mm"
   },
   "wildlife/DSC05033.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC03523.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "576mm",
-    "country": "Germany"
+    "focalLength": "576mm"
   },
   "wildlife/DSC05232.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05795.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC04973-2.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 640,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05874.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC04968.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "419mm",
-    "country": "Germany"
+    "focalLength": "419mm"
   },
   "wildlife/DSC08207.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC03397-2.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC03550.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "576mm",
-    "country": "Germany"
+    "focalLength": "576mm"
   },
   "wildlife/DSC05119.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "588mm",
-    "country": "Germany"
+    "focalLength": "588mm"
   },
   "wildlife/DSC05680.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 5000,
     "shutterSpeed": "1/320",
     "aperture": "f/6.3",
-    "focalLength": "444mm",
-    "country": "Germany"
+    "focalLength": "444mm"
   },
   "wildlife/DSC05091-2.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "553mm",
-    "country": "Germany"
+    "focalLength": "553mm"
   },
   "wildlife/DSC05130.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "571mm",
-    "country": "Germany"
+    "focalLength": "571mm"
   },
   "wildlife/DSC05324.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "wildlife/DSC05293.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "Roads/DSC03005.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
     "shutterSpeed": "1/640",
     "aperture": "f/7.1",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "landscape/DSC04722-2.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
     "shutterSpeed": "1/4000",
     "aperture": "f/5.6",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "Roads/DSC00951.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 2000,
     "shutterSpeed": "1/50",
     "aperture": "f/2.8",
-    "focalLength": "70mm",
-    "country": "Germany"
+    "focalLength": "70mm"
   },
   "Me/Me.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7M4",
     "lens": "FE 50mm F1.8",
     "iso": 250,
     "shutterSpeed": "1/800",
     "aperture": "f/2.2",
-    "focalLength": "50mm",
-    "country": "Germany"
+    "focalLength": "50mm"
   },
   "landscape/DSC04689-3.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
     "shutterSpeed": "1/4000",
     "aperture": "f/6.3",
-    "focalLength": "565mm",
-    "country": "Germany"
+    "focalLength": "565mm"
   },
   "Roads/Breathing Fresh Air as the Mist Fades.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "Roads/Contrast in the forest.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
     "shutterSpeed": "1/200",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
   },
   "landscape/Contrast in the Field.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
     "shutterSpeed": "1/200",
     "aperture": "f/5.6",
-    "focalLength": "200mm",
-    "country": "Germany"
+    "focalLength": "200mm"
   },
   "Trees/Standing High.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
     "shutterSpeed": "1/350",
     "aperture": "f/2.8",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "Trees/An end of an chapter.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
     "shutterSpeed": "1/350",
     "aperture": "f/2.8",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "Roads/Lets Take a Walk.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 200,
     "shutterSpeed": "1/500",
     "aperture": "f/2.8",
-    "focalLength": "14mm",
-    "country": "Germany"
+    "focalLength": "14mm"
   },
   "wildlife/Veins of the wild.jpg": {
+    "country": "Germany",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 160,
     "shutterSpeed": "1/200",
     "aperture": "f/6.3",
-    "focalLength": "600mm",
-    "country": "Germany"
+    "focalLength": "600mm"
+  },
+  "wildlife/Ambient .jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1600,
+    "shutterSpeed": "1/750",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Patterns in the Green.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1000,
+    "shutterSpeed": "1/750",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Great crested grebe.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 12800,
+    "shutterSpeed": "1/350",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
   }
 }
