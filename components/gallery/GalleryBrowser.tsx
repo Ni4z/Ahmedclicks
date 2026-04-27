@@ -516,9 +516,6 @@ export default function GalleryBrowser({
             <p className="mb-2 text-xs uppercase tracking-[0.32em] text-accent-gold">
               Browse by Category
             </p>
-            <h2 className="text-3xl font-serif font-bold md:text-4xl">
-              Start With a Collection Mood
-            </h2>
             <p className="mt-3 text-base leading-7 text-gray-400 lg:text-justify">
               Each category acts like an entry point into the archive, with its
               own visual rhythm, subject matter, and atmosphere. Choose a lane
