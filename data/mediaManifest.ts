@@ -1,9 +1,51 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-04-23T22:52:06.981Z",
+  "generatedAt": "2026-04-26T21:11:27.293Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Red against Green.jpg",
+      "relativePath": "wildlife/Red against Green.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Red against Green.webp",
+      "date": "2026-04-26T21:11:18.479Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Long Tail Tit.jpg",
+      "relativePath": "wildlife/Long Tail Tit.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Long Tail Tit.webp",
+      "date": "2026-04-26T21:11:01.621Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Common Duck.jpg",
+      "relativePath": "wildlife/Common Duck.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Common Duck.webp",
+      "date": "2026-04-26T21:10:40.517Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Lost in Green.jpg",
+      "relativePath": "Trees/Lost in Green.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Lost in Green.webp",
+      "date": "2026-04-26T21:02:48.501Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Lost in the woods .jpg",
+      "relativePath": "Trees/Lost in the woods .jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Lost in the woods .webp",
+      "date": "2026-04-26T21:02:48.156Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Moon Lost in the Green.jpg",
+      "relativePath": "Trees/Moon Lost in the Green.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Moon Lost in the Green.webp",
+      "date": "2026-04-26T21:02:48.054Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Forest Bed.jpg",
+      "relativePath": "Trees/Forest Bed.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Forest Bed.webp",
+      "date": "2026-04-26T21:02:08.600Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Ambient .jpg",
       "relativePath": "wildlife/Ambient .jpg",
