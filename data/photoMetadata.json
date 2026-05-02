@@ -1748,5 +1748,61 @@
     "shutterSpeed": "1/350",
     "aperture": "f/6.3",
     "focalLength": "600mm"
+  },
+  "wildlife/Red against Green.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 5000,
+    "shutterSpeed": "1/3000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Long Tail Tit.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/1500",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Common Duck.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 3200,
+    "shutterSpeed": "1/1500",
+    "aperture": "f/5.6",
+    "focalLength": "295mm"
+  },
+  "Trees/Lost in Green.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 3200,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/2.8",
+    "focalLength": "14mm"
+  },
+  "Trees/Lost in the woods .jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 51200,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "Trees/Moon Lost in the Green.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 500,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/5.6",
+    "focalLength": "202mm"
+  },
+  "Trees/Forest Bed.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 160,
+    "shutterSpeed": "1/750",
+    "aperture": "f/1.4",
+    "focalLength": "14mm"
   }
 }
