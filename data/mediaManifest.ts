@@ -1,9 +1,15 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-04-26T21:11:27.293Z",
+  "generatedAt": "2026-05-03T09:53:22.951Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Trees/Oxygen Factory.jpg",
+      "relativePath": "Trees/Oxygen Factory.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Oxygen Factory.webp",
+      "date": "2026-05-03T09:53:11.241Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Red against Green.jpg",
       "relativePath": "wildlife/Red against Green.jpg",

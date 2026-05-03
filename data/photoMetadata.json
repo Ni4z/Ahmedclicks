@@ -1804,5 +1804,13 @@
     "shutterSpeed": "1/750",
     "aperture": "f/1.4",
     "focalLength": "14mm"
+  },
+  "Trees/Oxygen Factory.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 160,
+    "shutterSpeed": "1/750",
+    "aperture": "f/4.5",
+    "focalLength": "14mm"
   }
 }
