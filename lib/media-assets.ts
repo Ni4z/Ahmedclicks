@@ -71,6 +71,20 @@ export function createStableAssetId(
   return `${prefix}-${slug || prefix}-${createDeterministicHash(value)}`;
 }
 
+export function getInstagramAssetUrl(imageUrl: string): string {
+  const sourcePrefix = '/photos-web/';
+  const targetPrefix = '/photos-instagram/';
+  const prefixIndex = imageUrl.indexOf(sourcePrefix);
+  if (prefixIndex === -1) return imageUrl;
+  const swapped =
+    imageUrl.slice(0, prefixIndex) +
+    targetPrefix +
+    imageUrl.slice(prefixIndex + sourcePrefix.length);
+  return swapped.replace(/\.[A-Za-z0-9]+(\?[^?]*)?$/, (_match, query) =>
+    `.jpg${query ?? ''}`
+  );
+}
+
 export function createMediaTitle(filePath: string): string {
   return path.posix
     .parse(filePath.replace(/\\/g, '/'))

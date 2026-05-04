@@ -4,9 +4,11 @@
   "description": "Photography portfolio website for NiazPhotography",
   "private": true,
   "scripts": {
-    "predev": "node scripts/sync-r2-media.mjs",
-    "prebuild": "node scripts/sync-r2-media.mjs",
+    "predev": "node scripts/sync-r2-media.mjs && node scripts/generate-instagram.mjs",
+    "prebuild": "node scripts/sync-r2-media.mjs && node scripts/generate-instagram.mjs",
     "sync:media": "node scripts/sync-r2-media.mjs",
+    "insta:generate": "node scripts/generate-instagram.mjs",
+    "insta:preview": "node scripts/generate-instagram.mjs --preview",
     "caption:set": "node scripts/set-r2-caption.mjs",
     "photo:meta:set": "node scripts/set-photo-metadata.mjs",
     "photo:exif": "node scripts/extract-exif.mjs",
