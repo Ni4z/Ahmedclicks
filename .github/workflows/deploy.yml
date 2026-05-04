@@ -78,6 +78,15 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ vars.R2_ENDPOINT }}
+          R2_REGION: ${{ vars.R2_REGION || 'auto' }}
+          R2_PHOTO_PREFIX: ${{ vars.R2_PHOTO_PREFIX }}
+          R2_PHOTO_INSTAGRAM_PREFIX: ${{ vars.R2_PHOTO_INSTAGRAM_PREFIX }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
 
       - name: Preserve Next.js assets for Pages
         run: touch out/.nojekyll

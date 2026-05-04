@@ -1,4 +1,3 @@
-import path from 'node:path';
 import { siteConfig, withBasePath } from '@/lib/site';
 
 export type SyncedPhotoAsset = {
@@ -86,9 +85,13 @@ export function getInstagramAssetUrl(imageUrl: string): string {
 }
 
 export function createMediaTitle(filePath: string): string {
-  return path.posix
-    .parse(filePath.replace(/\\/g, '/'))
-    .name
+  const normalizedPath = filePath.replace(/\\/g, '/');
+  const fileName = normalizedPath.split('/').pop() || normalizedPath;
+  const extensionIndex = fileName.lastIndexOf('.');
+  const baseName =
+    extensionIndex > 0 ? fileName.slice(0, extensionIndex) : fileName;
+
+  return baseName
     .replace(/[-_]+/g, ' ')
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 }

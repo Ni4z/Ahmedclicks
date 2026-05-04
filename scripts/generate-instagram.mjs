@@ -8,10 +8,10 @@
  *   - "caption" layout: caption text centered + "BY WWW.NIAZPHOTOGRAPHY.COM" subline.
  *
  * Aspect handling:
- *   - Keep source aspect by default.
- *   - If the framed output would be taller than 4:5, center-crop the source so the
- *     framed output is exactly 4:5.
- *   - If wider than 1.91:1, center-crop so framed output is exactly 1.91:1.
+ *   - Never crop or resize the source photo.
+ *   - If the framed output would be taller than 4:5, widen the side borders.
+ *   - If wider than 1.91:1, deepen the top/bottom borders while keeping the
+ *     bottom border roughly 3x the top.
  *
  * Idempotency: tracks per-photo source lastModified in data/instagram-state.json.
  * Skips any photo whose source hasn't changed since the last run, unless --all.
@@ -25,6 +25,7 @@
  */
 
 import { spawnSync } from 'node:child_process';
+import crypto from 'node:crypto';
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import os from 'node:os';
@@ -40,6 +41,14 @@ const bucketName =
   process.env.MEDIA_BUCKET_NAME?.trim() ||
   process.env.R2_BUCKET_NAME?.trim() ||
   'niazphotography-images';
+const accountId = process.env.R2_ACCOUNT_ID?.trim() || '';
+const accessKeyId = process.env.R2_ACCESS_KEY_ID?.trim() || '';
+const secretAccessKey = process.env.R2_SECRET_ACCESS_KEY?.trim() || '';
+const region = process.env.R2_REGION?.trim() || 'auto';
+const endpoint = (
+  process.env.R2_ENDPOINT?.trim() ||
+  (accountId ? `https://${accountId}.r2.cloudflarestorage.com` : '')
+).replace(/\/+$/, '');
 const sourcePrefix = normalizePrefix(
   process.env.R2_PHOTO_PREFIX?.trim() || 'photos-web'
 );
@@ -49,6 +58,9 @@ const instagramPrefix = normalizePrefix(
 const cacheControl = `public, max-age=${
   process.env.INSTAGRAM_CACHE_MAX_AGE || 31536000
 }, immutable`;
+const emptyPayloadHash = crypto.createHash('sha256').update('').digest('hex');
+const instagramFingerprintHeader = 'x-amz-meta-instagram-fingerprint';
+const instagramPosterVersion = 'v3';
 
 const manifestPath = path.join(repoRoot, 'data', 'mediaManifest.ts');
 const captionsPath = path.join(repoRoot, 'data', 'captions.json');
@@ -60,12 +72,13 @@ const fontRegularPath = path.join(repoRoot, 'scripts', 'fonts', 'Montserrat-Regu
 const fontMediumPath = path.join(repoRoot, 'scripts', 'fonts', 'Montserrat-Medium.ttf');
 const fontFamily = 'Montserrat';
 
-// Border ratios (relative to source width after any forced crop).
+// Border ratios relative to source width. These are the minimum borders; they
+// expand only when needed to keep the final canvas inside Instagram's ratios.
 const SIDE_BORDER_RATIO = 0.03;
 const TOP_BORDER_RATIO = 0.03;
 const BOTTOM_BORDER_RATIO = 0.09; // ≈ 3× top
 
-// Instagram aspect bounds: H/W must be in [4/5, 1.91/1] inclusive.
+// Instagram aspect bounds: W/H must be in [4/5, 1.91/1] inclusive.
 const MIN_OUTPUT_RATIO = 0.8; // 4:5
 const MAX_OUTPUT_RATIO = 1.91; // 1.91:1
 
@@ -116,24 +129,263 @@ function escapeXml(value) {
     .replace(/'/g, '&apos;');
 }
 
-function runCommand(command, args, options = {}) {
-  const result = spawnSync(command, args, {
+function hasR2Credentials() {
+  return Boolean(accessKeyId && secretAccessKey && endpoint && bucketName);
+}
+
+async function probeR2Reachability() {
+  try {
+    const url = new URL(`${endpoint}/${bucketName}`);
+    url.searchParams.set('list-type', '2');
+    url.searchParams.set('max-keys', '1');
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: signRequest(url, 'GET', emptyPayloadHash).headers,
+    });
+    if (response.status === 401 || response.status === 403) {
+      return { ok: false, reason: `R2 rejected credentials (${response.status}).` };
+    }
+    if (!response.ok) {
+      return {
+        ok: false,
+        reason: `R2 list-objects returned ${response.status} ${response.statusText}.`,
+      };
+    }
+    return { ok: true };
+  } catch (error) {
+    const cause = error?.cause?.code || error?.cause?.message;
+    const accountIdHint =
+      accountId && accountId.length !== 32
+        ? ` (R2_ACCOUNT_ID is ${accountId.length} chars; Cloudflare account IDs are 32 hex chars — env var may be truncated)`
+        : '';
+    return {
+      ok: false,
+      reason: `R2 endpoint unreachable: ${cause || error.message}${accountIdHint}`,
+    };
+  }
+}
+
+function encodeRfc3986(value) {
+  return encodeURIComponent(value).replace(
+    /[!'()*]/g,
+    (char) => `%${char.charCodeAt(0).toString(16).toUpperCase()}`
+  );
+}
+
+function encodeObjectKeyForUrl(objectKey) {
+  return objectKey
+    .replace(/^\/+/, '')
+    .replace(/\\/g, '/')
+    .split('/')
+    .map((segment) => encodeRfc3986(segment))
+    .join('/');
+}
+
+function canonicalizePathname(pathname) {
+  const segments = pathname.split('/').map((segment) => encodeRfc3986(segment));
+  if (pathname.startsWith('/')) segments[0] = '';
+  return segments.join('/');
+}
+
+function canonicalizeQuery(searchParams) {
+  return [...searchParams.entries()]
+    .sort(([firstKey, firstValue], [secondKey, secondValue]) => {
+      if (firstKey !== secondKey) {
+        return firstKey.localeCompare(secondKey);
+      }
+
+      return firstValue.localeCompare(secondValue);
+    })
+    .map(([key, value]) => `${encodeRfc3986(key)}=${encodeRfc3986(value)}`)
+    .join('&');
+}
+
+function hmac(key, value) {
+  return crypto.createHmac('sha256', key).update(value, 'utf8').digest();
+}
+
+function signRequest(url, method, payloadHash, extraHeaders = {}) {
+  const requestDate = new Date();
+  const amzDate = requestDate.toISOString().replace(/[:-]|\.\d{3}/g, '');
+  const dateStamp = amzDate.slice(0, 8);
+  const headerEntries = [
+    ['host', url.host],
+    ['x-amz-content-sha256', payloadHash],
+    ['x-amz-date', amzDate],
+    ...Object.entries(extraHeaders).map(([key, value]) => [key.toLowerCase(), value]),
+  ].sort(([a], [b]) => a.localeCompare(b));
+  const canonicalHeaders = headerEntries.map(([k, v]) => `${k}:${v}`).join('\n');
+  const signedHeaders = headerEntries.map(([k]) => k).join(';');
+  const canonicalRequest = [
+    method,
+    canonicalizePathname(url.pathname),
+    canonicalizeQuery(url.searchParams),
+    `${canonicalHeaders}\n`,
+    signedHeaders,
+    payloadHash,
+  ].join('\n');
+  const credentialScope = `${dateStamp}/${region}/s3/aws4_request`;
+  const stringToSign = [
+    'AWS4-HMAC-SHA256',
+    amzDate,
+    credentialScope,
+    crypto.createHash('sha256').update(canonicalRequest, 'utf8').digest('hex'),
+  ].join('\n');
+  const signingKey = hmac(
+    hmac(hmac(hmac(`AWS4${secretAccessKey}`, dateStamp), region), 's3'),
+    'aws4_request'
+  );
+  const signature = crypto
+    .createHmac('sha256', signingKey)
+    .update(stringToSign, 'utf8')
+    .digest('hex');
+
+  const headers = {
+    authorization: [
+      `AWS4-HMAC-SHA256 Credential=${accessKeyId}/${credentialScope}`,
+      `SignedHeaders=${signedHeaders}`,
+      `Signature=${signature}`,
+    ].join(', '),
+    'x-amz-content-sha256': payloadHash,
+    'x-amz-date': amzDate,
+    ...extraHeaders,
+  };
+  return { headers };
+}
+
+async function r2GetObject(objectKey) {
+  const url = new URL(`${endpoint}/${bucketName}/${encodeObjectKeyForUrl(objectKey)}`);
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: signRequest(url, 'GET', emptyPayloadHash).headers,
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`R2 GET ${objectKey} failed: ${response.status} ${response.statusText}: ${body}`);
+  }
+  const arrayBuffer = await response.arrayBuffer();
+  return Buffer.from(arrayBuffer);
+}
+
+async function r2HeadObject(objectKey) {
+  const url = new URL(`${endpoint}/${bucketName}/${encodeObjectKeyForUrl(objectKey)}`);
+  const response = await fetch(url, {
+    method: 'HEAD',
+    headers: signRequest(url, 'HEAD', emptyPayloadHash).headers,
+  });
+  if (response.status === 404) return null;
+  if (!response.ok) {
+    throw new Error(`R2 HEAD ${objectKey} failed: ${response.status} ${response.statusText}`);
+  }
+  return {
+    etag: response.headers.get('etag'),
+    lastModified: response.headers.get('last-modified'),
+    instagramFingerprint: response.headers.get(instagramFingerprintHeader),
+  };
+}
+
+async function r2PutObject(objectKey, body, contentType, metadata = {}) {
+  const url = new URL(`${endpoint}/${bucketName}/${encodeObjectKeyForUrl(objectKey)}`);
+  const payloadHash = crypto.createHash('sha256').update(body).digest('hex');
+  const extraHeaders = {
+    'content-type': contentType,
+    'content-length': String(body.length),
+    'cache-control': cacheControl,
+  };
+  for (const [key, value] of Object.entries(metadata)) {
+    extraHeaders[`x-amz-meta-${key}`] = String(value);
+  }
+  const { headers } = signRequest(url, 'PUT', payloadHash, extraHeaders);
+  const response = await fetch(url, { method: 'PUT', headers, body });
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`R2 PUT ${objectKey} failed: ${response.status} ${response.statusText}: ${errorBody}`);
+  }
+}
+
+// --- Wrangler fallback (works when local wrangler is authed but R2 SigV4 isn't reachable) ---
+
+let wranglerAvailable = null;
+let wranglerUnavailableReason = '';
+
+function summarizeCommandOutput(value) {
+  return String(value || '')
+    .replace(/\x1B\[[0-?]*[ -/]*[@-~]/g, '')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .slice(0, 500);
+}
+
+function checkWranglerAvailable() {
+  if (wranglerAvailable !== null) return wranglerAvailable;
+  // A bucket-list call is the simplest op that reliably surfaces auth failure
+  // in non-interactive environments (whoami returns 0 even when not authed).
+  const result = spawnSync('npx', ['wrangler', 'r2', 'bucket', 'list'], {
     cwd: repoRoot,
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
-    ...options,
   });
-
-  if (result.status !== 0) {
-    const stderr = result.stderr?.trim();
-    const stdout = result.stdout?.trim();
-    const details = [stderr, stdout].filter(Boolean).join('\n');
-    throw new Error(
-      `${command} ${args.join(' ')} failed${details ? `:\n${details}` : '.'}`
-    );
+  wranglerAvailable = result.status === 0;
+  if (!wranglerAvailable) {
+    wranglerUnavailableReason =
+      summarizeCommandOutput(result.stderr) ||
+      summarizeCommandOutput(result.stdout) ||
+      `wrangler exited with status ${result.status ?? 'unknown'}`;
   }
+  return wranglerAvailable;
+}
 
-  return result;
+function wranglerGetObject(objectKey, destFile) {
+  const result = spawnSync('npx', [
+    'wrangler', 'r2', 'object', 'get',
+    `${bucketName}/${objectKey}`,
+    '--remote', '--file', destFile,
+  ], { cwd: repoRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  if (result.status !== 0) {
+    throw new Error(`wrangler get ${objectKey} failed: ${result.stderr?.trim() || result.stdout?.trim()}`);
+  }
+}
+
+function wranglerPutObject(objectKey, sourceFile, contentType) {
+  const result = spawnSync('npx', [
+    'wrangler', 'r2', 'object', 'put',
+    `${bucketName}/${objectKey}`,
+    '--remote', '--file', sourceFile,
+    '--content-type', contentType,
+    '--cache-control', cacheControl,
+  ], { cwd: repoRoot, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  if (result.status !== 0) {
+    throw new Error(`wrangler put ${objectKey} failed: ${result.stderr?.trim() || result.stdout?.trim()}`);
+  }
+}
+
+// --- Unified R2 access (S3 first, wrangler fallback) ---
+
+let useWrangler = false;
+
+async function r2DownloadToBuffer(objectKey, tmpDir) {
+  if (!useWrangler) {
+    return r2GetObject(objectKey);
+  }
+  const tmpFile = path.join(tmpDir, `wget-${Date.now()}-${path.basename(objectKey)}`);
+  wranglerGetObject(objectKey, tmpFile);
+  const buf = await fs.readFile(tmpFile);
+  await fs.unlink(tmpFile).catch(() => {});
+  return buf;
+}
+
+async function r2UploadBuffer(objectKey, buffer, contentType, tmpDir, metadata = {}) {
+  if (!useWrangler) {
+    return r2PutObject(objectKey, buffer, contentType, metadata);
+  }
+  const tmpFile = path.join(tmpDir, `wput-${Date.now()}-${path.basename(objectKey)}`);
+  await fs.writeFile(tmpFile, buffer);
+  try {
+    wranglerPutObject(objectKey, tmpFile, contentType);
+  } finally {
+    await fs.unlink(tmpFile).catch(() => {});
+  }
 }
 
 // --- Argument parsing ---
@@ -226,6 +478,28 @@ function formatExifLine(meta) {
     parts.push(/s$/i.test(ss) ? ss.toUpperCase() : `${ss}S`);
   }
   return parts.length > 0 ? parts.join('   ') : null;
+}
+
+function createInstagramFingerprint({
+  sourceObjectKey,
+  lastModified,
+  caption,
+  exifLine,
+  title,
+}) {
+  return crypto
+    .createHash('sha256')
+    .update(
+      JSON.stringify({
+        version: instagramPosterVersion,
+        sourceObjectKey,
+        lastModified,
+        caption: caption || '',
+        exifLine: exifLine || '',
+        title: title || '',
+      })
+    )
+    .digest('hex');
 }
 
 // --- Text rendering via sharp (Pango) ---
@@ -363,76 +637,70 @@ async function buildOverlayLayers({
   return layers;
 }
 
-// --- Crop math ---
+// --- Border math ---
 
-function requiredSourceRatioForOutput(targetOutputRatio) {
-  // Borders are computed against the cropped inner width W'.
-  //   outputW = W' * (1 + 2*SIDE)
-  //   outputH = H' + W' * (TOP + BOTTOM)
-  //   outputR = (1 + 2*SIDE) / (1/sourceR' + TOP + BOTTOM)
-  // Solving for sourceR' given a target outputR:
-  const horizontal = 1 + SIDE_BORDER_RATIO * 2;
-  const vertical = TOP_BORDER_RATIO + BOTTOM_BORDER_RATIO;
-  return 1 / (horizontal / targetOutputRatio - vertical);
-}
+function computeBorderLayoutForInstagram(width, height) {
+  let sideMargin = Math.round(width * SIDE_BORDER_RATIO);
+  let topMargin = Math.round(width * TOP_BORDER_RATIO);
+  let bottomMargin = Math.round(width * BOTTOM_BORDER_RATIO);
 
-function currentOutputRatio(sourceRatio) {
-  const horizontal = 1 + SIDE_BORDER_RATIO * 2;
-  const vertical = TOP_BORDER_RATIO + BOTTOM_BORDER_RATIO;
-  return horizontal / (1 / sourceRatio + vertical);
-}
+  let outputWidth = width + sideMargin * 2;
+  let outputHeight = height + topMargin + bottomMargin;
+  let outputRatio = outputWidth / outputHeight;
 
-function computeCropForInstagram(width, height) {
-  const sourceR = width / height;
-  const outputR = currentOutputRatio(sourceR);
-
-  let cropWidth = width;
-  let cropHeight = height;
-
-  if (outputR < MIN_OUTPUT_RATIO) {
-    // Too tall — crop top+bottom so post-crop sourceR matches the target.
-    const requiredSourceR = requiredSourceRatioForOutput(MIN_OUTPUT_RATIO);
-    cropHeight = Math.round(width / requiredSourceR);
-    cropWidth = width;
-  } else if (outputR > MAX_OUTPUT_RATIO) {
-    const requiredSourceR = requiredSourceRatioForOutput(MAX_OUTPUT_RATIO);
-    cropWidth = Math.round(height * requiredSourceR);
-    cropHeight = height;
+  if (outputRatio < MIN_OUTPUT_RATIO) {
+    sideMargin = Math.max(
+      sideMargin,
+      Math.ceil((MIN_OUTPUT_RATIO * outputHeight - width) / 2)
+    );
+    outputWidth = width + sideMargin * 2;
+    outputRatio = outputWidth / outputHeight;
   }
 
-  cropWidth = Math.min(cropWidth, width);
-  cropHeight = Math.min(cropHeight, height);
+  if (outputRatio > MAX_OUTPUT_RATIO) {
+    const requiredVerticalMargin = Math.ceil(outputWidth / MAX_OUTPUT_RATIO - height);
+    const currentVerticalMargin = topMargin + bottomMargin;
 
-  const left = Math.floor((width - cropWidth) / 2);
-  const top = Math.floor((height - cropHeight) / 2);
-  return { left, top, width: cropWidth, height: cropHeight };
+    if (requiredVerticalMargin > currentVerticalMargin) {
+      topMargin = Math.ceil(requiredVerticalMargin / 4);
+      bottomMargin = requiredVerticalMargin - topMargin;
+      outputHeight = height + topMargin + bottomMargin;
+    }
+  }
+
+  return {
+    sideMargin,
+    topMargin,
+    bottomMargin,
+    outputWidth,
+    outputHeight,
+  };
 }
 
 // --- Renderer ---
 
 async function renderInstagramPoster(sourceFilePath, { caption, exifLine, title }) {
   const inputBuffer = await fs.readFile(sourceFilePath);
-  const baseImage = sharp(inputBuffer, { failOn: 'none' }).rotate();
-  const baseMeta = await baseImage.metadata();
-  const sourceWidth = baseMeta.width;
-  const sourceHeight = baseMeta.height;
+  const { data: photoBuffer, info: photoInfo } = await sharp(inputBuffer, {
+    failOn: 'none',
+  })
+    .rotate()
+    .toBuffer({ resolveWithObject: true });
+  const sourceWidth = photoInfo.width;
+  const sourceHeight = photoInfo.height;
   if (!sourceWidth || !sourceHeight) {
     throw new Error('Could not read source image dimensions.');
   }
 
-  const crop = computeCropForInstagram(sourceWidth, sourceHeight);
-  const croppedBuffer = await sharp(inputBuffer, { failOn: 'none' })
-    .rotate()
-    .extract(crop)
-    .toBuffer();
-
-  const innerWidth = crop.width;
-  const innerHeight = crop.height;
-  const sideMargin = Math.round(innerWidth * SIDE_BORDER_RATIO);
-  const topMargin = Math.round(innerWidth * TOP_BORDER_RATIO);
-  const bottomMargin = Math.round(innerWidth * BOTTOM_BORDER_RATIO);
-  const outputWidth = innerWidth + sideMargin * 2;
-  const outputHeight = innerHeight + topMargin + bottomMargin;
+  const innerWidth = sourceWidth;
+  const innerHeight = sourceHeight;
+  const {
+    sideMargin,
+    topMargin,
+    bottomMargin,
+    outputWidth,
+    outputHeight,
+  } = computeBorderLayoutForInstagram(innerWidth, innerHeight);
 
   const layout = caption ? 'caption' : 'title';
   const overlayLayers = await buildOverlayLayers({
@@ -456,10 +724,10 @@ async function renderInstagramPoster(sourceFilePath, { caption, exifLine, title 
     },
   })
     .composite([
-      { input: croppedBuffer, left: sideMargin, top: topMargin },
+      { input: photoBuffer, left: sideMargin, top: topMargin },
       ...overlayLayers,
     ])
-    .jpeg({ quality: 92, mozjpeg: true, chromaSubsampling: '4:4:4' })
+    .jpeg({ quality: 95, mozjpeg: true, chromaSubsampling: '4:4:4' })
     .toBuffer();
 
   return { buffer: result, layout, width: outputWidth, height: outputHeight };
@@ -473,13 +741,6 @@ async function processPhoto(photoEntry, options, captions, photoMetadata, state,
     photoEntry.objectKey || `${sourcePrefix}${relativePath}`;
   const lastModified = photoEntry.date || '';
   const stateKey = relativePath;
-  const previousFingerprint = state[stateKey];
-  const fingerprint = `${lastModified}|${captions[relativePath] || ''}|v1`;
-
-  if (!options.all && previousFingerprint === fingerprint && !options.preview) {
-    return { status: 'skipped', reason: 'unchanged' };
-  }
-
   const captionRaw = captions[relativePath];
   const caption = typeof captionRaw === 'string' && captionRaw.trim() ? captionRaw.trim() : null;
   const meta = photoMetadata[relativePath];
@@ -490,18 +751,36 @@ async function processPhoto(photoEntry, options, captions, photoMetadata, state,
     return { status: 'skipped', reason: 'no-overlay-data' };
   }
 
+  const outputRelativeKey = replaceExtension(relativePath, '.jpg');
+  const outputObjectKey = `${instagramPrefix}${outputRelativeKey}`;
+  const fingerprint = createInstagramFingerprint({
+    sourceObjectKey,
+    lastModified,
+    caption,
+    exifLine,
+    title,
+  });
+  const previousFingerprint = state[stateKey];
+
+  if (!options.all && previousFingerprint === fingerprint && !options.preview) {
+    return { status: 'skipped', reason: 'unchanged' };
+  }
+
+  if (!options.all && !options.preview && !useWrangler) {
+    const existingOutput = await r2HeadObject(outputObjectKey);
+    if (existingOutput?.instagramFingerprint === fingerprint) {
+      state[stateKey] = fingerprint;
+      return { status: 'skipped', reason: 'unchanged-in-r2' };
+    }
+  }
+
   // Download source from R2 to tmp.
+  const sourceBuffer = await r2DownloadToBuffer(sourceObjectKey, tmpDir);
+  if (!sourceBuffer) {
+    throw new Error(`source not found in R2: ${sourceObjectKey}`);
+  }
   const sourceFile = path.join(tmpDir, `src-${Date.now()}-${path.basename(relativePath)}`);
-  runCommand('npx', [
-    'wrangler',
-    'r2',
-    'object',
-    'get',
-    `${bucketName}/${sourceObjectKey}`,
-    '--remote',
-    '--file',
-    sourceFile,
-  ]);
+  await fs.writeFile(sourceFile, sourceBuffer);
 
   const { buffer, layout, width, height } = await renderInstagramPoster(sourceFile, {
     caption,
@@ -510,9 +789,6 @@ async function processPhoto(photoEntry, options, captions, photoMetadata, state,
   });
 
   await fs.unlink(sourceFile).catch(() => {});
-
-  const outputRelativeKey = replaceExtension(relativePath, '.jpg');
-  const outputObjectKey = `${instagramPrefix}${outputRelativeKey}`;
 
   if (options.preview) {
     const previewPath = path.join(previewDir, outputRelativeKey);
@@ -527,23 +803,9 @@ async function processPhoto(photoEntry, options, captions, photoMetadata, state,
     };
   }
 
-  const uploadFile = path.join(tmpDir, `out-${Date.now()}-${path.basename(outputRelativeKey)}`);
-  await fs.writeFile(uploadFile, buffer);
-  runCommand('npx', [
-    'wrangler',
-    'r2',
-    'object',
-    'put',
-    `${bucketName}/${outputObjectKey}`,
-    '--remote',
-    '--file',
-    uploadFile,
-    '--content-type',
-    'image/jpeg',
-    '--cache-control',
-    cacheControl,
-  ]);
-  await fs.unlink(uploadFile).catch(() => {});
+  await r2UploadBuffer(outputObjectKey, buffer, 'image/jpeg', tmpDir, {
+    'instagram-fingerprint': fingerprint,
+  });
 
   state[stateKey] = fingerprint;
   return {
@@ -559,6 +821,34 @@ async function processPhoto(photoEntry, options, captions, photoMetadata, state,
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
+
+  // Decide R2 access path: prefer direct S3, fall back to wrangler.
+  let s3Ok = false;
+  if (hasR2Credentials()) {
+    const probe = await probeR2Reachability();
+    s3Ok = probe.ok;
+    if (!s3Ok) {
+      console.log(`[insta] direct R2 access not available — ${probe.reason}`);
+    }
+  } else {
+    console.log('[insta] R2 SigV4 credentials not configured.');
+  }
+
+  if (!s3Ok) {
+    if (checkWranglerAvailable()) {
+      useWrangler = true;
+      console.log('[insta] using wrangler CLI as R2 fallback.');
+    } else {
+      console.log(
+        `[insta] wrangler CLI fallback not available — ${
+          wranglerUnavailableReason || 'bucket list failed'
+        }.`
+      );
+      console.log('[insta] Skipping Instagram poster generation.');
+      return;
+    }
+  }
+
   const manifest = loadMediaManifest();
   const captions = loadJsonOrDefault(captionsPath, {});
   const photoMetadata = loadJsonOrDefault(photoMetadataPath, {});
@@ -621,7 +911,8 @@ async function main() {
       } catch (error) {
         failed += 1;
         const message = error instanceof Error ? error.message : String(error);
-        console.warn(`[insta] failed ${photo.relativePath}: ${message}`);
+        const cause = error instanceof Error && error.cause ? ` (cause: ${error.cause.code || error.cause.message || error.cause})` : '';
+        console.warn(`[insta] failed ${photo.relativePath}: ${message}${cause}`);
       }
 
       if (!options.preview) {
