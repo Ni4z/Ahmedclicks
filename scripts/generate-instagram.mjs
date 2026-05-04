@@ -894,6 +894,13 @@ async function main() {
 
   let photos = Array.isArray(manifest.photos) ? manifest.photos : [];
 
+  // Exclude already-bordered photos (photos-instagram/ prefix) from being re-processed.
+  // The thumbnail worker occasionally lists them as regular photos; processing them
+  // would create photos-instagram/photos-instagram/... doubles that pollute the manifest.
+  photos = photos.filter(
+    (entry) => !entry.objectKey?.startsWith(instagramPrefix)
+  );
+
   if (options.onlyPath) {
     photos = photos.filter(
       (entry) =>
