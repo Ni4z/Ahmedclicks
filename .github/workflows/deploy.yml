@@ -76,6 +76,21 @@ jobs:
         continue-on-error: true
         run: npm run photo:exif
 
+      - name: Generate Instagram posters
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        run: node scripts/generate-instagram.mjs
+        env:
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_ENDPOINT: ${{ vars.R2_ENDPOINT }}
+          R2_REGION: ${{ vars.R2_REGION || 'auto' }}
+          R2_PHOTO_PREFIX: ${{ vars.R2_PHOTO_PREFIX }}
+          R2_PHOTO_INSTAGRAM_PREFIX: ${{ vars.R2_PHOTO_INSTAGRAM_PREFIX }}
+          PUBLIC_IMAGE_BASE_URL: ${{ vars.PUBLIC_IMAGE_BASE_URL || vars.NEXT_PUBLIC_IMAGE_BASE_URL || 'https://images.niazphotography.com' }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+
       - name: Build
         run: npm run build
         env:
