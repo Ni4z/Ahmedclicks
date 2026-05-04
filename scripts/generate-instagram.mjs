@@ -8,10 +8,10 @@
  *   - "caption" layout: caption text centered + "BY WWW.NIAZPHOTOGRAPHY.COM" subline.
  *
  * Aspect handling:
- *   - Keep source aspect by default.
- *   - If the framed output would be taller than 4:5, center-crop the source so the
- *     framed output is exactly 4:5.
- *   - If wider than 1.91:1, center-crop so framed output is exactly 1.91:1.
+ *   - Never crop or resize the source photo.
+ *   - If the framed output would be taller than 4:5, widen the side borders.
+ *   - If wider than 1.91:1, deepen the top/bottom borders while keeping the
+ *     bottom border roughly 3x the top.
  *
  * Idempotency: tracks per-photo source lastModified in data/instagram-state.json.
  * Skips any photo whose source hasn't changed since the last run, unless --all.
@@ -60,7 +60,7 @@ const cacheControl = `public, max-age=${
 }, immutable`;
 const emptyPayloadHash = crypto.createHash('sha256').update('').digest('hex');
 const instagramFingerprintHeader = 'x-amz-meta-instagram-fingerprint';
-const instagramPosterVersion = 'v2';
+const instagramPosterVersion = 'v3';
 
 const manifestPath = path.join(repoRoot, 'data', 'mediaManifest.ts');
 const captionsPath = path.join(repoRoot, 'data', 'captions.json');
@@ -72,12 +72,13 @@ const fontRegularPath = path.join(repoRoot, 'scripts', 'fonts', 'Montserrat-Regu
 const fontMediumPath = path.join(repoRoot, 'scripts', 'fonts', 'Montserrat-Medium.ttf');
 const fontFamily = 'Montserrat';
 
-// Border ratios (relative to source width after any forced crop).
+// Border ratios relative to source width. These are the minimum borders; they
+// expand only when needed to keep the final canvas inside Instagram's ratios.
 const SIDE_BORDER_RATIO = 0.03;
 const TOP_BORDER_RATIO = 0.03;
 const BOTTOM_BORDER_RATIO = 0.09; // ≈ 3× top
 
-// Instagram aspect bounds: H/W must be in [4/5, 1.91/1] inclusive.
+// Instagram aspect bounds: W/H must be in [4/5, 1.91/1] inclusive.
 const MIN_OUTPUT_RATIO = 0.8; // 4:5
 const MAX_OUTPUT_RATIO = 1.91; // 1.91:1
 
@@ -636,76 +637,70 @@ async function buildOverlayLayers({
   return layers;
 }
 
-// --- Crop math ---
+// --- Border math ---
 
-function requiredSourceRatioForOutput(targetOutputRatio) {
-  // Borders are computed against the cropped inner width W'.
-  //   outputW = W' * (1 + 2*SIDE)
-  //   outputH = H' + W' * (TOP + BOTTOM)
-  //   outputR = (1 + 2*SIDE) / (1/sourceR' + TOP + BOTTOM)
-  // Solving for sourceR' given a target outputR:
-  const horizontal = 1 + SIDE_BORDER_RATIO * 2;
-  const vertical = TOP_BORDER_RATIO + BOTTOM_BORDER_RATIO;
-  return 1 / (horizontal / targetOutputRatio - vertical);
-}
+function computeBorderLayoutForInstagram(width, height) {
+  let sideMargin = Math.round(width * SIDE_BORDER_RATIO);
+  let topMargin = Math.round(width * TOP_BORDER_RATIO);
+  let bottomMargin = Math.round(width * BOTTOM_BORDER_RATIO);
 
-function currentOutputRatio(sourceRatio) {
-  const horizontal = 1 + SIDE_BORDER_RATIO * 2;
-  const vertical = TOP_BORDER_RATIO + BOTTOM_BORDER_RATIO;
-  return horizontal / (1 / sourceRatio + vertical);
-}
+  let outputWidth = width + sideMargin * 2;
+  let outputHeight = height + topMargin + bottomMargin;
+  let outputRatio = outputWidth / outputHeight;
 
-function computeCropForInstagram(width, height) {
-  const sourceR = width / height;
-  const outputR = currentOutputRatio(sourceR);
-
-  let cropWidth = width;
-  let cropHeight = height;
-
-  if (outputR < MIN_OUTPUT_RATIO) {
-    // Too tall — crop top+bottom so post-crop sourceR matches the target.
-    const requiredSourceR = requiredSourceRatioForOutput(MIN_OUTPUT_RATIO);
-    cropHeight = Math.round(width / requiredSourceR);
-    cropWidth = width;
-  } else if (outputR > MAX_OUTPUT_RATIO) {
-    const requiredSourceR = requiredSourceRatioForOutput(MAX_OUTPUT_RATIO);
-    cropWidth = Math.round(height * requiredSourceR);
-    cropHeight = height;
+  if (outputRatio < MIN_OUTPUT_RATIO) {
+    sideMargin = Math.max(
+      sideMargin,
+      Math.ceil((MIN_OUTPUT_RATIO * outputHeight - width) / 2)
+    );
+    outputWidth = width + sideMargin * 2;
+    outputRatio = outputWidth / outputHeight;
   }
 
-  cropWidth = Math.min(cropWidth, width);
-  cropHeight = Math.min(cropHeight, height);
+  if (outputRatio > MAX_OUTPUT_RATIO) {
+    const requiredVerticalMargin = Math.ceil(outputWidth / MAX_OUTPUT_RATIO - height);
+    const currentVerticalMargin = topMargin + bottomMargin;
 
-  const left = Math.floor((width - cropWidth) / 2);
-  const top = Math.floor((height - cropHeight) / 2);
-  return { left, top, width: cropWidth, height: cropHeight };
+    if (requiredVerticalMargin > currentVerticalMargin) {
+      topMargin = Math.ceil(requiredVerticalMargin / 4);
+      bottomMargin = requiredVerticalMargin - topMargin;
+      outputHeight = height + topMargin + bottomMargin;
+    }
+  }
+
+  return {
+    sideMargin,
+    topMargin,
+    bottomMargin,
+    outputWidth,
+    outputHeight,
+  };
 }
 
 // --- Renderer ---
 
 async function renderInstagramPoster(sourceFilePath, { caption, exifLine, title }) {
   const inputBuffer = await fs.readFile(sourceFilePath);
-  const baseImage = sharp(inputBuffer, { failOn: 'none' }).rotate();
-  const baseMeta = await baseImage.metadata();
-  const sourceWidth = baseMeta.width;
-  const sourceHeight = baseMeta.height;
+  const { data: photoBuffer, info: photoInfo } = await sharp(inputBuffer, {
+    failOn: 'none',
+  })
+    .rotate()
+    .toBuffer({ resolveWithObject: true });
+  const sourceWidth = photoInfo.width;
+  const sourceHeight = photoInfo.height;
   if (!sourceWidth || !sourceHeight) {
     throw new Error('Could not read source image dimensions.');
   }
 
-  const crop = computeCropForInstagram(sourceWidth, sourceHeight);
-  const croppedBuffer = await sharp(inputBuffer, { failOn: 'none' })
-    .rotate()
-    .extract(crop)
-    .toBuffer();
-
-  const innerWidth = crop.width;
-  const innerHeight = crop.height;
-  const sideMargin = Math.round(innerWidth * SIDE_BORDER_RATIO);
-  const topMargin = Math.round(innerWidth * TOP_BORDER_RATIO);
-  const bottomMargin = Math.round(innerWidth * BOTTOM_BORDER_RATIO);
-  const outputWidth = innerWidth + sideMargin * 2;
-  const outputHeight = innerHeight + topMargin + bottomMargin;
+  const innerWidth = sourceWidth;
+  const innerHeight = sourceHeight;
+  const {
+    sideMargin,
+    topMargin,
+    bottomMargin,
+    outputWidth,
+    outputHeight,
+  } = computeBorderLayoutForInstagram(innerWidth, innerHeight);
 
   const layout = caption ? 'caption' : 'title';
   const overlayLayers = await buildOverlayLayers({
@@ -729,7 +724,7 @@ async function renderInstagramPoster(sourceFilePath, { caption, exifLine, title 
     },
   })
     .composite([
-      { input: croppedBuffer, left: sideMargin, top: topMargin },
+      { input: photoBuffer, left: sideMargin, top: topMargin },
       ...overlayLayers,
     ])
     .jpeg({ quality: 95, mozjpeg: true, chromaSubsampling: '4:4:4' })
