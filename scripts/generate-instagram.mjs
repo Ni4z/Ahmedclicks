@@ -61,6 +61,11 @@ const cacheControl = `public, max-age=${
 const emptyPayloadHash = crypto.createHash('sha256').update('').digest('hex');
 const instagramFingerprintHeader = 'x-amz-meta-instagram-fingerprint';
 const instagramPosterVersion = 'v4';
+const publicSourceBaseUrl = (
+  process.env.PUBLIC_IMAGE_BASE_URL?.trim() ||
+  process.env.NEXT_PUBLIC_IMAGE_BASE_URL?.trim() ||
+  ''
+).replace(/\/+$/, '');
 
 const manifestPath = path.join(repoRoot, 'data', 'mediaManifest.ts');
 const captionsPath = path.join(repoRoot, 'data', 'captions.json');
@@ -363,6 +368,7 @@ function wranglerPutObject(objectKey, sourceFile, contentType) {
 // --- Unified R2 access (S3 first, wrangler fallback) ---
 
 let useWrangler = false;
+let s3Ok = false;
 
 async function r2DownloadToBuffer(objectKey, tmpDir) {
   if (!useWrangler) {
@@ -794,8 +800,18 @@ async function processPhoto(photoEntry, options, captions, photoMetadata, state,
     }
   }
 
-  // Download source from R2 to tmp.
-  const sourceBuffer = await r2DownloadToBuffer(sourceObjectKey, tmpDir);
+  // Download source — use public CDN in preview mode when R2 is unavailable.
+  let sourceBuffer;
+  if (options.preview && !s3Ok && !useWrangler && publicSourceBaseUrl) {
+    const publicUrl = `${publicSourceBaseUrl}/${encodeObjectKeyForUrl(sourceObjectKey)}`;
+    const response = await fetch(publicUrl);
+    if (!response.ok) {
+      throw new Error(`public CDN download failed for ${publicUrl}: ${response.status} ${response.statusText}`);
+    }
+    sourceBuffer = Buffer.from(await response.arrayBuffer());
+  } else {
+    sourceBuffer = await r2DownloadToBuffer(sourceObjectKey, tmpDir);
+  }
   if (!sourceBuffer) {
     throw new Error(`source not found in R2: ${sourceObjectKey}`);
   }
@@ -843,7 +859,6 @@ async function main() {
   const options = parseArgs(process.argv.slice(2));
 
   // Decide R2 access path: prefer direct S3, fall back to wrangler.
-  let s3Ok = false;
   if (hasR2Credentials()) {
     const probe = await probeR2Reachability();
     s3Ok = probe.ok;
@@ -859,13 +874,16 @@ async function main() {
       useWrangler = true;
       console.log('[insta] using wrangler CLI as R2 fallback.');
     } else {
-      console.log(
-        `[insta] wrangler CLI fallback not available — ${
-          wranglerUnavailableReason || 'bucket list failed'
-        }.`
-      );
-      console.log('[insta] Skipping Instagram poster generation.');
-      return;
+      const noR2Msg = `[insta] wrangler CLI fallback not available — ${
+        wranglerUnavailableReason || 'bucket list failed'
+      }.`;
+      if (options.preview && publicSourceBaseUrl) {
+        console.log(`${noR2Msg} Falling back to public CDN for preview downloads.`);
+      } else {
+        console.log(noR2Msg);
+        console.log('[insta] Skipping Instagram poster generation.');
+        return;
+      }
     }
   }
 
