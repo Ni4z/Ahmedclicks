@@ -60,7 +60,7 @@ const cacheControl = `public, max-age=${
 }, immutable`;
 const emptyPayloadHash = crypto.createHash('sha256').update('').digest('hex');
 const instagramFingerprintHeader = 'x-amz-meta-instagram-fingerprint';
-const instagramPosterVersion = 'v3';
+const instagramPosterVersion = 'v4';
 
 const manifestPath = path.join(repoRoot, 'data', 'mediaManifest.ts');
 const captionsPath = path.join(repoRoot, 'data', 'captions.json');
@@ -648,23 +648,30 @@ function computeBorderLayoutForInstagram(width, height) {
   let outputHeight = height + topMargin + bottomMargin;
   let outputRatio = outputWidth / outputHeight;
 
+  // Track scaled photo dimensions (may differ from source for tall photos).
+  let scaledWidth = width;
+  let scaledHeight = height;
+
   if (outputRatio < MIN_OUTPUT_RATIO) {
-    sideMargin = Math.max(
-      sideMargin,
-      Math.ceil((MIN_OUTPUT_RATIO * outputHeight - width) / 2)
-    );
-    outputWidth = width + sideMargin * 2;
+    // Photo is too tall: enforce a 4:5 output canvas and scale the photo down to
+    // fit inside the available inner area, keeping the standard border sizes.
+    outputHeight = Math.ceil(outputWidth / MIN_OUTPUT_RATIO);
+    const availableInnerHeight = outputHeight - topMargin - bottomMargin;
+    if (height > availableInnerHeight) {
+      scaledHeight = availableInnerHeight;
+      scaledWidth = Math.round(width * availableInnerHeight / height);
+    }
     outputRatio = outputWidth / outputHeight;
   }
 
   if (outputRatio > MAX_OUTPUT_RATIO) {
-    const requiredVerticalMargin = Math.ceil(outputWidth / MAX_OUTPUT_RATIO - height);
+    const requiredVerticalMargin = Math.ceil(outputWidth / MAX_OUTPUT_RATIO - scaledHeight);
     const currentVerticalMargin = topMargin + bottomMargin;
 
     if (requiredVerticalMargin > currentVerticalMargin) {
       topMargin = Math.ceil(requiredVerticalMargin / 4);
       bottomMargin = requiredVerticalMargin - topMargin;
-      outputHeight = height + topMargin + bottomMargin;
+      outputHeight = scaledHeight + topMargin + bottomMargin;
     }
   }
 
@@ -674,6 +681,8 @@ function computeBorderLayoutForInstagram(width, height) {
     bottomMargin,
     outputWidth,
     outputHeight,
+    scaledWidth,
+    scaledHeight,
   };
 }
 
@@ -692,22 +701,33 @@ async function renderInstagramPoster(sourceFilePath, { caption, exifLine, title 
     throw new Error('Could not read source image dimensions.');
   }
 
-  const innerWidth = sourceWidth;
-  const innerHeight = sourceHeight;
   const {
     sideMargin,
     topMargin,
     bottomMargin,
     outputWidth,
     outputHeight,
-  } = computeBorderLayoutForInstagram(innerWidth, innerHeight);
+    scaledWidth,
+    scaledHeight,
+  } = computeBorderLayoutForInstagram(sourceWidth, sourceHeight);
+
+  // Scale the photo down when it is too tall to fit inside the bordered canvas.
+  let compositePhotoBuffer = photoBuffer;
+  if (scaledWidth !== sourceWidth || scaledHeight !== sourceHeight) {
+    compositePhotoBuffer = await sharp(photoBuffer)
+      .resize(scaledWidth, scaledHeight, { fit: 'fill' })
+      .toBuffer();
+  }
+
+  // Center the (possibly scaled) photo horizontally within the output canvas.
+  const photoLeft = Math.round((outputWidth - scaledWidth) / 2);
 
   const layout = caption ? 'caption' : 'title';
   const overlayLayers = await buildOverlayLayers({
     outputWidth,
     topMargin,
     bottomMargin,
-    innerHeight,
+    innerHeight: scaledHeight,
     sideMargin,
     layout,
     caption,
@@ -724,7 +744,7 @@ async function renderInstagramPoster(sourceFilePath, { caption, exifLine, title 
     },
   })
     .composite([
-      { input: photoBuffer, left: sideMargin, top: topMargin },
+      { input: compositePhotoBuffer, left: photoLeft, top: topMargin },
       ...overlayLayers,
     ])
     .jpeg({ quality: 95, mozjpeg: true, chromaSubsampling: '4:4:4' })
