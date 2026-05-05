@@ -353,10 +353,6 @@ function shouldHandleImage(objectKey, sourcePrefix, thumbPrefix) {
     return false;
   }
 
-  if (sourcePrefix && !normalizedKey.startsWith(sourcePrefix)) {
-    return false;
-  }
-
   return true;
 }
 
@@ -513,8 +509,7 @@ function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
   const photoCandidates = objects.filter(
     (object) =>
       isSupportedImage(object.key) &&
-      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
-      (!photoPrefix || object.key.startsWith(photoPrefix))
+      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix))
   );
 
   return {
