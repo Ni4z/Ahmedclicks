@@ -4,7 +4,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Photo } from '@/lib/types';
-import { getInstagramAssetUrl } from '@/lib/media-assets';
 
 interface PhotoDetailProps {
   photo: Photo;
@@ -28,8 +27,6 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
   const printEnquiryHref = `/prints?photo=${encodeURIComponent(photo.title)}${
     shareUrl ? `&url=${encodeURIComponent(shareUrl)}` : ''
   }`;
-  const instagramDownloadUrl = getInstagramAssetUrl(photo.image);
-  const instagramDownloadFilename = `${photo.title.replace(/[^A-Za-z0-9]+/g, '-')}-instagram.jpg`;
   const socialLinks = [
     {
       name: 'Twitter',
@@ -159,13 +156,6 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
             >
               Prints & Licensing
             </Link>
-            <a
-              href={instagramDownloadUrl}
-              download={instagramDownloadFilename}
-              className="inline-flex items-center justify-center rounded-full border border-dark-tertiary px-5 py-3 text-xs uppercase tracking-[0.28em] text-gray-400 transition-colors hover:border-accent-gold hover:text-accent-gold"
-            >
-              Download for Instagram
-            </a>
           </div>
 
           <div className="mb-8 rounded-2xl border border-dark-tertiary bg-dark-secondary p-6">
