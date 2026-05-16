@@ -1420,7 +1420,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC05021.jpg": {
+    "tags": [
+      "birds"
+    ],
+    "weather": "Winter",  
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
@@ -1429,7 +1435,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC05143.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
@@ -1438,7 +1450,13 @@
     "focalLength": "518mm"
   },
   "wildlife/DSC04214-2.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -1447,7 +1465,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC05094-2.jpg": {
+    "tags": [
+      "squirrel"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
@@ -1465,7 +1489,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC03694.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 10000,
@@ -1474,7 +1504,13 @@
     "focalLength": "524mm"
   },
   "wildlife/DSC05033.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1483,7 +1519,14 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC03523.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1492,7 +1535,13 @@
     "focalLength": "576mm"
   },
   "wildlife/DSC05232.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
@@ -1501,7 +1550,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC05795.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1510,7 +1565,14 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC04973-2.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 640,
@@ -1519,7 +1581,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC05874.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -1528,7 +1596,14 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC04968.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -1537,7 +1612,13 @@
     "focalLength": "419mm"
   },
   "wildlife/DSC08207.jpg": {
+    "tags": [
+      "Deer"
+    ],
+    "weather": "Autumn",
     "country": "Germany",
+    "location": "Naturwildpark Dülmen",
+    "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
@@ -1546,7 +1627,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC03397-2.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 8000,
@@ -1555,7 +1642,14 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC03550.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
@@ -1564,7 +1658,13 @@
     "focalLength": "576mm"
   },
   "wildlife/DSC05119.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1573,7 +1673,13 @@
     "focalLength": "588mm"
   },
   "wildlife/DSC05680.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 5000,
@@ -1582,7 +1688,13 @@
     "focalLength": "444mm"
   },
   "wildlife/DSC05091-2.jpg": {
+    "tags": [
+      "squirrel"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -1591,7 +1703,13 @@
     "focalLength": "553mm"
   },
   "wildlife/DSC05130.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
@@ -1600,7 +1718,13 @@
     "focalLength": "571mm"
   },
   "wildlife/DSC05324.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2000,
@@ -1609,7 +1733,13 @@
     "focalLength": "600mm"
   },
   "wildlife/DSC05293.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1250,
@@ -1618,7 +1748,10 @@
     "focalLength": "600mm"
   },
   "Roads/DSC03005.jpg": {
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 2500,
@@ -1627,7 +1760,10 @@
     "focalLength": "600mm"
   },
   "landscape/DSC04722-2.jpg": {
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
@@ -1636,7 +1772,13 @@
     "focalLength": "200mm"
   },
   "Roads/DSC00951.jpg": {
+    "tags": [
+      "christmas"
+    ],
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Duisburg",
+    "year": 2025,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 2000,
@@ -1654,7 +1796,10 @@
     "focalLength": "50mm"
   },
   "landscape/DSC04689-3.jpg": {
+    "weather": "Winter",
     "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
@@ -1663,7 +1808,10 @@
     "focalLength": "565mm"
   },
   "Roads/Breathing Fresh Air as the Mist Fades.jpg": {
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 4000,
@@ -1672,7 +1820,10 @@
     "focalLength": "600mm"
   },
   "Roads/Contrast in the forest.jpg": {
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -1681,7 +1832,10 @@
     "focalLength": "600mm"
   },
   "landscape/Contrast in the Field.jpg": {
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
@@ -1690,7 +1844,10 @@
     "focalLength": "200mm"
   },
   "Trees/Standing High.jpg": {
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
@@ -1699,7 +1856,10 @@
     "focalLength": "14mm"
   },
   "Trees/An end of an chapter.jpg": {
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
@@ -1708,7 +1868,10 @@
     "focalLength": "14mm"
   },
   "Roads/Lets Take a Walk.jpg": {
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 200,
@@ -1717,7 +1880,13 @@
     "focalLength": "14mm"
   },
   "wildlife/Veins of the wild.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
     "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 160,
@@ -1726,6 +1895,13 @@
     "focalLength": "600mm"
   },
   "wildlife/Ambient .jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1600,
@@ -1734,6 +1910,13 @@
     "focalLength": "600mm"
   },
   "wildlife/Patterns in the Green.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 1000,
@@ -1742,6 +1925,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Great crested grebe.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Hiesfelder Wald, Oberhausen",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 12800,
@@ -1750,6 +1941,13 @@
     "focalLength": "600mm"
   },
   "wildlife/Red against Green.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 5000,
@@ -1758,6 +1956,13 @@
     "focalLength": "600mm"
   },
   "wildlife/Long Tail Tit.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 800,
@@ -1766,6 +1971,14 @@
     "focalLength": "600mm"
   },
   "wildlife/Common Duck.jpg": {
+    "tags": [
+      "bird",
+      "duck"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -1774,6 +1987,10 @@
     "focalLength": "295mm"
   },
   "Trees/Lost in Green.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 3200,
@@ -1782,6 +1999,10 @@
     "focalLength": "14mm"
   },
   "Trees/Lost in the woods .jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 51200,
@@ -1790,6 +2011,10 @@
     "focalLength": "600mm"
   },
   "Trees/Moon Lost in the Green.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 500,
@@ -1798,6 +2023,10 @@
     "focalLength": "202mm"
   },
   "Trees/Forest Bed.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
@@ -1806,6 +2035,10 @@
     "focalLength": "14mm"
   },
   "Trees/Oxygen Factory.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
