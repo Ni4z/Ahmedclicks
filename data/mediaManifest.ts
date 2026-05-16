@@ -1,9 +1,717 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-05-03T09:53:22.951Z",
+  "generatedAt": "2026-05-16T15:29:39.194Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/wildlife/Pegion Portraits.jpg",
+      "relativePath": "wildlife/Pegion Portraits.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Pegion Portraits.webp",
+      "date": "2026-05-16T15:29:19.463Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Pegion Portraits-7.jpg",
+      "relativePath": "wildlife/Pegion Portraits-7.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Pegion Portraits-7.webp",
+      "date": "2026-05-16T15:29:19.351Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Pegion Portraits-2.jpg",
+      "relativePath": "wildlife/Pegion Portraits-2.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Pegion Portraits-2.webp",
+      "date": "2026-05-16T15:29:18.512Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Pegion Portraits-3.jpg",
+      "relativePath": "wildlife/Pegion Portraits-3.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Pegion Portraits-3.webp",
+      "date": "2026-05-16T15:29:18.495Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Pegion Portraits-5.jpg",
+      "relativePath": "wildlife/Pegion Portraits-5.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Pegion Portraits-5.webp",
+      "date": "2026-05-16T15:29:18.491Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Pegion Portraits-6.jpg",
+      "relativePath": "wildlife/Pegion Portraits-6.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Pegion Portraits-6.webp",
+      "date": "2026-05-16T15:29:18.334Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Pegion Portraits-4.jpg",
+      "relativePath": "wildlife/Pegion Portraits-4.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Pegion Portraits-4.webp",
+      "date": "2026-05-16T15:29:17.935Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Color contrast.jpg",
+      "relativePath": "wildlife/Color contrast.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Color contrast.webp",
+      "date": "2026-05-15T01:48:19.344Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Curious Peek.jpg",
+      "relativePath": "wildlife/Curious Peek.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Curious Peek.webp",
+      "date": "2026-05-15T01:48:19.343Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Curious.jpg",
+      "relativePath": "wildlife/Curious.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Curious.webp",
+      "date": "2026-05-15T01:48:19.143Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/camouflage went wrong 2.jpg",
+      "relativePath": "wildlife/camouflage went wrong 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/camouflage went wrong 2.webp",
+      "date": "2026-05-15T01:48:18.382Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/camouflage went wrong.jpg",
+      "relativePath": "wildlife/camouflage went wrong.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/camouflage went wrong.webp",
+      "date": "2026-05-15T01:48:18.137Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/A resting place.jpg",
+      "relativePath": "Trees/A resting place.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/A resting place.webp",
+      "date": "2026-05-15T01:47:33.082Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Lost in the Woods.jpg",
+      "relativePath": "Trees/Lost in the Woods.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Lost in the Woods.webp",
+      "date": "2026-05-15T01:47:32.437Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon.jpg",
+      "relativePath": "Humans/Duisburg Marathon.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon.webp",
+      "date": "2026-05-11T01:55:12.263Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-9.jpg",
+      "relativePath": "Humans/Duisburg Marathon-9.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-9.webp",
+      "date": "2026-05-11T01:55:11.967Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-8.jpg",
+      "relativePath": "Humans/Duisburg Marathon-8.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-8.webp",
+      "date": "2026-05-11T01:55:11.949Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-5.jpg",
+      "relativePath": "Humans/Duisburg Marathon-5.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-5.webp",
+      "date": "2026-05-11T01:55:11.689Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-7.jpg",
+      "relativePath": "Humans/Duisburg Marathon-7.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-7.webp",
+      "date": "2026-05-11T01:55:11.689Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-6.jpg",
+      "relativePath": "Humans/Duisburg Marathon-6.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-6.webp",
+      "date": "2026-05-11T01:55:11.410Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-3.jpg",
+      "relativePath": "Humans/Duisburg Marathon-3.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-3.webp",
+      "date": "2026-05-11T01:55:10.599Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-4.jpg",
+      "relativePath": "Humans/Duisburg Marathon-4.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-4.webp",
+      "date": "2026-05-11T01:55:10.398Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-2.jpg",
+      "relativePath": "Humans/Duisburg Marathon-2.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-2.webp",
+      "date": "2026-05-11T01:55:10.245Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-16.jpg",
+      "relativePath": "Humans/Duisburg Marathon-16.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-16.webp",
+      "date": "2026-05-11T01:55:09.893Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-17.jpg",
+      "relativePath": "Humans/Duisburg Marathon-17.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-17.webp",
+      "date": "2026-05-11T01:55:09.735Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-11.jpg",
+      "relativePath": "Humans/Duisburg Marathon-11.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-11.webp",
+      "date": "2026-05-11T01:55:08.436Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-10.jpg",
+      "relativePath": "Humans/Duisburg Marathon-10.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-10.webp",
+      "date": "2026-05-11T01:55:08.396Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-15.jpg",
+      "relativePath": "Humans/Duisburg Marathon-15.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-15.webp",
+      "date": "2026-05-11T01:55:08.276Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-14.jpg",
+      "relativePath": "Humans/Duisburg Marathon-14.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-14.webp",
+      "date": "2026-05-11T01:55:07.738Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Duisburg Marathon-13.jpg",
+      "relativePath": "Humans/Duisburg Marathon-13.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Duisburg Marathon-13.webp",
+      "date": "2026-05-11T01:55:07.715Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-8.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-8.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-8.webp",
+      "date": "2026-05-10T13:21:54.547Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-72.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-72.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-72.webp",
+      "date": "2026-05-10T13:21:54.499Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg.jpg",
+      "relativePath": "Humans/Marathon in Duisburg.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg.webp",
+      "date": "2026-05-10T13:21:53.842Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-9.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-9.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-9.webp",
+      "date": "2026-05-10T13:21:53.768Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-7.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-7.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-7.webp",
+      "date": "2026-05-10T13:21:52.908Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-69.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-69.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-69.webp",
+      "date": "2026-05-10T13:21:52.856Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-68.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-68.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-68.webp",
+      "date": "2026-05-10T13:21:52.526Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-71.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-71.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-71.webp",
+      "date": "2026-05-10T13:21:52.508Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-70.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-70.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-70.webp",
+      "date": "2026-05-10T13:21:52.318Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-67.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-67.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-67.webp",
+      "date": "2026-05-10T13:21:51.449Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-65.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-65.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-65.webp",
+      "date": "2026-05-10T13:21:51.007Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-66.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-66.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-66.webp",
+      "date": "2026-05-10T13:21:50.995Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-62.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-62.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-62.webp",
+      "date": "2026-05-10T13:21:50.990Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-63.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-63.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-63.webp",
+      "date": "2026-05-10T13:21:50.914Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-64.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-64.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-64.webp",
+      "date": "2026-05-10T13:21:50.165Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-59.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-59.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-59.webp",
+      "date": "2026-05-10T13:21:49.791Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-60.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-60.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-60.webp",
+      "date": "2026-05-10T13:21:49.593Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-61.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-61.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-61.webp",
+      "date": "2026-05-10T13:21:49.402Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-58.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-58.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-58.webp",
+      "date": "2026-05-10T13:21:49.326Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-6.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-6.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-6.webp",
+      "date": "2026-05-10T13:21:49.235Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-53.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-53.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-53.webp",
+      "date": "2026-05-10T13:21:48.222Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-54.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-54.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-54.webp",
+      "date": "2026-05-10T13:21:48.147Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-57.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-57.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-57.webp",
+      "date": "2026-05-10T13:21:47.552Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-56.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-56.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-56.webp",
+      "date": "2026-05-10T13:21:47.457Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-55.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-55.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-55.webp",
+      "date": "2026-05-10T13:21:47.152Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-49.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-49.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-49.webp",
+      "date": "2026-05-10T13:21:46.842Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-5.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-5.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-5.webp",
+      "date": "2026-05-10T13:21:46.307Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-50.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-50.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-50.webp",
+      "date": "2026-05-10T13:21:45.879Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-51.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-51.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-51.webp",
+      "date": "2026-05-10T13:21:45.817Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-52.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-52.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-52.webp",
+      "date": "2026-05-10T13:21:45.638Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-44.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-44.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-44.webp",
+      "date": "2026-05-10T13:21:44.543Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-47.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-47.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-47.webp",
+      "date": "2026-05-10T13:21:44.449Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-46.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-46.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-46.webp",
+      "date": "2026-05-10T13:21:44.278Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-48.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-48.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-48.webp",
+      "date": "2026-05-10T13:21:44.237Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-45.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-45.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-45.webp",
+      "date": "2026-05-10T13:21:44.214Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-4.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-4.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-4.webp",
+      "date": "2026-05-10T13:21:43.256Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-39.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-39.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-39.webp",
+      "date": "2026-05-10T13:21:43.152Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-43.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-43.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-43.webp",
+      "date": "2026-05-10T13:21:42.919Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-41.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-41.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-41.webp",
+      "date": "2026-05-10T13:21:42.597Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-40.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-40.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-40.webp",
+      "date": "2026-05-10T13:21:42.548Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-42.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-42.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-42.webp",
+      "date": "2026-05-10T13:21:41.959Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-36.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-36.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-36.webp",
+      "date": "2026-05-10T13:21:40.759Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-35.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-35.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-35.webp",
+      "date": "2026-05-10T13:21:40.709Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-37.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-37.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-37.webp",
+      "date": "2026-05-10T13:21:40.471Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-38.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-38.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-38.webp",
+      "date": "2026-05-10T13:21:40.442Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-34.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-34.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-34.webp",
+      "date": "2026-05-10T13:21:40.413Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-3.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-3.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-3.webp",
+      "date": "2026-05-10T13:21:39.342Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-32.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-32.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-32.webp",
+      "date": "2026-05-10T13:21:39.034Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-31.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-31.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-31.webp",
+      "date": "2026-05-10T13:21:38.944Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-30.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-30.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-30.webp",
+      "date": "2026-05-10T13:21:38.937Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-33.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-33.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-33.webp",
+      "date": "2026-05-10T13:21:38.836Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-29.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-29.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-29.webp",
+      "date": "2026-05-10T13:21:37.969Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-25.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-25.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-25.webp",
+      "date": "2026-05-10T13:21:37.734Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-24.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-24.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-24.webp",
+      "date": "2026-05-10T13:21:37.592Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-28.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-28.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-28.webp",
+      "date": "2026-05-10T13:21:37.475Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-26.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-26.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-26.webp",
+      "date": "2026-05-10T13:21:37.377Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-27.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-27.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-27.webp",
+      "date": "2026-05-10T13:21:37.040Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-18.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-18.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-18.webp",
+      "date": "2026-05-10T13:21:36.225Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-23.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-23.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-23.webp",
+      "date": "2026-05-10T13:21:35.694Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-22.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-22.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-22.webp",
+      "date": "2026-05-10T13:21:35.513Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-21.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-21.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-21.webp",
+      "date": "2026-05-10T13:21:35.491Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-2.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-2.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-2.webp",
+      "date": "2026-05-10T13:21:35.480Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-19.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-19.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-19.webp",
+      "date": "2026-05-10T13:21:34.523Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-20.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-20.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-20.webp",
+      "date": "2026-05-10T13:21:34.298Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-15.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-15.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-15.webp",
+      "date": "2026-05-10T13:21:33.917Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-10.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-10.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-10.webp",
+      "date": "2026-05-10T13:21:33.153Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-17.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-17.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-17.webp",
+      "date": "2026-05-10T13:21:33.081Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-16.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-16.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-16.webp",
+      "date": "2026-05-10T13:21:32.915Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-11.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-11.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-11.webp",
+      "date": "2026-05-10T13:21:32.678Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-12.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-12.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-12.webp",
+      "date": "2026-05-10T13:21:31.410Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-13.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-13.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-13.webp",
+      "date": "2026-05-10T13:21:31.096Z"
+    },
+    {
+      "objectKey": "photos-web/Humans/Marathon in Duisburg-14.jpg",
+      "relativePath": "Humans/Marathon in Duisburg-14.jpg",
+      "thumbnailObjectKey": "photos-thumb/Humans/Marathon in Duisburg-14.webp",
+      "date": "2026-05-10T13:21:30.591Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Parenthood-3.JPG",
+      "relativePath": "wildlife/Parenthood-3.JPG",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Parenthood-3.webp",
+      "date": "2026-05-09T20:05:48.115Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Parenthood-1.JPG",
+      "relativePath": "wildlife/Parenthood-1.JPG",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Parenthood-1.webp",
+      "date": "2026-05-09T20:05:48.108Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Parenthood-5.JPG",
+      "relativePath": "wildlife/Parenthood-5.JPG",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Parenthood-5.webp",
+      "date": "2026-05-09T20:05:48.054Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Parenthood-2.JPG",
+      "relativePath": "wildlife/Parenthood-2.JPG",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Parenthood-2.webp",
+      "date": "2026-05-09T20:05:47.960Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Parenthood-4.JPG",
+      "relativePath": "wildlife/Parenthood-4.JPG",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Parenthood-4.webp",
+      "date": "2026-05-09T20:05:47.908Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/A new life.jpg",
+      "relativePath": "Trees/A new life.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/A new life.webp",
+      "date": "2026-05-05T08:52:42.731Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Wise one.jpg",
+      "relativePath": "Trees/Wise one.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Wise one.webp",
+      "date": "2026-05-03T22:59:46.880Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Treescape.jpg",
+      "relativePath": "landscape/Treescape.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Treescape.webp",
+      "date": "2026-05-03T22:22:12.563Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Woodland.jpg",
+      "relativePath": "landscape/Woodland.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Woodland.webp",
+      "date": "2026-05-03T22:22:12.147Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Balance.jpg",
+      "relativePath": "Trees/Balance.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Balance.webp",
+      "date": "2026-05-03T22:21:46.887Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Giant.jpg",
+      "relativePath": "Trees/Giant.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-03T22:21:45.934Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Wood Logs.jpg",
+      "relativePath": "Trees/Wood Logs.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-03T22:21:45.799Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Branches reaching for the sun.jpg",
+      "relativePath": "Trees/Branches reaching for the sun.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-03T22:21:45.772Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Woodscape.jpg",
+      "relativePath": "Trees/Woodscape.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-03T22:21:45.235Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Woodland Meadow.jpg",
+      "relativePath": "Trees/Woodland Meadow.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-03T22:21:43.155Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/In the morning fog.jpg",
+      "relativePath": "Trees/In the morning fog.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-03T22:21:40.877Z"
+    },
     {
       "objectKey": "photos-web/Trees/Oxygen Factory.jpg",
       "relativePath": "Trees/Oxygen Factory.jpg",
