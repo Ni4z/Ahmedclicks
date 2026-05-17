@@ -2046,21 +2046,131 @@
     "aperture": "f/4.5",
     "focalLength": "14mm"
   },
-  "wildlife/Pegion Portraits.jpg": {},
-  "wildlife/Pegion Portraits-7.jpg": {},
-  "wildlife/Pegion Portraits-2.jpg": {},
-  "wildlife/Pegion Portraits-3.jpg": {},
-  "wildlife/Pegion Portraits-5.jpg": {},
-  "wildlife/Pegion Portraits-6.jpg": {},
-  "wildlife/Pegion Portraits-4.jpg": {},
-  "wildlife/Color contrast.jpg": {},
-  "wildlife/Curious Peek.jpg": {},
-  "wildlife/Curious.jpg": {},
-  "wildlife/camouflage went wrong 2.jpg": {},
-  "wildlife/camouflage went wrong.jpg": {},
-  "Trees/A resting place.jpg": {},
-  "Trees/Lost in the Woods.jpg": {},
+  "wildlife/Pegion Portraits.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026
+  },
+  "wildlife/Pegion Portraits-7.jpg": {
+      "tags": [
+        "bird"
+      ],
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Saarn-Mendener Ruhrauen, Mülheim",
+      "year": 2026
+  },
+  "wildlife/Pegion Portraits-2.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026
+  },
+  "wildlife/Pegion Portraits-3.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026
+  },
+  "wildlife/Pegion Portraits-5.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026
+  },
+  "wildlife/Pegion Portraits-6.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026
+  },
+  "wildlife/Pegion Portraits-4.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026
+  },
+  "wildlife/Color contrast.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "wildlife/Curious Peek.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "wildlife/Curious.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "wildlife/camouflage went wrong 2.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "wildlife/camouflage went wrong.jpg": {
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "Trees/A resting place.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "Trees/Lost in the Woods.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
   "Humans/Duisburg Marathon.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2069,6 +2179,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-9.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2077,6 +2191,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-8.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2085,6 +2203,10 @@
     "focalLength": "172mm"
   },
   "Humans/Duisburg Marathon-5.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2093,6 +2215,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-7.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2101,6 +2227,10 @@
     "focalLength": "161mm"
   },
   "Humans/Duisburg Marathon-6.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2109,6 +2239,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-3.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2117,6 +2251,10 @@
     "focalLength": "148mm"
   },
   "Humans/Duisburg Marathon-4.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2125,6 +2263,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-2.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2133,6 +2275,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-16.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2141,6 +2287,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-17.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2149,6 +2299,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-11.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2157,6 +2311,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-10.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2165,6 +2323,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-15.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2173,6 +2335,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-14.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2181,6 +2347,10 @@
     "focalLength": "200mm"
   },
   "Humans/Duisburg Marathon-13.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2188,9 +2358,24 @@
     "aperture": "f/2.8",
     "focalLength": "200mm"
   },
-  "Humans/Marathon in Duisburg-8.jpg": {},
-  "Humans/Marathon in Duisburg-72.jpg": {},
+  "Humans/Marathon in Duisburg-8.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+    
+  },
+  "Humans/Marathon in Duisburg-72.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026
+  },
   "Humans/Marathon in Duisburg.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2199,6 +2384,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-9.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2207,6 +2396,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-7.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2215,6 +2408,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-69.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -2222,15 +2419,59 @@
     "aperture": "f/2.8",
     "focalLength": "116mm"
   },
-  "Humans/Marathon in Duisburg-68.jpg": {},
-  "Humans/Marathon in Duisburg-71.jpg": {},
-  "Humans/Marathon in Duisburg-70.jpg": {},
-  "Humans/Marathon in Duisburg-67.jpg": {},
-  "Humans/Marathon in Duisburg-65.jpg": {},
-  "Humans/Marathon in Duisburg-66.jpg": {},
-  "Humans/Marathon in Duisburg-62.jpg": {},
-  "Humans/Marathon in Duisburg-63.jpg": {},
+  "Humans/Marathon in Duisburg-68.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-71.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-70.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-67.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-65.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-66.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-62.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-63.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
   "Humans/Marathon in Duisburg-64.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2238,10 +2479,29 @@
     "aperture": "f/2.8",
     "focalLength": "154mm"
   },
-  "Humans/Marathon in Duisburg-59.jpg": {},
-  "Humans/Marathon in Duisburg-60.jpg": {},
-  "Humans/Marathon in Duisburg-61.jpg": {},
+  "Humans/Marathon in Duisburg-59.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-60.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-61.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
   "Humans/Marathon in Duisburg-58.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2250,6 +2510,10 @@
     "focalLength": "136mm"
   },
   "Humans/Marathon in Duisburg-6.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2257,10 +2521,29 @@
     "aperture": "f/2.8",
     "focalLength": "200mm"
   },
-  "Humans/Marathon in Duisburg-53.jpg": {},
-  "Humans/Marathon in Duisburg-54.jpg": {},
-  "Humans/Marathon in Duisburg-57.jpg": {},
+  "Humans/Marathon in Duisburg-53.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026
+  },
+  "Humans/Marathon in Duisburg-54.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026
+  },
+  "Humans/Marathon in Duisburg-57.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026
+  },
   "Humans/Marathon in Duisburg-56.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2268,8 +2551,17 @@
     "aperture": "f/2.8",
     "focalLength": "136mm"
   },
-  "Humans/Marathon in Duisburg-55.jpg": {},
+  "Humans/Marathon in Duisburg-55.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026
+  },
   "Humans/Marathon in Duisburg-49.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2277,9 +2569,23 @@
     "aperture": "f/2.8",
     "focalLength": "200mm"
   },
-  "Humans/Marathon in Duisburg-5.jpg": {},
-  "Humans/Marathon in Duisburg-50.jpg": {},
+  "Humans/Marathon in Duisburg-5.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026
+  },
+  "Humans/Marathon in Duisburg-50.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
   "Humans/Marathon in Duisburg-51.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2288,6 +2594,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-52.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Duisburg",
+      "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2296,6 +2606,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-44.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2304,6 +2618,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-47.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2312,6 +2630,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-46.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2320,6 +2642,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-48.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2328,6 +2654,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-45.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2336,6 +2666,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-4.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2344,6 +2678,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-39.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2351,9 +2689,23 @@
     "aperture": "f/2.8",
     "focalLength": "200mm"
   },
-  "Humans/Marathon in Duisburg-43.jpg": {},
-  "Humans/Marathon in Duisburg-41.jpg": {},
+  "Humans/Marathon in Duisburg-43.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-41.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
   "Humans/Marathon in Duisburg-40.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2362,6 +2714,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-42.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2370,6 +2726,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-36.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2377,9 +2737,23 @@
     "aperture": "f/2.8",
     "focalLength": "200mm"
   },
-  "Humans/Marathon in Duisburg-35.jpg": {},
-  "Humans/Marathon in Duisburg-37.jpg": {},
+  "Humans/Marathon in Duisburg-35.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-37.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
   "Humans/Marathon in Duisburg-38.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2388,6 +2762,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-34.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2396,6 +2774,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-3.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2404,6 +2786,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-32.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2411,10 +2797,29 @@
     "aperture": "f/2.8",
     "focalLength": "200mm"
   },
-  "Humans/Marathon in Duisburg-31.jpg": {},
-  "Humans/Marathon in Duisburg-30.jpg": {},
-  "Humans/Marathon in Duisburg-33.jpg": {},
+  "Humans/Marathon in Duisburg-31.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-30.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
+  "Humans/Marathon in Duisburg-33.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
+  },
   "Humans/Marathon in Duisburg-29.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2423,6 +2828,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-25.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2431,6 +2840,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-24.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2439,6 +2852,10 @@
     "focalLength": "192mm"
   },
   "Humans/Marathon in Duisburg-28.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2447,6 +2864,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-26.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2455,6 +2876,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-27.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2463,6 +2888,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-18.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2471,6 +2900,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-23.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2479,6 +2912,10 @@
     "focalLength": "193mm"
   },
   "Humans/Marathon in Duisburg-22.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2487,6 +2924,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-21.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2495,6 +2936,10 @@
     "focalLength": "192mm"
   },
   "Humans/Marathon in Duisburg-2.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2503,6 +2948,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-19.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2511,6 +2960,10 @@
     "focalLength": "192mm"
   },
   "Humans/Marathon in Duisburg-20.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2519,6 +2972,10 @@
     "focalLength": "192mm"
   },
   "Humans/Marathon in Duisburg-15.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2527,6 +2984,10 @@
     "focalLength": "135mm"
   },
   "Humans/Marathon in Duisburg-10.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2535,6 +2996,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-17.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2543,6 +3008,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-16.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2551,6 +3020,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-11.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2559,6 +3032,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-12.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2567,6 +3044,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-13.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2575,6 +3056,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-14.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2583,6 +3068,10 @@
     "focalLength": "135mm"
   },
   "wildlife/Parenthood-3.JPG": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -2591,6 +3080,10 @@
     "focalLength": "273mm"
   },
   "wildlife/Parenthood-1.JPG": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -2599,6 +3092,10 @@
     "focalLength": "273mm"
   },
   "wildlife/Parenthood-5.JPG": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -2607,6 +3104,10 @@
     "focalLength": "273mm"
   },
   "wildlife/Parenthood-2.JPG": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -2615,6 +3116,10 @@
     "focalLength": "273mm"
   },
   "wildlife/Parenthood-4.JPG": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 3200,
@@ -2623,6 +3128,10 @@
     "focalLength": "273mm"
   },
   "Trees/A new life.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 200,
@@ -2631,6 +3140,10 @@
     "focalLength": "214mm"
   },
   "Trees/Wise one.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
@@ -2639,6 +3152,10 @@
     "focalLength": "52mm"
   },
   "landscape/Treescape.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
@@ -2646,26 +3163,46 @@
     "aperture": "f/8",
     "focalLength": "14mm"
   },
-  "landscape/Woodland.jpg": {
-    "camera": "SONY ILCE-7CM2",
-    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
-    "iso": 160,
-    "shutterSpeed": "1/4000",
-    "aperture": "f/2.8",
-    "focalLength": "70mm"
-  },
   "Trees/Balance.jpg": {
-    "camera": "SONY ILCE-7CM2",
-    "lens": "FE 200-600mm F5.6-6.3 G OSS",
-    "iso": 6400,
-    "shutterSpeed": "1/1500",
-    "aperture": "f/6.7",
-    "focalLength": "200mm"
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
   },
-  "Trees/Giant.jpg": {},
-  "Trees/Wood Logs.jpg": {},
-  "Trees/Branches reaching for the sun.jpg": {},
-  "Trees/Woodscape.jpg": {},
-  "Trees/Woodland Meadow.jpg": {},
-  "Trees/In the morning fog.jpg": {}
+  "Trees/Giant.jpg": {
+      "weather": "Spring",
+      "country": "Germany",
+      "location": "Westruper Heide, Haltern am See",
+      "year": 2026
+  },
+  "Trees/Wood Logs.jpg": {
+    "weather": "Spring",
+      "country": "Germany",
+      "location": "Westruper Heide, Haltern am See",
+      "year": 2026
+  },
+  "Trees/Branches reaching for the sun.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "Trees/Woodscape.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "Trees/Woodland Meadow.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  },
+  "Trees/In the morning fog.jpg": {
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
+  }
 }
