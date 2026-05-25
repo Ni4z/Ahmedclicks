@@ -2056,13 +2056,13 @@
     "year": 2026
   },
   "wildlife/Pegion Portraits-7.jpg": {
-      "tags": [
-        "bird"
-      ],
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Saarn-Mendener Ruhrauen, Mülheim",
-      "year": 2026
+    "tags": [
+      "bird"
+    ],
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Saarn-Mendener Ruhrauen, Mülheim",
+    "year": 2026
   },
   "wildlife/Pegion Portraits-2.jpg": {
     "tags": [
@@ -2363,13 +2363,12 @@
     "country": "Germany",
     "location": "Duisburg",
     "year": 2026
-    
   },
   "Humans/Marathon in Duisburg-72.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
   },
   "Humans/Marathon in Duisburg.jpg": {
     "weather": "Spring",
@@ -2522,22 +2521,22 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-53.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
   },
   "Humans/Marathon in Duisburg-54.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
   },
   "Humans/Marathon in Duisburg-57.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
   },
   "Humans/Marathon in Duisburg-56.jpg": {
     "weather": "Spring",
@@ -2552,10 +2551,10 @@
     "focalLength": "136mm"
   },
   "Humans/Marathon in Duisburg-55.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
   },
   "Humans/Marathon in Duisburg-49.jpg": {
     "weather": "Spring",
@@ -2570,10 +2569,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-5.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026
   },
   "Humans/Marathon in Duisburg-50.jpg": {
     "weather": "Spring",
@@ -2582,10 +2581,10 @@
     "year": 2026
   },
   "Humans/Marathon in Duisburg-51.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026,
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -2594,10 +2593,10 @@
     "focalLength": "200mm"
   },
   "Humans/Marathon in Duisburg-52.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Duisburg",
-      "year": 2026,
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Duisburg",
+    "year": 2026,
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 125,
@@ -3167,19 +3166,25 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 6400,
+    "shutterSpeed": "1/1500",
+    "aperture": "f/6.7",
+    "focalLength": "200mm"
   },
   "Trees/Giant.jpg": {
-      "weather": "Spring",
-      "country": "Germany",
-      "location": "Westruper Heide, Haltern am See",
-      "year": 2026
+    "weather": "Spring",
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
   },
   "Trees/Wood Logs.jpg": {
     "weather": "Spring",
-      "country": "Germany",
-      "location": "Westruper Heide, Haltern am See",
-      "year": 2026
+    "country": "Germany",
+    "location": "Westruper Heide, Haltern am See",
+    "year": 2026
   },
   "Trees/Branches reaching for the sun.jpg": {
     "weather": "Spring",
@@ -3204,5 +3209,45 @@
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
     "year": 2026
+  },
+  "Trees/Green Tunnel.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 5000,
+    "shutterSpeed": "1/500",
+    "aperture": "f/5.6",
+    "focalLength": "227mm"
+  },
+  "Trees/Green Path .jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 10000,
+    "shutterSpeed": "1/500",
+    "aperture": "f/5.6",
+    "focalLength": "70mm"
+  },
+  "wildlife/Black Headed.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1000,
+    "shutterSpeed": "1/1000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Black Headed 2.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 640,
+    "shutterSpeed": "1/1000",
+    "aperture": "f/6.3",
+    "focalLength": "588mm"
+  },
+  "landscape/Woodland.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "70mm"
   }
 }

@@ -1,9 +1,33 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-05-16T15:29:39.194Z",
+  "generatedAt": "2026-05-18T16:43:13.073Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Trees/Green Tunnel.jpg",
+      "relativePath": "Trees/Green Tunnel.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Green Tunnel.webp",
+      "date": "2026-05-18T16:43:00.162Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Green Path .jpg",
+      "relativePath": "Trees/Green Path .jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Green Path .webp",
+      "date": "2026-05-18T16:43:00.084Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Black Headed.jpg",
+      "relativePath": "wildlife/Black Headed.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Black Headed.webp",
+      "date": "2026-05-16T19:12:54.038Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Black Headed 2.jpg",
+      "relativePath": "wildlife/Black Headed 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Black Headed 2.webp",
+      "date": "2026-05-16T19:12:53.937Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Pegion Portraits.jpg",
       "relativePath": "wildlife/Pegion Portraits.jpg",
