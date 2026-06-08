@@ -1,9 +1,285 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-05-18T16:43:13.073Z",
+  "generatedAt": "2026-06-02T21:07:36.862Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 10.jpg",
+      "relativePath": "landscape/The Alpen Farmland 10.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-06-02T21:07:31.952Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 11.jpg",
+      "relativePath": "landscape/The Alpen Farmland 11.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-06-02T21:07:31.471Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 12.jpg",
+      "relativePath": "landscape/The Alpen Farmland 12.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 12.webp",
+      "date": "2026-06-02T21:07:20.499Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen VIllage.jpg",
+      "relativePath": "landscape/The Alpen VIllage.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen VIllage.jpg",
+      "date": "2026-06-02T20:37:36.033Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 9.jpg",
+      "relativePath": "landscape/The Alpen Farmland 9.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-06-02T20:37:36.016Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland.jpg",
+      "relativePath": "landscape/The Alpen Farmland.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland.webp",
+      "date": "2026-06-02T20:37:31.248Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 4.jpg",
+      "relativePath": "landscape/The Alpen Farmland 4.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 4.jpg",
+      "date": "2026-06-02T20:37:23.040Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen VIllage on sunrays.jpg",
+      "relativePath": "landscape/The Alpen VIllage on sunrays.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen VIllage on sunrays.webp",
+      "date": "2026-06-02T20:37:22.754Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 8.jpg",
+      "relativePath": "landscape/The Alpen Farmland 8.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 8.jpg",
+      "date": "2026-06-02T20:37:21.751Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 7.jpg",
+      "relativePath": "landscape/The Alpen Farmland 7.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 7.webp",
+      "date": "2026-06-02T20:37:20.782Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 5.jpg",
+      "relativePath": "landscape/The Alpen Farmland 5.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 5.webp",
+      "date": "2026-06-02T20:37:17.029Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 6.jpg",
+      "relativePath": "landscape/The Alpen Farmland 6.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 6.webp",
+      "date": "2026-06-02T20:37:12.885Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 2.jpg",
+      "relativePath": "landscape/The Alpen Farmland 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 2.webp",
+      "date": "2026-06-02T20:36:58.832Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/The Alpen Farmland 3.jpg",
+      "relativePath": "landscape/The Alpen Farmland 3.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/The Alpen Farmland 3.webp",
+      "date": "2026-06-02T20:36:58.044Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Tree Peak.jpg",
+      "relativePath": "landscape/Tree Peak.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-06-01T20:09:48.944Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Peak.jpg",
+      "relativePath": "landscape/Peak.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-06-01T20:09:48.095Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Sunrays on Valley .jpg",
+      "relativePath": "landscape/Sunrays on Valley .jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Sunrays on Valley .webp",
+      "date": "2026-06-01T20:09:43.136Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Peak above forest.jpg",
+      "relativePath": "landscape/Peak above forest.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Peak above forest.webp",
+      "date": "2026-06-01T20:09:40.754Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Distance.jpg",
+      "relativePath": "landscape/Distance.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Distance.webp",
+      "date": "2026-06-01T20:09:38.870Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Layers of Alps.jpg",
+      "relativePath": "landscape/Layers of Alps.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Layers of Alps.webp",
+      "date": "2026-06-01T20:09:26.477Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Church Top.jpg",
+      "relativePath": "landscape/Church Top.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Church Top.webp",
+      "date": "2026-06-01T20:09:23.232Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Peak Church.jpg",
+      "relativePath": "landscape/Peak Church.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Peak Church.webp",
+      "date": "2026-06-01T20:09:22.892Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Church overseeing the land.jpg",
+      "relativePath": "landscape/Church overseeing the land.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Church overseeing the land.webp",
+      "date": "2026-06-01T20:09:20.175Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Wanks Perspective.jpg",
+      "relativePath": "landscape/Wanks Perspective.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-31T13:28:11.624Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Sunset on Alps.jpg",
+      "relativePath": "landscape/Sunset on Alps.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Sunset on Alps.webp",
+      "date": "2026-05-31T13:28:00.753Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Nowhere in Alps.jpg",
+      "relativePath": "landscape/Nowhere in Alps.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Nowhere in Alps.webp",
+      "date": "2026-05-31T13:28:00.665Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Sunset on Alps 2.jpg",
+      "relativePath": "landscape/Sunset on Alps 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Sunset on Alps 2.webp",
+      "date": "2026-05-31T13:28:00.259Z"
+    },
+    {
+      "objectKey": "photos-web/landscape/Sunset on Alps 3.jpg",
+      "relativePath": "landscape/Sunset on Alps 3.jpg",
+      "thumbnailObjectKey": "photos-thumb/landscape/Sunset on Alps 3.webp",
+      "date": "2026-05-31T13:27:59.462Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck place of interest.jpg",
+      "relativePath": "Metropolis/Innsbruck place of interest.jpg",
+      "thumbnailObjectKey": null,
+      "date": "2026-05-31T13:26:37.788Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Marktplatz.jpg",
+      "relativePath": "Metropolis/Innsbruck Marktplatz.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Marktplatz.webp",
+      "date": "2026-05-31T13:26:33.776Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Steet Way.jpg",
+      "relativePath": "Metropolis/Innsbruck Steet Way.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Steet Way.webp",
+      "date": "2026-05-31T13:26:29.325Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Steet Way 2.jpg",
+      "relativePath": "Metropolis/Innsbruck Steet Way 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Steet Way 2.webp",
+      "date": "2026-05-31T13:26:29.004Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Alley.jpg",
+      "relativePath": "Metropolis/Innsbruck Alley.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Alley.webp",
+      "date": "2026-05-31T13:26:28.431Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Alley-2.jpg",
+      "relativePath": "Metropolis/Innsbruck Alley-2.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Alley-2.webp",
+      "date": "2026-05-31T13:26:28.208Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck City Center.jpg",
+      "relativePath": "Metropolis/Innsbruck City Center.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck City Center.webp",
+      "date": "2026-05-31T13:26:27.819Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Marktplatz Church.jpg",
+      "relativePath": "Metropolis/Innsbruck Marktplatz Church.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Marktplatz Church.webp",
+      "date": "2026-05-31T13:26:27.699Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck City Center 3.jpg",
+      "relativePath": "Metropolis/Innsbruck City Center 3.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck City Center 3.webp",
+      "date": "2026-05-31T13:26:26.294Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Architecture.jpg",
+      "relativePath": "Metropolis/Innsbruck Architecture.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Architecture.webp",
+      "date": "2026-05-31T13:26:26.259Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck City Center 2.jpg",
+      "relativePath": "Metropolis/Innsbruck City Center 2.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck City Center 2.webp",
+      "date": "2026-05-31T13:26:26.121Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Street-3.jpg",
+      "relativePath": "Metropolis/Innsbruck Street-3.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Street-3.webp",
+      "date": "2026-05-29T22:59:03.900Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Street-2.jpg",
+      "relativePath": "Metropolis/Innsbruck Street-2.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Street-2.webp",
+      "date": "2026-05-29T22:59:03.776Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Friends Forever.JPG",
+      "relativePath": "Metropolis/Friends Forever.JPG",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Friends Forever.webp",
+      "date": "2026-05-29T22:59:03.509Z"
+    },
+    {
+      "objectKey": "photos-web/Metropolis/Innsbruck Street.jpg",
+      "relativePath": "Metropolis/Innsbruck Street.jpg",
+      "thumbnailObjectKey": "photos-thumb/Metropolis/Innsbruck Street.webp",
+      "date": "2026-05-29T22:58:42.522Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Hatchlings Caring.jpg",
+      "relativePath": "wildlife/Hatchlings Caring.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Hatchlings Caring.webp",
+      "date": "2026-05-25T11:28:45.017Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Lone Tree.jpg",
+      "relativePath": "Trees/Lone Tree.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Lone Tree.webp",
+      "date": "2026-05-24T18:56:37.615Z"
+    },
+    {
+      "objectKey": "photos-web/Roads/Green Pathway.jpg",
+      "relativePath": "Roads/Green Pathway.jpg",
+      "thumbnailObjectKey": "photos-thumb/Roads/Green Pathway.webp",
+      "date": "2026-05-24T14:29:14.855Z"
+    },
     {
       "objectKey": "photos-web/Trees/Green Tunnel.jpg",
       "relativePath": "Trees/Green Tunnel.jpg",
