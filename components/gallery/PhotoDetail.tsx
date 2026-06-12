@@ -123,8 +123,10 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
               aria-label={`Open ${photo.title} fullscreen`}
             >
               <img
-                src={photo.image}
+                src={photo.display}
                 alt={photo.title}
+                width={photo.width}
+                height={photo.height}
                 className="block max-w-full max-h-[80vh] w-auto h-auto mx-auto"
               />
             </button>

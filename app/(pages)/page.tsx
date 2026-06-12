@@ -8,7 +8,6 @@ import PhotographerBio from '@/components/home/PhotographerBio';
 import { Metadata } from 'next';
 import {
   getPhotoCategories,
-  getPhotos,
   getProfilePhoto,
   getRecentPhotos,
 } from '@/lib/gallery';
@@ -23,7 +22,13 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const heroPhotos = getPhotos();
+  // The hero shows at most 5 slides; passing trimmed-down recent photos
+  // keeps the 300-photo archive out of the serialized page payload.
+  const heroPhotos = getRecentPhotos(8).map(({ title, display, date }) => ({
+    title,
+    display,
+    date,
+  }));
   const recentPhotos = getRecentPhotos(4);
   const latestUpdates: LatestUpdateItem[] = [
     ...recentPhotos.map((photo) => ({

@@ -35,6 +35,11 @@ const restrictPhotosToPrefix = configuredPhotoPrefix !== undefined;
 const photoThumbPrefix = normalizePrefix(
   process.env.R2_PHOTO_THUMB_PREFIX || 'photos-thumb'
 );
+const photoDisplayPrefix = normalizePrefix(
+  process.env.R2_PHOTO_DISPLAY_PREFIX ||
+    process.env.DISPLAY_DEST_PREFIX ||
+    'photos-display'
+);
 const videoPrefix =
   process.env.R2_VIDEO_PREFIX === undefined
     ? ''
@@ -410,15 +415,24 @@ async function fetchSignedObjectText(objectKey) {
 
 function buildPhotoAssets(objects) {
   const thumbnailLookup = new Map();
+  const displayLookup = new Map();
 
   for (const object of objects) {
-    if (
-      photoThumbPrefix &&
-      object.key.startsWith(photoThumbPrefix) &&
-      isImageKey(object.key)
-    ) {
+    if (!isImageKey(object.key)) {
+      continue;
+    }
+
+    if (photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) {
       thumbnailLookup.set(
         getRelativeStem(stripPrefix(object.key, photoThumbPrefix)),
+        object.key
+      );
+    } else if (
+      photoDisplayPrefix &&
+      object.key.startsWith(photoDisplayPrefix)
+    ) {
+      displayLookup.set(
+        getRelativeStem(stripPrefix(object.key, photoDisplayPrefix)),
         object.key
       );
     }
@@ -428,6 +442,7 @@ function buildPhotoAssets(objects) {
     (object) =>
       isImageKey(object.key) &&
       !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
+      !(photoDisplayPrefix && object.key.startsWith(photoDisplayPrefix)) &&
       (!restrictPhotosToPrefix ||
         !photoPrefix ||
         object.key.startsWith(photoPrefix))
@@ -443,11 +458,15 @@ function buildPhotoAssets(objects) {
           objectKey: object.key,
           relativePath,
           thumbnailObjectKey: thumbnailLookup.get(thumbLookupKey) || null,
+          displayObjectKey: displayLookup.get(thumbLookupKey) || null,
           date: object.lastModified || new Date(0).toISOString(),
         };
       })
       .sort(compareByDateDescending),
-    thumbnailKeys: new Set(thumbnailLookup.values()),
+    thumbnailKeys: new Set([
+      ...thumbnailLookup.values(),
+      ...displayLookup.values(),
+    ]),
   };
 }
 

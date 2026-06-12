@@ -37,6 +37,14 @@ const outputExtension = formatToExtension[outputFormat];
 const maxWidth = Number(process.env.THUMB_MAX_WIDTH || 1200);
 const maxHeight = Number(process.env.THUMB_MAX_HEIGHT || 1200);
 const quality = Number(process.env.THUMB_QUALITY || 82);
+const displayPrefix = normalizePrefix(
+  process.env.DISPLAY_DEST_PREFIX?.trim() ||
+    process.env.R2_PHOTO_DISPLAY_PREFIX?.trim() ||
+    'photos-display'
+);
+const displayMaxWidth = Number(process.env.DISPLAY_MAX_WIDTH || 2000);
+const displayMaxHeight = Number(process.env.DISPLAY_MAX_HEIGHT || 2000);
+const displayQuality = Number(process.env.DISPLAY_QUALITY || 80);
 const thumbCacheControl = `public, max-age=${process.env.THUMB_CACHE_MAX_AGE || 31536000}, immutable`;
 const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
@@ -161,6 +169,11 @@ function getThumbnailObjectKey(sourceObjectKey) {
   return `${thumbPrefix}${replaceExtension(relativePath, outputExtension)}`;
 }
 
+function getDisplayObjectKey(sourceObjectKey) {
+  const relativePath = stripPrefix(sourceObjectKey, sourcePrefix);
+  return `${displayPrefix}${replaceExtension(relativePath, outputExtension)}`;
+}
+
 function printUsage() {
   console.log(
     [
@@ -265,7 +278,12 @@ async function fetchPublishedManifest() {
   return manifest;
 }
 
-async function updateManifest(sourceObjectKey, thumbnailObjectKey, tmpDir) {
+async function updateManifest(
+  sourceObjectKey,
+  thumbnailObjectKey,
+  displayObjectKey,
+  tmpDir
+) {
   const manifest = await fetchPublishedManifest();
   const relativePath = stripPrefix(sourceObjectKey, sourcePrefix);
   const photoEntry = manifest.photos.find(
@@ -282,6 +300,7 @@ async function updateManifest(sourceObjectKey, thumbnailObjectKey, tmpDir) {
   photoEntry.objectKey = sourceObjectKey;
   photoEntry.relativePath = relativePath;
   photoEntry.thumbnailObjectKey = thumbnailObjectKey;
+  photoEntry.displayObjectKey = displayObjectKey;
   manifest.generatedAt = new Date().toISOString();
   manifest.source = 'r2';
 
@@ -388,30 +407,30 @@ async function triggerDeploy() {
   );
 }
 
-async function generateThumbnail(sourceFilePath, thumbnailFilePath) {
+async function generateRendition(sourceFilePath, destFilePath, rendition) {
   let pipeline = sharp(sourceFilePath).rotate().resize({
-    width: maxWidth,
-    height: maxHeight,
+    width: rendition.width,
+    height: rendition.height,
     fit: 'inside',
     withoutEnlargement: true,
   });
 
   switch (outputFormat) {
     case 'image/avif':
-      pipeline = pipeline.avif({ quality });
+      pipeline = pipeline.avif({ quality: rendition.quality });
       break;
     case 'image/jpeg':
-      pipeline = pipeline.jpeg({ quality, mozjpeg: true });
+      pipeline = pipeline.jpeg({ quality: rendition.quality, mozjpeg: true });
       break;
     case 'image/png':
-      pipeline = pipeline.png({ quality });
+      pipeline = pipeline.png({ quality: rendition.quality });
       break;
     default:
-      pipeline = pipeline.webp({ quality });
+      pipeline = pipeline.webp({ quality: rendition.quality });
       break;
   }
 
-  await pipeline.toFile(thumbnailFilePath);
+  await pipeline.toFile(destFilePath);
 }
 
 async function main() {
@@ -421,9 +440,11 @@ async function main() {
 
   const sourceObjectKey = resolveSourceObjectKey(sourcePath);
   const thumbnailObjectKey = getThumbnailObjectKey(sourceObjectKey);
+  const displayObjectKey = getDisplayObjectKey(sourceObjectKey);
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'thumb-backfill-'));
   const sourceFilePath = path.join(tmpDir, path.basename(sourceObjectKey));
-  const thumbnailFilePath = path.join(tmpDir, path.basename(thumbnailObjectKey));
+  const thumbnailFilePath = path.join(tmpDir, `thumb-${path.basename(thumbnailObjectKey)}`);
+  const displayFilePath = path.join(tmpDir, `display-${path.basename(displayObjectKey)}`);
 
   try {
     runCommand('npx', [
@@ -436,25 +457,46 @@ async function main() {
       '--file',
       sourceFilePath,
     ]);
-    await generateThumbnail(sourceFilePath, thumbnailFilePath);
-    runCommand('npx', [
-      'wrangler',
-      'r2',
-      'object',
-      'put',
-      `${defaultBucketName}/${thumbnailObjectKey}`,
-      '--remote',
-      '--file',
-      thumbnailFilePath,
-      '--content-type',
-      outputFormat,
-      '--cache-control',
-      thumbCacheControl,
-    ]);
-    await updateManifest(sourceObjectKey, thumbnailObjectKey, tmpDir);
+    await generateRendition(sourceFilePath, thumbnailFilePath, {
+      width: maxWidth,
+      height: maxHeight,
+      quality,
+    });
+    await generateRendition(sourceFilePath, displayFilePath, {
+      width: displayMaxWidth,
+      height: displayMaxHeight,
+      quality: displayQuality,
+    });
+
+    for (const [objectKey, filePath] of [
+      [thumbnailObjectKey, thumbnailFilePath],
+      [displayObjectKey, displayFilePath],
+    ]) {
+      runCommand('npx', [
+        'wrangler',
+        'r2',
+        'object',
+        'put',
+        `${defaultBucketName}/${objectKey}`,
+        '--remote',
+        '--file',
+        filePath,
+        '--content-type',
+        outputFormat,
+        '--cache-control',
+        thumbCacheControl,
+      ]);
+    }
+
+    await updateManifest(
+      sourceObjectKey,
+      thumbnailObjectKey,
+      displayObjectKey,
+      tmpDir
+    );
 
     console.log(
-      `[thumbs:backfill] Uploaded ${thumbnailObjectKey} from ${sourceObjectKey}.`
+      `[thumbs:backfill] Uploaded ${thumbnailObjectKey} and ${displayObjectKey} from ${sourceObjectKey}.`
     );
 
     if (shouldTriggerDeploy) {

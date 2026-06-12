@@ -1,4 +1,4 @@
-# Ahmed Photography Portfolio
+# NiazPhotography Portfolio
 
 A modern photography portfolio built with Next.js, React, Tailwind CSS, and Framer Motion.
 

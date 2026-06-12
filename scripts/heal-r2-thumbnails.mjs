@@ -46,6 +46,14 @@ const outputExtension = formatToExtension[outputFormat];
 const maxWidth = Number(process.env.THUMB_MAX_WIDTH || 1200);
 const maxHeight = Number(process.env.THUMB_MAX_HEIGHT || 1200);
 const quality = Number(process.env.THUMB_QUALITY || 82);
+const photoDisplayPrefix = normalizePrefix(
+  process.env.R2_PHOTO_DISPLAY_PREFIX ||
+    process.env.DISPLAY_DEST_PREFIX ||
+    'photos-display'
+);
+const displayMaxWidth = Number(process.env.DISPLAY_MAX_WIDTH || 2000);
+const displayMaxHeight = Number(process.env.DISPLAY_MAX_HEIGHT || 2000);
+const displayQuality = Number(process.env.DISPLAY_QUALITY || 80);
 const thumbCacheControl = `public, max-age=${process.env.THUMB_CACHE_MAX_AGE || 31536000}, immutable`;
 const manifestObjectKey = normalizeRelativeKey(
   process.env.MEDIA_MANIFEST_OBJECT_KEY?.trim() || 'media-manifest.json'
@@ -451,6 +459,11 @@ function getThumbnailObjectKey(photoObjectKey) {
   return `${photoThumbPrefix}${replaceExtension(relativePath, outputExtension)}`;
 }
 
+function getDisplayObjectKey(photoObjectKey) {
+  const relativePath = stripPrefix(normalizeRelativeKey(photoObjectKey), photoPrefix);
+  return `${photoDisplayPrefix}${replaceExtension(relativePath, outputExtension)}`;
+}
+
 function getSortableTimestamp(value) {
   const timestamp = new Date(value).getTime();
   return Number.isNaN(timestamp) ? 0 : timestamp;
@@ -688,26 +701,26 @@ async function waitForManifestUpdate(expectedThumbnailKeys, generatedAt) {
   );
 }
 
-async function generateThumbnailBuffer(sourceBuffer) {
+async function generateRenditionBuffer(sourceBuffer, rendition) {
   let pipeline = sharp(sourceBuffer).rotate().resize({
-    width: maxWidth,
-    height: maxHeight,
+    width: rendition.width,
+    height: rendition.height,
     fit: 'inside',
     withoutEnlargement: true,
   });
 
   switch (outputFormat) {
     case 'image/avif':
-      pipeline = pipeline.avif({ quality });
+      pipeline = pipeline.avif({ quality: rendition.quality });
       break;
     case 'image/jpeg':
-      pipeline = pipeline.jpeg({ quality, mozjpeg: true });
+      pipeline = pipeline.jpeg({ quality: rendition.quality, mozjpeg: true });
       break;
     case 'image/png':
-      pipeline = pipeline.png({ quality });
+      pipeline = pipeline.png({ quality: rendition.quality });
       break;
     default:
-      pipeline = pipeline.webp({ quality });
+      pipeline = pipeline.webp({ quality: rendition.quality });
       break;
   }
 
@@ -745,21 +758,25 @@ async function main() {
   const objects = await listBucketObjects();
   const { manifest, usedPublishedManifest } = await loadManifestForHealing(objects);
   const existingKeys = new Set(objects.map((object) => normalizeRelativeKey(object.key)));
+  function hasExistingKey(value) {
+    return Boolean(
+      typeof value === 'string' && value && existingKeys.has(normalizeRelativeKey(value))
+    );
+  }
+
   const photosToHeal = manifest.photos.filter((photo) => {
     if (!(photo && typeof photo.objectKey === 'string' && typeof photo.relativePath === 'string')) {
       return false;
     }
 
-    const currentThumbnailObjectKey =
-      typeof photo.thumbnailObjectKey === 'string' && photo.thumbnailObjectKey
-        ? normalizeRelativeKey(photo.thumbnailObjectKey)
-        : '';
-
-    return !currentThumbnailObjectKey || !existingKeys.has(currentThumbnailObjectKey);
+    return (
+      !hasExistingKey(photo.thumbnailObjectKey) ||
+      !hasExistingKey(photo.displayObjectKey)
+    );
   });
 
   if (photosToHeal.length === 0) {
-    console.log('[thumbs:heal] No missing thumbnails detected.');
+    console.log('[thumbs:heal] No missing thumbnails or display renditions detected.');
     return;
   }
 
@@ -767,27 +784,57 @@ async function main() {
 
   for (const photo of photosToHeal) {
     const sourceObjectKey = normalizeRelativeKey(photo.objectKey);
-    const thumbnailObjectKey = getThumbnailObjectKey(sourceObjectKey);
+    const needsThumbnail = !hasExistingKey(photo.thumbnailObjectKey);
+    const needsDisplay = !hasExistingKey(photo.displayObjectKey);
     const sourceResponse = await requestSignedObject(sourceObjectKey);
     const sourceBuffer = Buffer.from(await sourceResponse.arrayBuffer());
-    const thumbnailBuffer = await generateThumbnailBuffer(sourceBuffer);
 
-    await requestSignedObject(thumbnailObjectKey, {
-      method: 'PUT',
-      body: thumbnailBuffer,
-      contentType: outputFormat,
-      cacheControl: thumbCacheControl,
-    });
+    if (needsThumbnail) {
+      const thumbnailObjectKey = getThumbnailObjectKey(sourceObjectKey);
+      const thumbnailBuffer = await generateRenditionBuffer(sourceBuffer, {
+        width: maxWidth,
+        height: maxHeight,
+        quality,
+      });
 
-    photo.thumbnailObjectKey = thumbnailObjectKey;
+      await requestSignedObject(thumbnailObjectKey, {
+        method: 'PUT',
+        body: thumbnailBuffer,
+        contentType: outputFormat,
+        cacheControl: thumbCacheControl,
+      });
+
+      photo.thumbnailObjectKey = thumbnailObjectKey;
+      console.log(
+        `[thumbs:heal] Backfilled ${thumbnailObjectKey} from ${sourceObjectKey}.`
+      );
+    }
+
+    if (needsDisplay) {
+      const displayObjectKey = getDisplayObjectKey(sourceObjectKey);
+      const displayBuffer = await generateRenditionBuffer(sourceBuffer, {
+        width: displayMaxWidth,
+        height: displayMaxHeight,
+        quality: displayQuality,
+      });
+
+      await requestSignedObject(displayObjectKey, {
+        method: 'PUT',
+        body: displayBuffer,
+        contentType: outputFormat,
+        cacheControl: thumbCacheControl,
+      });
+
+      photo.displayObjectKey = displayObjectKey;
+      console.log(
+        `[thumbs:heal] Backfilled ${displayObjectKey} from ${sourceObjectKey}.`
+      );
+    }
+
     healedEntries.push({
       relativePath: photo.relativePath,
-      thumbnailObjectKey,
+      thumbnailObjectKey: photo.thumbnailObjectKey,
     });
-
-    console.log(
-      `[thumbs:heal] Backfilled ${thumbnailObjectKey} from ${sourceObjectKey}.`
-    );
   }
 
   manifest.generatedAt = new Date().toISOString();

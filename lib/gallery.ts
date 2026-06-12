@@ -96,6 +96,7 @@ type GetCategoryEntriesOptions = {
 type ManifestPhotoEntry = {
   objectKey: string;
   thumbnailObjectKey?: string | null;
+  displayObjectKey?: string | null;
   relativePath: string;
   fileName: string;
   key: string;
@@ -302,6 +303,7 @@ function createManifestPhotoEntry(entry: SyncedPhotoAsset): ManifestPhotoEntry {
   return {
     objectKey: entry.objectKey,
     thumbnailObjectKey: entry.thumbnailObjectKey,
+    displayObjectKey: entry.displayObjectKey,
     relativePath,
     fileName: path.posix.basename(relativePath),
     key,
@@ -364,6 +366,10 @@ function createPhotoRecord(
     weather: metadata.weather,
     country: metadata.country,
     image: withObjectStorageAssetPath(file.objectKey, 'image'),
+    display: withObjectStorageAssetPath(
+      file.displayObjectKey || file.objectKey,
+      'image'
+    ),
     thumbnail: withObjectStorageAssetPath(
       file.thumbnailObjectKey || file.objectKey,
       'image'
