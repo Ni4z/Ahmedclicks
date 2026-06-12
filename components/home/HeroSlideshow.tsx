@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Photo } from '@/lib/types';
 
-type HeroPhoto = Pick<Photo, 'title' | 'image' | 'date'>;
+type HeroPhoto = Pick<Photo, 'title' | 'display' | 'date'>;
 
 interface HeroSlideshowProps {
   photos: HeroPhoto[];
@@ -155,7 +155,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
           className="absolute inset-0"
         >
           <Image
-            src={displayPhotos[currentSlide]?.image || ''}
+            src={displayPhotos[currentSlide]?.display || ''}
             alt={displayPhotos[currentSlide]?.title || 'Featured Photo'}
             fill
             priority

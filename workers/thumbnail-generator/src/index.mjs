@@ -342,18 +342,27 @@ function isSupportedVideo(objectKey) {
   return videoExtensions.has(pathExtension(objectKey));
 }
 
-function shouldHandleImage(objectKey, sourcePrefix, thumbPrefix) {
+function shouldHandleImage(objectKey, sourcePrefix, derivedPrefixes) {
   const normalizedKey = normalizePath(objectKey);
 
   if (!isSupportedImage(normalizedKey)) {
     return false;
   }
 
-  if (thumbPrefix && normalizedKey.startsWith(thumbPrefix)) {
-    return false;
+  for (const derivedPrefix of derivedPrefixes) {
+    if (derivedPrefix && normalizedKey.startsWith(derivedPrefix)) {
+      return false;
+    }
   }
 
   return true;
+}
+
+function getDerivedPrefixes(env) {
+  return [
+    normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb'),
+    normalizePrefix(env.DISPLAY_DEST_PREFIX, 'photos-display'),
+  ];
 }
 
 function getThumbnailKey(objectKey, sourcePrefix, thumbPrefix, outputExtension) {
@@ -485,22 +494,39 @@ async function listBucketObjects(bucket) {
   return objects;
 }
 
-function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
+function buildPhotoAssets(
+  objects,
+  env,
+  thumbnailOverrides = new Map(),
+  displayOverrides = new Map()
+) {
   const configuredPhotoPrefix = env.THUMB_SOURCE_PREFIX;
   const photoPrefix = normalizePrefix(configuredPhotoPrefix ?? 'photos-web');
   const photoThumbPrefix = normalizePrefix(
     env.THUMB_DEST_PREFIX || 'photos-thumb'
   );
+  const photoDisplayPrefix = normalizePrefix(
+    env.DISPLAY_DEST_PREFIX || 'photos-display'
+  );
   const thumbnailLookup = new Map();
+  const displayLookup = new Map();
 
   for (const object of objects) {
-    if (
-      photoThumbPrefix &&
-      object.key.startsWith(photoThumbPrefix) &&
-      isSupportedImage(object.key)
-    ) {
+    if (!isSupportedImage(object.key)) {
+      continue;
+    }
+
+    if (photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) {
       thumbnailLookup.set(
         getRelativeStem(stripPrefix(object.key, photoThumbPrefix)),
+        object.key
+      );
+    } else if (
+      photoDisplayPrefix &&
+      object.key.startsWith(photoDisplayPrefix)
+    ) {
+      displayLookup.set(
+        getRelativeStem(stripPrefix(object.key, photoDisplayPrefix)),
         object.key
       );
     }
@@ -509,7 +535,8 @@ function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
   const photoCandidates = objects.filter(
     (object) =>
       isSupportedImage(object.key) &&
-      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix))
+      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
+      !(photoDisplayPrefix && object.key.startsWith(photoDisplayPrefix))
   );
 
   return {
@@ -524,11 +551,17 @@ function buildPhotoAssets(objects, env, thumbnailOverrides = new Map()) {
           thumbnailObjectKey: thumbnailOverrides.has(thumbLookupKey)
             ? thumbnailOverrides.get(thumbLookupKey)
             : thumbnailLookup.get(thumbLookupKey) || null,
+          displayObjectKey: displayOverrides.has(thumbLookupKey)
+            ? displayOverrides.get(thumbLookupKey)
+            : displayLookup.get(thumbLookupKey) || null,
           date: object.lastModified,
         };
       })
       .sort(compareByDateDescending),
-    thumbnailKeys: new Set(thumbnailLookup.values()),
+    thumbnailKeys: new Set([
+      ...thumbnailLookup.values(),
+      ...displayLookup.values(),
+    ]),
   };
 }
 
@@ -633,12 +666,14 @@ async function publishCaptionPlaceholders(env, mediaEntries) {
 }
 
 async function publishMediaManifest(env, options = {}) {
-  const { thumbnailOverrides = new Map() } = options;
+  const { thumbnailOverrides = new Map(), displayOverrides = new Map() } =
+    options;
   const imageObjects = await listBucketObjects(env.MEDIA_BUCKET);
   const { photos, thumbnailKeys } = buildPhotoAssets(
     imageObjects,
     env,
-    thumbnailOverrides
+    thumbnailOverrides,
+    displayOverrides
   );
   const manifestObjectKey = getManifestObjectKey(env);
   const mediaBucketName = getMediaBucketName(env);
@@ -791,36 +826,11 @@ async function triggerSiteDeploy(env, options = {}) {
   return true;
 }
 
-async function generateThumbnail(objectKey, env) {
+async function generateRendition(originalBytes, objectKey, env, rendition) {
+  const { destPrefix, width, height, quality } = rendition;
   const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
-  const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
   const outputFormat = normalizeFormat(env.THUMB_OUTPUT_FORMAT);
   const outputExtension = formatToExtension[outputFormat];
-
-  if (!shouldHandleImage(objectKey, sourcePrefix, thumbPrefix)) {
-    return { thumbnailKey: null, exifRecord: null };
-  }
-
-  const originalObject = await env.MEDIA_BUCKET.get(objectKey);
-
-  if (!originalObject) {
-    throw new Error(`Source object not found: ${objectKey}`);
-  }
-
-  const maxInputBytes = Number(env.THUMB_MAX_INPUT_BYTES || 20_000_000);
-
-  if (originalObject.size > maxInputBytes) {
-    console.warn(
-      `Skipping in-worker thumbnail for ${objectKey} (${(originalObject.size / 1_000_000).toFixed(1)} MB exceeds ${(maxInputBytes / 1_000_000).toFixed(0)} MB limit). Will be backfilled by thumbs:heal in CI.`
-    );
-    return { thumbnailKey: null, exifRecord: null };
-  }
-
-  const originalBytes = await originalObject.arrayBuffer();
-
-  // Extract EXIF from the original image bytes before any processing
-  const rawExifTags = parseJpegExif(originalBytes);
-  const exifRecord = buildExifRecord(rawExifTags);
 
   const originalStream = new Response(originalBytes).body;
 
@@ -830,13 +840,13 @@ async function generateThumbnail(objectKey, env) {
 
   const transformOptions = {
     fit: 'scale-down',
-    width: Number(env.THUMB_MAX_WIDTH || 1200),
-    height: Number(env.THUMB_MAX_HEIGHT || 1200),
+    width,
+    height,
     metadata: 'none',
   };
   const outputOptions = {
     format: outputFormat,
-    quality: Number(env.THUMB_QUALITY || 82),
+    quality,
   };
   let response;
 
@@ -894,14 +904,14 @@ async function generateThumbnail(objectKey, env) {
     );
   }
 
-  const thumbnailKey = getThumbnailKey(
+  const renditionKey = getThumbnailKey(
     objectKey,
     sourcePrefix,
-    thumbPrefix,
+    destPrefix,
     outputExtension
   );
 
-  await env.MEDIA_BUCKET.put(thumbnailKey, response.body, {
+  await env.MEDIA_BUCKET.put(renditionKey, response.body, {
     httpMetadata: {
       cacheControl: `public, max-age=${env.THUMB_CACHE_MAX_AGE || 31536000}, immutable`,
       contentType: outputFormat,
@@ -912,16 +922,71 @@ async function generateThumbnail(objectKey, env) {
     },
   });
 
-  return { thumbnailKey, exifRecord };
+  return renditionKey;
 }
 
-async function removeThumbnail(objectKey, env) {
+async function generateDerivedImages(objectKey, env) {
   const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
-  const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
+
+  if (!shouldHandleImage(objectKey, sourcePrefix, getDerivedPrefixes(env))) {
+    return { thumbnailKey: null, displayKey: null, exifRecord: null };
+  }
+
+  const originalObject = await env.MEDIA_BUCKET.get(objectKey);
+
+  if (!originalObject) {
+    throw new Error(`Source object not found: ${objectKey}`);
+  }
+
+  const maxInputBytes = Number(env.THUMB_MAX_INPUT_BYTES || 20_000_000);
+
+  if (originalObject.size > maxInputBytes) {
+    console.warn(
+      `Skipping in-worker renditions for ${objectKey} (${(originalObject.size / 1_000_000).toFixed(1)} MB exceeds ${(maxInputBytes / 1_000_000).toFixed(0)} MB limit). Will be backfilled by thumbs:heal in CI.`
+    );
+    return { thumbnailKey: null, displayKey: null, exifRecord: null };
+  }
+
+  const originalBytes = await originalObject.arrayBuffer();
+
+  // Extract EXIF from the original image bytes before any processing
+  const rawExifTags = parseJpegExif(originalBytes);
+  const exifRecord = buildExifRecord(rawExifTags);
+
+  const thumbnailKey = await generateRendition(originalBytes, objectKey, env, {
+    destPrefix: normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb'),
+    width: Number(env.THUMB_MAX_WIDTH || 1200),
+    height: Number(env.THUMB_MAX_HEIGHT || 1200),
+    quality: Number(env.THUMB_QUALITY || 82),
+  });
+
+  let displayKey = null;
+
+  try {
+    displayKey = await generateRendition(originalBytes, objectKey, env, {
+      destPrefix: normalizePrefix(env.DISPLAY_DEST_PREFIX, 'photos-display'),
+      width: Number(env.DISPLAY_MAX_WIDTH || 2000),
+      height: Number(env.DISPLAY_MAX_HEIGHT || 2000),
+      quality: Number(env.DISPLAY_QUALITY || 80),
+    });
+  } catch (error) {
+    // A missing display rendition degrades gracefully (site falls back to
+    // the original image), so don't fail the whole message over it.
+    console.warn(
+      `Display rendition failed for ${objectKey}: ${error instanceof Error ? error.message : String(error)}`
+    );
+  }
+
+  return { thumbnailKey, displayKey, exifRecord };
+}
+
+async function removeDerivedImages(objectKey, env) {
+  const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
+  const [thumbPrefix, displayPrefix] = getDerivedPrefixes(env);
   const outputFormat = normalizeFormat(env.THUMB_OUTPUT_FORMAT);
   const outputExtension = formatToExtension[outputFormat];
 
-  if (!shouldHandleImage(objectKey, sourcePrefix, thumbPrefix)) {
+  if (!shouldHandleImage(objectKey, sourcePrefix, getDerivedPrefixes(env))) {
     return null;
   }
 
@@ -931,8 +996,15 @@ async function removeThumbnail(objectKey, env) {
     thumbPrefix,
     outputExtension
   );
+  const displayKey = getThumbnailKey(
+    objectKey,
+    sourcePrefix,
+    displayPrefix,
+    outputExtension
+  );
 
   await env.MEDIA_BUCKET.delete(thumbnailKey);
+  await env.MEDIA_BUCKET.delete(displayKey);
   return thumbnailKey;
 }
 
@@ -989,7 +1061,7 @@ function affectsPublishedMedia(objectKey, bucketName, env) {
   const manifestObjectKey = getManifestObjectKey(env);
   const captionsObjectKey = getCaptionsObjectKey(env);
   const exifObjectKey = getExifObjectKey(env);
-  const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
+  const derivedPrefixes = getDerivedPrefixes(env);
   const photoPrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
   const videoPrefix =
     env.VIDEO_SOURCE_PREFIX === undefined
@@ -1009,15 +1081,17 @@ function affectsPublishedMedia(objectKey, bucketName, env) {
     return false;
   }
 
-  if (thumbPrefix && normalizedKey.startsWith(thumbPrefix)) {
-    return false;
+  for (const derivedPrefix of derivedPrefixes) {
+    if (derivedPrefix && normalizedKey.startsWith(derivedPrefix)) {
+      return false;
+    }
   }
 
   if (bucketName && videoBucketName && bucketName === videoBucketName) {
     return isSupportedVideo(normalizedKey) && (!videoPrefix || normalizedKey.startsWith(videoPrefix));
   }
 
-  if (shouldHandleImage(normalizedKey, photoPrefix, thumbPrefix)) {
+  if (shouldHandleImage(normalizedKey, photoPrefix, derivedPrefixes)) {
     return true;
   }
 
@@ -1030,8 +1104,9 @@ export default {
     let shouldRefreshManifest = false;
     let shouldTriggerDeploy = false;
     const thumbnailOverrides = new Map();
+    const displayOverrides = new Map();
     const photoSourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
-    const thumbPrefix = normalizePrefix(env.THUMB_DEST_PREFIX, 'photos-thumb');
+    const derivedPrefixes = getDerivedPrefixes(env);
 
     for (const message of batch.messages) {
       const payload = message.body;
@@ -1048,11 +1123,12 @@ export default {
 
       try {
         if (isDeleteEvent(eventType)) {
-          const deletedThumbnailKey = await removeThumbnail(objectKey, env);
+          const deletedThumbnailKey = await removeDerivedImages(objectKey, env);
 
           if (deletedThumbnailKey) {
-            console.log(`Deleted thumbnail ${deletedThumbnailKey}`);
+            console.log(`Deleted derived images for ${objectKey}`);
             thumbnailOverrides.set(getPhotoRelativeStem(objectKey, env), null);
+            displayOverrides.set(getPhotoRelativeStem(objectKey, env), null);
           }
 
           // Remove EXIF data for deleted photos
@@ -1062,13 +1138,22 @@ export default {
             console.warn(`EXIF cleanup failed for ${objectKey}: ${exifError instanceof Error ? exifError.message : String(exifError)}`);
           }
         } else if (isCreateEvent(eventType) || !eventType) {
-          const { thumbnailKey, exifRecord } = await generateThumbnail(objectKey, env);
+          const { thumbnailKey, displayKey, exifRecord } =
+            await generateDerivedImages(objectKey, env);
 
           if (thumbnailKey) {
             console.log(`Generated thumbnail ${thumbnailKey}`);
             thumbnailOverrides.set(
               getPhotoRelativeStem(objectKey, env),
               thumbnailKey
+            );
+          }
+
+          if (displayKey) {
+            console.log(`Generated display rendition ${displayKey}`);
+            displayOverrides.set(
+              getPhotoRelativeStem(objectKey, env),
+              displayKey
             );
           }
 
@@ -1088,7 +1173,7 @@ export default {
           error instanceof Error ? error.message : String(error);
         const shouldPublishWithoutThumbnail =
           publishedMediaChanged &&
-          shouldHandleImage(objectKey, photoSourcePrefix, thumbPrefix);
+          shouldHandleImage(objectKey, photoSourcePrefix, derivedPrefixes);
 
         if (shouldPublishWithoutThumbnail) {
           console.error(
@@ -1115,6 +1200,7 @@ export default {
       try {
         manifest = await publishMediaManifest(env, {
           thumbnailOverrides,
+          displayOverrides,
         });
         console.log(
           `Published media manifest with ${manifest.photos.length} photos and ${manifest.videos.length} videos`

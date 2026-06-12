@@ -9,6 +9,7 @@ export interface Photo {
   weather?: string;
   country?: string;
   image: string;
+  display: string;
   thumbnail: string;
   description: string;
   location?: string;

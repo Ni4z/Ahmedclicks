@@ -5,6 +5,7 @@ export type SyncedPhotoAsset = {
   objectKey: string;
   relativePath: string;
   thumbnailObjectKey?: string | null;
+  displayObjectKey?: string | null;
   date: string;
 };
 
