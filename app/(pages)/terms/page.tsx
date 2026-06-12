@@ -1,3 +1,11 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Use | NiazPhotography',
+  description:
+    'Terms of use for the NiazPhotography portfolio, including copyright and licensing of all photography on the site.',
+};
+
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-dark">

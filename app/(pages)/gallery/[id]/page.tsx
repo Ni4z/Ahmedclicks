@@ -4,7 +4,8 @@ import { notFound } from 'next/navigation';
 import PhotoDetail from '@/components/gallery/PhotoDetail';
 import RelatedPhotos from '@/components/gallery/RelatedPhotos';
 import { getPhotos, getRelatedPhotos } from '@/lib/gallery';
-import { absoluteUrl } from '@/lib/site';
+import { absoluteUrl, siteConfig } from '@/lib/site';
+import type { Photo } from '@/lib/types';
 
 type PhotoDetailPageProps = {
   params: Promise<{
@@ -52,6 +53,38 @@ export async function generateMetadata({
   };
 }
 
+function buildPhotoJsonLd(photo: Photo) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ImageObject',
+    contentUrl: absoluteUrl(photo.image),
+    url: absoluteUrl(`/gallery/${photo.id}/`),
+    name: photo.title,
+    description:
+      photo.caption ||
+      `${photo.title} from the ${photo.category} collection at NiazPhotography.`,
+    creator: {
+      '@type': 'Person',
+      name: siteConfig.name,
+      url: absoluteUrl('/about/'),
+    },
+    copyrightNotice: siteConfig.name,
+    creditText: siteConfig.name,
+    acquireLicensePage: absoluteUrl('/prints/'),
+    datePublished: photo.date,
+    keywords: [photo.category, ...photo.tags].join(', '),
+    ...(photo.location || photo.country
+      ? {
+          contentLocation: {
+            '@type': 'Place',
+            name: [photo.location, photo.country].filter(Boolean).join(', '),
+          },
+        }
+      : {}),
+    ...(photo.camera ? { exifData: photo.camera } : {}),
+  };
+}
+
 export default async function PhotoDetailPage({
   params,
 }: PhotoDetailPageProps) {
@@ -72,6 +105,12 @@ export default async function PhotoDetailPage({
 
   return (
     <div className="min-h-screen bg-dark">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildPhotoJsonLd(photo)),
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6 py-16">
         <PhotoDetail
           photo={photo}

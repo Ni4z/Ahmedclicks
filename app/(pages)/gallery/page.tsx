@@ -1,6 +1,13 @@
+import type { Metadata } from 'next';
 import GalleryBrowser from '@/components/gallery/GalleryBrowser';
 import { getPhotoCategories, getPhotos } from '@/lib/gallery';
 import { withObjectStorageAssetPath } from '@/lib/media-assets';
+
+export const metadata: Metadata = {
+  title: 'Gallery | NiazPhotography',
+  description:
+    'Browse the full NiazPhotography archive of wildlife, landscape, astrophotography, roads, trees, and portrait work by category, tag, location, and year.',
+};
 
 export default function GalleryPage() {
   const photos = getPhotos();

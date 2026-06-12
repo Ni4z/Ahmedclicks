@@ -41,7 +41,14 @@ export default function PhotoGrid({
                 alt={photo.title}
                 loading="lazy"
                 decoding="async"
+                width={photo.width}
+                height={photo.height}
                 className="block w-full h-auto transition-transform duration-300 group-hover:scale-[1.02]"
+                style={
+                  photo.width && photo.height
+                    ? { aspectRatio: `${photo.width} / ${photo.height}` }
+                    : undefined
+                }
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-100" />
               <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-3 text-white">
