@@ -584,6 +584,18 @@ function normalizePhotoMetadataEntry(value) {
   const shutterSpeed = normalizePhotoMetadataString(value.shutterSpeed);
   const aperture = normalizePhotoMetadataString(value.aperture);
   const focalLength = normalizePhotoMetadataString(value.focalLength);
+  const width =
+    typeof value.width === 'number' &&
+    Number.isInteger(value.width) &&
+    value.width > 0
+      ? value.width
+      : undefined;
+  const height =
+    typeof value.height === 'number' &&
+    Number.isInteger(value.height) &&
+    value.height > 0
+      ? value.height
+      : undefined;
   const entry = {};
 
   if (tags.length > 0) {
@@ -632,6 +644,11 @@ function normalizePhotoMetadataEntry(value) {
 
   if (focalLength) {
     entry.focalLength = focalLength;
+  }
+
+  if (width && height) {
+    entry.width = width;
+    entry.height = height;
   }
 
   return entry;
@@ -816,7 +833,7 @@ async function syncPhotoMetadataPlaceholders(photoEntries) {
         const exif = publishedExif[relativePath];
         let merged = false;
 
-        for (const field of ['camera', 'lens', 'iso', 'shutterSpeed', 'aperture', 'focalLength']) {
+        for (const field of ['camera', 'lens', 'iso', 'shutterSpeed', 'aperture', 'focalLength', 'width', 'height']) {
           if (exif[field] !== undefined && existing[field] === undefined) {
             existing[field] = exif[field];
             merged = true;

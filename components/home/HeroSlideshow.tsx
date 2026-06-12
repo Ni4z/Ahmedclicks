@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Photo } from '@/lib/types';
 
 type HeroPhoto = Pick<Photo, 'title' | 'image' | 'date'>;
@@ -57,16 +57,22 @@ function getRecentDisplayPhotos(
     (photo) => getSortableTimestamp(photo.date) >= cutoffTime
   );
 
-  if (recentPhotos.length > 0) {
-    return shufflePhotos(recentPhotos).slice(0, maxHeroSlides);
+  if (recentPhotos.length === 0) {
+    return newestFirstPhotos.slice(0, maxHeroSlides);
   }
 
-  return newestFirstPhotos.slice(0, maxHeroSlides);
+  // Keep the newest photo as slide one so the server-rendered LCP image
+  // never swaps after hydration; only the upcoming slides are shuffled.
+  const [firstPhoto, ...laterPhotos] = recentPhotos;
+
+  return [firstPhoto, ...shufflePhotos(laterPhotos)].slice(0, maxHeroSlides);
 }
 
 export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   const [displayPhotos, setDisplayPhotos] = useState(() =>
     getInitialDisplayPhotos(photos)
   );
@@ -78,7 +84,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
   }, [photos]);
 
   useEffect(() => {
-    if (displayPhotos.length <= 1) {
+    if (displayPhotos.length <= 1 || isPaused || prefersReducedMotion) {
       return undefined;
     }
 
@@ -88,7 +94,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [displayPhotos.length]);
+  }, [displayPhotos.length, isPaused, prefersReducedMotion]);
 
   if (displayPhotos.length === 0) {
     return (
@@ -113,7 +119,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
 
   const slideVariants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 1000 : -1000,
+      x: prefersReducedMotion ? 0 : dir > 0 ? 1000 : -1000,
       opacity: 0,
     }),
     center: {
@@ -123,13 +129,17 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
     },
     exit: (dir: number) => ({
       zIndex: 0,
-      x: dir < 0 ? 1000 : -1000,
+      x: prefersReducedMotion ? 0 : dir < 0 ? 1000 : -1000,
       opacity: 0,
     }),
   };
 
   return (
-    <div className="relative h-[100svh] w-full overflow-hidden md:h-screen">
+    <div
+      className="relative h-[100svh] w-full overflow-hidden md:h-screen"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <AnimatePresence initial={false} custom={direction} mode="wait">
         <motion.div
           key={currentSlide}
@@ -195,7 +205,7 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
 
       {/* Scroll Indicator */}
       <motion.div
-        animate={{ y: [0, 10, 0] }}
+        animate={prefersReducedMotion ? undefined : { y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
         className="absolute bottom-8 right-8 hidden text-sm tracking-widest text-white/75 md:block"
       >

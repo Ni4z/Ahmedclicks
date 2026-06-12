@@ -1,6 +1,6 @@
 'use client';
 
-import { useDeferredValue, useEffect, useMemo, useState } from 'react';
+import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import CategoryFilter from '@/components/gallery/CategoryFilter';
 import GalleryPagination from '@/components/gallery/GalleryPagination';
 import PhotoGrid from '@/components/gallery/PhotoGrid';
@@ -262,6 +262,71 @@ export default function GalleryBrowser({
   const [activeFocalLength, setActiveFocalLength] = useState(ALL_FOCAL_LENGTHS);
   const [sortOrder, setSortOrder] = useState(DEFAULT_SORT);
   const deferredSearchQuery = useDeferredValue(searchQuery.trim().toLowerCase());
+  const isHydratingFromUrl = useRef(true);
+
+  // Restore filters from the URL on mount so filtered views are shareable
+  // and survive back navigation from a photo detail page.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const read = (key: string) => params.get(key)?.trim() || '';
+
+    if (read('category')) setActiveCategory(read('category'));
+    if (read('tag')) setActiveTag(read('tag'));
+    if (read('weather')) setActiveWeather(read('weather'));
+    if (read('country')) setActiveCountry(read('country'));
+    if (read('location')) setActiveLocation(read('location'));
+    if (read('year')) setActiveYear(read('year'));
+    if (read('focal')) setActiveFocalLength(read('focal'));
+    if (read('q')) setSearchQuery(read('q'));
+    if (read('sort')) setSortOrder(read('sort'));
+
+    const page = Number.parseInt(read('page'), 10);
+    if (Number.isInteger(page) && page > 1) setCurrentPage(page);
+
+    const timeoutId = window.setTimeout(() => {
+      isHydratingFromUrl.current = false;
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
+
+  useEffect(() => {
+    if (isHydratingFromUrl.current) return;
+
+    const params = new URLSearchParams();
+    const write = (key: string, value: string, defaultValue: string) => {
+      if (value !== defaultValue) params.set(key, value);
+    };
+
+    write('category', activeCategory, ALL_CATEGORIES);
+    write('tag', activeTag, ALL_TAGS);
+    write('weather', activeWeather, ALL_WEATHER);
+    write('country', activeCountry, ALL_COUNTRIES);
+    write('location', activeLocation, ALL_LOCATIONS);
+    write('year', activeYear, ALL_YEARS);
+    write('focal', activeFocalLength, ALL_FOCAL_LENGTHS);
+    write('q', searchQuery.trim(), '');
+    write('sort', sortOrder, DEFAULT_SORT);
+    if (currentPage > 1) params.set('page', String(currentPage));
+
+    const query = params.toString();
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`
+    );
+  }, [
+    activeCategory,
+    activeCountry,
+    activeFocalLength,
+    activeLocation,
+    activeWeather,
+    activeTag,
+    activeYear,
+    searchQuery,
+    sortOrder,
+    currentPage,
+  ]);
 
   const filterOptions = useMemo(
     () => [
@@ -434,6 +499,7 @@ export default function GalleryBrowser({
   );
 
   useEffect(() => {
+    if (isHydratingFromUrl.current) return;
     setCurrentPage(1);
   }, [
     activeCategory,

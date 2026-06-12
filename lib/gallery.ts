@@ -126,6 +126,8 @@ type PhotoMetadataEntry = {
   shutterSpeed?: string;
   aperture?: string;
   focalLength?: string;
+  width?: number;
+  height?: number;
 };
 
 function normalizeCategoryKey(value: string): string {
@@ -245,6 +247,9 @@ function normalizePhotoMetadataEntry(value: unknown): PhotoMetadataEntry {
       ? rawEntry.iso
       : undefined;
 
+  const width = normalizeMetadataDimension(rawEntry.width);
+  const height = normalizeMetadataDimension(rawEntry.height);
+
   const series = normalizeMetadataString(rawEntry.series);
   const rawWeather = normalizeMetadataString(rawEntry.weather);
   const weather = rawWeather && VALID_WEATHER_VALUES.has(rawWeather) ? rawWeather : undefined;
@@ -263,7 +268,15 @@ function normalizePhotoMetadataEntry(value: unknown): PhotoMetadataEntry {
     shutterSpeed: normalizeMetadataString(rawEntry.shutterSpeed),
     aperture: normalizeMetadataString(rawEntry.aperture),
     focalLength: normalizeMetadataString(rawEntry.focalLength),
+    width,
+    height,
   };
+}
+
+function normalizeMetadataDimension(value: unknown): number | undefined {
+  return typeof value === 'number' && Number.isInteger(value) && value > 0
+    ? value
+    : undefined;
 }
 
 function normalizeRelativePath(value: string): string {
@@ -365,6 +378,8 @@ function createPhotoRecord(
     shutterSpeed: metadata.shutterSpeed,
     aperture: metadata.aperture,
     focalLength: metadata.focalLength,
+    width: metadata.width,
+    height: metadata.height,
     date: file.date,
   };
 }

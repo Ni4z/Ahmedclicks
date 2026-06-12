@@ -14,7 +14,9 @@
     "iso": 3200,
     "shutterSpeed": "1/800",
     "aperture": "f/3.2",
-    "focalLength": "193mm"
+    "focalLength": "193mm",
+    "width": 3072,
+    "height": 4096
   },
   "Trees/Emerald Mist.jpg": {
     "tags": [
@@ -32,7 +34,9 @@
     "iso": 250,
     "shutterSpeed": "1/320",
     "aperture": "f/5.6",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4511,
+    "height": 6766
   },
   "wildlife/Twin Flight.jpg": {
     "tags": [
@@ -50,7 +54,9 @@
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 3037,
+    "height": 2025
   },
   "wildlife/Hidden Monarch.jpg": {
     "tags": [
@@ -66,7 +72,9 @@
     "iso": 200,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 3072,
+    "height": 4608
   },
   "wildlife/Buzzard.jpg": {
     "tags": [
@@ -82,7 +90,9 @@
     "iso": 16000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2453,
+    "height": 3159
   },
   "wildlife/Raven.jpg": {
     "tags": [
@@ -98,7 +108,9 @@
     "iso": 500,
     "shutterSpeed": "1/2000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 3338,
+    "height": 4187
   },
   "wildlife/Kite.jpg": {
     "tags": [
@@ -115,7 +127,9 @@
     "iso": 800,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 4873,
+    "height": 3612
   },
   "landscape/Mist_Spire.jpg": {
     "tags": [
@@ -134,7 +148,9 @@
     "iso": 125,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1332
   },
   "landscape/Sunrise.jpg": {
     "tags": [
@@ -151,7 +167,9 @@
     "iso": 100,
     "shutterSpeed": "1/500",
     "aperture": "f/13.0",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 7008,
+    "height": 4672
   },
   "Trees/Woodland_Flame.jpg": {
     "tags": [
@@ -168,7 +186,9 @@
     "iso": 500,
     "shutterSpeed": "1/2000",
     "aperture": "f/5.6",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 7008,
+    "height": 4672
   },
   "Trees/Sunflower.jpg": {
     "tags": [
@@ -184,7 +204,9 @@
     "iso": 250,
     "shutterSpeed": "1/320",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 7008,
+    "height": 4672
   },
   "astrophotography/DSC05884-2.jpg": {
     "tags": [
@@ -203,7 +225,9 @@
     "iso": 1250,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2240,
+    "height": 2800
   },
   "astrophotography/DSC05884-3.jpg": {
     "tags": [
@@ -221,7 +245,9 @@
     "iso": 1250,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2240,
+    "height": 2800
   },
   "Humans/DSC01070-2.jpg": {
     "tags": [
@@ -239,7 +265,9 @@
     "iso": 125,
     "shutterSpeed": "1/30",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 1866,
+    "height": 2800
   },
   "wildlife/Robin on Perch.jpg": {
     "tags": [
@@ -256,7 +284,9 @@
     "iso": 3200,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Robin.jpg": {
     "tags": [
@@ -273,7 +303,9 @@
     "iso": 1600,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Scanning Landscape.jpg": {
     "tags": [
@@ -291,7 +323,9 @@
     "iso": 250,
     "shutterSpeed": "1/1500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Flinch.jpg": {
     "tags": [
@@ -308,7 +342,9 @@
     "iso": 1000,
     "shutterSpeed": "1/350",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Flinch Sunkissed.jpg": {
     "tags": [
@@ -325,7 +361,9 @@
     "iso": 400,
     "shutterSpeed": "1/350",
     "aperture": "f/6.7",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Juvenile BlackBird.jpg": {
     "tags": [
@@ -341,7 +379,9 @@
     "iso": 1600,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/BullFlinch Tilted.jpg": {
     "tags": [
@@ -358,7 +398,9 @@
     "iso": 6400,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Squirrel 2.jpg": {
     "tags": [
@@ -374,7 +416,9 @@
     "iso": 10000,
     "shutterSpeed": "1/250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Squirrel 1.jpg": {
     "tags": [
@@ -390,7 +434,9 @@
     "iso": 12800,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Squirrel 3.jpg": {
     "tags": [
@@ -406,7 +452,9 @@
     "iso": 12800,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "588mm"
+    "focalLength": "588mm",
+    "width": 1638,
+    "height": 2048
   },
   "landscape/Contrast in Forest.jpg": {
     "tags": [
@@ -423,7 +471,9 @@
     "iso": 500,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "211mm"
+    "focalLength": "211mm",
+    "width": 2048,
+    "height": 1365
   },
   "landscape/Lets Walk.jpg": {
     "tags": [
@@ -440,7 +490,9 @@
     "iso": 160,
     "shutterSpeed": "1/350",
     "aperture": "f/6.7",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 2048,
+    "height": 1365
   },
   "Trees/New Growth.jpg": {
     "tags": [
@@ -456,7 +508,9 @@
     "iso": 2000,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 2048,
+    "height": 1365
   },
   "Trees/New Branches.jpg": {
     "tags": [
@@ -472,7 +526,9 @@
     "iso": 2000,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 2048,
+    "height": 1365
   },
   "Trees/New Leaves.jpg": {
     "tags": [
@@ -489,7 +545,9 @@
     "iso": 1600,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 1365,
+    "height": 2048
   },
   "Trees/Distinguished.jpg": {
     "tags": [
@@ -506,7 +564,9 @@
     "iso": 500,
     "shutterSpeed": "1/350",
     "aperture": "f/11.0",
-    "focalLength": "202mm"
+    "focalLength": "202mm",
+    "width": 1365,
+    "height": 2048
   },
   "wildlife/Confused Bull Flinch.jpg": {
     "tags": [
@@ -522,7 +582,9 @@
     "iso": 6400,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Wild Swan 4.jpg": {
     "tags": [
@@ -538,7 +600,9 @@
     "iso": 10000,
     "shutterSpeed": "1/500",
     "aperture": "f/9.5",
-    "focalLength": "225mm"
+    "focalLength": "225mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Wild Swan 5.jpg": {
     "tags": [
@@ -554,7 +618,9 @@
     "iso": 2500,
     "shutterSpeed": "1/500",
     "aperture": "f/9.5",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Wild Swan 2.jpg": {
     "tags": [
@@ -570,7 +636,9 @@
     "iso": 5000,
     "shutterSpeed": "1/3000",
     "aperture": "f/5.6",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Wild Swan 3.jpg": {
     "tags": [
@@ -586,7 +654,9 @@
     "iso": 6400,
     "shutterSpeed": "1/1500",
     "aperture": "f/5.6",
-    "focalLength": "205mm"
+    "focalLength": "205mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Wild Swan 1.jpg": {
     "tags": [
@@ -602,7 +672,9 @@
     "iso": 2000,
     "shutterSpeed": "1/1500",
     "aperture": "f/5.6",
-    "focalLength": "259mm"
+    "focalLength": "259mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Blau Meise 1.jpg": {
     "tags": [
@@ -618,7 +690,9 @@
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1152
   },
   "wildlife/Portrait of Blau Meise.jpg": {
     "tags": [
@@ -634,7 +708,9 @@
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Blau Meise 2.jpg": {
     "tags": [
@@ -650,7 +726,9 @@
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1152
   },
   "wildlife/Blau Meise 3.jpg": {
     "tags": [
@@ -666,7 +744,9 @@
     "iso": 2500,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "582mm"
+    "focalLength": "582mm",
+    "width": 2048,
+    "height": 1152
   },
   "Metropolis/Standing High .jpg": {
     "tags": [
@@ -684,7 +764,9 @@
     "iso": 160,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1365,
+    "height": 2048
   },
   "wildlife/Isolated.jpg": {
     "tags": [
@@ -701,7 +783,9 @@
     "iso": 1000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 5300,
+    "height": 3662
   },
   "Metropolis/Muenster.jpg": {
     "tags": [
@@ -718,7 +802,9 @@
     "iso": 500,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "183mm"
+    "focalLength": "183mm",
+    "width": 3072,
+    "height": 4096
   },
   "Roads/Blending in the Mist.JPEG": {
     "tags": [
@@ -735,7 +821,9 @@
     "iso": 125,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 1634,
+    "height": 2048
   },
   "astrophotography/Pale Blue Dot.jpg": {
     "tags": [
@@ -753,7 +841,9 @@
     "iso": 100,
     "shutterSpeed": "15",
     "aperture": "f/1.4",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 2048,
+    "height": 1365
   },
   "astrophotography/Beyond Stars.jpg": {
     "tags": [
@@ -771,7 +861,9 @@
     "iso": 100,
     "shutterSpeed": "3",
     "aperture": "f/1.4",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 2048,
+    "height": 1365
   },
   "wildlife/White Angel.jpg": {
     "tags": [
@@ -788,7 +880,9 @@
     "iso": 1250,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2470,
+    "height": 3088
   },
   "wildlife/Cormorant .jpg": {
     "tags": [
@@ -805,7 +899,9 @@
     "iso": 200,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1701,
+    "height": 2126
   },
   "wildlife/Eurasian Sparrowhawk.jpg": {
     "tags": [
@@ -821,7 +917,9 @@
     "iso": 320,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "594mm"
+    "focalLength": "594mm",
+    "width": 1716,
+    "height": 2145
   },
   "wildlife/Sparrow Hawk.jpg": {
     "tags": [
@@ -837,7 +935,9 @@
     "iso": 200,
     "shutterSpeed": "1/1500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/The Singer.jpg": {
     "tags": [
@@ -852,7 +952,9 @@
     "iso": 320,
     "shutterSpeed": "1/2000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1638,
+    "height": 2048
   },
   "wildlife/Soft Perch.jpg": {
     "tags": [
@@ -867,7 +969,9 @@
     "iso": 640,
     "shutterSpeed": "1/350",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 3496,
+    "height": 2331
   },
   "wildlife/krestel.jpg": {
     "tags": [
@@ -883,7 +987,9 @@
     "iso": 100,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2183,
+    "height": 1455
   },
   "Metropolis/Burning Sky.jpg": {
     "tags": [
@@ -900,7 +1006,9 @@
     "iso": 250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4537,
+    "height": 6806
   },
   "wildlife/Silent Glide.jpg": {
     "tags": [
@@ -915,7 +1023,9 @@
     "iso": 500,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1365
   },
   "wildlife/Marsh Walker.jpg": {
     "tags": [
@@ -930,7 +1040,9 @@
     "iso": 8000,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 3303,
+    "height": 2202
   },
   "wildlife/Dawn Flock.jpg": {
     "tags": [
@@ -945,7 +1057,9 @@
     "iso": 800,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 7008,
+    "height": 4672
   },
   "wildlife/Midnight_Grace.jpg": {
     "tags": [
@@ -960,7 +1074,9 @@
     "iso": 2500,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 7008,
+    "height": 4672
   },
   "wildlife/Amber_Grace.jpg": {
     "tags": [
@@ -975,7 +1091,9 @@
     "iso": 4000,
     "shutterSpeed": "1/1600",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2952,
+    "height": 4672
   },
   "wildlife/Forest_Ascend.jpg": {
     "tags": [
@@ -990,7 +1108,9 @@
     "iso": 8000,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 3115,
+    "height": 4672
   },
   "wildlife/Food_Secured.jpg": {
     "tags": [
@@ -1006,7 +1126,9 @@
     "iso": 1600,
     "shutterSpeed": "1/3200",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 3075,
+    "height": 3570
   },
   "wildlife/Wings_of_Angel.jpg": {
     "tags": [
@@ -1021,7 +1143,9 @@
     "iso": 640,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 5145,
+    "height": 3420
   },
   "Trees/DSC08391.jpg": {
     "tags": [
@@ -1036,7 +1160,9 @@
     "iso": 100,
     "shutterSpeed": "1/160",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 1866,
+    "height": 2800
   },
   "Trees/mushroom.jpg": {
     "tags": [
@@ -1051,7 +1177,9 @@
     "iso": 5000,
     "shutterSpeed": "1/80",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 4672,
+    "height": 7008
   },
   "Trees/DSC04870-3.jpg": {
     "tags": [
@@ -1066,7 +1194,9 @@
     "iso": 200,
     "shutterSpeed": "1/1000",
     "aperture": "f/2.8",
-    "focalLength": "103mm"
+    "focalLength": "103mm",
+    "width": 2628,
+    "height": 4672
   },
   "wildlife/Tufted Duck.jpg": {
     "tags": [
@@ -1082,7 +1212,9 @@
     "iso": 400,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "588mm"
+    "focalLength": "588mm",
+    "width": 3114,
+    "height": 3893
   },
   "wildlife/DSC01196.jpg": {
     "tags": [
@@ -1097,7 +1229,9 @@
     "iso": 3200,
     "shutterSpeed": "1/1250",
     "aperture": "f/2.8",
-    "focalLength": "191mm"
+    "focalLength": "191mm",
+    "width": 2557,
+    "height": 3410
   },
   "Humans/DSC00975.jpg": {
     "tags": [
@@ -1114,7 +1248,9 @@
     "iso": 1000,
     "shutterSpeed": "1/50",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 1866,
+    "height": 2800
   },
   "Trees/DSC08854.jpg": {
     "tags": [
@@ -1129,7 +1265,9 @@
     "iso": 125,
     "shutterSpeed": "1/800",
     "aperture": "f/2.8",
-    "focalLength": "28mm"
+    "focalLength": "28mm",
+    "width": 1866,
+    "height": 2800
   },
   "Trees/DSC08305.jpg": {
     "tags": [
@@ -1144,7 +1282,9 @@
     "iso": 500,
     "shutterSpeed": "1/320",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1866,
+    "height": 2800
   },
   "Trees/DSC08308-2.jpg": {
     "tags": [
@@ -1159,7 +1299,9 @@
     "iso": 3200,
     "shutterSpeed": "1/320",
     "aperture": "f/5.6",
-    "focalLength": "234mm"
+    "focalLength": "234mm",
+    "width": 1866,
+    "height": 2800
   },
   "Trees/DSC08375.jpg": {
     "tags": [
@@ -1174,7 +1316,9 @@
     "iso": 200,
     "shutterSpeed": "1/160",
     "aperture": "f/2.8",
-    "focalLength": "29mm"
+    "focalLength": "29mm",
+    "width": 2100,
+    "height": 2800
   },
   "Trees/DSC08349.jpg": {
     "tags": [
@@ -1189,7 +1333,9 @@
     "iso": 1000,
     "shutterSpeed": "1/500",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 1867,
+    "height": 2800
   },
   "Trees/DSC08377.jpg": {
     "tags": [
@@ -1204,7 +1350,9 @@
     "iso": 200,
     "shutterSpeed": "1/160",
     "aperture": "f/2.8",
-    "focalLength": "29mm"
+    "focalLength": "29mm",
+    "width": 1866,
+    "height": 2800
   },
   "wildlife/DSC03943-2.jpg": {
     "tags": [
@@ -1219,7 +1367,9 @@
     "iso": 6400,
     "shutterSpeed": "1/2500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC05063.jpg": {
     "tags": [
@@ -1234,7 +1384,9 @@
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "594mm"
+    "focalLength": "594mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC05266.jpg": {
     "tags": [
@@ -1249,7 +1401,9 @@
     "iso": 2000,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC05249.jpg": {
     "tags": [
@@ -1264,7 +1418,9 @@
     "iso": 800,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "582mm"
+    "focalLength": "582mm",
+    "width": 2800,
+    "height": 1575
   },
   "wildlife/DSC03370.jpg": {
     "tags": [
@@ -1280,7 +1436,9 @@
     "iso": 12800,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 2240,
+    "height": 2800
   },
   "wildlife/DSC05063-3.jpg": {
     "tags": [
@@ -1295,7 +1453,9 @@
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "594mm"
+    "focalLength": "594mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC03854.jpg": {
     "tags": [
@@ -1310,7 +1470,9 @@
     "iso": 10000,
     "shutterSpeed": "1/2500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC05729.jpg": {
     "tags": [
@@ -1326,7 +1488,9 @@
     "iso": 400,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "588mm"
+    "focalLength": "588mm",
+    "width": 2800,
+    "height": 1867
   },
   "wildlife/DSC03457-2.jpg": {
     "tags": [
@@ -1341,7 +1505,9 @@
     "iso": 2500,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1867
   },
   "wildlife/DSC05831.jpg": {
     "tags": [
@@ -1356,7 +1522,9 @@
     "iso": 800,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1575
   },
   "wildlife/DSC05784.jpg": {
     "tags": [
@@ -1371,7 +1539,9 @@
     "iso": 5000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2240,
+    "height": 2800
   },
   "wildlife/DSC05373.jpg": {
     "tags": [
@@ -1387,7 +1557,9 @@
     "iso": 1600,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2240,
+    "height": 2800
   },
   "wildlife/DSC05165.jpg": {
     "tags": [
@@ -1402,7 +1574,9 @@
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "500mm"
+    "focalLength": "500mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC04928-6.jpg": {
     "tags": [
@@ -1417,7 +1591,9 @@
     "iso": 1000,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC05021.jpg": {
     "tags": [
@@ -1432,7 +1608,9 @@
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC05143.jpg": {
     "tags": [
@@ -1447,7 +1625,9 @@
     "iso": 800,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "518mm"
+    "focalLength": "518mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC04214-2.jpg": {
     "tags": [
@@ -1462,7 +1642,9 @@
     "iso": 500,
     "shutterSpeed": "1/400",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC05094-2.jpg": {
     "tags": [
@@ -1477,7 +1659,9 @@
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/5.6",
-    "focalLength": "284mm"
+    "focalLength": "284mm",
+    "width": 2800,
+    "height": 1575
   },
   "wildlife/DSC05230.jpg": {
     "country": "Germany",
@@ -1486,7 +1670,9 @@
     "iso": 1250,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC03694.jpg": {
     "tags": [
@@ -1501,7 +1687,9 @@
     "iso": 10000,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "524mm"
+    "focalLength": "524mm",
+    "width": 2240,
+    "height": 2800
   },
   "wildlife/DSC05033.jpg": {
     "tags": [
@@ -1516,7 +1704,9 @@
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1575
   },
   "wildlife/DSC03523.jpg": {
     "tags": [
@@ -1532,7 +1722,9 @@
     "iso": 1600,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "576mm"
+    "focalLength": "576mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC05232.jpg": {
     "tags": [
@@ -1547,7 +1739,9 @@
     "iso": 800,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC05795.jpg": {
     "tags": [
@@ -1562,7 +1756,9 @@
     "iso": 1600,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC04973-2.jpg": {
     "tags": [
@@ -1578,7 +1774,9 @@
     "iso": 640,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1575
   },
   "wildlife/DSC05874.jpg": {
     "tags": [
@@ -1593,7 +1791,9 @@
     "iso": 500,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2239,
+    "height": 2800
   },
   "wildlife/DSC04968.jpg": {
     "tags": [
@@ -1609,7 +1809,9 @@
     "iso": 500,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "419mm"
+    "focalLength": "419mm",
+    "width": 2800,
+    "height": 1575
   },
   "wildlife/DSC08207.jpg": {
     "tags": [
@@ -1624,7 +1826,9 @@
     "iso": 8000,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC03397-2.jpg": {
     "tags": [
@@ -1639,7 +1843,9 @@
     "iso": 8000,
     "shutterSpeed": "1/640",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2240,
+    "height": 2800
   },
   "wildlife/DSC03550.jpg": {
     "tags": [
@@ -1655,7 +1861,9 @@
     "iso": 800,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "576mm"
+    "focalLength": "576mm",
+    "width": 2099,
+    "height": 2800
   },
   "wildlife/DSC05119.jpg": {
     "tags": [
@@ -1670,7 +1878,9 @@
     "iso": 1600,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "588mm"
+    "focalLength": "588mm",
+    "width": 2800,
+    "height": 1866
   },
   "wildlife/DSC05680.jpg": {
     "tags": [
@@ -1685,7 +1895,9 @@
     "iso": 5000,
     "shutterSpeed": "1/320",
     "aperture": "f/6.3",
-    "focalLength": "444mm"
+    "focalLength": "444mm",
+    "width": 2099,
+    "height": 2800
   },
   "wildlife/DSC05091-2.jpg": {
     "tags": [
@@ -1700,7 +1912,9 @@
     "iso": 500,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "553mm"
+    "focalLength": "553mm",
+    "width": 2800,
+    "height": 1575
   },
   "wildlife/DSC05130.jpg": {
     "tags": [
@@ -1715,7 +1929,9 @@
     "iso": 200,
     "shutterSpeed": "1/800",
     "aperture": "f/6.3",
-    "focalLength": "571mm"
+    "focalLength": "571mm",
+    "width": 2100,
+    "height": 2800
   },
   "wildlife/DSC05324.jpg": {
     "tags": [
@@ -1730,7 +1946,9 @@
     "iso": 2000,
     "shutterSpeed": "1/1250",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2239,
+    "height": 2800
   },
   "wildlife/DSC05293.jpg": {
     "tags": [
@@ -1745,7 +1963,9 @@
     "iso": 1250,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2800,
+    "height": 1866
   },
   "Roads/DSC03005.jpg": {
     "weather": "Winter",
@@ -1757,7 +1977,9 @@
     "iso": 2500,
     "shutterSpeed": "1/640",
     "aperture": "f/7.1",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1866,
+    "height": 2800
   },
   "landscape/DSC04722-2.jpg": {
     "weather": "Winter",
@@ -1769,7 +1991,9 @@
     "iso": 4000,
     "shutterSpeed": "1/4000",
     "aperture": "f/5.6",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 2800,
+    "height": 1574
   },
   "Roads/DSC00951.jpg": {
     "tags": [
@@ -1784,7 +2008,9 @@
     "iso": 2000,
     "shutterSpeed": "1/50",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 2800,
+    "height": 1575
   },
   "Me/Me.jpg": {
     "country": "Germany",
@@ -1793,7 +2019,9 @@
     "iso": 250,
     "shutterSpeed": "1/800",
     "aperture": "f/2.2",
-    "focalLength": "50mm"
+    "focalLength": "50mm",
+    "width": 2699,
+    "height": 2800
   },
   "landscape/DSC04689-3.jpg": {
     "weather": "Winter",
@@ -1805,7 +2033,9 @@
     "iso": 4000,
     "shutterSpeed": "1/4000",
     "aperture": "f/6.3",
-    "focalLength": "565mm"
+    "focalLength": "565mm",
+    "width": 2800,
+    "height": 1574
   },
   "Roads/Breathing Fresh Air as the Mist Fades.jpg": {
     "weather": "Spring",
@@ -1817,7 +2047,9 @@
     "iso": 4000,
     "shutterSpeed": "1/500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 4672,
+    "height": 7008
   },
   "Roads/Contrast in the forest.jpg": {
     "weather": "Spring",
@@ -1829,7 +2061,9 @@
     "iso": 3200,
     "shutterSpeed": "1/200",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 4672,
+    "height": 5840
   },
   "landscape/Contrast in the Field.jpg": {
     "weather": "Spring",
@@ -1841,7 +2075,9 @@
     "iso": 200,
     "shutterSpeed": "1/200",
     "aperture": "f/5.6",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 6796,
+    "height": 4531
   },
   "Trees/Standing High.jpg": {
     "weather": "Spring",
@@ -1853,7 +2089,9 @@
     "iso": 160,
     "shutterSpeed": "1/350",
     "aperture": "f/2.8",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 4672,
+    "height": 7008
   },
   "Trees/An end of an chapter.jpg": {
     "weather": "Spring",
@@ -1865,7 +2103,9 @@
     "iso": 160,
     "shutterSpeed": "1/350",
     "aperture": "f/2.8",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 4672,
+    "height": 7008
   },
   "Roads/Lets Take a Walk.jpg": {
     "weather": "Spring",
@@ -1877,7 +2117,9 @@
     "iso": 200,
     "shutterSpeed": "1/500",
     "aperture": "f/2.8",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 4672,
+    "height": 7008
   },
   "wildlife/Veins of the wild.jpg": {
     "tags": [
@@ -1892,7 +2134,9 @@
     "iso": 160,
     "shutterSpeed": "1/200",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1388
   },
   "wildlife/Ambient .jpg": {
     "tags": [
@@ -1907,7 +2151,9 @@
     "iso": 1600,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1152,
+    "height": 2048
   },
   "wildlife/Patterns in the Green.jpg": {
     "tags": [
@@ -1922,7 +2168,9 @@
     "iso": 1000,
     "shutterSpeed": "1/750",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1152,
+    "height": 2048
   },
   "wildlife/Great crested grebe.jpg": {
     "tags": [
@@ -1938,7 +2186,9 @@
     "iso": 12800,
     "shutterSpeed": "1/350",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1365
   },
   "wildlife/Red against Green.jpg": {
     "tags": [
@@ -1953,7 +2203,9 @@
     "iso": 5000,
     "shutterSpeed": "1/3000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1365
   },
   "wildlife/Long Tail Tit.jpg": {
     "tags": [
@@ -1968,7 +2220,9 @@
     "iso": 800,
     "shutterSpeed": "1/1500",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1365
   },
   "wildlife/Common Duck.jpg": {
     "tags": [
@@ -1984,7 +2238,9 @@
     "iso": 3200,
     "shutterSpeed": "1/1500",
     "aperture": "f/5.6",
-    "focalLength": "295mm"
+    "focalLength": "295mm",
+    "width": 2048,
+    "height": 1365
   },
   "Trees/Lost in Green.jpg": {
     "weather": "Spring",
@@ -1996,7 +2252,9 @@
     "iso": 3200,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 2048,
+    "height": 1365
   },
   "Trees/Lost in the woods .jpg": {
     "weather": "Spring",
@@ -2008,7 +2266,9 @@
     "iso": 51200,
     "shutterSpeed": "1/2000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 2048,
+    "height": 1365
   },
   "Trees/Moon Lost in the Green.jpg": {
     "weather": "Spring",
@@ -2020,7 +2280,9 @@
     "iso": 500,
     "shutterSpeed": "1/2000",
     "aperture": "f/5.6",
-    "focalLength": "202mm"
+    "focalLength": "202mm",
+    "width": 2048,
+    "height": 1365
   },
   "Trees/Forest Bed.jpg": {
     "weather": "Spring",
@@ -2032,7 +2294,9 @@
     "iso": 160,
     "shutterSpeed": "1/750",
     "aperture": "f/1.4",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 1365,
+    "height": 2048
   },
   "Trees/Oxygen Factory.jpg": {
     "weather": "Spring",
@@ -2044,7 +2308,9 @@
     "iso": 160,
     "shutterSpeed": "1/750",
     "aperture": "f/4.5",
-    "focalLength": "14mm"
+    "focalLength": "14mm",
+    "width": 4566,
+    "height": 6791
   },
   "wildlife/Pegion Portraits.jpg": {
     "tags": [
@@ -2053,7 +2319,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
-    "year": 2026
+    "year": 2026,
+    "width": 3738,
+    "height": 4672
   },
   "wildlife/Pegion Portraits-7.jpg": {
     "tags": [
@@ -2062,7 +2330,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
-    "year": 2026
+    "year": 2026,
+    "width": 4672,
+    "height": 5840
   },
   "wildlife/Pegion Portraits-2.jpg": {
     "tags": [
@@ -2071,7 +2341,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
-    "year": 2026
+    "year": 2026,
+    "width": 4298,
+    "height": 5373
   },
   "wildlife/Pegion Portraits-3.jpg": {
     "tags": [
@@ -2080,7 +2352,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
-    "year": 2026
+    "year": 2026,
+    "width": 4672,
+    "height": 5840
   },
   "wildlife/Pegion Portraits-5.jpg": {
     "tags": [
@@ -2089,7 +2363,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
-    "year": 2026
+    "year": 2026,
+    "width": 4672,
+    "height": 5840
   },
   "wildlife/Pegion Portraits-6.jpg": {
     "tags": [
@@ -2098,7 +2374,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
-    "year": 2026
+    "year": 2026,
+    "width": 4672,
+    "height": 5840
   },
   "wildlife/Pegion Portraits-4.jpg": {
     "tags": [
@@ -2107,7 +2385,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Saarn-Mendener Ruhrauen, Mülheim",
-    "year": 2026
+    "year": 2026,
+    "width": 4672,
+    "height": 5840
   },
   "wildlife/Color contrast.jpg": {
     "tags": [
@@ -2116,7 +2396,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "width": 4281,
+    "height": 3425
   },
   "wildlife/Curious Peek.jpg": {
     "tags": [
@@ -2125,7 +2407,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "width": 5358,
+    "height": 3852
   },
   "wildlife/Curious.jpg": {
     "tags": [
@@ -2134,7 +2418,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "width": 5674,
+    "height": 3917
   },
   "wildlife/camouflage went wrong 2.jpg": {
     "tags": [
@@ -2143,7 +2429,9 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "width": 4255,
+    "height": 5319
   },
   "wildlife/camouflage went wrong.jpg": {
     "tags": [
@@ -2152,19 +2440,25 @@
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "width": 4255,
+    "height": 5319
   },
   "Trees/A resting place.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "width": 7008,
+    "height": 4672
   },
   "Trees/Lost in the Woods.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "width": 4672,
+    "height": 7008
   },
   "Humans/Duisburg Marathon.jpg": {
     "weather": "Spring",
@@ -2176,7 +2470,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 2720,
+    "height": 3400
   },
   "Humans/Duisburg Marathon-9.jpg": {
     "weather": "Spring",
@@ -2188,7 +2484,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3278,
+    "height": 4098
   },
   "Humans/Duisburg Marathon-8.jpg": {
     "weather": "Spring",
@@ -2200,7 +2498,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "172mm"
+    "focalLength": "172mm",
+    "width": 3864,
+    "height": 4830
   },
   "Humans/Duisburg Marathon-5.jpg": {
     "weather": "Spring",
@@ -2212,7 +2512,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3777,
+    "height": 4721
   },
   "Humans/Duisburg Marathon-7.jpg": {
     "weather": "Spring",
@@ -2224,7 +2526,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "161mm"
+    "focalLength": "161mm",
+    "width": 3278,
+    "height": 4098
   },
   "Humans/Duisburg Marathon-6.jpg": {
     "weather": "Spring",
@@ -2236,7 +2540,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4219,
+    "height": 5274
   },
   "Humans/Duisburg Marathon-3.jpg": {
     "weather": "Spring",
@@ -2248,7 +2554,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "148mm"
+    "focalLength": "148mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Duisburg Marathon-4.jpg": {
     "weather": "Spring",
@@ -2260,7 +2568,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4059,
+    "height": 5074
   },
   "Humans/Duisburg Marathon-2.jpg": {
     "weather": "Spring",
@@ -2272,7 +2582,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3981,
+    "height": 4976
   },
   "Humans/Duisburg Marathon-16.jpg": {
     "weather": "Spring",
@@ -2284,7 +2596,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3278,
+    "height": 4098
   },
   "Humans/Duisburg Marathon-17.jpg": {
     "weather": "Spring",
@@ -2296,7 +2610,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 2857,
+    "height": 3571
   },
   "Humans/Duisburg Marathon-11.jpg": {
     "weather": "Spring",
@@ -2308,7 +2624,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Duisburg Marathon-10.jpg": {
     "weather": "Spring",
@@ -2320,7 +2638,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4634,
+    "height": 5792
   },
   "Humans/Duisburg Marathon-15.jpg": {
     "weather": "Spring",
@@ -2332,7 +2652,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3823,
+    "height": 4779
   },
   "Humans/Duisburg Marathon-14.jpg": {
     "weather": "Spring",
@@ -2344,7 +2666,9 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3015,
+    "height": 3769
   },
   "Humans/Duisburg Marathon-13.jpg": {
     "weather": "Spring",
@@ -2356,19 +2680,37 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3278,
+    "height": 4098
   },
   "Humans/Marathon in Duisburg-8.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-72.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 3738
   },
   "Humans/Marathon in Duisburg.jpg": {
     "weather": "Spring",
@@ -2380,7 +2722,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3435,
+    "height": 4294
   },
   "Humans/Marathon in Duisburg-9.jpg": {
     "weather": "Spring",
@@ -2392,7 +2736,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3458,
+    "height": 4323
   },
   "Humans/Marathon in Duisburg-7.jpg": {
     "weather": "Spring",
@@ -2404,7 +2750,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3866,
+    "height": 4832
   },
   "Humans/Marathon in Duisburg-69.jpg": {
     "weather": "Spring",
@@ -2416,55 +2764,121 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "116mm"
+    "focalLength": "116mm",
+    "width": 2870,
+    "height": 3588
   },
   "Humans/Marathon in Duisburg-68.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "116mm",
+    "width": 2509,
+    "height": 3136
   },
   "Humans/Marathon in Duisburg-71.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "191mm",
+    "width": 3211,
+    "height": 4014
   },
   "Humans/Marathon in Duisburg-70.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 3146,
+    "height": 3932
   },
   "Humans/Marathon in Duisburg-67.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "134mm",
+    "width": 2877,
+    "height": 3596
   },
   "Humans/Marathon in Duisburg-65.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "154mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-66.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "134mm",
+    "width": 2900,
+    "height": 3625
   },
   "Humans/Marathon in Duisburg-62.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "117mm",
+    "width": 2806,
+    "height": 3508
   },
   "Humans/Marathon in Duisburg-63.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "117mm",
+    "width": 2502,
+    "height": 3127
   },
   "Humans/Marathon in Duisburg-64.jpg": {
     "weather": "Spring",
@@ -2476,25 +2890,51 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "154mm"
+    "focalLength": "154mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-59.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "136mm",
+    "width": 3844,
+    "height": 4805
   },
   "Humans/Marathon in Duisburg-60.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "102mm",
+    "width": 2957,
+    "height": 3696
   },
   "Humans/Marathon in Duisburg-61.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "102mm",
+    "width": 3219,
+    "height": 4024
   },
   "Humans/Marathon in Duisburg-58.jpg": {
     "weather": "Spring",
@@ -2506,7 +2946,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "136mm"
+    "focalLength": "136mm",
+    "width": 3578,
+    "height": 4472
   },
   "Humans/Marathon in Duisburg-6.jpg": {
     "weather": "Spring",
@@ -2518,25 +2960,51 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-53.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 4412,
+    "height": 5515
   },
   "Humans/Marathon in Duisburg-54.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 3478,
+    "height": 4348
   },
   "Humans/Marathon in Duisburg-57.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "136mm",
+    "width": 2334,
+    "height": 2917
   },
   "Humans/Marathon in Duisburg-56.jpg": {
     "weather": "Spring",
@@ -2548,13 +3016,23 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "136mm"
+    "focalLength": "136mm",
+    "width": 3950,
+    "height": 4938
   },
   "Humans/Marathon in Duisburg-55.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "136mm",
+    "width": 3994,
+    "height": 4992
   },
   "Humans/Marathon in Duisburg-49.jpg": {
     "weather": "Spring",
@@ -2566,19 +3044,37 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-5.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 4011,
+    "height": 5014
   },
   "Humans/Marathon in Duisburg-50.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 2963,
+    "height": 3704
   },
   "Humans/Marathon in Duisburg-51.jpg": {
     "weather": "Spring",
@@ -2590,7 +3086,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3214,
+    "height": 4017
   },
   "Humans/Marathon in Duisburg-52.jpg": {
     "weather": "Spring",
@@ -2602,7 +3100,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3482,
+    "height": 4352
   },
   "Humans/Marathon in Duisburg-44.jpg": {
     "weather": "Spring",
@@ -2614,7 +3114,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-47.jpg": {
     "weather": "Spring",
@@ -2626,7 +3128,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 2808,
+    "height": 3510
   },
   "Humans/Marathon in Duisburg-46.jpg": {
     "weather": "Spring",
@@ -2638,7 +3142,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 2605,
+    "height": 3256
   },
   "Humans/Marathon in Duisburg-48.jpg": {
     "weather": "Spring",
@@ -2650,7 +3156,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3014,
+    "height": 3767
   },
   "Humans/Marathon in Duisburg-45.jpg": {
     "weather": "Spring",
@@ -2662,7 +3170,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-4.jpg": {
     "weather": "Spring",
@@ -2674,7 +3184,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-39.jpg": {
     "weather": "Spring",
@@ -2686,19 +3198,37 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-43.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-41.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-40.jpg": {
     "weather": "Spring",
@@ -2710,7 +3240,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-42.jpg": {
     "weather": "Spring",
@@ -2722,7 +3254,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-36.jpg": {
     "weather": "Spring",
@@ -2734,19 +3268,37 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3571,
+    "height": 4464
   },
   "Humans/Marathon in Duisburg-35.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 3087,
+    "height": 3859
   },
   "Humans/Marathon in Duisburg-37.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-38.jpg": {
     "weather": "Spring",
@@ -2758,7 +3310,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-34.jpg": {
     "weather": "Spring",
@@ -2770,7 +3324,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 2801,
+    "height": 3501
   },
   "Humans/Marathon in Duisburg-3.jpg": {
     "weather": "Spring",
@@ -2782,7 +3338,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-32.jpg": {
     "weather": "Spring",
@@ -2794,25 +3352,51 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3010,
+    "height": 3763
   },
   "Humans/Marathon in Duisburg-31.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 2883,
+    "height": 3604
   },
   "Humans/Marathon in Duisburg-30.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 2890,
+    "height": 3612
   },
   "Humans/Marathon in Duisburg-33.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 125,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "200mm",
+    "width": 2738,
+    "height": 3422
   },
   "Humans/Marathon in Duisburg-29.jpg": {
     "weather": "Spring",
@@ -2824,7 +3408,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-25.jpg": {
     "weather": "Spring",
@@ -2836,7 +3422,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3306,
+    "height": 4132
   },
   "Humans/Marathon in Duisburg-24.jpg": {
     "weather": "Spring",
@@ -2848,7 +3436,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "192mm"
+    "focalLength": "192mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-28.jpg": {
     "weather": "Spring",
@@ -2860,7 +3450,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-26.jpg": {
     "weather": "Spring",
@@ -2872,7 +3464,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3738,
+    "height": 4672
   },
   "Humans/Marathon in Duisburg-27.jpg": {
     "weather": "Spring",
@@ -2884,7 +3478,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-18.jpg": {
     "weather": "Spring",
@@ -2896,7 +3492,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3085,
+    "height": 3856
   },
   "Humans/Marathon in Duisburg-23.jpg": {
     "weather": "Spring",
@@ -2908,7 +3506,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "193mm"
+    "focalLength": "193mm",
+    "width": 2933,
+    "height": 3666
   },
   "Humans/Marathon in Duisburg-22.jpg": {
     "weather": "Spring",
@@ -2920,7 +3520,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3052,
+    "height": 3815
   },
   "Humans/Marathon in Duisburg-21.jpg": {
     "weather": "Spring",
@@ -2932,7 +3534,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "192mm"
+    "focalLength": "192mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-2.jpg": {
     "weather": "Spring",
@@ -2944,7 +3548,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-19.jpg": {
     "weather": "Spring",
@@ -2956,7 +3562,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "192mm"
+    "focalLength": "192mm",
+    "width": 2960,
+    "height": 3700
   },
   "Humans/Marathon in Duisburg-20.jpg": {
     "weather": "Spring",
@@ -2968,7 +3576,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "192mm"
+    "focalLength": "192mm",
+    "width": 3414,
+    "height": 4267
   },
   "Humans/Marathon in Duisburg-15.jpg": {
     "weather": "Spring",
@@ -2980,7 +3590,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "135mm"
+    "focalLength": "135mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-10.jpg": {
     "weather": "Spring",
@@ -2992,7 +3604,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-17.jpg": {
     "weather": "Spring",
@@ -3004,7 +3618,9 @@
     "iso": 125,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-16.jpg": {
     "weather": "Spring",
@@ -3016,7 +3632,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 3990,
+    "height": 4987
   },
   "Humans/Marathon in Duisburg-11.jpg": {
     "weather": "Spring",
@@ -3028,7 +3646,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-12.jpg": {
     "weather": "Spring",
@@ -3040,7 +3660,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-13.jpg": {
     "weather": "Spring",
@@ -3052,7 +3674,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 5840
   },
   "Humans/Marathon in Duisburg-14.jpg": {
     "weather": "Spring",
@@ -3064,7 +3688,9 @@
     "iso": 125,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "135mm"
+    "focalLength": "135mm",
+    "width": 4672,
+    "height": 5840
   },
   "wildlife/Parenthood-3.JPG": {
     "weather": "Spring",
@@ -3076,7 +3702,9 @@
     "iso": 3200,
     "shutterSpeed": "1/1000",
     "aperture": "f/5.6",
-    "focalLength": "273mm"
+    "focalLength": "273mm",
+    "width": 3382,
+    "height": 4228
   },
   "wildlife/Parenthood-1.JPG": {
     "weather": "Spring",
@@ -3088,7 +3716,9 @@
     "iso": 3200,
     "shutterSpeed": "1/1000",
     "aperture": "f/5.6",
-    "focalLength": "273mm"
+    "focalLength": "273mm",
+    "width": 3382,
+    "height": 4228
   },
   "wildlife/Parenthood-5.JPG": {
     "weather": "Spring",
@@ -3100,7 +3730,9 @@
     "iso": 3200,
     "shutterSpeed": "1/1000",
     "aperture": "f/5.6",
-    "focalLength": "273mm"
+    "focalLength": "273mm",
+    "width": 3382,
+    "height": 4228
   },
   "wildlife/Parenthood-2.JPG": {
     "weather": "Spring",
@@ -3112,7 +3744,9 @@
     "iso": 3200,
     "shutterSpeed": "1/1000",
     "aperture": "f/5.6",
-    "focalLength": "273mm"
+    "focalLength": "273mm",
+    "width": 3382,
+    "height": 4228
   },
   "wildlife/Parenthood-4.JPG": {
     "weather": "Spring",
@@ -3124,7 +3758,9 @@
     "iso": 3200,
     "shutterSpeed": "1/1000",
     "aperture": "f/5.6",
-    "focalLength": "273mm"
+    "focalLength": "273mm",
+    "width": 3382,
+    "height": 4228
   },
   "Trees/A new life.jpg": {
     "weather": "Spring",
@@ -3136,7 +3772,9 @@
     "iso": 200,
     "shutterSpeed": "1/125",
     "aperture": "f/5.6",
-    "focalLength": "214mm"
+    "focalLength": "214mm",
+    "width": 3072,
+    "height": 4113
   },
   "Trees/Wise one.jpg": {
     "weather": "Spring",
@@ -3148,7 +3786,9 @@
     "iso": 160,
     "shutterSpeed": "1/200",
     "aperture": "f/5.6",
-    "focalLength": "52mm"
+    "focalLength": "52mm",
+    "width": 3063,
+    "height": 4594
   },
   "landscape/Treescape.jpg": {
     "weather": "Spring",
@@ -3159,8 +3799,10 @@
     "lens": "14mm F1.4 DG | Art 023",
     "iso": 160,
     "shutterSpeed": "1/750",
-    "aperture": "f/8",
-    "focalLength": "14mm"
+    "aperture": "f/8.0",
+    "focalLength": "14mm",
+    "width": 4569,
+    "height": 3046
   },
   "Trees/Balance.jpg": {
     "weather": "Spring",
@@ -3172,43 +3814,93 @@
     "iso": 6400,
     "shutterSpeed": "1/1500",
     "aperture": "f/6.7",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4608,
+    "height": 3072
   },
   "Trees/Giant.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 200,
+    "shutterSpeed": "1/200",
+    "aperture": "f/5.6",
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 7008
   },
   "Trees/Wood Logs.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 100,
+    "shutterSpeed": "1/200",
+    "aperture": "f/11.0",
+    "focalLength": "14mm",
+    "width": 4672,
+    "height": 7008
   },
   "Trees/Branches reaching for the sun.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 200,
+    "shutterSpeed": "1/1000",
+    "aperture": "f/5.6",
+    "focalLength": "200mm",
+    "width": 4658,
+    "height": 6987
   },
   "Trees/Woodscape.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 160,
+    "shutterSpeed": "1/750",
+    "aperture": "f/4.5",
+    "focalLength": "51mm",
+    "width": 7008,
+    "height": 4672
   },
   "Trees/Woodland Meadow.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 160,
+    "shutterSpeed": "1/750",
+    "aperture": "f/4.0",
+    "focalLength": "14mm",
+    "width": 4658,
+    "height": 6987
   },
   "Trees/In the morning fog.jpg": {
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
-    "year": 2026
+    "year": 2026,
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 200,
+    "shutterSpeed": "1/1000",
+    "aperture": "f/5.6",
+    "focalLength": "200mm",
+    "width": 4658,
+    "height": 6987
   },
   "Trees/Green Tunnel.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3216,7 +3908,9 @@
     "iso": 5000,
     "shutterSpeed": "1/500",
     "aperture": "f/5.6",
-    "focalLength": "227mm"
+    "focalLength": "227mm",
+    "width": 4422,
+    "height": 6040
   },
   "Trees/Green Path .jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3224,7 +3918,9 @@
     "iso": 10000,
     "shutterSpeed": "1/500",
     "aperture": "f/5.6",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 4651,
+    "height": 5814
   },
   "wildlife/Black Headed.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3232,7 +3928,9 @@
     "iso": 1000,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 1761,
+    "height": 2201
   },
   "wildlife/Black Headed 2.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3240,7 +3938,9 @@
     "iso": 640,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "588mm"
+    "focalLength": "588mm",
+    "width": 1609,
+    "height": 2154
   },
   "landscape/Woodland.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3248,45 +3948,107 @@
     "iso": 160,
     "shutterSpeed": "1/4000",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 7008,
+    "height": 4672
   },
-  "landscape/The Alpen Farmland 10.jpg": {},
-  "landscape/The Alpen Farmland 11.jpg": {},
+  "landscape/The Alpen Farmland 10.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 125,
+    "shutterSpeed": "1/750",
+    "aperture": "f/2.8",
+    "focalLength": "28mm",
+    "width": 7008,
+    "height": 4672
+  },
+  "landscape/The Alpen Farmland 11.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 125,
+    "shutterSpeed": "1/750",
+    "aperture": "f/2.8",
+    "focalLength": "57mm",
+    "width": 7008,
+    "height": 4672
+  },
   "landscape/The Alpen Farmland 12.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 800,
     "shutterSpeed": "1/350",
-    "aperture": "f/11",
-    "focalLength": "34mm"
+    "aperture": "f/11.0",
+    "focalLength": "34mm",
+    "width": 4672,
+    "height": 5840
   },
-  "landscape/The Alpen VIllage.jpg": {},
-  "landscape/The Alpen Farmland 9.jpg": {},
+  "landscape/The Alpen VIllage.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 100,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/2.8",
+    "focalLength": "41mm",
+    "width": 6870,
+    "height": 4580
+  },
+  "landscape/The Alpen Farmland 9.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 200,
+    "shutterSpeed": "1/750",
+    "aperture": "f/2.8",
+    "focalLength": "28mm",
+    "width": 7008,
+    "height": 4672
+  },
   "landscape/The Alpen Farmland.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 125,
     "shutterSpeed": "1/750",
     "aperture": "f/2.8",
-    "focalLength": "34mm"
+    "focalLength": "34mm",
+    "width": 4527,
+    "height": 5659
   },
-  "landscape/The Alpen Farmland 4.jpg": {},
+  "landscape/The Alpen Farmland 4.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 4000,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/13.0",
+    "focalLength": "28mm"
+  },
   "landscape/The Alpen VIllage on sunrays.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
     "shutterSpeed": "1/1500",
     "aperture": "f/2.8",
-    "focalLength": "41mm"
+    "focalLength": "41mm",
+    "width": 6652,
+    "height": 4435
   },
-  "landscape/The Alpen Farmland 8.jpg": {},
+  "landscape/The Alpen Farmland 8.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 160,
+    "shutterSpeed": "1/750",
+    "aperture": "f/2.8",
+    "focalLength": "34mm",
+    "width": 6870,
+    "height": 4580
+  },
   "landscape/The Alpen Farmland 7.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
     "shutterSpeed": "1/750",
     "aperture": "f/2.8",
-    "focalLength": "34mm"
+    "focalLength": "34mm",
+    "width": 6870,
+    "height": 4580
   },
   "landscape/The Alpen Farmland 5.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3294,7 +4056,9 @@
     "iso": 250,
     "shutterSpeed": "1/1500",
     "aperture": "f/2.8",
-    "focalLength": "36mm"
+    "focalLength": "36mm",
+    "width": 4605,
+    "height": 5756
   },
   "landscape/The Alpen Farmland 6.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3302,15 +4066,19 @@
     "iso": 100,
     "shutterSpeed": "1/750",
     "aperture": "f/2.8",
-    "focalLength": "28mm"
+    "focalLength": "28mm",
+    "width": 4605,
+    "height": 5756
   },
   "landscape/The Alpen Farmland 2.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 1000,
     "shutterSpeed": "1/350",
-    "aperture": "f/11",
-    "focalLength": "33mm"
+    "aperture": "f/11.0",
+    "focalLength": "33mm",
+    "width": 7008,
+    "height": 4672
   },
   "landscape/The Alpen Farmland 3.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3318,17 +4086,39 @@
     "iso": 125,
     "shutterSpeed": "1/750",
     "aperture": "f/2.8",
-    "focalLength": "34mm"
+    "focalLength": "34mm",
+    "width": 4527,
+    "height": 5659
   },
-  "landscape/Tree Peak.jpg": {},
-  "landscape/Peak.jpg": {},
+  "landscape/Tree Peak.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 1600,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/2.8",
+    "focalLength": "156mm",
+    "width": 4297,
+    "height": 5371
+  },
+  "landscape/Peak.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 500,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/2.8",
+    "focalLength": "83mm",
+    "width": 7008,
+    "height": 4672
+  },
   "landscape/Sunrays on Valley .jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 6801,
+    "height": 4634
   },
   "landscape/Peak above forest.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3336,15 +4126,19 @@
     "iso": 400,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 6938,
+    "height": 4444
   },
   "landscape/Distance.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
     "shutterSpeed": "1/2000",
-    "aperture": "f/4",
-    "focalLength": "70mm"
+    "aperture": "f/4.0",
+    "focalLength": "70mm",
+    "width": 7008,
+    "height": 3942
   },
   "landscape/Layers of Alps.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3352,7 +4146,9 @@
     "iso": 160,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 6497,
+    "height": 3070
   },
   "landscape/Church Top.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3360,7 +4156,9 @@
     "iso": 1250,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "127mm"
+    "focalLength": "127mm",
+    "width": 6966,
+    "height": 4644
   },
   "landscape/Peak Church.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3368,7 +4166,9 @@
     "iso": 2000,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "98mm"
+    "focalLength": "98mm",
+    "width": 4444,
+    "height": 5555
   },
   "landscape/Church overseeing the land.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3376,23 +4176,34 @@
     "iso": 800,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 6829,
+    "height": 4553
   },
-  "landscape/Wanks Perspective.jpg": {},
+  "landscape/Wanks Perspective.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "70-200mm F2.8 DG DN OS | Sports 023",
+    "iso": 160,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/2.8",
+    "focalLength": "129mm"
+  },
   "landscape/Sunset on Alps.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
     "shutterSpeed": "1/1500",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 7008
   },
   "landscape/Nowhere in Alps.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 200,
     "shutterSpeed": "1/3000",
-    "aperture": "f/4",
+    "aperture": "f/4.0",
     "focalLength": "28mm"
   },
   "landscape/Sunset on Alps 2.jpg": {
@@ -3401,7 +4212,9 @@
     "iso": 160,
     "shutterSpeed": "1/1500",
     "aperture": "f/2.8",
-    "focalLength": "200mm"
+    "focalLength": "200mm",
+    "width": 4672,
+    "height": 7008
   },
   "landscape/Sunset on Alps 3.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3409,16 +4222,29 @@
     "iso": 160,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "129mm"
+    "focalLength": "129mm",
+    "width": 7008,
+    "height": 4672
   },
-  "Metropolis/Innsbruck place of interest.jpg": {},
+  "Metropolis/Innsbruck place of interest.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 100,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/4.0",
+    "focalLength": "28mm",
+    "width": 10763,
+    "height": 3291
+  },
   "Metropolis/Innsbruck Marktplatz.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 4088,
+    "height": 5110
   },
   "Metropolis/Innsbruck Steet Way.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3426,7 +4252,9 @@
     "iso": 320,
     "shutterSpeed": "1/2000",
     "aperture": "f/5.6",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 4665,
+    "height": 5831
   },
   "Metropolis/Innsbruck Steet Way 2.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3434,7 +4262,9 @@
     "iso": 400,
     "shutterSpeed": "1/2000",
     "aperture": "f/5.6",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 3108,
+    "height": 3885
   },
   "Metropolis/Innsbruck Alley.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3442,7 +4272,9 @@
     "iso": 100,
     "shutterSpeed": "1/2000",
     "aperture": "f/4.5",
-    "focalLength": "37mm"
+    "focalLength": "37mm",
+    "width": 4546,
+    "height": 5683
   },
   "Metropolis/Innsbruck Alley-2.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3450,7 +4282,9 @@
     "iso": 100,
     "shutterSpeed": "1/2000",
     "aperture": "f/4.5",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 4646,
+    "height": 5808
   },
   "Metropolis/Innsbruck City Center.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3458,7 +4292,9 @@
     "iso": 400,
     "shutterSpeed": "1/2000",
     "aperture": "f/5.6",
-    "focalLength": "58mm"
+    "focalLength": "58mm",
+    "width": 2826,
+    "height": 3532
   },
   "Metropolis/Innsbruck Marktplatz Church.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3474,7 +4310,9 @@
     "iso": 160,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "42mm"
+    "focalLength": "42mm",
+    "width": 5751,
+    "height": 4407
   },
   "Metropolis/Innsbruck Architecture.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3482,7 +4320,9 @@
     "iso": 100,
     "shutterSpeed": "1/2000",
     "aperture": "f/2.8",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 4627,
+    "height": 5784
   },
   "Metropolis/Innsbruck City Center 2.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3490,7 +4330,9 @@
     "iso": 640,
     "shutterSpeed": "1/2000",
     "aperture": "f/5.6",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 3382,
+    "height": 4227
   },
   "Metropolis/Innsbruck Street-3.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3498,7 +4340,9 @@
     "iso": 100,
     "shutterSpeed": "1/2000",
     "aperture": "f/4.5",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 4546,
+    "height": 5683
   },
   "Metropolis/Innsbruck Street-2.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3514,14 +4358,16 @@
     "iso": 320,
     "shutterSpeed": "1/2000",
     "aperture": "f/4.5",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 1536,
+    "height": 2048
   },
   "Metropolis/Innsbruck Street.jpg": {
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
     "shutterSpeed": "1/2000",
-    "aperture": "f/4",
+    "aperture": "f/4.0",
     "focalLength": "70mm"
   },
   "wildlife/Hatchlings Caring.jpg": {
@@ -3530,7 +4376,9 @@
     "iso": 10000,
     "shutterSpeed": "1/1000",
     "aperture": "f/6.3",
-    "focalLength": "600mm"
+    "focalLength": "600mm",
+    "width": 4905,
+    "height": 2948
   },
   "Trees/Lone Tree.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3538,7 +4386,9 @@
     "iso": 160,
     "shutterSpeed": "1/250",
     "aperture": "f/5.6",
-    "focalLength": "209mm"
+    "focalLength": "209mm",
+    "width": 7008,
+    "height": 4672
   },
   "Roads/Green Pathway.jpg": {
     "camera": "SONY ILCE-7CM2",
@@ -3546,6 +4396,8 @@
     "iso": 200,
     "shutterSpeed": "1/250",
     "aperture": "f/5.6",
-    "focalLength": "70mm"
+    "focalLength": "70mm",
+    "width": 7008,
+    "height": 4672
   }
 }

@@ -271,6 +271,13 @@ function formatFocalLength(value) {
   return undefined;
 }
 
+function parsePixelDimension(value) {
+  if (value === undefined || value === null) return undefined;
+  const num =
+    typeof value === 'number' ? value : parseInt(String(value).replace(/px$/i, ''), 10);
+  return Number.isInteger(num) && num > 0 ? num : undefined;
+}
+
 function extractExifTag(tags, ...keys) {
   for (const key of keys) {
     const tag = tags[key];
@@ -306,6 +313,8 @@ async function extractExifData(relativePath) {
     const shutterRaw = extractExifTag(tags, 'ExposureTime', 'ShutterSpeedValue');
     const apertureRaw = extractExifTag(tags, 'FNumber', 'ApertureValue');
     const focalLengthRaw = extractExifTag(tags, 'FocalLength', 'FocalLengthIn35mmFilm');
+    const widthRaw = extractExifTag(tags, 'Image Width', 'ImageWidth', 'PixelXDimension');
+    const heightRaw = extractExifTag(tags, 'Image Height', 'ImageLength', 'PixelYDimension');
 
     const exif = {};
 
@@ -341,6 +350,14 @@ async function extractExifData(relativePath) {
     if (focalLengthRaw !== undefined) {
       const formatted = formatFocalLength(focalLengthRaw);
       if (formatted) exif.focalLength = formatted;
+    }
+
+    const width = parsePixelDimension(widthRaw);
+    const height = parsePixelDimension(heightRaw);
+
+    if (width && height) {
+      exif.width = width;
+      exif.height = height;
     }
 
     return Object.keys(exif).length > 0 ? exif : null;

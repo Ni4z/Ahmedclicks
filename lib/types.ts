@@ -19,6 +19,8 @@ export interface Photo {
   shutterSpeed?: string;
   aperture?: string;
   focalLength?: string;
+  width?: number;
+  height?: number;
   featured: boolean;
   date: string;
 }

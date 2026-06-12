@@ -80,8 +80,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: absoluteUrl(socialImage),
-        width: 1200,
-        height: 630,
+        alt: 'Featured photograph from the NiazPhotography portfolio',
       },
     ],
   },
