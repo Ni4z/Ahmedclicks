@@ -403,6 +403,8 @@
     "height": 2048
   },
   "wildlife/Squirrel 2.jpg": {
+    "title": "Squirrel — Among the Branches",
+    "series": "Squirrel",
     "tags": [
       "squirrel",
       "rodent"
@@ -421,6 +423,8 @@
     "height": 2048
   },
   "wildlife/Squirrel 1.jpg": {
+    "title": "Squirrel — A Quiet Meal",
+    "series": "Squirrel",
     "tags": [
       "squirrel",
       "rodent"
@@ -439,6 +443,8 @@
     "height": 2048
   },
   "wildlife/Squirrel 3.jpg": {
+    "title": "Squirrel — At the Feeder",
+    "series": "Squirrel",
     "tags": [
       "squirrel",
       "rodent"
@@ -587,6 +593,8 @@
     "height": 2048
   },
   "wildlife/Wild Swan 4.jpg": {
+    "title": "Wild Swan — In Profile",
+    "series": "Wild Swan",
     "tags": [
       "swan",
       "duck"
@@ -605,6 +613,8 @@
     "height": 2048
   },
   "wildlife/Wild Swan 5.jpg": {
+    "title": "Wild Swan — Gliding",
+    "series": "Wild Swan",
     "tags": [
       "swan",
       "duck"
@@ -623,6 +633,8 @@
     "height": 2048
   },
   "wildlife/Wild Swan 2.jpg": {
+    "title": "Wild Swan — Dark Water",
+    "series": "Wild Swan",
     "tags": [
       "swan",
       "duck"
@@ -641,6 +653,8 @@
     "height": 2048
   },
   "wildlife/Wild Swan 3.jpg": {
+    "title": "Wild Swan — Study in White",
+    "series": "Wild Swan",
     "tags": [
       "swan",
       "duck"
@@ -659,6 +673,8 @@
     "height": 2048
   },
   "wildlife/Wild Swan 1.jpg": {
+    "title": "Wild Swan — Curved Neck",
+    "series": "Wild Swan",
     "tags": [
       "swan",
       "duck"
@@ -677,6 +693,8 @@
     "height": 2048
   },
   "wildlife/Blau Meise 1.jpg": {
+    "title": "Blue Tit on the Branch",
+    "series": "Blue Tit",
     "tags": [
       "blau meise",
       "bird"
@@ -713,6 +731,8 @@
     "height": 2048
   },
   "wildlife/Blau Meise 2.jpg": {
+    "title": "Blue Tit at Rest",
+    "series": "Blue Tit",
     "tags": [
       "blau meise",
       "bird"
@@ -731,6 +751,8 @@
     "height": 1152
   },
   "wildlife/Blau Meise 3.jpg": {
+    "title": "Blue Tit on the Post",
+    "series": "Blue Tit",
     "tags": [
       "blau meise",
       "bird"
@@ -2324,6 +2346,8 @@
     "height": 4672
   },
   "wildlife/Pegion Portraits-7.jpg": {
+    "title": "Pigeon Portrait — Turned Away",
+    "series": "Pigeon Portraits",
     "tags": [
       "bird"
     ],
@@ -2335,6 +2359,8 @@
     "height": 5840
   },
   "wildlife/Pegion Portraits-2.jpg": {
+    "title": "Pigeon Portrait — Iridescence",
+    "series": "Pigeon Portraits",
     "tags": [
       "bird"
     ],
@@ -2346,6 +2372,8 @@
     "height": 5373
   },
   "wildlife/Pegion Portraits-3.jpg": {
+    "title": "Pigeon Portrait — In Profile",
+    "series": "Pigeon Portraits",
     "tags": [
       "bird"
     ],
@@ -2357,6 +2385,8 @@
     "height": 5840
   },
   "wildlife/Pegion Portraits-5.jpg": {
+    "title": "Pigeon Portrait — Soft Light",
+    "series": "Pigeon Portraits",
     "tags": [
       "bird"
     ],
@@ -2368,6 +2398,8 @@
     "height": 5840
   },
   "wildlife/Pegion Portraits-6.jpg": {
+    "title": "Pigeon Portrait — Close Study",
+    "series": "Pigeon Portraits",
     "tags": [
       "bird"
     ],
@@ -2379,6 +2411,8 @@
     "height": 5840
   },
   "wildlife/Pegion Portraits-4.jpg": {
+    "title": "Pigeon Portrait — The Look",
+    "series": "Pigeon Portraits",
     "tags": [
       "bird"
     ],
@@ -2423,6 +2457,7 @@
     "height": 3917
   },
   "wildlife/camouflage went wrong 2.jpg": {
+    "title": "Camouflage Gone Wrong",
     "tags": [
       "bird"
     ],
@@ -2461,6 +2496,8 @@
     "height": 7008
   },
   "Humans/Duisburg Marathon.jpg": {
+    "title": "Duisburg Marathon — No. 88",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2475,6 +2512,8 @@
     "height": 3400
   },
   "Humans/Duisburg Marathon-9.jpg": {
+    "title": "Duisburg Marathon — No. 87",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2489,6 +2528,8 @@
     "height": 4098
   },
   "Humans/Duisburg Marathon-8.jpg": {
+    "title": "Duisburg Marathon — No. 86",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2503,6 +2544,8 @@
     "height": 4830
   },
   "Humans/Duisburg Marathon-5.jpg": {
+    "title": "Duisburg Marathon — No. 84",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2517,6 +2560,8 @@
     "height": 4721
   },
   "Humans/Duisburg Marathon-7.jpg": {
+    "title": "Duisburg Marathon — No. 85",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2531,6 +2576,8 @@
     "height": 4098
   },
   "Humans/Duisburg Marathon-6.jpg": {
+    "title": "Duisburg Marathon — No. 83",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2545,6 +2592,8 @@
     "height": 5274
   },
   "Humans/Duisburg Marathon-3.jpg": {
+    "title": "Duisburg Marathon — No. 82",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2559,6 +2608,8 @@
     "height": 5840
   },
   "Humans/Duisburg Marathon-4.jpg": {
+    "title": "Duisburg Marathon — No. 81",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2573,6 +2624,8 @@
     "height": 5074
   },
   "Humans/Duisburg Marathon-2.jpg": {
+    "title": "Duisburg Marathon — No. 80",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2587,6 +2640,8 @@
     "height": 4976
   },
   "Humans/Duisburg Marathon-16.jpg": {
+    "title": "Duisburg Marathon — No. 79",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2601,6 +2656,8 @@
     "height": 4098
   },
   "Humans/Duisburg Marathon-17.jpg": {
+    "title": "Duisburg Marathon — No. 78",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2615,6 +2672,8 @@
     "height": 3571
   },
   "Humans/Duisburg Marathon-11.jpg": {
+    "title": "Duisburg Marathon — No. 77",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2629,6 +2688,8 @@
     "height": 5840
   },
   "Humans/Duisburg Marathon-10.jpg": {
+    "title": "Duisburg Marathon — No. 76",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2643,6 +2704,8 @@
     "height": 5792
   },
   "Humans/Duisburg Marathon-15.jpg": {
+    "title": "Duisburg Marathon — No. 75",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2657,6 +2720,8 @@
     "height": 4779
   },
   "Humans/Duisburg Marathon-14.jpg": {
+    "title": "Duisburg Marathon — No. 74",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2671,6 +2736,8 @@
     "height": 3769
   },
   "Humans/Duisburg Marathon-13.jpg": {
+    "title": "Duisburg Marathon — No. 73",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2685,6 +2752,8 @@
     "height": 4098
   },
   "Humans/Marathon in Duisburg-8.jpg": {
+    "title": "Duisburg Marathon — No. 72",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2699,6 +2768,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-72.jpg": {
+    "title": "Duisburg Marathon — No. 71",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2713,6 +2784,8 @@
     "height": 3738
   },
   "Humans/Marathon in Duisburg.jpg": {
+    "title": "Duisburg Marathon — No. 70",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2727,6 +2800,8 @@
     "height": 4294
   },
   "Humans/Marathon in Duisburg-9.jpg": {
+    "title": "Duisburg Marathon — No. 69",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2741,6 +2816,8 @@
     "height": 4323
   },
   "Humans/Marathon in Duisburg-7.jpg": {
+    "title": "Duisburg Marathon — No. 68",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2755,6 +2832,8 @@
     "height": 4832
   },
   "Humans/Marathon in Duisburg-69.jpg": {
+    "title": "Duisburg Marathon — No. 67",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2769,6 +2848,8 @@
     "height": 3588
   },
   "Humans/Marathon in Duisburg-68.jpg": {
+    "title": "Duisburg Marathon — No. 66",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2783,6 +2864,8 @@
     "height": 3136
   },
   "Humans/Marathon in Duisburg-71.jpg": {
+    "title": "Duisburg Marathon — No. 65",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2797,6 +2880,8 @@
     "height": 4014
   },
   "Humans/Marathon in Duisburg-70.jpg": {
+    "title": "Duisburg Marathon — No. 64",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2811,6 +2896,8 @@
     "height": 3932
   },
   "Humans/Marathon in Duisburg-67.jpg": {
+    "title": "Duisburg Marathon — No. 63",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2825,6 +2912,8 @@
     "height": 3596
   },
   "Humans/Marathon in Duisburg-65.jpg": {
+    "title": "Duisburg Marathon — No. 62",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2839,6 +2928,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-66.jpg": {
+    "title": "Duisburg Marathon — No. 61",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2853,6 +2944,8 @@
     "height": 3625
   },
   "Humans/Marathon in Duisburg-62.jpg": {
+    "title": "Duisburg Marathon — No. 60",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2867,6 +2960,8 @@
     "height": 3508
   },
   "Humans/Marathon in Duisburg-63.jpg": {
+    "title": "Duisburg Marathon — No. 59",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2881,6 +2976,8 @@
     "height": 3127
   },
   "Humans/Marathon in Duisburg-64.jpg": {
+    "title": "Duisburg Marathon — No. 58",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2895,6 +2992,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-59.jpg": {
+    "title": "Duisburg Marathon — No. 57",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2909,6 +3008,8 @@
     "height": 4805
   },
   "Humans/Marathon in Duisburg-60.jpg": {
+    "title": "Duisburg Marathon — No. 56",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2923,6 +3024,8 @@
     "height": 3696
   },
   "Humans/Marathon in Duisburg-61.jpg": {
+    "title": "Duisburg Marathon — No. 55",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2937,6 +3040,8 @@
     "height": 4024
   },
   "Humans/Marathon in Duisburg-58.jpg": {
+    "title": "Duisburg Marathon — No. 54",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2951,6 +3056,8 @@
     "height": 4472
   },
   "Humans/Marathon in Duisburg-6.jpg": {
+    "title": "Duisburg Marathon — No. 53",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2965,6 +3072,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-53.jpg": {
+    "title": "Duisburg Marathon — No. 52",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2979,6 +3088,8 @@
     "height": 5515
   },
   "Humans/Marathon in Duisburg-54.jpg": {
+    "title": "Duisburg Marathon — No. 51",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -2993,6 +3104,8 @@
     "height": 4348
   },
   "Humans/Marathon in Duisburg-57.jpg": {
+    "title": "Duisburg Marathon — No. 50",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3007,6 +3120,8 @@
     "height": 2917
   },
   "Humans/Marathon in Duisburg-56.jpg": {
+    "title": "Duisburg Marathon — No. 49",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3021,6 +3136,8 @@
     "height": 4938
   },
   "Humans/Marathon in Duisburg-55.jpg": {
+    "title": "Duisburg Marathon — No. 48",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3035,6 +3152,8 @@
     "height": 4992
   },
   "Humans/Marathon in Duisburg-49.jpg": {
+    "title": "Duisburg Marathon — No. 47",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3049,6 +3168,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-5.jpg": {
+    "title": "Duisburg Marathon — No. 46",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3063,6 +3184,8 @@
     "height": 5014
   },
   "Humans/Marathon in Duisburg-50.jpg": {
+    "title": "Duisburg Marathon — No. 45",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3077,6 +3200,8 @@
     "height": 3704
   },
   "Humans/Marathon in Duisburg-51.jpg": {
+    "title": "Duisburg Marathon — No. 44",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3091,6 +3216,8 @@
     "height": 4017
   },
   "Humans/Marathon in Duisburg-52.jpg": {
+    "title": "Duisburg Marathon — No. 43",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3105,6 +3232,8 @@
     "height": 4352
   },
   "Humans/Marathon in Duisburg-44.jpg": {
+    "title": "Duisburg Marathon — No. 42",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3119,6 +3248,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-47.jpg": {
+    "title": "Duisburg Marathon — No. 41",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3133,6 +3264,8 @@
     "height": 3510
   },
   "Humans/Marathon in Duisburg-46.jpg": {
+    "title": "Duisburg Marathon — No. 40",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3147,6 +3280,8 @@
     "height": 3256
   },
   "Humans/Marathon in Duisburg-48.jpg": {
+    "title": "Duisburg Marathon — No. 39",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3161,6 +3296,8 @@
     "height": 3767
   },
   "Humans/Marathon in Duisburg-45.jpg": {
+    "title": "Duisburg Marathon — No. 38",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3175,6 +3312,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-4.jpg": {
+    "title": "Duisburg Marathon — No. 37",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3189,6 +3328,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-39.jpg": {
+    "title": "Duisburg Marathon — No. 36",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3203,6 +3344,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-43.jpg": {
+    "title": "Duisburg Marathon — No. 35",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3217,6 +3360,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-41.jpg": {
+    "title": "Duisburg Marathon — No. 34",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3231,6 +3376,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-40.jpg": {
+    "title": "Duisburg Marathon — No. 33",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3245,6 +3392,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-42.jpg": {
+    "title": "Duisburg Marathon — No. 32",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3259,6 +3408,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-36.jpg": {
+    "title": "Duisburg Marathon — No. 31",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3273,6 +3424,8 @@
     "height": 4464
   },
   "Humans/Marathon in Duisburg-35.jpg": {
+    "title": "Duisburg Marathon — No. 30",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3287,6 +3440,8 @@
     "height": 3859
   },
   "Humans/Marathon in Duisburg-37.jpg": {
+    "title": "Duisburg Marathon — No. 29",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3301,6 +3456,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-38.jpg": {
+    "title": "Duisburg Marathon — No. 28",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3315,6 +3472,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-34.jpg": {
+    "title": "Duisburg Marathon — No. 27",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3329,6 +3488,8 @@
     "height": 3501
   },
   "Humans/Marathon in Duisburg-3.jpg": {
+    "title": "Duisburg Marathon — No. 26",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3343,6 +3504,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-32.jpg": {
+    "title": "Duisburg Marathon — No. 25",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3357,6 +3520,8 @@
     "height": 3763
   },
   "Humans/Marathon in Duisburg-31.jpg": {
+    "title": "Duisburg Marathon — No. 24",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3371,6 +3536,8 @@
     "height": 3604
   },
   "Humans/Marathon in Duisburg-30.jpg": {
+    "title": "Duisburg Marathon — No. 23",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3385,6 +3552,8 @@
     "height": 3612
   },
   "Humans/Marathon in Duisburg-33.jpg": {
+    "title": "Duisburg Marathon — No. 22",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3399,6 +3568,8 @@
     "height": 3422
   },
   "Humans/Marathon in Duisburg-29.jpg": {
+    "title": "Duisburg Marathon — No. 21",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3413,6 +3584,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-25.jpg": {
+    "title": "Duisburg Marathon — No. 20",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3427,6 +3600,8 @@
     "height": 4132
   },
   "Humans/Marathon in Duisburg-24.jpg": {
+    "title": "Duisburg Marathon — No. 19",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3441,6 +3616,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-28.jpg": {
+    "title": "Duisburg Marathon — No. 18",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3455,6 +3632,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-26.jpg": {
+    "title": "Duisburg Marathon — No. 17",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3469,6 +3648,8 @@
     "height": 4672
   },
   "Humans/Marathon in Duisburg-27.jpg": {
+    "title": "Duisburg Marathon — No. 16",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3483,6 +3664,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-18.jpg": {
+    "title": "Duisburg Marathon — No. 15",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3497,6 +3680,8 @@
     "height": 3856
   },
   "Humans/Marathon in Duisburg-23.jpg": {
+    "title": "Duisburg Marathon — No. 14",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3511,6 +3696,8 @@
     "height": 3666
   },
   "Humans/Marathon in Duisburg-22.jpg": {
+    "title": "Duisburg Marathon — No. 13",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3525,6 +3712,8 @@
     "height": 3815
   },
   "Humans/Marathon in Duisburg-21.jpg": {
+    "title": "Duisburg Marathon — No. 12",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3539,6 +3728,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-2.jpg": {
+    "title": "Duisburg Marathon — No. 11",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3553,6 +3744,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-19.jpg": {
+    "title": "Duisburg Marathon — No. 10",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3567,6 +3760,8 @@
     "height": 3700
   },
   "Humans/Marathon in Duisburg-20.jpg": {
+    "title": "Duisburg Marathon — No. 09",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3581,6 +3776,8 @@
     "height": 4267
   },
   "Humans/Marathon in Duisburg-15.jpg": {
+    "title": "Duisburg Marathon — No. 08",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3595,6 +3792,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-10.jpg": {
+    "title": "Duisburg Marathon — No. 07",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3609,6 +3808,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-17.jpg": {
+    "title": "Duisburg Marathon — No. 06",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3623,6 +3824,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-16.jpg": {
+    "title": "Duisburg Marathon — No. 05",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3637,6 +3840,8 @@
     "height": 4987
   },
   "Humans/Marathon in Duisburg-11.jpg": {
+    "title": "Duisburg Marathon — No. 04",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3651,6 +3856,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-12.jpg": {
+    "title": "Duisburg Marathon — No. 03",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3665,6 +3872,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-13.jpg": {
+    "title": "Duisburg Marathon — No. 02",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3679,6 +3888,8 @@
     "height": 5840
   },
   "Humans/Marathon in Duisburg-14.jpg": {
+    "title": "Duisburg Marathon — No. 01",
+    "series": "Duisburg Marathon",
     "weather": "Spring",
     "country": "Germany",
     "location": "Duisburg",
@@ -3693,6 +3904,8 @@
     "height": 5840
   },
   "wildlife/Parenthood-3.JPG": {
+    "title": "Parenthood — At the Entrance",
+    "series": "Parenthood",
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
@@ -3707,6 +3920,8 @@
     "height": 4228
   },
   "wildlife/Parenthood-1.JPG": {
+    "title": "Parenthood — Arriving at the Nest",
+    "series": "Parenthood",
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
@@ -3721,6 +3936,8 @@
     "height": 4228
   },
   "wildlife/Parenthood-5.JPG": {
+    "title": "Parenthood — Feeding Time",
+    "series": "Parenthood",
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
@@ -3735,6 +3952,8 @@
     "height": 4228
   },
   "wildlife/Parenthood-2.JPG": {
+    "title": "Parenthood — Standing Guard",
+    "series": "Parenthood",
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
@@ -3749,6 +3968,8 @@
     "height": 4228
   },
   "wildlife/Parenthood-4.JPG": {
+    "title": "Parenthood — The Return",
+    "series": "Parenthood",
     "weather": "Spring",
     "country": "Germany",
     "location": "Westruper Heide, Haltern am See",
@@ -3933,6 +4154,7 @@
     "height": 2201
   },
   "wildlife/Black Headed 2.jpg": {
+    "title": "Black-Headed in Song",
     "camera": "SONY ILCE-7CM2",
     "lens": "FE 200-600mm F5.6-6.3 G OSS",
     "iso": 640,
@@ -4235,6 +4457,8 @@
     "focalLength": "28mm"
   },
   "landscape/Sunset on Alps 2.jpg": {
+    "title": "Sunset on the Alps — Burning Ridge",
+    "series": "Sunset on the Alps",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -4245,6 +4469,8 @@
     "height": 7008
   },
   "landscape/Sunset on Alps 3.jpg": {
+    "title": "Sunset on the Alps — Last Light",
+    "series": "Sunset on the Alps",
     "camera": "SONY ILCE-7CM2",
     "lens": "70-200mm F2.8 DG DN OS | Sports 023",
     "iso": 160,
@@ -4285,6 +4511,8 @@
     "height": 5831
   },
   "Metropolis/Innsbruck Steet Way 2.jpg": {
+    "title": "Innsbruck — The Long Avenue",
+    "series": "Innsbruck",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 400,
@@ -4305,6 +4533,8 @@
     "height": 5683
   },
   "Metropolis/Innsbruck Alley-2.jpg": {
+    "title": "Innsbruck — Old Town Alley",
+    "series": "Innsbruck",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
@@ -4333,6 +4563,8 @@
     "focalLength": "66mm"
   },
   "Metropolis/Innsbruck City Center 3.jpg": {
+    "title": "Innsbruck — Old Town Bustle",
+    "series": "Innsbruck",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
@@ -4353,6 +4585,8 @@
     "height": 5784
   },
   "Metropolis/Innsbruck City Center 2.jpg": {
+    "title": "Innsbruck — Streets Below the Peaks",
+    "series": "Innsbruck",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 640,
@@ -4363,6 +4597,8 @@
     "height": 4227
   },
   "Metropolis/Innsbruck Street-3.jpg": {
+    "title": "Innsbruck — Rooftops and Ridgelines",
+    "series": "Innsbruck",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
@@ -4373,6 +4609,8 @@
     "height": 5683
   },
   "Metropolis/Innsbruck Street-2.jpg": {
+    "title": "Innsbruck — Pastel Facades",
+    "series": "Innsbruck",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
