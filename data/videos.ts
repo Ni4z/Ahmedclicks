@@ -12,7 +12,7 @@ export const videoEntries: VideoEntry[] = [
     fileName: 'Sequence 01 - (9x16) - (16x9).mp4',
     title: 'Sequence 01',
     description:
-      'A motion study published from the R2 video archive and embedded into the portfolio.',
+      'A short motion study — movement, light, and rhythm beyond the still frame.',
     featured: true,
   },
   {
@@ -20,7 +20,7 @@ export const videoEntries: VideoEntry[] = [
     fileName: 'Sequence 02.mp4',
     title: 'Sequence 02',
     description:
-      'A second published clip from the R2-backed video archive for NiazPhotography.',
+      'A second sequence from the same body of motion work.',
     featured: true,
   },
   {
@@ -28,6 +28,6 @@ export const videoEntries: VideoEntry[] = [
     fileName: 'Bird.mp4',
     title: 'Bird',
     description:
-      'A lighter homepage-ready clip from the R2 video archive for faster loading.',
+      'A brief clip of birdlife in motion.',
   },
 ];

@@ -104,7 +104,7 @@ function createRemoteVideoRecord(
     title: createMediaTitle(entry.relativePath),
     src: withObjectStorageAssetPath(entry.objectKey, 'video'),
     caption: getVideoCaption(entry.relativePath),
-    description: `Motion work published from the connected R2 archive. File: ${entry.relativePath}.`,
+    description: 'A short motion study from the NiazPhotography portfolio.',
     fileName: entry.relativePath,
     mimeType: supportedVideoExtensions.get(extension) || 'video/mp4',
     featured: index < 2,

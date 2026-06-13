@@ -8,7 +8,7 @@ const normalizedMediaBaseUrl = (
 export const siteConfig = {
   name: 'NiazPhotography',
   description:
-    'Photography and video portfolio of NiazPhotography featuring wildlife, landscapes, roads, trees, portraits, astrophotography, and motion work.',
+    'Wildlife, landscape, and nature photography by Niaz — featuring wildlife, astrophotography, landscapes, portraits, and short film work, based in Duisburg, Germany.',
   basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   siteUrl: normalizedSiteUrl,
   mediaBaseUrl: normalizedMediaBaseUrl,

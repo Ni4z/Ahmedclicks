@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     url: absoluteUrl('/'),
     title: 'NiazPhotography',
     description:
-      'A portfolio of wildlife, landscapes, roads, trees, portraits, night-sky photography, and video work.',
+      'Wildlife, landscape, and nature photography by Niaz — wildlife, astrophotography, landscapes, portraits, and short film work, based in Duisburg, Germany.',
     images: [
       {
         url: absoluteUrl(socialImage),

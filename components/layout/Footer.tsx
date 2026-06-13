@@ -107,7 +107,8 @@ export default function Footer() {
               <BrandMark />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              A photography and video portfolio documenting wildlife, landscapes, roads, trees, portraits, and the night sky.
+              Wildlife, landscape, and nature photography by Niaz — based in
+              Duisburg, Germany.
             </p>
           </motion.div>
 
