@@ -1,5 +1,5 @@
 {
-  "_README": "Add photo organization metadata by relative path. Use tags, series, weather, location, and year to keep the gallery browsable as it grows. Weather values: Summer, Spring, Autumn, Winter, Rain. New photo placeholders are added automatically during media sync.",
+  "_README": "Add photo organization metadata by relative path. Set \"title\" to override the display title (otherwise it is derived from the file name). Use tags, series, weather, location, and year to keep the gallery browsable as it grows. Weather values: Summer, Spring, Autumn, Winter, Rain. New photo placeholders are added automatically during media sync.",
   "Roads/Emerald Passage.jpg": {
     "tags": [
       "forest",
@@ -3953,6 +3953,8 @@
     "height": 4672
   },
   "landscape/The Alpen Farmland 10.jpg": {
+    "title": "The Alpen Farmland — Summer Afternoon",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 125,
@@ -3963,6 +3965,8 @@
     "height": 4672
   },
   "landscape/The Alpen Farmland 11.jpg": {
+    "title": "The Alpen Farmland — Valley View",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 125,
@@ -3973,6 +3977,8 @@
     "height": 4672
   },
   "landscape/The Alpen Farmland 12.jpg": {
+    "title": "The Alpen Farmland — Among the Wildflowers",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 800,
@@ -3983,6 +3989,8 @@
     "height": 5840
   },
   "landscape/The Alpen VIllage.jpg": {
+    "title": "The Alpen Village at Sunrise",
+    "series": "The Alpen Village",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
@@ -3993,6 +4001,8 @@
     "height": 4580
   },
   "landscape/The Alpen Farmland 9.jpg": {
+    "title": "The Alpen Farmland — Clearing Skies",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 200,
@@ -4003,6 +4013,8 @@
     "height": 4672
   },
   "landscape/The Alpen Farmland.jpg": {
+    "title": "The Alpen Farmland — Hay Huts",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 125,
@@ -4013,6 +4025,8 @@
     "height": 5659
   },
   "landscape/The Alpen Farmland 4.jpg": {
+    "title": "The Alpen Farmland — First Light",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 4000,
@@ -4021,6 +4035,8 @@
     "focalLength": "28mm"
   },
   "landscape/The Alpen VIllage on sunrays.jpg": {
+    "title": "The Alpen Village in Sunrays",
+    "series": "The Alpen Village",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
@@ -4031,6 +4047,8 @@
     "height": 4435
   },
   "landscape/The Alpen Farmland 8.jpg": {
+    "title": "The Alpen Farmland — Buttercup Field",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
@@ -4041,6 +4059,8 @@
     "height": 4580
   },
   "landscape/The Alpen Farmland 7.jpg": {
+    "title": "The Alpen Farmland — Heavy Skies",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 160,
@@ -4051,6 +4071,8 @@
     "height": 4580
   },
   "landscape/The Alpen Farmland 5.jpg": {
+    "title": "The Alpen Farmland — Golden Hour",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 250,
@@ -4061,6 +4083,8 @@
     "height": 5756
   },
   "landscape/The Alpen Farmland 6.jpg": {
+    "title": "The Alpen Farmland — Beneath the Peaks",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 100,
@@ -4071,6 +4095,8 @@
     "height": 5756
   },
   "landscape/The Alpen Farmland 2.jpg": {
+    "title": "The Alpen Farmland — Open Meadow",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 1000,
@@ -4081,6 +4107,8 @@
     "height": 4672
   },
   "landscape/The Alpen Farmland 3.jpg": {
+    "title": "The Alpen Farmland — Rolling Pastures",
+    "series": "The Alpen Farmland",
     "camera": "SONY ILCE-7CM2",
     "lens": "28-70mm F2.8 DG DN | Contemporary 021",
     "iso": 125,

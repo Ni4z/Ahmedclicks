@@ -104,10 +104,11 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
             NiazPhotography
           </p>
           <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">
-            A living archive of photographs
+            Photography by Niaz
           </h1>
           <p className="text-lg text-gray-300 mb-8">
-            Publish image assets to the connected Cloudflare R2 archive and the gallery will surface them here.
+            New work is on its way. In the meantime, explore the gallery of
+            wildlife, landscapes, and quiet moments in nature.
           </p>
           <Link href="/gallery" className="btn-primary inline-block">
             Explore Gallery
@@ -174,8 +175,12 @@ export default function HeroSlideshow({ photos }: HeroSlideshowProps) {
         transition={{ delay: 0.3 }}
         className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 pb-20 pt-24 text-center sm:px-8 md:pb-0 md:pt-0"
       >
+        <h1 className="mb-5 max-w-3xl font-serif text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl">
+          Photography by Niaz
+        </h1>
         <p className="mb-8 max-w-2xl text-base text-white/90 sm:text-lg md:text-xl">
-          Wildlife, landscapes, roads, trees, portraits, and night skies collected in one portfolio.
+          Wildlife, landscapes, and the quiet beauty that often goes unnoticed —
+          from Duisburg, Germany.
         </p>
         <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <Link href="/gallery" className="btn-primary inline-block">

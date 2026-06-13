@@ -36,7 +36,7 @@ const categoryConfig: Record<
 > = {
   archive: {
     name: 'Archive',
-    description: 'Published photographs collected from the connected media archive.',
+    description: 'A collection of photographs from across the portfolio.',
     order: 98,
   },
   wildlife: {
@@ -116,6 +116,7 @@ const VALID_WEATHER_VALUES = new Set([
 
 type PhotoMetadataEntry = {
   tags: string[];
+  title?: string;
   series?: string;
   weather?: string;
   country?: string;
@@ -258,6 +259,7 @@ function normalizePhotoMetadataEntry(value: unknown): PhotoMetadataEntry {
 
   return {
     tags: normalizeMetadataTags(rawEntry.tags),
+    title: normalizeMetadataString(rawEntry.title),
     series,
     weather,
     country,
@@ -357,7 +359,7 @@ function createPhotoRecord(
 
   return {
     id: createStableAssetId(file.relativePath, 'photo'),
-    title: createPhotoTitle(category.name, file.fileName, index),
+    title: metadata.title || createPhotoTitle(category.name, file.fileName, index),
     caption,
     category: category.name,
     categoryKey: category.key,

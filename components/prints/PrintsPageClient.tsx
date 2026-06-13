@@ -8,8 +8,9 @@ const printOptions = [
   {
     title: 'Fine Art Prints',
     description:
-      'Selected photographs can be discussed as wall prints for home, studio, or office spaces. Sizes, finish, and presentation can be tailored after enquiry.',
+      'Selected photographs can be discussed as wall prints for home, studio, or office spaces. Every image is captured on full-frame at high resolution, so most frames can be printed large without losing detail. Sizes, finish, and presentation can be tailored after enquiry.',
     details: [
+      'Available from desk sizes up to large-format wall prints',
       'Open-edition and select statement pieces',
       'Best suited for framed display or clean modern interiors',
       'Available by direct enquiry',

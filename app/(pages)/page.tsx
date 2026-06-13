@@ -18,7 +18,7 @@ import { blogPosts } from '@/data/portfolio';
 export const metadata: Metadata = {
   title: 'Home | NiazPhotography',
   description:
-    'Wildlife, landscapes, roads, trees, portraits, night-sky photography, and video work by NiazPhotography.',
+    'Wildlife, landscape, and nature photography by Niaz — featuring wildlife, astrophotography, landscapes, portraits, and short film work, based in Duisburg, Germany.',
 };
 
 export default function Home() {

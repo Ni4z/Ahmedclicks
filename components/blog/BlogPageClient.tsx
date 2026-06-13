@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { blogPosts } from '@/data/portfolio';
 import { formatDate } from '@/lib/utils';
+import { siteConfig } from '@/lib/site';
 import Image from 'next/image';
 
 const containerVariants = {
@@ -91,26 +92,33 @@ export default function BlogPageClient() {
           ))}
         </motion.div>
 
-        {/* Newsletter */}
+        {/* Stay in touch */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-20 p-12 bg-dark-secondary rounded-lg border border-dark-tertiary text-center"
         >
-          <h3 className="text-2xl font-serif font-bold mb-4">Subscribe to My Newsletter</h3>
+          <h3 className="text-2xl font-serif font-bold mb-4">Stay in Touch</h3>
           <p className="text-gray-400 mb-6 max-w-md mx-auto">
-            Get photography notes and updates when new work lands in the NiazPhotography archive
+            Follow along on Instagram for new work, or get in touch about prints
+            and licensing.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 px-4 py-3 bg-dark rounded border border-dark-tertiary focus:border-accent-gold outline-none transition-colors"
-            />
-            <button className="px-6 py-3 bg-accent-gold text-dark font-semibold rounded hover:bg-white transition-colors">
-              Subscribe
-            </button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href={siteConfig.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-accent-gold text-dark font-semibold rounded hover:bg-white transition-colors"
+            >
+              Follow on Instagram
+            </a>
+            <Link
+              href="/contact"
+              className="px-6 py-3 rounded border border-dark-tertiary text-gray-300 hover:border-accent-gold hover:text-accent-gold transition-colors"
+            >
+              Get in Touch
+            </Link>
           </div>
         </motion.div>
       </div>

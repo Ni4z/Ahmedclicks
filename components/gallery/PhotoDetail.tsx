@@ -10,6 +10,24 @@ interface PhotoDetailProps {
   shareUrl?: string;
 }
 
+function describePrintAvailability(photo: Photo): string {
+  if (!photo.width || !photo.height) {
+    return 'Available as a fine-art print — sizes discussed on enquiry.';
+  }
+
+  const megapixels = (photo.width * photo.height) / 1_000_000;
+
+  if (megapixels >= 24) {
+    return 'Available as a fine-art print up to large format.';
+  }
+
+  if (megapixels >= 10) {
+    return 'Available as a fine-art print up to medium-large sizes.';
+  }
+
+  return 'Available as a fine-art print — sizes discussed on enquiry.';
+}
+
 function renderDetailPill(label: string, value: string | number) {
   return (
     <div className="rounded-full border border-dark-tertiary px-4 py-2 text-sm text-foreground">
@@ -148,7 +166,7 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
             </div>
           ) : null}
 
-          <div className="mb-8 flex flex-wrap gap-3">
+          <div className="mb-3 flex flex-wrap gap-3">
             <Link href={printEnquiryHref} className="btn-primary inline-flex items-center justify-center">
               Request This as a Print
             </Link>
@@ -159,6 +177,9 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
               Prints & Licensing
             </Link>
           </div>
+          <p className="mb-8 text-sm text-gray-500">
+            {describePrintAvailability(photo)}
+          </p>
 
           <div className="mb-8 rounded-2xl border border-dark-tertiary bg-dark-secondary p-6">
             <h3 className="mb-4 text-lg font-semibold">Photo Metadata</h3>

@@ -12,7 +12,7 @@ export default function BrandMark({ compact = false }: BrandMarkProps) {
             : 'text-[2.2rem] md:text-[2.65rem]'
         }`}
       >
-        Niaz Photography
+        Niaz
       </span>
       <span
         className={`mt-1 flex items-center gap-3 pl-1 uppercase text-foreground/45 ${

@@ -583,6 +583,7 @@ function normalizePhotoMetadataEntry(value) {
   }
 
   const tags = normalizePhotoMetadataTags(value.tags);
+  const title = normalizePhotoMetadataString(value.title);
   const series = normalizePhotoMetadataString(value.series);
   const weather = normalizePhotoMetadataString(value.weather);
   const country = normalizePhotoMetadataString(value.country);
@@ -616,6 +617,10 @@ function normalizePhotoMetadataEntry(value) {
       ? value.height
       : undefined;
   const entry = {};
+
+  if (title) {
+    entry.title = title;
+  }
 
   if (tags.length > 0) {
     entry.tags = tags;

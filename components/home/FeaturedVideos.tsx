@@ -15,16 +15,15 @@ export default function FeaturedVideos({ videos }: FeaturedVideosProps) {
             Moments in Motion
           </h2>
           <p className="text-gray-400 text-lg max-w-3xl leading-relaxed">
-            A small collection of moving moments. These videos capture the
-            rhythm of nature, light, and wildlife beyond the still frame,
-            stored separately to preserve the performance of the portfolio.
+            A small collection of moving moments — the rhythm of nature, light,
+            and wildlife beyond the still frame.
           </p>
         </div>
 
         <VideoGrid
           videos={videos}
           emptyTitle="Your video section is ready"
-          emptyDescription="Connect the site to your R2 archive and the media sync will populate this section automatically before development and build."
+          emptyDescription="New video work is on its way. Check back soon."
         />
 
         <div className="text-center mt-16">
