@@ -20,6 +20,9 @@ export const siteConfig = {
   ).replace(/\/+$/, ''),
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'niazphotography.com@gmail.com',
+  // Optional form-handler endpoint (Formspree, Web3Forms, or a custom Worker).
+  // When set, the contact form POSTs here; otherwise it falls back to email.
+  contactEndpoint: (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || '').trim(),
   instagramHandle:
     process.env.NEXT_PUBLIC_INSTAGRAM_HANDLE || 'niazphotograph_y',
   instagramUrl:

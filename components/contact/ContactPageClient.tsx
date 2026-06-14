@@ -7,24 +7,56 @@ import { siteConfig } from '@/lib/site';
 
 export default function ContactPageClient() {
   const hasEmailContact = Boolean(siteConfig.contactEmail);
+  const hasFormEndpoint = Boolean(siteConfig.contactEndpoint);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<
+    'idle' | 'submitting' | 'success' | 'error'
+  >('idle');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const submitViaEmail = () => {
     const subject = encodeURIComponent(formData.subject);
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
     );
 
     window.location.href = `mailto:${siteConfig.contactEmail}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setStatus('success');
+    setTimeout(() => setStatus('idle'), 6000);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // No form backend configured → fall back to the visitor's mail app.
+    if (!hasFormEndpoint) {
+      submitViaEmail();
+      return;
+    }
+
+    setStatus('submitting');
+
+    try {
+      const response = await fetch(siteConfig.contactEndpoint, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(e.target as HTMLFormElement),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Request failed with ${response.status}`);
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setStatus('idle'), 8000);
+    } catch {
+      setStatus('error');
+    }
   };
 
   const handleChange = (
@@ -207,21 +239,41 @@ export default function ContactPageClient() {
                 </div>
 
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={status === 'submitting' ? undefined : { scale: 1.05 }}
+                  whileTap={status === 'submitting' ? undefined : { scale: 0.95 }}
                   type="submit"
-                  className="btn-primary w-full"
+                  disabled={status === 'submitting'}
+                  className="btn-primary w-full disabled:opacity-60"
                 >
-                  Send Message
+                  {status === 'submitting' ? 'Sending…' : 'Send Message'}
                 </motion.button>
 
-                {submitted && (
+                {status === 'success' && (
                   <motion.p
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-accent-gold text-center"
                   >
-                    Your email app should open with your message pre-filled.
+                    {hasFormEndpoint
+                      ? 'Thanks — your message has been sent. I will get back to you soon.'
+                      : 'Your email app should open with your message pre-filled.'}
+                  </motion.p>
+                )}
+
+                {status === 'error' && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-center text-red-400"
+                  >
+                    Something went wrong sending your message. Please email{' '}
+                    <a
+                      href={`mailto:${siteConfig.contactEmail}`}
+                      className="underline hover:text-accent-gold"
+                    >
+                      {siteConfig.contactEmail}
+                    </a>{' '}
+                    instead.
                   </motion.p>
                 )}
               </form>
