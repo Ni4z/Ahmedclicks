@@ -376,7 +376,7 @@ function createPhotoRecord(
       file.thumbnailObjectKey || file.objectKey,
       'image'
     ),
-    description: `${category.description} File: ${file.relativePath}.`,
+    description: category.description,
     featured: index === 0,
     location: metadata.location,
     year: metadata.year ?? getPhotoYear(file.date),

@@ -64,7 +64,10 @@ export default function Categories({ categories }: CategoriesProps) {
               whileHover={{ x: 20, transition: { duration: 0.3 } }}
               className="border border-dark-tertiary rounded-lg hover:border-accent-gold transition-colors"
             >
-              <Link href="/gallery" className="block p-8">
+              <Link
+                href={`/gallery/?category=${encodeURIComponent(category.name)}`}
+                className="block p-8"
+              >
                 <p className="text-xs tracking-[0.35em] uppercase text-accent-gold mb-3">
                   {category.count} photos
                 </p>
