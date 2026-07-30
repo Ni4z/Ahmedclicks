@@ -4873,5 +4873,334 @@
     "shutterSpeed": "1/4000",
     "aperture": "f/6.3",
     "focalLength": "600mm"
+  },
+  "wildlife/Insect Hunting Midflight.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 4000,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/White Stork.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/1600",
+    "aperture": "f/6.3",
+    "focalLength": "571mm"
+  },
+  "wildlife/Barn Swallow Hunting Insects.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/5000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Barn Swallow in midflight.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 4000,
+    "shutterSpeed": "1/8000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Barn Swallow in flight.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 4000,
+    "shutterSpeed": "1/8000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Target Locked.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 12800,
+    "shutterSpeed": "1/8000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "Humans/Relaxing.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2500,
+    "shutterSpeed": "1/1250",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Red Fox.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2000,
+    "shutterSpeed": "1/5000",
+    "aperture": "f/6.3",
+    "focalLength": "565mm"
+  },
+  "wildlife/Foxy.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2000,
+    "shutterSpeed": "1/5000",
+    "aperture": "f/6.3",
+    "focalLength": "565mm"
+  },
+  "wildlife/Fox in Early morning.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1600,
+    "shutterSpeed": "1/5000",
+    "aperture": "f/6.3",
+    "focalLength": "559mm"
+  },
+  "Roads/Forest Path.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 160,
+    "shutterSpeed": "1/750",
+    "aperture": "f/4",
+    "focalLength": "35mm"
+  },
+  "Roads/Alpen Way.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 160,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/2.8",
+    "focalLength": "64mm"
+  },
+  "wildlife/Yawning.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2000,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Toothless Precision Hunter.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2000,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Heron on Wait.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1000,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/You got my attention.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1000,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Sunshine on Eyes.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1250,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Thinking about Career.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "Trees/Aged Guardian .jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 2500,
+    "shutterSpeed": "1/250",
+    "aperture": "f/16",
+    "focalLength": "14mm"
+  },
+  "Trees/Oxygen Tower.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 800,
+    "shutterSpeed": "1/500",
+    "aperture": "f/2.8",
+    "focalLength": "70mm"
+  },
+  "Trees/Aged.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 2000,
+    "shutterSpeed": "1/250",
+    "aperture": "f/16",
+    "focalLength": "14mm"
+  },
+  "wildlife/Drifting and Resting.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Drifting in Shallow Water.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Sun vs White.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "541mm"
+  },
+  "wildlife/Swan.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/11",
+    "focalLength": "397mm"
+  },
+  "Roads/Forest Road.jpg": {},
+  "wildlife/Doggo.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/5.6",
+    "focalLength": "200mm"
+  },
+  "wildlife/Blue Heron Sun Bathing.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Who let the dogs out.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2500,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "Roads/Country Road.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 800,
+    "shutterSpeed": "1/250",
+    "aperture": "f/2.8",
+    "focalLength": "67mm"
+  },
+  "Trees/Breath and walk.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 800,
+    "shutterSpeed": "1/500",
+    "aperture": "f/5.6",
+    "focalLength": "39mm"
+  },
+  "Trees/Shade.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "14mm F1.4 DG | Art 023",
+    "iso": 2500,
+    "shutterSpeed": "1/200",
+    "aperture": "f/16",
+    "focalLength": "14mm"
+  },
+  "Trees/Still Standing.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/1500",
+    "aperture": "f/5.6",
+    "focalLength": "200mm"
+  },
+  "wildlife/Red Kite-2.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Red Kite.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Red Kite-3.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Unexpected Place .jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Red Kite-4.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Angelic.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/1500",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Brown Contrast.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1250,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/8",
+    "focalLength": "600mm"
+  },
+  "wildlife/Duck Viewing Sun from Top.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "Roads/A walk.jpg": {
+    "camera": "SONY ILCE-7CM2",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2000,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.7",
+    "focalLength": "430mm"
   }
 }
