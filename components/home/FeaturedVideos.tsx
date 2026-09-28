@@ -22,7 +22,7 @@ export default function FeaturedVideos({ videos }: FeaturedVideosProps) {
 
         <VideoGrid
           videos={videos}
-          emptyTitle="Your video section is ready"
+          emptyTitle="No videos published yet"
           emptyDescription="New video work is on its way. Check back soon."
         />
 

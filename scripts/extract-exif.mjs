@@ -101,7 +101,10 @@ function encodeObjectKeyForUrl(objectKey) {
 }
 
 function canonicalizePathname(pathname) {
-  const segments = pathname.split('/').map((segment) => encodeRfc3986(segment));
+  // URL.pathname is already percent-encoded; decode first so "Urban%20Decay" is not signed as "Urban%2520Decay".
+  const segments = pathname
+    .split('/')
+    .map((segment) => encodeRfc3986(decodeURIComponent(segment)));
   if (pathname.startsWith('/')) segments[0] = '';
   return segments.join('/');
 }

@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | NiazPhotography',
   description:
     'Privacy policy for the NiazPhotography portfolio — what data the site collects and how contact information is handled.',
+  alternates: { canonical: absoluteUrl('/privacy/') },
 };
 
 export default function PrivacyPage() {

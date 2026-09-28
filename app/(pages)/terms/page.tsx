@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Terms of Use | NiazPhotography',
   description:
     'Terms of use for the NiazPhotography portfolio, including copyright and licensing of all photography on the site.',
+  alternates: { canonical: absoluteUrl('/terms/') },
 };
 
 export default function TermsPage() {

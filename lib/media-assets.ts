@@ -72,10 +72,44 @@ export function createStableAssetId(
   return `${prefix}-${slug || prefix}-${createDeterministicHash(value)}`;
 }
 
+const minorTitleWords = new Set([
+  'a',
+  'an',
+  'and',
+  'as',
+  'at',
+  'by',
+  'for',
+  'from',
+  'in',
+  'into',
+  'of',
+  'on',
+  'or',
+  'the',
+  'to',
+  'vs',
+  'with',
+]);
+
+export function toTitleCase(value: string): string {
+  return value
+    .replace(/(?<!\d)[-_]+|[-_]+(?!\d)/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .map((word, index) => {
+      const lowerCaseWord = word.toLowerCase();
+
+      if (index > 0 && minorTitleWords.has(lowerCaseWord)) {
+        return lowerCaseWord;
+      }
+
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(' ');
+}
+
 export function createMediaTitle(filePath: string): string {
-  return path.posix
-    .parse(filePath.replace(/\\/g, '/'))
-    .name
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+  return toTitleCase(path.posix.parse(filePath.replace(/\\/g, '/')).name);
 }

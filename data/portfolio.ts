@@ -1,7 +1,9 @@
 import { withPhotoAssetPath } from '@/lib/site';
 import { BlogPost, Equipment } from '@/lib/types';
 
-export const blogPosts: BlogPost[] = [
+const WORDS_PER_MINUTE = 200;
+
+const posts: Omit<BlogPost, 'readTime'>[] = [
   {
     id: '1',
     slug: 'capturing-wildlife-in-low-light',
@@ -29,10 +31,9 @@ Every camera behaves differently at higher ISO values. Spend time learning where
 
 Low-light wildlife photography is demanding, but it rewards patience and repetition.`,
     author: 'NiazPhotography',
-    date: '2024-07-15',
+    date: '2026-03-06',
     category: 'Wildlife Photography',
-    image: withPhotoAssetPath('/photos/wildlife/DSC03370.jpg'),
-    readTime: 8,
+    image: withPhotoAssetPath('/photos/wildlife/DSC03370.jpg', 'thumbnail'),
   },
   {
     id: '2',
@@ -68,10 +69,9 @@ Settings to test:
 
 The best astrophotography sessions usually come from planning ahead and staying patient on location.`,
     author: 'NiazPhotography',
-    date: '2024-06-20',
+    date: '2026-03-06',
     category: 'Astrophotography',
-    image: withPhotoAssetPath('/photos/astrophotography/DSC05884-2.jpg'),
-    readTime: 10,
+    image: withPhotoAssetPath('/photos/astrophotography/DSC05884-2.jpg', 'thumbnail'),
   },
   {
     id: '3',
@@ -103,12 +103,22 @@ Clean space can make a subject feel stronger, calmer, and more deliberate.
 
 The more often you simplify a frame before shooting, the stronger the final image becomes.`,
     author: 'NiazPhotography',
-    date: '2024-05-10',
+    date: '2026-03-06',
     category: 'Landscape Photography',
-    image: withPhotoAssetPath('/photos/landscape/DSC04689-3.jpg'),
-    readTime: 6,
+    image: withPhotoAssetPath('/photos/landscape/DSC04689-3.jpg', 'thumbnail'),
   },
 ];
+
+export const blogPosts: BlogPost[] = posts.map((post) => ({
+  ...post,
+  readTime: Math.max(
+    1,
+    Math.round(
+      `${post.excerpt} ${post.content}`.trim().split(/\s+/).length /
+        WORDS_PER_MINUTE
+    )
+  ),
+}));
 
 export const equipment: Equipment[] = [
   {

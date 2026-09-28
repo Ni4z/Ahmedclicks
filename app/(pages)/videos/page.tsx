@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import VideoGrid from '@/components/video/VideoGrid';
+import { absoluteUrl } from '@/lib/site';
 import { getVideos } from '@/lib/videos';
 
 export const metadata: Metadata = {
   title: 'Videos | NiazPhotography',
   description:
     'Video work and motion studies published from the NiazPhotography portfolio.',
+  alternates: { canonical: absoluteUrl('/videos/') },
 };
 
 export default function VideosPage() {

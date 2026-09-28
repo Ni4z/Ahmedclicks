@@ -137,13 +137,7 @@ export default function Footer() {
           <motion.div variants={itemVariants}>
             <h4 className="text-sm font-semibold tracking-widest mb-4">SERVICES</h4>
             <ul className="space-y-2">
-              {[
-                'Landscape Photography',
-                'Wildlife Photography',
-                'Astrophotography',
-                'Roads & Travel Frames',
-                'Short Video Work',
-              ].map((service) => (
+              {siteConfig.services.map((service) => (
                 <li key={service} className="text-gray-400 text-sm">
                   {service}
                 </li>
@@ -159,8 +153,9 @@ export default function Footer() {
                 <a
                   key={link.name}
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(link.icon === 'email'
+                    ? {}
+                    : { target: '_blank', rel: 'noopener noreferrer' })}
                   className="w-10 h-10 rounded-full bg-dark-tertiary flex items-center justify-center hover:bg-accent-gold hover:text-dark transition-all"
                   aria-label={link.name}
                 >

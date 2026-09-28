@@ -64,7 +64,7 @@ export default function PhotographerBio({ profileImage }: PhotographerBioProps) 
             <div className="w-60 h-60 md:w-72 md:h-72 xl:w-80 xl:h-80 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
               <img
                 src={profileImage}
-                alt="NiazPhotography"
+                alt="Portrait of Niaz"
                 loading="lazy"
                 decoding="async"
                 className="block w-full h-full object-cover rounded-full"

@@ -2,18 +2,20 @@ import type { Metadata } from 'next';
 import GalleryBrowser from '@/components/gallery/GalleryBrowser';
 import { getPhotoCategories, getPhotos } from '@/lib/gallery';
 import { withObjectStorageAssetPath } from '@/lib/media-assets';
+import { absoluteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Gallery | NiazPhotography',
   description:
     'Browse the full NiazPhotography archive of wildlife, landscape, astrophotography, roads, trees, and portrait work by category, tag, location, and year.',
+  alternates: { canonical: absoluteUrl('/gallery/') },
 };
 
 export default function GalleryPage() {
   const photos = getPhotos();
   const categories = getPhotoCategories();
   const heroBackground = withObjectStorageAssetPath(
-    'photos-web/landscape/DSC04689-3.jpg'
+    'photos-thumb/landscape/DSC04689-3.jpg'
   );
 
   return (

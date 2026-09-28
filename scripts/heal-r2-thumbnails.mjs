@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import fsSync from 'node:fs';
 import path from 'node:path';
 import sharp from 'sharp';
+import { createRenditionResolver, getRenditionKey } from './lib/rendition-keys.mjs';
 
 loadLocalEnvFiles();
 
@@ -226,7 +227,10 @@ function parseListBucketXml(xml) {
 }
 
 function canonicalizePathname(pathname) {
-  const segments = pathname.split('/').map((segment) => encodeRfc3986(segment));
+  // URL.pathname is already percent-encoded; decode first so "Urban%20Decay" is not signed as "Urban%2520Decay".
+  const segments = pathname
+    .split('/')
+    .map((segment) => encodeRfc3986(decodeURIComponent(segment)));
 
   if (pathname.startsWith('/')) {
     segments[0] = '';
@@ -417,18 +421,6 @@ function stripPrefix(objectKey, prefix) {
     : objectKey;
 }
 
-function replaceExtension(filePath, extension) {
-  const normalizedPath = normalizeRelativeKey(filePath);
-  const extensionIndex = normalizedPath.lastIndexOf('.');
-  const lastSlashIndex = normalizedPath.lastIndexOf('/');
-
-  if (extensionIndex <= lastSlashIndex) {
-    return `${normalizedPath}${extension}`;
-  }
-
-  return `${normalizedPath.slice(0, extensionIndex)}${extension}`;
-}
-
 function pathExtension(filePath) {
   const normalizedPath = normalizeRelativeKey(filePath);
   const extensionIndex = normalizedPath.lastIndexOf('.');
@@ -445,23 +437,14 @@ function isSupportedImage(objectKey) {
   return imageExtensions.has(pathExtension(objectKey));
 }
 
-function getRelativeStem(objectKey) {
-  const normalizedKey = normalizeRelativeKey(objectKey);
-  const extension = pathExtension(normalizedKey);
-
-  return extension
-    ? normalizedKey.slice(0, normalizedKey.length - extension.length)
-    : normalizedKey;
-}
-
 function getThumbnailObjectKey(photoObjectKey) {
   const relativePath = stripPrefix(normalizeRelativeKey(photoObjectKey), photoPrefix);
-  return `${photoThumbPrefix}${replaceExtension(relativePath, outputExtension)}`;
+  return getRenditionKey(relativePath, photoThumbPrefix, outputExtension);
 }
 
 function getDisplayObjectKey(photoObjectKey) {
   const relativePath = stripPrefix(normalizeRelativeKey(photoObjectKey), photoPrefix);
-  return `${photoDisplayPrefix}${replaceExtension(relativePath, outputExtension)}`;
+  return getRenditionKey(relativePath, photoDisplayPrefix, outputExtension);
 }
 
 function getSortableTimestamp(value) {
@@ -484,24 +467,15 @@ function comparePhotoEntries(first, second) {
 }
 
 function buildFallbackManifestFromObjects(objects) {
-  const thumbnailLookup = new Map();
-
-  for (const object of objects) {
-    const objectKey = normalizeRelativeKey(object.key);
-
-    if (
-      photoThumbPrefix &&
-      objectKey.startsWith(photoThumbPrefix) &&
-      isSupportedImage(objectKey)
-    ) {
-      thumbnailLookup.set(
-        getRelativeStem(stripPrefix(objectKey, photoThumbPrefix)),
-        objectKey
-      );
-    }
-  }
-
-  const photos = objects
+  const imageKeys = objects
+    .map((object) => normalizeRelativeKey(object.key))
+    .filter((objectKey) => isSupportedImage(objectKey));
+  const isDerivedKey = (objectKey) =>
+    Boolean(
+      (photoThumbPrefix && objectKey.startsWith(photoThumbPrefix)) ||
+        (photoDisplayPrefix && objectKey.startsWith(photoDisplayPrefix))
+    );
+  const photoObjects = objects
     .map((object) => ({
       key: normalizeRelativeKey(object.key),
       lastModified: object.lastModified || new Date(0).toISOString(),
@@ -509,17 +483,32 @@ function buildFallbackManifestFromObjects(objects) {
     .filter(
       (object) =>
         isSupportedImage(object.key) &&
-        !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
+        !isDerivedKey(object.key) &&
         (!photoPrefix || object.key.startsWith(photoPrefix))
-    )
+    );
+  const photoRelativePaths = photoObjects.map((object) =>
+    stripPrefix(object.key, photoPrefix)
+  );
+  const resolveThumbnail = createRenditionResolver(
+    imageKeys,
+    photoThumbPrefix,
+    photoRelativePaths
+  );
+  const resolveDisplay = createRenditionResolver(
+    imageKeys,
+    photoDisplayPrefix,
+    photoRelativePaths
+  );
+
+  const photos = photoObjects
     .map((object) => {
       const relativePath = stripPrefix(object.key, photoPrefix);
 
       return {
         objectKey: object.key,
         relativePath,
-        thumbnailObjectKey:
-          thumbnailLookup.get(getRelativeStem(relativePath)) || null,
+        thumbnailObjectKey: resolveThumbnail(relativePath),
+        displayObjectKey: resolveDisplay(relativePath),
         date: object.lastModified,
       };
     })
@@ -781,60 +770,75 @@ async function main() {
   }
 
   const healedEntries = [];
+  const failedHeals = [];
 
   for (const photo of photosToHeal) {
     const sourceObjectKey = normalizeRelativeKey(photo.objectKey);
-    const needsThumbnail = !hasExistingKey(photo.thumbnailObjectKey);
-    const needsDisplay = !hasExistingKey(photo.displayObjectKey);
-    const sourceResponse = await requestSignedObject(sourceObjectKey);
-    const sourceBuffer = Buffer.from(await sourceResponse.arrayBuffer());
 
-    if (needsThumbnail) {
-      const thumbnailObjectKey = getThumbnailObjectKey(sourceObjectKey);
-      const thumbnailBuffer = await generateRenditionBuffer(sourceBuffer, {
-        width: maxWidth,
-        height: maxHeight,
-        quality,
+    try {
+      const needsThumbnail = !hasExistingKey(photo.thumbnailObjectKey);
+      const needsDisplay = !hasExistingKey(photo.displayObjectKey);
+      const sourceResponse = await requestSignedObject(sourceObjectKey);
+      const sourceBuffer = Buffer.from(await sourceResponse.arrayBuffer());
+
+      if (needsThumbnail) {
+        const thumbnailObjectKey = getThumbnailObjectKey(sourceObjectKey);
+        const thumbnailBuffer = await generateRenditionBuffer(sourceBuffer, {
+          width: maxWidth,
+          height: maxHeight,
+          quality,
+        });
+
+        await requestSignedObject(thumbnailObjectKey, {
+          method: 'PUT',
+          body: thumbnailBuffer,
+          contentType: outputFormat,
+          cacheControl: thumbCacheControl,
+        });
+
+        photo.thumbnailObjectKey = thumbnailObjectKey;
+        console.log(
+          `[thumbs:heal] Backfilled ${thumbnailObjectKey} from ${sourceObjectKey}.`
+        );
+      }
+
+      if (needsDisplay) {
+        const displayObjectKey = getDisplayObjectKey(sourceObjectKey);
+        const displayBuffer = await generateRenditionBuffer(sourceBuffer, {
+          width: displayMaxWidth,
+          height: displayMaxHeight,
+          quality: displayQuality,
+        });
+
+        await requestSignedObject(displayObjectKey, {
+          method: 'PUT',
+          body: displayBuffer,
+          contentType: outputFormat,
+          cacheControl: thumbCacheControl,
+        });
+
+        photo.displayObjectKey = displayObjectKey;
+        console.log(
+          `[thumbs:heal] Backfilled ${displayObjectKey} from ${sourceObjectKey}.`
+        );
+      }
+
+      healedEntries.push({
+        relativePath: photo.relativePath,
+        thumbnailObjectKey: photo.thumbnailObjectKey,
       });
-
-      await requestSignedObject(thumbnailObjectKey, {
-        method: 'PUT',
-        body: thumbnailBuffer,
-        contentType: outputFormat,
-        cacheControl: thumbCacheControl,
-      });
-
-      photo.thumbnailObjectKey = thumbnailObjectKey;
-      console.log(
-        `[thumbs:heal] Backfilled ${thumbnailObjectKey} from ${sourceObjectKey}.`
+    } catch (error) {
+      failedHeals.push(`${sourceObjectKey}: ${formatErrorMessage(error)}`);
+      console.warn(
+        `[thumbs:heal] Skipping ${sourceObjectKey}: ${formatErrorMessage(error)}`
       );
     }
+  }
 
-    if (needsDisplay) {
-      const displayObjectKey = getDisplayObjectKey(sourceObjectKey);
-      const displayBuffer = await generateRenditionBuffer(sourceBuffer, {
-        width: displayMaxWidth,
-        height: displayMaxHeight,
-        quality: displayQuality,
-      });
-
-      await requestSignedObject(displayObjectKey, {
-        method: 'PUT',
-        body: displayBuffer,
-        contentType: outputFormat,
-        cacheControl: thumbCacheControl,
-      });
-
-      photo.displayObjectKey = displayObjectKey;
-      console.log(
-        `[thumbs:heal] Backfilled ${displayObjectKey} from ${sourceObjectKey}.`
-      );
-    }
-
-    healedEntries.push({
-      relativePath: photo.relativePath,
-      thumbnailObjectKey: photo.thumbnailObjectKey,
-    });
+  if (healedEntries.length === 0) {
+    throw createError(
+      `Could not heal any of ${photosToHeal.length} photos. First error: ${failedHeals[0]}`
+    );
   }
 
   manifest.generatedAt = new Date().toISOString();
@@ -851,7 +855,7 @@ async function main() {
   }
 
   console.log(
-    `[thumbs:heal] Published healed manifest with ${healedEntries.length} backfilled thumbnail${healedEntries.length === 1 ? '' : 's'}.`
+    `[thumbs:heal] Published healed manifest with ${healedEntries.length} backfilled photo${healedEntries.length === 1 ? '' : 's'}${failedHeals.length > 0 ? ` (${failedHeals.length} skipped after errors)` : ''}.`
   );
 }
 

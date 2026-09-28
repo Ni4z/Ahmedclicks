@@ -12,13 +12,14 @@ import {
   getRecentPhotos,
 } from '@/lib/gallery';
 import { getFeaturedVideos } from '@/lib/videos';
-import { withPhotoAssetPath } from '@/lib/site';
+import { absoluteUrl, withPhotoAssetPath } from '@/lib/site';
 import { blogPosts } from '@/data/portfolio';
 
 export const metadata: Metadata = {
-  title: 'Home | NiazPhotography',
+  title: 'NiazPhotography — Wildlife & Landscape Photography',
   description:
     'Wildlife, landscape, and nature photography by Niaz — featuring wildlife, astrophotography, landscapes, portraits, and short film work, based in Duisburg, Germany.',
+  alternates: { canonical: absoluteUrl('/') },
 };
 
 export default function Home() {
@@ -70,9 +71,9 @@ export default function Home() {
       <Categories categories={categories} />
       <PhotographerBio
         profileImage={
-          profilePhoto?.image ||
-          recentPhotos[0]?.image ||
-          withPhotoAssetPath('/photos/Me/Me.jpg')
+          profilePhoto?.thumbnail ||
+          recentPhotos[0]?.thumbnail ||
+          withPhotoAssetPath('/photos/Me/Me.jpg', 'thumbnail')
         }
       />
     </>

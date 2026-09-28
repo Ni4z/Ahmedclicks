@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/portfolio';
 import { formatDate } from '@/lib/utils';
-import { absoluteUrl } from '@/lib/site';
+import { absoluteUrl, siteConfig } from '@/lib/site';
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -90,7 +90,11 @@ export async function generateMetadata({
   return {
     title: `${post.title} | NiazPhotography`,
     description: post.excerpt,
+    alternates: { canonical: absoluteUrl(`/blog/${post.slug}/`) },
     openGraph: {
+      type: 'article',
+      siteName: siteConfig.name,
+      publishedTime: post.date,
       title: post.title,
       description: post.excerpt,
       url: absoluteUrl(`/blog/${post.slug}/`),

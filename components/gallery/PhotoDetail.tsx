@@ -47,8 +47,8 @@ export default function PhotoDetail({ photo, shareUrl }: PhotoDetailProps) {
   }`;
   const socialLinks = [
     {
-      name: 'Twitter',
-      url: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      name: 'X',
+      url: `https://x.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
     },
     {
       name: 'Facebook',

@@ -15,8 +15,8 @@ const config: Config = {
         foreground: 'rgb(var(--color-fg) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'serif'],
         signature: ['var(--font-signature)', 'cursive'],
       },
       animation: {
