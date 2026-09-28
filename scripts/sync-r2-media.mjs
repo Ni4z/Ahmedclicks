@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import fsSync from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { createRenditionResolver } from './lib/rendition-keys.mjs';
 
 loadLocalEnvFiles();
 
@@ -224,7 +225,10 @@ function parseListBucketXml(xml) {
 }
 
 function canonicalizePathname(pathname) {
-  const segments = pathname.split('/').map((segment) => encodeRfc3986(segment));
+  // URL.pathname is already percent-encoded; decode first so "Urban%20Decay" is not signed as "Urban%2520Decay".
+  const segments = pathname
+    .split('/')
+    .map((segment) => encodeRfc3986(decodeURIComponent(segment)));
 
   if (pathname.startsWith('/')) {
     segments[0] = '';
@@ -323,15 +327,6 @@ function normalizeRelativeKey(objectKey) {
   return objectKey.replace(/^\/+/, '').replace(/\\/g, '/');
 }
 
-function getRelativeStem(objectKey) {
-  const normalizedKey = normalizeRelativeKey(objectKey);
-  const extension = path.extname(normalizedKey);
-
-  return extension
-    ? normalizedKey.slice(0, normalizedKey.length - extension.length)
-    : normalizedKey;
-}
-
 function compareByDateDescending(first, second) {
   const firstDate = Number.isNaN(new Date(first.date).getTime())
     ? 0
@@ -414,59 +409,51 @@ async function fetchSignedObjectText(objectKey) {
 }
 
 function buildPhotoAssets(objects) {
-  const thumbnailLookup = new Map();
-  const displayLookup = new Map();
-
-  for (const object of objects) {
-    if (!isImageKey(object.key)) {
-      continue;
-    }
-
-    if (photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) {
-      thumbnailLookup.set(
-        getRelativeStem(stripPrefix(object.key, photoThumbPrefix)),
-        object.key
-      );
-    } else if (
-      photoDisplayPrefix &&
-      object.key.startsWith(photoDisplayPrefix)
-    ) {
-      displayLookup.set(
-        getRelativeStem(stripPrefix(object.key, photoDisplayPrefix)),
-        object.key
-      );
-    }
-  }
-
+  const isDerivedKey = (objectKey) =>
+    Boolean(
+      (photoThumbPrefix && objectKey.startsWith(photoThumbPrefix)) ||
+        (photoDisplayPrefix && objectKey.startsWith(photoDisplayPrefix))
+    );
+  const imageKeys = objects
+    .map((object) => object.key)
+    .filter((objectKey) => isImageKey(objectKey));
   const photoCandidates = objects.filter(
     (object) =>
       isImageKey(object.key) &&
-      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
-      !(photoDisplayPrefix && object.key.startsWith(photoDisplayPrefix)) &&
+      !isDerivedKey(object.key) &&
       (!restrictPhotosToPrefix ||
         !photoPrefix ||
         object.key.startsWith(photoPrefix))
+  );
+  const photoRelativePaths = photoCandidates.map((object) =>
+    stripPrefix(object.key, photoPrefix)
+  );
+  const resolveThumbnail = createRenditionResolver(
+    imageKeys,
+    photoThumbPrefix,
+    photoRelativePaths
+  );
+  const resolveDisplay = createRenditionResolver(
+    imageKeys,
+    photoDisplayPrefix,
+    photoRelativePaths
   );
 
   return {
     photos: photoCandidates
       .map((object) => {
         const relativePath = stripPrefix(object.key, photoPrefix);
-        const thumbLookupKey = getRelativeStem(relativePath);
 
         return {
           objectKey: object.key,
           relativePath,
-          thumbnailObjectKey: thumbnailLookup.get(thumbLookupKey) || null,
-          displayObjectKey: displayLookup.get(thumbLookupKey) || null,
+          thumbnailObjectKey: resolveThumbnail(relativePath),
+          displayObjectKey: resolveDisplay(relativePath),
           date: object.lastModified || new Date(0).toISOString(),
         };
       })
       .sort(compareByDateDescending),
-    thumbnailKeys: new Set([
-      ...thumbnailLookup.values(),
-      ...displayLookup.values(),
-    ]),
+    thumbnailKeys: new Set(imageKeys.filter(isDerivedKey)),
   };
 }
 

@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import BrandMark from '@/components/layout/BrandMark';
 import ThemeToggle from '@/components/layout/ThemeToggle';
@@ -17,6 +18,9 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
 
   const menuVariants = {
     closed: { opacity: 0, height: 0 },
@@ -51,10 +55,18 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-6">
             <div className="flex items-center gap-8">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                >
                   <motion.span
                     whileHover={{ y: -1 }}
-                    className="text-sm tracking-[0.22em] text-foreground/85 hover:text-accent-gold transition-colors"
+                    className={`text-sm tracking-[0.22em] hover:text-accent-gold transition-colors ${
+                      isActive(item.href)
+                        ? 'text-foreground underline decoration-foreground/50 underline-offset-8'
+                        : 'text-foreground/85'
+                    }`}
                   >
                     {item.name}
                   </motion.span>
@@ -72,6 +84,7 @@ export default function Navbar() {
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               <span
                 className={`h-0.5 w-6 bg-foreground transition-all ${
@@ -92,29 +105,35 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <motion.div
-          initial="closed"
-          animate={isOpen ? 'open' : 'closed'}
-          variants={menuVariants}
-          className="md:hidden overflow-hidden bg-dark-secondary"
-        >
-          {navItems.map((item, i) => (
+        {/* Mobile Menu: unmounted when closed so hidden links are not reachable by keyboard */}
+        <AnimatePresence initial={false}>
+          {isOpen ? (
             <motion.div
-              key={item.href}
-              custom={i}
-              variants={itemVariants}
+              key="mobile-menu"
+              id="mobile-menu"
               initial="closed"
-              animate={isOpen ? 'open' : 'closed'}
+              animate="open"
+              exit="closed"
+              variants={menuVariants}
+              className="md:hidden overflow-hidden bg-dark-secondary"
             >
-              <Link href={item.href} onClick={() => setIsOpen(false)}>
-                <div className="px-6 py-3 text-sm tracking-[0.22em] text-foreground/80 hover:text-accent-gold">
-                  {item.name}
-                </div>
-              </Link>
+              {navItems.map((item, i) => (
+                <motion.div key={item.href} custom={i} variants={itemVariants}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    className={`block px-6 py-3 text-sm tracking-[0.22em] hover:text-accent-gold ${
+                      isActive(item.href) ? 'text-foreground' : 'text-foreground/80'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
             </motion.div>
-          ))}
-        </motion.div>
+          ) : null}
+        </AnimatePresence>
       </nav>
 
       {/* Spacer */}

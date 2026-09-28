@@ -27,7 +27,7 @@ Upload photo to R2            (photos-web/wildlife/Bird.jpg)
 R2 bucket notification ──────► niaz-media-events queue
        │
        ▼
-Worker: generateThumbnail()    (photos-thumb/wildlife/Bird.webp)
+Worker: generateThumbnail()    (photos-thumb/wildlife/Bird.jpg.webp)
        │
        ▼
 Worker: publishCaptionPlaceholders() (captions.json in image bucket)
@@ -53,6 +53,10 @@ Live site shows the new photo
 ```
 
 Supported image types: `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.avif`
+
+Rendition keys keep the original extension (`Bird.jpg` -> `Bird.jpg.webp`), so
+`Bird.jpg` and `Bird.png` never share a thumbnail. Older renditions named
+`Bird.webp` are still used as long as only one photo in that folder is called `Bird`.
 
 Videos follow the same manifest + deploy path but do not generate thumbnails.
 
@@ -187,7 +191,7 @@ manual backfill is only needed for one-off repairs.
 
 1. Check the manifest has the photo: `curl -s https://images.niazphotography.com/media-manifest.json | grep <filename>`
 2. Check captions placeholders exist: `curl -s https://images.niazphotography.com/captions.json | grep <filename>`
-3. Check the thumbnail exists: `curl -sI https://images.niazphotography.com/photos-thumb/<path>.webp`
+3. Check the thumbnail exists: `curl -sI https://images.niazphotography.com/photos-thumb/<path-with-extension>.webp`
 4. Test the deploy token: `GITHUB_DEPLOY_TOKEN=... node scripts/test-deploy-trigger.mjs`
 5. Check recent workflow runs: `https://github.com/Ni4z/Ahmedclicks/actions`
 6. Check Cloudflare worker logs: `npx wrangler tail -c workers/thumbnail-generator/wrangler.jsonc`

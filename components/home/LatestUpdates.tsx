@@ -131,7 +131,7 @@ export default function LatestUpdates({ items }: LatestUpdatesProps) {
             View All Gallery
           </Link>
           <Link href="/blog" className="btn-secondary inline-block">
-            Read the Journal
+            Read the Blog
           </Link>
         </motion.div>
       </div>

@@ -71,12 +71,11 @@ export const metadata: Metadata = {
   icons: {
     icon: withBasePath('/favicon.svg'),
   },
+  // No url/title/description here: pages inherit this object, so each page's own title and description fill it in.
   openGraph: {
     type: 'website',
-    url: absoluteUrl('/'),
-    title: 'NiazPhotography',
-    description:
-      'Wildlife, landscape, and nature photography by Niaz — wildlife, astrophotography, landscapes, portraits, and short film work, based in Duisburg, Germany.',
+    siteName: siteConfig.name,
+    locale: 'en_US',
     images: [
       {
         url: absoluteUrl(socialImage),
@@ -86,7 +85,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@NiazPhotography',
   },
 };
 

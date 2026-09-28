@@ -5,6 +5,7 @@ import { mediaManifest } from '@/data/mediaManifest';
 import {
   createStableAssetId,
   type SyncedPhotoAsset,
+  toTitleCase,
   withObjectStorageAssetPath,
 } from '@/lib/media-assets';
 import { Photo, PhotoCategory } from '@/lib/types';
@@ -147,20 +148,16 @@ function humanizeCategory(value: string): string {
     .replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-function createPhotoTitle(
-  categoryName: string,
-  fileName: string,
-  index: number
-): string {
-  const rawName = path.parse(fileName).name;
+function createPhotoTitle(categoryName: string, fileName: string): string {
+  const rawName = path.parse(fileName).name.trim();
+  const cameraFrame = rawName.match(/^dsc(\d+.*)$/i);
 
-  if (/^dsc\d+/i.test(rawName)) {
-    return `${categoryName} Frame ${String(index + 1).padStart(2, '0')}`;
+  // Use the camera file number, not the gallery position, so titles don't shift when photos are added.
+  if (cameraFrame) {
+    return `${categoryName} Frame ${cameraFrame[1]}`;
   }
 
-  return rawName
-    .replace(/[-_]+/g, ' ')
-    .replace(/\b\w/g, (letter) => letter.toUpperCase());
+  return toTitleCase(rawName);
 }
 
 function resolveCategorySegment(relativePath: string): string {
@@ -359,7 +356,7 @@ function createPhotoRecord(
 
   return {
     id: createStableAssetId(file.relativePath, 'photo'),
-    title: metadata.title || createPhotoTitle(category.name, file.fileName, index),
+    title: metadata.title || createPhotoTitle(category.name, file.fileName),
     caption,
     category: category.name,
     categoryKey: category.key,

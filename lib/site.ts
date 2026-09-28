@@ -30,6 +30,14 @@ export const siteConfig = {
   linkedinUrl:
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
     'https://www.linkedin.com/in/hmedniaz/',
+  services: [
+    'Wildlife Photography',
+    'Landscape Photography',
+    'Astrophotography',
+    'Portrait Sessions',
+    'Short Video Work',
+    'Prints & Licensing',
+  ],
 };
 
 export const withBasePath = (path: string): string => {

@@ -6,6 +6,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import sharp from 'sharp';
+import { getRenditionKey } from './lib/rendition-keys.mjs';
 
 loadLocalEnvFiles();
 
@@ -138,18 +139,6 @@ function stripPrefix(objectKey, prefix) {
     : objectKey;
 }
 
-function replaceExtension(filePath, extension) {
-  const normalizedPath = normalizeRelativeKey(filePath);
-  const extensionIndex = normalizedPath.lastIndexOf('.');
-  const lastSlashIndex = normalizedPath.lastIndexOf('/');
-
-  if (extensionIndex <= lastSlashIndex) {
-    return `${normalizedPath}${extension}`;
-  }
-
-  return `${normalizedPath.slice(0, extensionIndex)}${extension}`;
-}
-
 function resolveSourceObjectKey(input) {
   const normalizedInput = normalizeRelativeKey(input.trim());
 
@@ -166,12 +155,12 @@ function resolveSourceObjectKey(input) {
 
 function getThumbnailObjectKey(sourceObjectKey) {
   const relativePath = stripPrefix(sourceObjectKey, sourcePrefix);
-  return `${thumbPrefix}${replaceExtension(relativePath, outputExtension)}`;
+  return getRenditionKey(relativePath, thumbPrefix, outputExtension);
 }
 
 function getDisplayObjectKey(sourceObjectKey) {
   const relativePath = stripPrefix(sourceObjectKey, sourcePrefix);
-  return `${displayPrefix}${replaceExtension(relativePath, outputExtension)}`;
+  return getRenditionKey(relativePath, displayPrefix, outputExtension);
 }
 
 function printUsage() {

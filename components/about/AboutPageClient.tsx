@@ -75,7 +75,7 @@ export default function AboutPageClient({
             <div className="w-56 h-56 md:w-64 md:h-64 xl:w-72 xl:h-72 rounded-full overflow-hidden bg-dark-secondary p-3 border border-dark-tertiary">
               <img
                 src={profileImage}
-                alt="NiazPhotography portrait"
+                alt="Portrait of Niaz"
                 loading="lazy"
                 decoding="async"
                 className="block w-full h-full object-cover rounded-full"
@@ -146,9 +146,8 @@ export default function AboutPageClient({
             of the lens.
           </motion.p>
           <motion.p variants={itemVariants} className="text-gray-400 leading-relaxed lg:text-justify">
-            The site is built to stay close to that idea: fewer placeholders,
-            fewer invented details, and more emphasis on the real image and
-            video collections that make up NiazPhotography.
+            This portfolio follows the same idea: real photographs and films,
+            presented simply, with the image always first.
           </motion.p>
         </motion.div>
       </div>

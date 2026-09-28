@@ -1,3 +1,10 @@
+import {
+  createRenditionResolver,
+  getLegacyRenditionKey,
+  getRelativeStem,
+  getRenditionKey,
+} from '../../../scripts/lib/rendition-keys.mjs';
+
 const imageExtensions = new Set([
   '.avif',
   '.gif',
@@ -310,18 +317,6 @@ function stripPrefix(objectKey, prefix) {
     : objectKey;
 }
 
-function replaceExtension(filePath, extension) {
-  const normalizedPath = normalizePath(filePath);
-  const lastDotIndex = normalizedPath.lastIndexOf('.');
-  const lastSlashIndex = normalizedPath.lastIndexOf('/');
-
-  if (lastDotIndex <= lastSlashIndex) {
-    return `${normalizedPath}${extension}`;
-  }
-
-  return `${normalizedPath.slice(0, lastDotIndex)}${extension}`;
-}
-
 function pathExtension(filePath) {
   const normalizedPath = normalizePath(filePath);
   const lastDotIndex = normalizedPath.lastIndexOf('.');
@@ -366,22 +361,16 @@ function getDerivedPrefixes(env) {
 }
 
 function getThumbnailKey(objectKey, sourcePrefix, thumbPrefix, outputExtension) {
-  const relativePath = stripPrefix(normalizePath(objectKey), sourcePrefix);
-  return `${thumbPrefix}${replaceExtension(relativePath, outputExtension)}`;
+  return getRenditionKey(
+    stripPrefix(normalizePath(objectKey), sourcePrefix),
+    thumbPrefix,
+    outputExtension
+  );
 }
 
-function getRelativeStem(objectKey) {
-  const normalizedKey = normalizePath(objectKey);
-  const extension = pathExtension(normalizedKey);
-
-  return extension
-    ? normalizedKey.slice(0, normalizedKey.length - extension.length)
-    : normalizedKey;
-}
-
-function getPhotoRelativeStem(objectKey, env) {
+function getPhotoRelativePath(objectKey, env) {
   const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
-  return getRelativeStem(stripPrefix(normalizePath(objectKey), sourcePrefix));
+  return stripPrefix(normalizePath(objectKey), sourcePrefix);
 }
 
 function compareByDateDescending(first, second) {
@@ -508,60 +497,50 @@ function buildPhotoAssets(
   const photoDisplayPrefix = normalizePrefix(
     env.DISPLAY_DEST_PREFIX || 'photos-display'
   );
-  const thumbnailLookup = new Map();
-  const displayLookup = new Map();
-
-  for (const object of objects) {
-    if (!isSupportedImage(object.key)) {
-      continue;
-    }
-
-    if (photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) {
-      thumbnailLookup.set(
-        getRelativeStem(stripPrefix(object.key, photoThumbPrefix)),
-        object.key
-      );
-    } else if (
-      photoDisplayPrefix &&
-      object.key.startsWith(photoDisplayPrefix)
-    ) {
-      displayLookup.set(
-        getRelativeStem(stripPrefix(object.key, photoDisplayPrefix)),
-        object.key
-      );
-    }
-  }
-
+  const isDerivedKey = (key) =>
+    Boolean(
+      (photoThumbPrefix && key.startsWith(photoThumbPrefix)) ||
+        (photoDisplayPrefix && key.startsWith(photoDisplayPrefix))
+    );
+  const imageKeys = objects
+    .map((object) => object.key)
+    .filter((key) => isSupportedImage(key));
   const photoCandidates = objects.filter(
-    (object) =>
-      isSupportedImage(object.key) &&
-      !(photoThumbPrefix && object.key.startsWith(photoThumbPrefix)) &&
-      !(photoDisplayPrefix && object.key.startsWith(photoDisplayPrefix))
+    (object) => isSupportedImage(object.key) && !isDerivedKey(object.key)
+  );
+  const photoRelativePaths = photoCandidates.map((object) =>
+    stripPrefix(object.key, photoPrefix)
+  );
+  const resolveThumbnail = createRenditionResolver(
+    imageKeys,
+    photoThumbPrefix,
+    photoRelativePaths
+  );
+  const resolveDisplay = createRenditionResolver(
+    imageKeys,
+    photoDisplayPrefix,
+    photoRelativePaths
   );
 
   return {
     photos: photoCandidates
       .map((object) => {
         const relativePath = stripPrefix(object.key, photoPrefix);
-        const thumbLookupKey = getRelativeStem(relativePath);
 
         return {
           objectKey: object.key,
           relativePath,
-          thumbnailObjectKey: thumbnailOverrides.has(thumbLookupKey)
-            ? thumbnailOverrides.get(thumbLookupKey)
-            : thumbnailLookup.get(thumbLookupKey) || null,
-          displayObjectKey: displayOverrides.has(thumbLookupKey)
-            ? displayOverrides.get(thumbLookupKey)
-            : displayLookup.get(thumbLookupKey) || null,
+          thumbnailObjectKey: thumbnailOverrides.has(relativePath)
+            ? thumbnailOverrides.get(relativePath)
+            : resolveThumbnail(relativePath),
+          displayObjectKey: displayOverrides.has(relativePath)
+            ? displayOverrides.get(relativePath)
+            : resolveDisplay(relativePath),
           date: object.lastModified,
         };
       })
       .sort(compareByDateDescending),
-    thumbnailKeys: new Set([
-      ...thumbnailLookup.values(),
-      ...displayLookup.values(),
-    ]),
+    thumbnailKeys: new Set(imageKeys.filter(isDerivedKey)),
   };
 }
 
@@ -982,30 +961,30 @@ async function generateDerivedImages(objectKey, env) {
 
 async function removeDerivedImages(objectKey, env) {
   const sourcePrefix = normalizePrefix(env.THUMB_SOURCE_PREFIX, '');
-  const [thumbPrefix, displayPrefix] = getDerivedPrefixes(env);
+  const derivedPrefixes = getDerivedPrefixes(env);
   const outputFormat = normalizeFormat(env.THUMB_OUTPUT_FORMAT);
   const outputExtension = formatToExtension[outputFormat];
 
-  if (!shouldHandleImage(objectKey, sourcePrefix, getDerivedPrefixes(env))) {
+  if (!shouldHandleImage(objectKey, sourcePrefix, derivedPrefixes)) {
     return null;
   }
 
-  const thumbnailKey = getThumbnailKey(
-    objectKey,
-    sourcePrefix,
-    thumbPrefix,
-    outputExtension
-  );
-  const displayKey = getThumbnailKey(
-    objectKey,
-    sourcePrefix,
-    displayPrefix,
-    outputExtension
+  const relativePath = stripPrefix(normalizePath(objectKey), sourcePrefix);
+  const keysToDelete = derivedPrefixes.map((prefix) =>
+    getRenditionKey(relativePath, prefix, outputExtension)
   );
 
-  await env.MEDIA_BUCKET.delete(thumbnailKey);
-  await env.MEDIA_BUCKET.delete(displayKey);
-  return thumbnailKey;
+  // A legacy key like "Robin.jpg.webp" (from deleting "Robin.jpg.png") would be another photo's new-style rendition.
+  if (!(await env.MEDIA_BUCKET.head(`${sourcePrefix}${getRelativeStem(relativePath)}`))) {
+    keysToDelete.push(
+      ...derivedPrefixes.map((prefix) =>
+        getLegacyRenditionKey(relativePath, prefix, outputExtension)
+      )
+    );
+  }
+
+  await env.MEDIA_BUCKET.delete(keysToDelete);
+  return keysToDelete[0];
 }
 
 function getEventType(payload) {
@@ -1127,8 +1106,8 @@ export default {
 
           if (deletedThumbnailKey) {
             console.log(`Deleted derived images for ${objectKey}`);
-            thumbnailOverrides.set(getPhotoRelativeStem(objectKey, env), null);
-            displayOverrides.set(getPhotoRelativeStem(objectKey, env), null);
+            thumbnailOverrides.set(getPhotoRelativePath(objectKey, env), null);
+            displayOverrides.set(getPhotoRelativePath(objectKey, env), null);
           }
 
           // Remove EXIF data for deleted photos
@@ -1144,7 +1123,7 @@ export default {
           if (thumbnailKey) {
             console.log(`Generated thumbnail ${thumbnailKey}`);
             thumbnailOverrides.set(
-              getPhotoRelativeStem(objectKey, env),
+              getPhotoRelativePath(objectKey, env),
               thumbnailKey
             );
           }
@@ -1152,7 +1131,7 @@ export default {
           if (displayKey) {
             console.log(`Generated display rendition ${displayKey}`);
             displayOverrides.set(
-              getPhotoRelativeStem(objectKey, env),
+              getPhotoRelativePath(objectKey, env),
               displayKey
             );
           }
@@ -1179,7 +1158,7 @@ export default {
           console.error(
             `Thumbnail processing failed for ${objectKey}; continuing with manifest publish: ${messageText}`
           );
-          thumbnailOverrides.set(getPhotoRelativeStem(objectKey, env), null);
+          thumbnailOverrides.set(getPhotoRelativePath(objectKey, env), null);
           processedMessages.push(message);
         } else {
           console.error(`Thumbnail processing failed for ${objectKey}: ${messageText}`);

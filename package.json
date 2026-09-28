@@ -7,6 +7,7 @@
     "predev": "node scripts/sync-r2-media.mjs",
     "prebuild": "node scripts/sync-r2-media.mjs",
     "sync:media": "node scripts/sync-r2-media.mjs",
+    "photo:upload": "node scripts/upload-photos.mjs",
     "caption:set": "node scripts/set-r2-caption.mjs",
     "photo:meta:set": "node scripts/set-photo-metadata.mjs",
     "photo:exif": "node scripts/extract-exif.mjs",

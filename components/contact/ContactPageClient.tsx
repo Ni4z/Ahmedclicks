@@ -97,7 +97,9 @@ export default function ContactPageClient() {
         className="py-20 px-6 text-center bg-dark-secondary"
       >
         <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4">Get In Touch</h1>
-        <p className="text-gray-400 text-lg">Let&apos;s collaborate and create something amazing</p>
+        <p className="text-gray-400 text-lg">
+          Prints, licensing, collaborations, or feedback on the work — I&apos;d be glad to hear from you.
+        </p>
       </motion.div>
 
       {/* Content */}
@@ -147,11 +149,9 @@ export default function ContactPageClient() {
                   SERVICES
                 </h3>
                 <ul className="space-y-2 text-gray-400">
-                  <li>Landscape Photography</li>
-                  <li>Wildlife Photography</li>
-                  <li>Astrophotography</li>
-                  <li>Portrait Sessions</li>
-                  <li>Print Sales & Licensing</li>
+                  {siteConfig.services.map((service) => (
+                    <li key={service}>{service}</li>
+                  ))}
                 </ul>
               </div>
 
@@ -161,8 +161,8 @@ export default function ContactPageClient() {
                 </h3>
                 <p className="text-gray-400 leading-7 mb-4">
                   Looking for a fine art print, editorial use, or a licensing
-                  conversation for a project? There is now a dedicated page
-                  with the enquiry process and what to include.
+                  conversation for a project? The prints & licensing page
+                  explains the enquiry process and what to include.
                 </p>
                 <Link
                   href="/prints"

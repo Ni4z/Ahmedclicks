@@ -39,7 +39,10 @@ export async function generateMetadata({
   return {
     title: `${photo.title} | NiazPhotography`,
     description: seoDescription,
+    alternates: { canonical: absoluteUrl(`/gallery/${photo.id}/`) },
     openGraph: {
+      type: 'website',
+      siteName: siteConfig.name,
       title: photo.title,
       description: seoDescription,
       url: absoluteUrl(`/gallery/${photo.id}/`),
