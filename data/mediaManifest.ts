@@ -1,9 +1,142 @@
 import type { MediaManifest } from '@/lib/media-assets';
 
 export const mediaManifest: MediaManifest = {
-  "generatedAt": "2026-07-28T19:37:08.447Z",
+  "generatedAt": "2026-08-30T13:20:28.201Z",
   "source": "r2",
   "photos": [
+    {
+      "objectKey": "photos-web/Metropolis/Urban Decay .png",
+      "relativePath": "Metropolis/Urban Decay .png",
+      "thumbnailObjectKey": null,
+      "displayObjectKey": null,
+      "date": "2026-08-30T13:20:18.853Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Kestrel Gliding.jpg",
+      "relativePath": "wildlife/Kestrel Gliding.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Kestrel Gliding.webp",
+      "displayObjectKey": "photos-display/wildlife/Kestrel Gliding.webp",
+      "date": "2026-08-24T05:14:15.877Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Kestrel Scaning the Field.jpg",
+      "relativePath": "wildlife/Kestrel Scaning the Field.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Kestrel Scaning the Field.webp",
+      "displayObjectKey": "photos-display/wildlife/Kestrel Scaning the Field.webp",
+      "date": "2026-08-24T05:14:15.438Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Kormoran in Sunlight.jpg",
+      "relativePath": "wildlife/Kormoran in Sunlight.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Kormoran in Sunlight.webp",
+      "displayObjectKey": "photos-display/wildlife/Kormoran in Sunlight.webp",
+      "date": "2026-08-24T05:14:15.122Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Green Plus Yellow.jpg",
+      "relativePath": "wildlife/Green Plus Yellow.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Green Plus Yellow.webp",
+      "displayObjectKey": "photos-display/wildlife/Green Plus Yellow.webp",
+      "date": "2026-08-23T10:14:17.050Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Green Eye.jpg",
+      "relativePath": "wildlife/Green Eye.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Green Eye.webp",
+      "displayObjectKey": "photos-display/wildlife/Green Eye.webp",
+      "date": "2026-08-23T10:14:17.038Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Green Gaze.jpg",
+      "relativePath": "wildlife/Green Gaze.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Green Gaze.webp",
+      "displayObjectKey": "photos-display/wildlife/Green Gaze.webp",
+      "date": "2026-08-23T10:14:16.984Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Yawning.jpg",
+      "relativePath": "wildlife/Yawning.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Yawning.webp",
+      "displayObjectKey": "photos-display/wildlife/Yawning.webp",
+      "date": "2026-08-23T10:14:16.910Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Rabbit.jpg",
+      "relativePath": "wildlife/Rabbit.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Rabbit.webp",
+      "displayObjectKey": "photos-display/wildlife/Rabbit.webp",
+      "date": "2026-08-18T21:24:13.372Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Red Face.jpg",
+      "relativePath": "wildlife/Red Face.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Red Face.webp",
+      "displayObjectKey": "photos-display/wildlife/Red Face.webp",
+      "date": "2026-08-16T18:55:29.125Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Member of Falcon Family.jpg",
+      "relativePath": "wildlife/Member of Falcon Family.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Member of Falcon Family.webp",
+      "displayObjectKey": "photos-display/wildlife/Member of Falcon Family.webp",
+      "date": "2026-08-16T18:55:28.599Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Flapping.jpg",
+      "relativePath": "wildlife/Flapping.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Flapping.webp",
+      "displayObjectKey": "photos-display/wildlife/Flapping.webp",
+      "date": "2026-08-09T18:08:39.383Z"
+    },
+    {
+      "objectKey": "photos-web/Trees/Rays Through Forest.jpg",
+      "relativePath": "Trees/Rays Through Forest.jpg",
+      "thumbnailObjectKey": "photos-thumb/Trees/Rays Through Forest.webp",
+      "displayObjectKey": "photos-display/Trees/Rays Through Forest.webp",
+      "date": "2026-08-08T17:52:58.733Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Roe Deer First light.jpg",
+      "relativePath": "wildlife/Roe Deer First light.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Roe Deer First light.webp",
+      "displayObjectKey": "photos-display/wildlife/Roe Deer First light.webp",
+      "date": "2026-08-08T10:21:33.653Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Roe Deer in Mist.jpg",
+      "relativePath": "wildlife/Roe Deer in Mist.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Roe Deer in Mist.webp",
+      "displayObjectKey": "photos-display/wildlife/Roe Deer in Mist.webp",
+      "date": "2026-08-08T10:21:31.218Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Roe Deer in the Mist.jpg",
+      "relativePath": "wildlife/Roe Deer in the Mist.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Roe Deer in the Mist.webp",
+      "displayObjectKey": "photos-display/wildlife/Roe Deer in the Mist.webp",
+      "date": "2026-08-08T10:20:10.508Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Mallard Flapping.jpg",
+      "relativePath": "wildlife/Mallard Flapping.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Mallard Flapping.webp",
+      "displayObjectKey": "photos-display/wildlife/Mallard Flapping.webp",
+      "date": "2026-08-08T10:19:52.985Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/Heron on Mist.jpg",
+      "relativePath": "wildlife/Heron on Mist.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/Heron on Mist.webp",
+      "displayObjectKey": "photos-display/wildlife/Heron on Mist.webp",
+      "date": "2026-08-08T10:19:52.715Z"
+    },
+    {
+      "objectKey": "photos-web/wildlife/In between mist.jpg",
+      "relativePath": "wildlife/In between mist.jpg",
+      "thumbnailObjectKey": "photos-thumb/wildlife/In between mist.webp",
+      "displayObjectKey": "photos-display/wildlife/In between mist.webp",
+      "date": "2026-08-08T10:19:50.853Z"
+    },
     {
       "objectKey": "photos-web/wildlife/Insect Hunting Midflight.jpg",
       "relativePath": "wildlife/Insect Hunting Midflight.jpg",
@@ -87,13 +220,6 @@ export const mediaManifest: MediaManifest = {
       "thumbnailObjectKey": "photos-thumb/Roads/Alpen Way.webp",
       "displayObjectKey": "photos-display/Roads/Alpen Way.webp",
       "date": "2026-07-22T01:07:20.524Z"
-    },
-    {
-      "objectKey": "photos-web/wildlife/Yawning.jpg",
-      "relativePath": "wildlife/Yawning.jpg",
-      "thumbnailObjectKey": "photos-thumb/wildlife/Yawning.webp",
-      "displayObjectKey": "photos-display/wildlife/Yawning.webp",
-      "date": "2026-07-16T21:38:11.792Z"
     },
     {
       "objectKey": "photos-web/wildlife/Toothless Precision Hunter.jpg",

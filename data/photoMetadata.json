@@ -5202,5 +5202,142 @@
     "shutterSpeed": "1/4000",
     "aperture": "f/6.7",
     "focalLength": "430mm"
+  },
+  "Metropolis/Urban Decay .png": {},
+  "wildlife/Kestrel Gliding.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 3200,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Kestrel Scaning the Field.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1600,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/6.3",
+    "focalLength": "594mm"
+  },
+  "wildlife/Kormoran in Sunlight.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1250,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/6.3",
+    "focalLength": "576mm"
+  },
+  "wildlife/Green Plus Yellow.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 800,
+    "shutterSpeed": "1/500",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Green Eye.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1250,
+    "shutterSpeed": "1/1600",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Green Gaze.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1250,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/6.3",
+    "focalLength": "576mm"
+  },
+  "wildlife/Rabbit.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1600,
+    "shutterSpeed": "1/1250",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Red Face.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 10000,
+    "shutterSpeed": "1/1250",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Member of Falcon Family.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 1000,
+    "shutterSpeed": "1/2500",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Flapping.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 8000,
+    "shutterSpeed": "1/2000",
+    "aperture": "f/6.3",
+    "focalLength": "576mm"
+  },
+  "Trees/Rays Through Forest.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "28-70mm F2.8 DG DN | Contemporary 021",
+    "iso": 400,
+    "shutterSpeed": "1/800",
+    "aperture": "f/2.8",
+    "focalLength": "38mm"
+  },
+  "wildlife/Roe Deer First light.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2500,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Roe Deer in Mist.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 2000,
+    "shutterSpeed": "1/4000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Roe Deer in the Mist.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 3200,
+    "shutterSpeed": "1/2500",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Mallard Flapping.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 320,
+    "shutterSpeed": "1/5000",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
+  },
+  "wildlife/Heron on Mist.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 3200,
+    "shutterSpeed": "1/3200",
+    "aperture": "f/6.3",
+    "focalLength": "404mm"
+  },
+  "wildlife/In between mist.jpg": {
+    "camera": "SONY ILCE-7M5",
+    "lens": "FE 200-600mm F5.6-6.3 G OSS",
+    "iso": 500,
+    "shutterSpeed": "1/250",
+    "aperture": "f/6.3",
+    "focalLength": "600mm"
   }
 }
