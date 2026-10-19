@@ -767,7 +767,9 @@ async function triggerSiteDeploy(env, options = {}) {
   const deployToken = env.GITHUB_DEPLOY_TOKEN;
 
   if (!(repository && workflowFile && deployRef && deployToken)) {
-    return false;
+    throw new Error(
+      'GitHub deploy configuration is missing. Check GITHUB_REPOSITORY, GITHUB_WORKFLOW_FILE, GITHUB_DEPLOY_REF and the GITHUB_DEPLOY_TOKEN worker secret.'
+    );
   }
 
   const response = await fetch(
@@ -1234,6 +1236,12 @@ export default {
           const messageText =
             error instanceof Error ? error.message : String(error);
           console.error(`GitHub deploy trigger failed: ${messageText}`);
+
+          for (const message of processedMessages) {
+            message.retry({ delaySeconds: 60 });
+          }
+
+          return;
         }
       }
     }

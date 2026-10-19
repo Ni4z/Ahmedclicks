@@ -117,6 +117,7 @@ The metadata file is keyed by photo path:
 
 ## Project Notes
 
+- Playfair Display, Inter and Allura are bundled in `app/fonts/` with their SIL Open Font License files. Builds use `next/font/local` and do not depend on Google Fonts network requests.
 - The gallery can now be filtered by category, tag, series, location, and year.
 - `photo:meta:set` updates the local `data/photoMetadata.json` file only.
 - `caption:set` is documented above with `--no-deploy` so the README stays public-safe.
