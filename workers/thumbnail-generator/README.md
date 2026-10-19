@@ -77,15 +77,28 @@ The token must be able to trigger workflow dispatches on `Ni4z/Ahmedclicks`:
 | Fine-grained PAT | Repository permission **Actions** → Read and write |
 | Classic PAT | Scopes: `repo` + `workflow` |
 
-Test the token locally:
+After updating `GITHUB_DEPLOY_TOKEN` in `.env.local`, test the token locally
+from the repository root (Node.js 20.6 or later):
 
 ```bash
-GITHUB_DEPLOY_TOKEN=ghp_... node scripts/test-deploy-trigger.mjs
+node --env-file=.env.local scripts/test-deploy-trigger.mjs
 ```
 
-If the token is missing or invalid, thumbnails and the manifest still update
-automatically in R2, and captions placeholders still update, but the live site will not rebuild until the next push to
-`main` or a manual `workflow_dispatch`.
+This starts a real deploy on `main`. Updating `.env.local` does not update the
+Cloudflare worker: replace its secret separately with `wrangler secret put`
+above. Enter tokens only in the local file or the secret prompt, never in chat.
+
+If the token is missing or invalid, thumbnails, the manifest and caption
+placeholders can still update in R2, but the live site will not rebuild.
+Failed deploy requests are logged and the queue messages are retried after
+60 seconds, up to the queue's configured retry limit. HTTP 401 means the token
+is invalid, expired or revoked; HTTP 403 usually means it lacks Actions write
+permission for this repository.
+
+For uploads whose events were already acknowledged or exhausted their retries,
+open GitHub Actions, select `deploy.yml`, and run the workflow on `main` after
+confirming the photos appear in the public manifest. There is no need to upload
+the same photo again.
 
 ### 2. GitHub Actions secrets (for `thumbs:heal`)
 
@@ -192,7 +205,7 @@ manual backfill is only needed for one-off repairs.
 1. Check the manifest has the photo: `curl -s https://images.niazphotography.com/media-manifest.json | grep <filename>`
 2. Check captions placeholders exist: `curl -s https://images.niazphotography.com/captions.json | grep <filename>`
 3. Check the thumbnail exists: `curl -sI https://images.niazphotography.com/photos-thumb/<path-with-extension>.webp`
-4. Test the deploy token: `GITHUB_DEPLOY_TOKEN=... node scripts/test-deploy-trigger.mjs`
+4. Test the local deploy token: `node --env-file=.env.local scripts/test-deploy-trigger.mjs` (starts a real deploy); update the worker secret separately
 5. Check recent workflow runs: `https://github.com/Ni4z/Ahmedclicks/actions`
 6. Check Cloudflare worker logs: `npx wrangler tail -c workers/thumbnail-generator/wrangler.jsonc`
 
@@ -214,5 +227,17 @@ For immediate fixes, use `npm run thumbs:backfill -- <relative-path>`.
 - The manifest is stored in the image bucket so one public URL feeds the build.
 - `cf-cache-status: DYNAMIC` — the manifest is not edge-cached, so the
   visibility check after publish should pass quickly.
-- If the deploy trigger fails, the error is logged but the queue messages are
-  still acknowledged. Check `wrangler tail` for `GitHub deploy trigger failed`.
+- If the deploy trigger fails or its configuration is missing, the error is
+       logged and the queue messages are retried after 60 seconds rather than
+       acknowledged. Check `wrangler tail` for `GitHub deploy trigger failed`.
+
+## Regression tests
+
+From the repository root:
+
+```bash
+node --test workers/thumbnail-generator/src/index.test.mjs
+```
+
+These tests use mocked R2 storage and GitHub responses; they do not upload files
+or trigger real deploys.

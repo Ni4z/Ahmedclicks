@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, Inter, Allura } from 'next/font/google';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 import '@/styles/globals.css';
 import Layout from '@/components/layout/Layout';
@@ -11,22 +11,27 @@ import {
   withPhotoAssetPath,
 } from '@/lib/site';
 
-const playfair = Playfair_Display({
-  subsets: ['latin'],
+const playfair = localFont({
+  src: './fonts/PlayfairDisplay-latin.woff2',
   variable: '--font-serif',
-  weight: ['700', '800', '900'],
+  weight: '700 900',
+  display: 'swap',
+  adjustFontFallback: 'Times New Roman',
 });
 
-const inter = Inter({
-  subsets: ['latin'],
+const inter = localFont({
+  src: './fonts/Inter-latin.woff2',
   variable: '--font-sans',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: '300 700',
+  display: 'swap',
 });
 
-const allura = Allura({
-  subsets: ['latin'],
+const allura = localFont({
+  src: './fonts/Allura-latin.woff2',
   variable: '--font-signature',
-  weight: ['400'],
+  weight: '400',
+  display: 'swap',
+  adjustFontFallback: false,
 });
 
 const socialImage =
