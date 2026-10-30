@@ -421,6 +421,7 @@ function buildPhotoAssets(objects) {
     (object) =>
       isImageKey(object.key) &&
       !isDerivedKey(object.key) &&
+      !object.key.startsWith('featured-prints/') &&
       (!restrictPhotosToPrefix ||
         !photoPrefix ||
         object.key.startsWith(photoPrefix))
@@ -459,7 +460,7 @@ function buildPhotoAssets(objects) {
 
 function buildVideoAssets(objects, excludedKeys) {
   const videoCandidates = objects
-    .filter((object) => isVideoKey(object.key))
+    .filter((object) => isVideoKey(object.key) && !object.key.startsWith('featured-prints/'))
     .filter((object) => {
       if (videoPrefix) {
         return object.key.startsWith(videoPrefix);

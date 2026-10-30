@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 const STORAGE_KEY = 'niaz-theme';
 
@@ -12,7 +12,28 @@ interface ThemeToggleProps {
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
-  window.localStorage.setItem(STORAGE_KEY, theme);
+
+  try {
+    window.localStorage.setItem(STORAGE_KEY, theme);
+  } catch {}
+}
+
+function getThemeSnapshot(): Theme {
+  return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+}
+
+function getDefaultTheme(): Theme {
+  return 'light';
+}
+
+function subscribeTheme(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+
+  return () => observer.disconnect();
 }
 
 function SunIcon({ active, compact }: { active: boolean; compact: boolean }) {
@@ -55,17 +76,10 @@ function MoonIcon({ active, compact }: { active: boolean; compact: boolean }) {
 }
 
 export default function ThemeToggle({ compact = false }: ThemeToggleProps) {
-  const [theme, setTheme] = useState<Theme>('dark');
-
-  useEffect(() => {
-    const currentTheme =
-      document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
-    setTheme(currentTheme);
-  }, []);
+  const theme = useSyncExternalStore(subscribeTheme, getThemeSnapshot, getDefaultTheme);
 
   function toggleTheme() {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme);
+    const nextTheme = getThemeSnapshot() === 'dark' ? 'light' : 'dark';
     applyTheme(nextTheme);
   }
 

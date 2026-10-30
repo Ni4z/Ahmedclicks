@@ -1,6 +1,14 @@
 import { withPhotoAssetPath } from '@/lib/site';
 import { BlogPost, Equipment } from '@/lib/types';
 
+export const featuredPrintPaths: readonly [string, string, string, string, string] = [
+  'landscape/The Alpen VIllage.jpg',
+  'landscape/The Alpen Farmland 8.jpg',
+  'wildlife/Color contrast.jpg',
+  'wildlife/Blau Meise 2.jpg',
+  'wildlife/DSC04928-6.jpg',
+];
+
 const WORDS_PER_MINUTE = 200;
 
 const posts: Omit<BlogPost, 'readTime'>[] = [

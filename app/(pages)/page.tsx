@@ -1,81 +1,148 @@
-import HeroSlideshow from '@/components/home/HeroSlideshow';
-import LatestUpdates, {
-  LatestUpdateItem,
-} from '@/components/home/LatestUpdates';
-import FeaturedVideos from '@/components/home/FeaturedVideos';
-import Categories from '@/components/home/Categories';
-import PhotographerBio from '@/components/home/PhotographerBio';
-import { Metadata } from 'next';
-import {
-  getPhotoCategories,
-  getProfilePhoto,
-  getRecentPhotos,
-} from '@/lib/gallery';
-import { getFeaturedVideos } from '@/lib/videos';
-import { absoluteUrl, withPhotoAssetPath } from '@/lib/site';
-import { blogPosts } from '@/data/portfolio';
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowUpRight, Mail } from 'lucide-react';
+import EntranceSlideshow from '@/components/home/EntranceSlideshow';
+import EntranceHeader from '@/components/layout/EntranceHeader';
+import PrintShowcase from '@/components/prints/PrintShowcase';
+import { featuredPrintPaths } from '@/data/portfolio';
+import { getPhotos, getProfilePhoto } from '@/lib/gallery';
+import { createStableAssetId } from '@/lib/media-assets';
+import { absoluteUrl, siteConfig } from '@/lib/site';
+import '@/styles/entrance.css';
 
 export const metadata: Metadata = {
-  title: 'NiazPhotography — Wildlife & Landscape Photography',
+  title: 'NiazPhotography | Wildlife & Landscape Photography',
   description:
-    'Wildlife, landscape, and nature photography by Niaz — featuring wildlife, astrophotography, landscapes, portraits, and short film work, based in Duisburg, Germany.',
+    'Wildlife, landscape, and nature photography by Niaz. A closer look at the natural world, from Duisburg, Germany.',
   alternates: { canonical: absoluteUrl('/') },
 };
 
+const openingSelections = [
+  {
+    path: 'wildlife/Hatchlings Caring.jpg',
+    position: 'center 50%',
+    mobilePosition: '80% center',
+  },
+  {
+    path: 'landscape/The Alpen VIllage.jpg',
+    position: 'center 52%',
+    mobilePosition: '50% center',
+  },
+  {
+    path: 'wildlife/Roe Deer First light.jpg',
+    position: 'center 55%',
+    mobilePosition: '75% center',
+  },
+];
+
 export default function Home() {
-  // The hero shows at most 5 slides; passing trimmed-down recent photos
-  // keeps the 300-photo archive out of the serialized page payload.
-  const heroPhotos = getRecentPhotos(8).map(({ title, display, date }) => ({
-    title,
-    display,
-    date,
-  }));
-  const recentPhotos = getRecentPhotos(4);
-  const latestUpdates: LatestUpdateItem[] = [
-    ...recentPhotos.map((photo) => ({
-      id: `photo-${photo.id}`,
-      type: 'photo' as const,
-      title: photo.title,
-      summary: photo.caption || '',
-      image: photo.thumbnail,
-      href: `/gallery/${photo.id}`,
-      date: photo.date,
-      category: photo.category,
-    })),
-    ...blogPosts.map((post) => ({
-      id: `post-${post.slug}`,
-      type: 'post' as const,
-      title: post.title,
-      summary: post.excerpt,
-      image: post.image,
-      href: `/blog/${post.slug}`,
-      date: post.date,
-      category: post.category,
-      readTime: post.readTime,
-    })),
-  ]
-    .sort(
-      (first, second) =>
-        new Date(second.date).getTime() - new Date(first.date).getTime()
-    )
-    .slice(0, 4);
-  const featuredVideos = getFeaturedVideos(2);
-  const categories = getPhotoCategories();
+  const photos = getPhotos();
+  const selectedPhotos = openingSelections.flatMap((selection) => {
+    const photo = photos.find(
+      (candidate) =>
+        candidate.id === createStableAssetId(selection.path, 'photo')
+    );
+
+    return photo
+      ? [{
+          id: photo.id,
+          title: photo.title,
+          display: photo.image,
+          position: selection.position,
+          mobilePosition: selection.mobilePosition,
+        }]
+      : [];
+  });
+  const openingPhotos = selectedPhotos.length
+    ? selectedPhotos
+    : photos.slice(0, 3).map((photo) => ({
+        id: photo.id,
+        title: photo.title,
+        display: photo.image,
+        position: 'center',
+        mobilePosition: 'center',
+      }));
   const profilePhoto = getProfilePhoto();
+  const printPhotos = featuredPrintPaths.flatMap((relativePath) => {
+    const photo = photos.find(
+      (candidate) => candidate.id === createStableAssetId(relativePath, 'photo')
+    );
+
+    if (!photo) return [];
+
+    return [{
+      id: photo.id,
+      title: photo.title,
+      image: photo.image,
+      width: photo.width,
+      height: photo.height,
+    }];
+  });
 
   return (
-    <>
-      <HeroSlideshow photos={heroPhotos} />
-      <LatestUpdates items={latestUpdates} />
-      <FeaturedVideos videos={featuredVideos} />
-      <Categories categories={categories} />
-      <PhotographerBio
-        profileImage={
-          profilePhoto?.thumbnail ||
-          recentPhotos[0]?.thumbnail ||
-          withPhotoAssetPath('/photos/Me/Me.jpg', 'thumbnail')
-        }
-      />
-    </>
+    <div className="entrance">
+      <EntranceHeader />
+
+      <EntranceSlideshow photos={openingPhotos} />
+
+      <section className="entrance-introduction" aria-labelledby="entrance-about">
+        <div className="entrance-introduction-copy">
+          <p className="entrance-eyebrow">Behind the lens</p>
+          <h2 id="entrance-about">Nature is worth a closer look.</h2>
+          <p className="entrance-introduction-text">
+            I&apos;m Niaz, a photographer based in Duisburg, Germany. My work
+            follows wildlife, changing landscapes, and the small details that
+            are easy to pass by. A deer in the morning mist. Light finding its
+            way through a forest. Moments that make you stop and look again.
+          </p>
+          <div className="entrance-introduction-links">
+            <Link href="/about" className="entrance-text-link">
+              Meet Niaz
+              <ArrowUpRight size={18} strokeWidth={1.6} aria-hidden="true" />
+            </Link>
+            <Link href="/contact" className="entrance-text-link">
+              Get in touch
+              <ArrowUpRight size={18} strokeWidth={1.6} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+
+        {profilePhoto ? (
+          <figure className="entrance-portrait">
+            <div className="entrance-portrait-image">
+              <Image
+                src={profilePhoto.display}
+                alt="Niaz, the photographer behind NiazPhotography"
+                fill
+                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1199px) 40vw, 460px"
+                className="entrance-portrait-photo"
+              />
+            </div>
+            <figcaption>Niaz. Duisburg, Germany.</figcaption>
+          </figure>
+        ) : null}
+      </section>
+
+      <PrintShowcase photos={printPhotos} />
+
+      <footer className="entrance-footer">
+        <p>&copy; {new Date().getFullYear()} NiazPhotography</p>
+        <nav aria-label="Footer navigation">
+          <Link href="/prints">Prints</Link>
+          <Link href="/about">About</Link>
+          <Link href="/contact">Contact</Link>
+          <Link href="/privacy">Privacy</Link>
+          <a
+            href={`mailto:${siteConfig.contactEmail}`}
+            className="entrance-social-link"
+            aria-label="Email NiazPhotography"
+            title="Email Niaz"
+          >
+            <Mail size={18} strokeWidth={1.6} aria-hidden="true" />
+          </a>
+        </nav>
+      </footer>
+    </div>
   );
 }

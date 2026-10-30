@@ -11,10 +11,12 @@ const staticRoutes: Array<{
   priority: number;
 }> = [
   { path: '/', changeFrequency: 'weekly', priority: 1 },
+  { path: '/portfolio/', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/gallery/', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/videos/', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/about/', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/prints/', changeFrequency: 'monthly', priority: 0.6 },
+  { path: '/prints/collection/', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/blog/', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/contact/', changeFrequency: 'yearly', priority: 0.5 },
   { path: '/privacy/', changeFrequency: 'yearly', priority: 0.2 },

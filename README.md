@@ -42,7 +42,27 @@ npm run thumbs:deploy
 
 These commands are safe to document publicly, but the deploy-related ones still depend on your local Cloudflare auth and project configuration when you run them.
 
-## Media Files You Will Edit
+## Featured Prints in Cloudflare
+
+The homepage print slideshow and Prints collection use the same `featured-prints/`
+folder in the `niazphotography-images` R2 bucket.
+
+1. In Cloudflare, open **R2 Object Storage > niazphotography-images > featured-prints**.
+2. Keep the five photos you want featured in that folder. Upload replacement files there;
+  leave the gallery originals in `photos-web/` alone.
+3. Use filename prefixes to control the order, for example `01-Alpen Village.jpg`,
+  `02-Buttercup Field.jpg`, through `05-Your photo.jpg`.
+4. Remove a superseded copy from this folder if you uploaded a differently named replacement.
+  When more than five images exist, the first five filenames in numeric order are used.
+5. Refresh the website after about 30 seconds. Once this feature has been published,
+  changing this folder does not need a code edit or website deployment.
+
+Frames adapt to each image's native proportions. Replacing a file changes its image
+version so the site does not keep showing the old cached photo. The existing
+`featuredPrintPaths` list in `data/portfolio.ts` is only a fallback if the feed is unavailable.
+The public feed is read-only; photo management stays in your authenticated Cloudflare account.
+
+## Other Media Files You Will Edit
 
 - `data/photoMetadata.json`: photo organization data like `tags`, `series`, `location`, and optional `year`
 - `data/captions.json`: captions for photos and videos

@@ -16,7 +16,7 @@ const navItems = [
   { name: 'Contact', href: '/contact' },
 ];
 
-export default function Navbar() {
+export default function Navbar({ showThemeToggle = true }: { showThemeToggle?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (href: string) =>
@@ -73,12 +73,12 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
-            <ThemeToggle />
+            {showThemeToggle ? <ThemeToggle /> : null}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden sm:gap-3">
-            <ThemeToggle compact />
+            {showThemeToggle ? <ThemeToggle compact /> : null}
             <button
               className="flex cursor-pointer flex-col gap-1 rounded-md p-1"
               onClick={() => setIsOpen(!isOpen)}
