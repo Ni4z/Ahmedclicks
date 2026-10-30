@@ -131,7 +131,7 @@ export const blogPosts: BlogPost[] = posts.map((post) => ({
 export const equipment: Equipment[] = [
   {
     id: '1',
-    name: 'Sony Alpha 7C II',
+    name: 'Sony Alpha 7 V',
     type: 'camera',
     description:
       'Primary full-frame camera body used across the portfolio for wildlife, travel, low-light, and everyday shooting.',

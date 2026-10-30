@@ -21,7 +21,7 @@ export default function GalleryPage() {
   return (
     <div className="min-h-screen bg-dark">
       {/* Hero */}
-      <div className="relative overflow-hidden px-6 py-20 text-center">
+      <div className="relative overflow-hidden px-6 py-8 text-center sm:py-10">
         <div className="absolute inset-0 bg-dark-secondary">
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -30,17 +30,17 @@ export default function GalleryPage() {
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,10,10,0.68)_0%,rgba(18,18,18,0.82)_55%,rgba(10,10,10,0.92)_100%)]" />
         </div>
         <div className="relative z-10">
-          <h1 className="mb-4 text-5xl font-serif font-bold text-white md:text-7xl">
+          <h1 className="mb-3 text-4xl font-serif font-bold text-white sm:text-5xl">
             Gallery
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-gray-200/80">
+          <p className="mx-auto max-w-2xl text-sm leading-6 text-gray-200/80 sm:text-base">
             A living archive you can browse by category, tag, series, location, and year.
           </p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto py-20 px-6">
+      <div className="mx-auto max-w-7xl px-6 py-6 sm:py-8">
         <GalleryBrowser photos={photos} categories={categories} />
       </div>
     </div>
