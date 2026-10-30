@@ -15,6 +15,7 @@ const imageExtensions = new Set([
 ]);
 
 const videoExtensions = new Set(['.m4v', '.mov', '.mp4', '.webm']);
+const featuredPrintPrefix = 'featured-prints/';
 
 const formatToExtension = {
   'image/avif': '.avif',
@@ -506,7 +507,8 @@ function buildPhotoAssets(
     .map((object) => object.key)
     .filter((key) => isSupportedImage(key));
   const photoCandidates = objects.filter(
-    (object) => isSupportedImage(object.key) && !isDerivedKey(object.key)
+    (object) => isSupportedImage(object.key) && !isDerivedKey(object.key) &&
+      !object.key.startsWith(featuredPrintPrefix)
   );
   const photoRelativePaths = photoCandidates.map((object) =>
     stripPrefix(object.key, photoPrefix)
@@ -551,7 +553,7 @@ function buildVideoAssets(objects, excludedKeys, env) {
       : normalizePrefix(env.VIDEO_SOURCE_PREFIX);
 
   return objects
-    .filter((object) => isSupportedVideo(object.key))
+    .filter((object) => isSupportedVideo(object.key) && !object.key.startsWith(featuredPrintPrefix))
     .filter((object) => {
       if (videoPrefix) {
         return object.key.startsWith(videoPrefix);
@@ -1079,7 +1081,110 @@ function affectsPublishedMedia(objectKey, bucketName, env) {
   return isSupportedVideo(normalizedKey) && (!videoPrefix || normalizedKey.startsWith(videoPrefix));
 }
 
+async function getFeaturedPrintsResponse(request, env, context) {
+  const url = new URL(request.url);
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+    'Cache-Control': 'public, max-age=30',
+  };
+
+  if (url.pathname !== '/featured-prints' && url.pathname !== '/featured-prints/') {
+    return new Response('Not found', { status: 404 });
+  }
+
+  if (request.method === 'OPTIONS') {
+    return new Response(null, { status: 204, headers });
+  }
+
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    return new Response('Method not allowed', {
+      status: 405,
+      headers: { ...headers, Allow: 'GET, HEAD, OPTIONS' },
+    });
+  }
+
+  const cacheKey = new Request(`${url.origin}/featured-prints`);
+  const cache = globalThis.caches?.default;
+  const cached = cache ? await cache.match(cacheKey) : null;
+
+  if (cached) {
+    return request.method === 'HEAD'
+      ? new Response(null, { headers: cached.headers })
+      : cached;
+  }
+
+  try {
+    const prefix = featuredPrintPrefix;
+    const baseUrl = (env.PUBLIC_IMAGE_BASE_URL || '').replace(/\/+$/, '');
+
+    if (!baseUrl || !env.MEDIA_BUCKET) {
+      throw new Error('Print collection is not configured');
+    }
+
+    const objects = [];
+    let cursor;
+
+    do {
+      const page = await env.MEDIA_BUCKET.list({ prefix, cursor });
+      objects.push(...page.objects.filter((object) => {
+        const extension = `.${object.key.split('.').pop()?.toLowerCase()}`;
+        return object.key.startsWith(prefix) && object.size > 0 && imageExtensions.has(extension);
+      }));
+      cursor = page.truncated ? page.cursor : undefined;
+    } while (cursor);
+
+    objects.sort((first, second) =>
+      first.key.localeCompare(second.key, 'en', { numeric: true })
+    );
+
+    const photos = await Promise.all(objects.slice(0, 5).map(async (object) => {
+      const details = await env.MEDIA_BUCKET.head(object.key);
+      if (!details) return null;
+
+      const metadata = details?.customMetadata || {};
+      const fileName = object.key.slice(prefix.length).split('/').pop();
+      const defaultTitle = fileName
+        .replace(/\.[^.]+$/, '')
+        .replace(/^\d+[-_. ]+/, '')
+        .replace(/(?<!\d)[-_]+|[-_]+(?!\d)/g, ' ')
+        .trim();
+      const width = Number(metadata.width);
+      const height = Number(metadata.height);
+      const version = object.etag || object.uploaded?.toISOString?.() || '';
+      const imageUrl = `${baseUrl}/${object.key.split('/').map(encodeURIComponent).join('/')}${version ? `?v=${encodeURIComponent(version)}` : ''}`;
+
+      return {
+        id: `${object.key}:${version}`,
+        title: metadata.title?.trim() || defaultTitle || 'Untitled photograph',
+        image: imageUrl,
+        display: imageUrl,
+        ...(Number.isFinite(width) && width > 0 ? { width } : {}),
+        ...(Number.isFinite(height) && height > 0 ? { height } : {}),
+      };
+    }));
+
+    const response = Response.json({ version: 1, photos: photos.filter(Boolean) }, { headers });
+
+    if (cache) {
+      const write = cache.put(cacheKey, response.clone());
+      if (context?.waitUntil) context.waitUntil(write);
+      else await write;
+    }
+
+    return request.method === 'HEAD'
+      ? new Response(null, { headers: response.headers })
+      : response;
+  } catch {
+    return Response.json(
+      { error: 'The print collection is temporarily unavailable.' },
+      { status: 503, headers: { ...headers, 'Cache-Control': 'no-store' } }
+    );
+  }
+}
+
 export default {
+  fetch: getFeaturedPrintsResponse,
   async queue(batch, env) {
     const processedMessages = [];
     let shouldRefreshManifest = false;
@@ -1098,6 +1203,11 @@ export default {
 
       if (!objectKey) {
         console.warn('Skipping queue message without an object key.');
+        processedMessages.push(message);
+        continue;
+      }
+
+      if (normalizePath(objectKey).startsWith(featuredPrintPrefix)) {
         processedMessages.push(message);
         continue;
       }

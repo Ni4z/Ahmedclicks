@@ -19,7 +19,11 @@ export const siteConfig = {
     process.env.NEXT_PUBLIC_VIDEO_BASE_URL || normalizedMediaBaseUrl
   ).replace(/\/+$/, ''),
   contactEmail:
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'niazphotography.com@gmail.com',
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'info@niazphotography.com',
+  featuredPrintsUrl: (
+    process.env.NEXT_PUBLIC_FEATURED_PRINTS_URL ||
+    'https://niazphotography-thumbnail-generator.ahmedmalif3.workers.dev/featured-prints'
+  ).trim(),
   // Optional form-handler endpoint (Formspree, Web3Forms, or a custom Worker).
   // When set, the contact form POSTs here; otherwise it falls back to email.
   contactEndpoint: (process.env.NEXT_PUBLIC_CONTACT_ENDPOINT || '').trim(),

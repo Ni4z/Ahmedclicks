@@ -15,8 +15,8 @@ html[data-theme='dark'] {
 }
 
 html[data-theme='light'] {
-  --color-bg: 243 243 239;
-  --color-surface: 255 255 252;
+  --color-bg: 255 255 255;
+  --color-surface: 243 245 242;
   --color-border: 212 212 206;
   --color-fg: 18 18 18;
   --color-accent: 18 18 18;

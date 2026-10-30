@@ -46,11 +46,11 @@ const themeInitScript = `
       const savedTheme = window.localStorage.getItem(storageKey);
       const theme = savedTheme === 'light' || savedTheme === 'dark'
         ? savedTheme
-        : 'dark';
+        : 'light';
 
       document.documentElement.dataset.theme = theme;
     } catch {
-      document.documentElement.dataset.theme = 'dark';
+      document.documentElement.dataset.theme = 'light';
     }
   })();
 `;
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#0a0a0a',
+  themeColor: '#ffffff',
 };
 
 export default function RootLayout({
@@ -109,7 +109,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       className={`${playfair.variable} ${inter.variable} ${allura.variable}`}
       suppressHydrationWarning
     >
