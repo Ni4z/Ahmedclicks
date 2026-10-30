@@ -1,6 +1,7 @@
 'use client';
 
 import { useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { ChevronDown, SlidersHorizontal, X } from 'lucide-react';
 import CategoryFilter from '@/components/gallery/CategoryFilter';
 import GalleryPagination from '@/components/gallery/GalleryPagination';
 import PhotoGrid from '@/components/gallery/PhotoGrid';
@@ -211,6 +212,7 @@ export default function GalleryBrowser({
   const [sortOrder, setSortOrder] = useState(DEFAULT_SORT);
   const deferredSearchQuery = useDeferredValue(searchQuery.trim().toLowerCase());
   const isHydratingFromUrl = useRef(true);
+  const moreFiltersRef = useRef<HTMLDetailsElement>(null);
 
   // Restore filters from the URL on mount so filtered views are shareable
   // and survive back navigation from a photo detail page.
@@ -230,6 +232,13 @@ export default function GalleryBrowser({
 
     const page = Number.parseInt(read('page'), 10);
     if (Number.isInteger(page) && page > 1) setCurrentPage(page);
+
+    if (
+      ['year', 'weather', 'country', 'location', 'tag', 'focal'].some((key) => read(key)) &&
+      moreFiltersRef.current
+    ) {
+      moreFiltersRef.current.open = true;
+    }
 
     const timeoutId = window.setTimeout(() => {
       isHydratingFromUrl.current = false;
@@ -506,6 +515,26 @@ export default function GalleryBrowser({
     .filter(Boolean)
     .join(' • ');
 
+  const advancedFilterCount = [
+    activeTag !== ALL_TAGS,
+    activeWeather !== ALL_WEATHER,
+    activeCountry !== ALL_COUNTRIES,
+    activeLocation !== ALL_LOCATIONS,
+    activeYear !== ALL_YEARS,
+    activeFocalLength !== ALL_FOCAL_LENGTHS,
+  ].filter(Boolean).length;
+  const filtersAreActive = hasActiveFilters({
+    activeCategory,
+    activeCountry,
+    activeFocalLength,
+    activeLocation,
+    activeWeather,
+    activeTag,
+    activeYear,
+    searchQuery,
+    sortOrder,
+  });
+
   return (
     <>
       <CategoryFilter
@@ -514,9 +543,9 @@ export default function GalleryBrowser({
         onCategoryChange={handleCategoryChange}
       />
 
-      <div className="mb-10 rounded-[1.75rem] border border-dark-tertiary bg-dark-secondary/70 p-4 sm:p-6">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <label className="xl:col-span-2">
+      <div className="mb-7 border-b border-dark-tertiary pb-5">
+        <div className="grid grid-cols-[minmax(0,1fr)_120px] gap-3 sm:grid-cols-[minmax(0,1fr)_180px] lg:grid-cols-[minmax(0,1fr)_180px_auto]">
+          <label className="min-w-0">
             <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
               Search
             </span>
@@ -524,8 +553,8 @@ export default function GalleryBrowser({
               type="search"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              placeholder="Title, tag, weather, country, location, camera..."
-              className="w-full"
+              placeholder="Search photos"
+              className="min-h-11 w-full"
             />
           </label>
 
@@ -536,7 +565,7 @@ export default function GalleryBrowser({
             <select
               value={sortOrder}
               onChange={(event) => setSortOrder(event.target.value)}
-              className="w-full"
+              className="min-h-11 w-full"
             >
               <option>{DEFAULT_SORT}</option>
               <option>Oldest</option>
@@ -545,141 +574,91 @@ export default function GalleryBrowser({
             </select>
           </label>
 
-          <label>
-            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Year
-            </span>
-            <select
-              value={activeYear}
-              onChange={(event) => setActiveYear(event.target.value)}
-              className="w-full"
+          {filtersAreActive ? (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="col-span-2 inline-flex min-h-11 items-center justify-center gap-2 self-end rounded-md border border-dark-tertiary px-4 py-2 text-sm text-foreground/75 transition-colors hover:border-accent-gold hover:text-foreground lg:col-span-1"
             >
-              <option>{ALL_YEARS}</option>
-              {facetOptions.years.map(([year, count]) => (
-                <option key={year} value={year}>
-                  {year} ({count})
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Weather
-            </span>
-            <select
-              value={activeWeather}
-              onChange={(event) => setActiveWeather(event.target.value)}
-              className="w-full"
-            >
-              <option>{ALL_WEATHER}</option>
-              {facetOptions.weather.map(([weather, count]) => (
-                <option key={weather} value={weather}>
-                  {weather} ({count})
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Country
-            </span>
-            <select
-              value={activeCountry}
-              onChange={(event) => {
-                setActiveCountry(event.target.value);
-                setActiveLocation(ALL_LOCATIONS);
-              }}
-              className="w-full"
-            >
-              <option>{ALL_COUNTRIES}</option>
-              {facetOptions.countries.map(([country, count]) => (
-                <option key={country} value={country}>
-                  {country} ({count})
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Location
-            </span>
-            <select
-              value={activeLocation}
-              onChange={(event) => setActiveLocation(event.target.value)}
-              className="w-full"
-            >
-              <option>{ALL_LOCATIONS}</option>
-              {facetOptions.locations.map(([location, count]) => (
-                <option key={location} value={location}>
-                  {location} ({count})
-                </option>
-              ))}
-            </select>
-          </label>
+              <X size={16} strokeWidth={1.6} aria-hidden="true" />
+              Clear Filters
+            </button>
+          ) : null}
         </div>
 
-        <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          <label className="xl:col-span-2">
-            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Tag
-            </span>
-            <select
-              value={activeTag}
-              onChange={(event) => setActiveTag(event.target.value)}
-              className="w-full"
-            >
-              <option>{ALL_TAGS}</option>
-              {facetOptions.tags.map(([tag, count]) => (
-                <option key={tag} value={tag}>
-                  {tag} ({count})
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">
-              Focal Length
-            </span>
-            <select
-              value={activeFocalLength}
-              onChange={(event) => setActiveFocalLength(event.target.value)}
-              className="w-full"
-            >
-              <option>{ALL_FOCAL_LENGTHS}</option>
-              {facetOptions.focalLengths.map(([fl, count]) => (
-                <option key={fl} value={fl}>
-                  {fl} ({count})
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <div className="flex items-end">
-            {hasActiveFilters({
-              activeCategory,
-              activeCountry,
-              activeFocalLength,
-              activeLocation,
-              activeWeather,
-              activeTag,
-              activeYear,
-              searchQuery,
-              sortOrder,
-            }) ? (
-              <button
-                type="button"
-                onClick={clearFilters}
-                className="w-full rounded-full border border-dark-tertiary px-5 py-3 text-xs uppercase tracking-[0.28em] text-gray-400 transition-colors hover:border-accent-gold hover:text-accent-gold"
-              >
-                Clear Filters
-              </button>
+        <details ref={moreFiltersRef} className="group mt-3">
+          <summary className="inline-flex min-h-11 cursor-pointer list-none items-center gap-2 rounded-md px-2 py-2 text-sm text-foreground/80 hover:text-foreground [&::-webkit-details-marker]:hidden">
+            <SlidersHorizontal size={17} strokeWidth={1.6} aria-hidden="true" />
+            <span>More filters</span>
+            {advancedFilterCount > 0 ? (
+              <span className="ml-1 text-xs text-foreground/65">{advancedFilterCount} active</span>
             ) : null}
+            <ChevronDown size={16} strokeWidth={1.6} className="transition-transform group-open:rotate-180" aria-hidden="true" />
+          </summary>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <label>
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">Year</span>
+              <select value={activeYear} onChange={(event) => setActiveYear(event.target.value)} className="min-h-11 w-full">
+                <option>{ALL_YEARS}</option>
+                {facetOptions.years.map(([year, count]) => (
+                  <option key={year} value={year}>{year} ({count})</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">Weather</span>
+              <select value={activeWeather} onChange={(event) => setActiveWeather(event.target.value)} className="min-h-11 w-full">
+                <option>{ALL_WEATHER}</option>
+                {facetOptions.weather.map(([weather, count]) => (
+                  <option key={weather} value={weather}>{weather} ({count})</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">Country</span>
+              <select
+                value={activeCountry}
+                onChange={(event) => {
+                  setActiveCountry(event.target.value);
+                  setActiveLocation(ALL_LOCATIONS);
+                }}
+                className="min-h-11 w-full"
+              >
+                <option>{ALL_COUNTRIES}</option>
+                {facetOptions.countries.map(([country, count]) => (
+                  <option key={country} value={country}>{country} ({count})</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">Location</span>
+              <select value={activeLocation} onChange={(event) => setActiveLocation(event.target.value)} className="min-h-11 w-full">
+                <option>{ALL_LOCATIONS}</option>
+                {facetOptions.locations.map(([location, count]) => (
+                  <option key={location} value={location}>{location} ({count})</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">Tag</span>
+              <select value={activeTag} onChange={(event) => setActiveTag(event.target.value)} className="min-h-11 w-full">
+                <option>{ALL_TAGS}</option>
+                {facetOptions.tags.map(([tag, count]) => (
+                  <option key={tag} value={tag}>{tag} ({count})</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-gray-500">Focal Length</span>
+              <select value={activeFocalLength} onChange={(event) => setActiveFocalLength(event.target.value)} className="min-h-11 w-full">
+                <option>{ALL_FOCAL_LENGTHS}</option>
+                {facetOptions.focalLengths.map(([focalLength, count]) => (
+                  <option key={focalLength} value={focalLength}>{focalLength} ({count})</option>
+                ))}
+              </select>
+            </label>
           </div>
-        </div>
+        </details>
       </div>
 
       <div className="mb-8 flex flex-col gap-2 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between sm:gap-4">

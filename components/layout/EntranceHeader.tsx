@@ -87,8 +87,8 @@ export default function EntranceHeader() {
         >
           {isOpen ? <X size={21} strokeWidth={1.6} aria-hidden="true" /> : <Menu size={21} strokeWidth={1.6} aria-hidden="true" />}
         </button>
-        <Link href="/portfolio" className="btn-primary entrance-gallery-link">
-          Gallary
+        <Link href="/gallery" className="btn-primary entrance-gallery-link">
+          Gallery
           <ArrowUpRight size={18} strokeWidth={1.7} aria-hidden="true" />
         </Link>
       </nav>
